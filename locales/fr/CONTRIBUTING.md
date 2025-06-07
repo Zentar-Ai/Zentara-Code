@@ -1,129 +1,85 @@
-[English](../../CONTRIBUTING.md) • [Català](../ca/CONTRIBUTING.md) • [Deutsch](../de/CONTRIBUTING.md) • [Español](../es/CONTRIBUTING.md) • <b>Français</b> • [हिंदी](../hi/CONTRIBUTING.md) • [Italiano](../it/CONTRIBUTING.md) • [Nederlands](../nl/CONTRIBUTING.md) • [Русский](../ru/CONTRIBUTING.md)
+# Contribuer à Zentara Code
 
-[日本語](../ja/CONTRIBUTING.md) • [한국어](../ko/CONTRIBUTING.md) • [Polski](../pl/CONTRIBUTING.md) • [Português (BR)](../pt-BR/CONTRIBUTING.md) • [Türkçe](../tr/CONTRIBUTING.md) • [Tiếng Việt](../vi/CONTRIBUTING.md) • [简体中文](../zh-CN/CONTRIBUTING.md) • [繁體中文](../zh-TW/CONTRIBUTING.md)
+Tout d'abord, merci d'avoir envisagé de contribuer à Zentara Code ! Ce sont des personnes comme vous qui font de l'open source une si grande communauté.
 
-# Contribuer à Roo Code
+## Où aller à partir d'ici ?
 
-Roo Code est un projet porté par la communauté, et chaque contribution compte beaucoup pour nous. Pour fluidifier la collaboration, nous fonctionnons selon une [approche Issue-First](#approche-issue-first), ce qui signifie que toutes les [Pull Requests (PRs)](#soumettre-une-pull-request) doivent d'abord être liées à un ticket GitHub. Lis attentivement ce guide.
+Si vous avez remarqué un bug ou avez une demande de fonctionnalité, [créez-en une](https://github.com/your-username/zentara-code/issues/new/choose) ! (Remplacez `your-username/zentara-code` par le chemin réel de votre dépôt GitHub). Il est généralement préférable d'obtenir une confirmation de votre bug ou une approbation de votre demande de fonctionnalité de cette manière avant de commencer à coder.
 
-## Table des matières
+Si vous avez une question générale, vous pouvez également ouvrir un problème.
 
-- [Avant de contribuer](#avant-de-contribuer)
-- [Trouver et planifier ta contribution](#trouver-et-planifier-ta-contribution)
-- [Processus de développement et de soumission](#processus-de-développement-et-de-soumission)
-- [Légal](#légal)
+## Forker et créer une branche
 
-## Avant de contribuer
+Si vous pensez pouvoir résoudre ce problème, alors [forkez Zentara Code](https://github.com/your-username/zentara-code/fork) et créez une branche avec un nom descriptif.
 
-### 1. Code de conduite
+Un bon nom de branche serait (où le problème #325 est le ticket sur lequel vous travaillez) :
 
-Tous les contributeurs doivent respecter notre [Code de conduite](./CODE_OF_CONDUCT.md).
-
-### 2. Feuille de route du projet
-
-Notre feuille de route guide la direction du projet. Aligne tes contributions avec ces objectifs clés :
-
-### Fiabilité avant tout
-
-- Garantir que l'édition des différences et l'exécution des commandes soient toujours fiables.
-- Réduire les points de friction qui découragent l'utilisation régulière.
-- Assurer un fonctionnement fluide dans toutes les langues et sur toutes les plateformes.
-- Étendre le support robuste pour une grande variété de fournisseurs et de modèles d'IA.
-
-### Expérience utilisateur améliorée
-
-- Simplifier l'interface utilisateur pour plus de clarté et d'intuitivité.
-- Améliorer continuellement le flux de travail pour répondre aux attentes élevées des développeurs.
-
-### Leadership en performance des agents
-
-- Établir des référentiels d'évaluation (evals) complets pour mesurer la productivité réelle.
-- Permettre à chacun d'exécuter et d'interpréter facilement ces évaluations.
-- Fournir des améliorations qui démontrent des augmentations claires dans les scores d'évaluation.
-
-Mentionne l'alignement avec ces domaines dans tes PRs.
-
-### 3. Rejoindre la communauté Roo Code
-
-- **Principal :** Rejoins notre [Discord](https://discord.gg/roocode) et envoie un DM à **Hannes Rudolph (`hrudolph`)**.
-- **Alternative :** Les contributeurs expérimentés peuvent participer directement via [GitHub Projects](https://github.com/orgs/RooCodeInc/projects/1).
-
-## Trouver et planifier ta contribution
-
-### Types de contributions
-
-- **Corrections de bugs :** Résoudre des problèmes dans le code.
-- **Nouvelles fonctionnalités :** Ajouter de nouvelles fonctions.
-- **Documentation :** Améliorer les guides et la clarté.
-
-### Approche Issue-First
-
-Toutes les contributions doivent commencer par un ticket GitHub.
-
-- **Vérifier les tickets existants :** Cherche dans les [Issues GitHub](https://github.com/RooCodeInc/Roo-Code/issues).
-- **Créer un ticket :** Utilise les modèles appropriés :
-    - **Bugs :** Modèle "Bug Report".
-    - **Fonctionnalités :** Modèle "Detailed Feature Proposal". Approbation requise avant de commencer.
-- **Réclamer des tickets :** Commente et attends l'assignation officielle.
-
-**Les PRs sans tickets approuvés peuvent être fermées.**
-
-### Décider sur quoi travailler
-
-- Consulte le [Projet GitHub](https://github.com/orgs/RooCodeInc/projects/1) pour les "Good First Issues" non assignés.
-- Pour la documentation, visite [Roo Code Docs](https://github.com/RooCodeInc/Roo-Code-Docs).
-
-### Signaler des bugs
-
-- Vérifie d'abord les rapports existants.
-- Crée de nouveaux rapports de bugs avec le [modèle "Bug Report"](https://github.com/RooCodeInc/Roo-Code/issues/new/choose).
-- **Failles de sécurité :** Signale-les en privé via [security advisories](https://github.com/RooCodeInc/Roo-Code/security/advisories/new).
-
-## Processus de développement et de soumission
-
-### Configuration du développement
-
-1. **Fork & Clone :**
-
-```
-git clone https://github.com/TON_UTILISATEUR/Roo-Code.git
+```sh
+git checkout -b 325-add-japanese-localization
 ```
 
-2. **Installer les dépendances :**
+## Faire fonctionner la suite de tests
 
+Assurez-vous de pouvoir faire fonctionner la suite de tests. Nous valorisons le code bien testé !
+(Vous devrez ajouter des instructions spécifiques ici sur la façon d'exécuter vos tests, par exemple, `npm test` ou `python -m unittest discover`)
+
+## Implémenter votre correction ou fonctionnalité
+
+À ce stade, vous êtes prêt à apporter vos modifications ! N'hésitez pas à demander de l'aide ; tout le monde est débutant au début :smile_cat:
+
+Assurez-vous de :
+*   Suivre le style de codage du projet.
+*   Exécuter les linters et les formateurs (par exemple, Prettier, ESLint). (Ajoutez des commandes spécifiques si disponibles)
+*   Ajouter des tests pour vos modifications.
+
+## Faire une Pull Request
+
+À ce stade, vous devriez revenir à votre branche principale et vous assurer qu'elle est à jour avec la branche principale de Zentara Code :
+
+```sh
+git remote add upstream git@github.com:your-username/zentara-code.git
+git checkout master
+git pull upstream master
 ```
-npm run install:all
+
+Ensuite, mettez à jour votre branche de fonctionnalité à partir de votre copie locale de master, et poussez-la !
+
+```sh
+git checkout 325-add-japanese-localization
+git rebase master
+git push --force-with-lease origin 325-add-japanese-localization
 ```
 
-3. **Débogage :** Ouvre avec VS Code (`F5`).
+Enfin, allez sur GitHub et [faites une Pull Request](https://github.com/your-username/zentara-code/compare) :D
 
-### Guide d'écriture du code
+### Modèle de Pull Request
 
-- Une PR ciblée par fonctionnalité ou correction.
-- Suis les bonnes pratiques ESLint et TypeScript.
-- Écris des commits clairs et descriptifs référençant les tickets (ex : `Fixes #123`).
-- Fournis des tests complets (`npm test`).
-- Rebase sur la dernière branche `main` avant de soumettre.
+Lorsque vous ouvrez une Pull Request, veuillez utiliser le modèle suivant :
 
-### Soumettre une Pull Request
+```markdown
+### Problème(s) lié(s)
 
-- Commence par un **brouillon de PR** si tu cherches un feedback précoce.
-- Décris clairement tes changements en suivant le modèle de Pull Request.
-- Fournis des captures d'écran/vidéos pour les changements d'interface.
-- Indique si des mises à jour de documentation sont nécessaires.
+* Ferme # (numéro du problème)
 
-### Politique de Pull Request
+### Description
 
-- Doit référencer des tickets pré-approuvés et assignés.
-- Les PRs ne respectant pas cette politique peuvent être fermées.
-- Les PRs doivent passer les tests CI, s'aligner avec la feuille de route et avoir une documentation claire.
+(Fournir une brève description des changements dans cette PR.)
 
-### Processus de revue
+### Liste de contrôle
 
-- **Triage quotidien :** Vérifications rapides par les mainteneurs.
-- **Revue hebdomadaire approfondie :** Évaluation complète.
-- **Itère rapidement** sur la base du feedback.
+- [ ] J'ai lu le document [CONTRIBUTING.md](CONTRIBUTING.md).
+- [ ] J'ai ajouté des tests pour couvrir mes changements.
+- [ ] Tous les tests nouveaux et existants ont réussi.
+- [ ] J'ai mis à jour la documentation en conséquence.
+- [ ] J'ai rebasé ma branche sur le dernier commit `master`.
+- [ ] Mon code suit le style de codage du projet.
+- [ ] J'ai exécuté les linters et corrigé tous les problèmes.
+```
 
-## Légal
+## Code de Conduite
 
-En contribuant, tu acceptes que tes contributions soient sous licence Apache 2.0, conformément à la licence de Roo Code.
+Ce projet et toutes les personnes qui y participent sont régis par le [Code de Conduite de Zentara Code](CODE_OF_CONDUCT.md). En participant, vous êtes censé respecter ce code. Veuillez signaler tout comportement inacceptable à [INSÉRER LA MÉTHODE DE CONTACT DANS CODE_OF_CONDUCT.MD].
+
+## Licences
+
+En contribuant, vous acceptez que vos contributions soient sous licence Apache License 2.0, telle que trouvée dans le fichier [LICENSE](LICENSE).

@@ -23,6 +23,40 @@ import { getSwitchModeDescription } from "./switch-mode"
 import { getNewTaskDescription } from "./new-task"
 import { getCodebaseSearchDescription } from "./codebase-search"
 import { CodeIndexManager } from "../../../services/code-index/manager"
+import { getDebugToolDescription } from "./debug"
+import {
+	getDebugLaunchToolDescription,
+	getDebugRestartToolDescription,
+	getDebugQuitToolDescription,
+	getDebugContinueToolDescription,
+	getDebugNextToolDescription,
+	getDebugStepInToolDescription,
+	getDebugStepOutToolDescription,
+	getDebugJumpToolDescription,
+	getDebugUntilToolDescription,
+	getDebugSetBreakpointToolDescription,
+	getDebugSetTempBreakpointToolDescription,
+	getDebugRemoveBreakpointToolDescription,
+	getDebugRemoveAllBreakpointsInFileToolDescription,
+	getDebugDisableBreakpointToolDescription,
+	getDebugEnableBreakpointToolDescription,
+	getDebugIgnoreBreakpointToolDescription,
+	getDebugSetBreakpointConditionToolDescription,
+	getDebugGetActiveBreakpointsToolDescription,
+	getDebugStackTraceToolDescription,
+	getDebugListSourceToolDescription,
+	getDebugUpToolDescription,
+	getDebugDownToolDescription,
+	getDebugGotoFrameToolDescription,
+	getDebugGetSourceToolDescription,
+	getDebugGetStackFrameVariablesToolDescription,
+	getDebugGetArgsToolDescription,
+	getDebugEvaluateToolDescription,
+	getDebugPrettyPrintToolDescription,
+	getDebugWhatisToolDescription,
+	getDebugExecuteStatementToolDescription,
+	getDebugGetLastStopInfoToolDescription,
+} from "./debug_operations"
 
 // Map of tool names to their description functions
 const toolDescriptionMap: Record<string, (args: ToolArgs) => string | undefined> = {
@@ -45,6 +79,38 @@ const toolDescriptionMap: Record<string, (args: ToolArgs) => string | undefined>
 	search_and_replace: (args) => getSearchAndReplaceDescription(args),
 	apply_diff: (args) =>
 		args.diffStrategy ? args.diffStrategy.getToolDescription({ cwd: args.cwd, toolOptions: args.toolOptions }) : "",
+	debug: (_args) => getDebugToolDescription(), // Does not use args currently
+	debug_launch: (args) => getDebugLaunchToolDescription(args),
+	debug_restart: (args) => getDebugRestartToolDescription(args),
+	debug_quit: () => getDebugQuitToolDescription(),
+	debug_continue: () => getDebugContinueToolDescription(),
+	debug_next: () => getDebugNextToolDescription(),
+	debug_step_in: () => getDebugStepInToolDescription(),
+	debug_step_out: () => getDebugStepOutToolDescription(),
+	debug_jump: () => getDebugJumpToolDescription(),
+	debug_until: () => getDebugUntilToolDescription(),
+	debug_set_breakpoint: (args) => getDebugSetBreakpointToolDescription(args),
+	debug_set_temp_breakpoint: (args) => getDebugSetTempBreakpointToolDescription(args), // Will be updated to accept args
+	debug_remove_breakpoint: (args) => getDebugRemoveBreakpointToolDescription(args), // Will be updated to accept args
+	debug_remove_all_breakpoints_in_file: (args) => getDebugRemoveAllBreakpointsInFileToolDescription(args), // Will be updated to accept args
+	debug_disable_breakpoint: (args) => getDebugDisableBreakpointToolDescription(args), // Will be updated to accept args
+	debug_enable_breakpoint: (args) => getDebugEnableBreakpointToolDescription(args), // Will be updated to accept args
+	debug_ignore_breakpoint: (args) => getDebugIgnoreBreakpointToolDescription(args), // Will be updated to accept args
+	debug_set_breakpoint_condition: (args) => getDebugSetBreakpointConditionToolDescription(args), // Will be updated to accept args
+	debug_get_active_breakpoints: (_args) => getDebugGetActiveBreakpointsToolDescription(), // Does not use args currently
+	debug_stack_trace: () => getDebugStackTraceToolDescription(),
+	debug_list_source: () => getDebugListSourceToolDescription(),
+	debug_up: () => getDebugUpToolDescription(),
+	debug_down: () => getDebugDownToolDescription(),
+	debug_goto_frame: () => getDebugGotoFrameToolDescription(),
+	debug_get_source: () => getDebugGetSourceToolDescription(),
+	debug_get_stack_frame_variables: () => getDebugGetStackFrameVariablesToolDescription(),
+	debug_get_args: () => getDebugGetArgsToolDescription(),
+	debug_evaluate: () => getDebugEvaluateToolDescription(),
+	debug_pretty_print: () => getDebugPrettyPrintToolDescription(),
+	debug_whatis: () => getDebugWhatisToolDescription(),
+	debug_execute_statement: () => getDebugExecuteStatementToolDescription(),
+	debug_get_last_stop_info: () => getDebugGetLastStopInfoToolDescription(),
 }
 
 export function getToolDescriptionsForMode(
@@ -140,4 +206,37 @@ export {
 	getInsertContentDescription,
 	getSearchAndReplaceDescription,
 	getCodebaseSearchDescription,
+	getDebugToolDescription,
+	// Debug operations
+	getDebugLaunchToolDescription,
+	getDebugRestartToolDescription,
+	getDebugQuitToolDescription,
+	getDebugContinueToolDescription,
+	getDebugNextToolDescription,
+	getDebugStepInToolDescription,
+	getDebugStepOutToolDescription,
+	getDebugJumpToolDescription,
+	getDebugUntilToolDescription,
+	getDebugSetBreakpointToolDescription,
+	getDebugSetTempBreakpointToolDescription,
+	getDebugRemoveBreakpointToolDescription,
+	getDebugRemoveAllBreakpointsInFileToolDescription,
+	getDebugDisableBreakpointToolDescription,
+	getDebugEnableBreakpointToolDescription,
+	getDebugIgnoreBreakpointToolDescription,
+	getDebugSetBreakpointConditionToolDescription,
+	getDebugGetActiveBreakpointsToolDescription,
+	getDebugStackTraceToolDescription,
+	getDebugListSourceToolDescription,
+	getDebugUpToolDescription,
+	getDebugDownToolDescription,
+	getDebugGotoFrameToolDescription,
+	getDebugGetSourceToolDescription,
+	getDebugGetStackFrameVariablesToolDescription,
+	getDebugGetArgsToolDescription,
+	getDebugEvaluateToolDescription,
+	getDebugPrettyPrintToolDescription,
+	getDebugWhatisToolDescription,
+	getDebugExecuteStatementToolDescription,
+	getDebugGetLastStopInfoToolDescription,
 }

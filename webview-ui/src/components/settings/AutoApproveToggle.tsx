@@ -14,6 +14,7 @@ type AutoApproveToggles = Pick<
 	| "alwaysAllowModeSwitch"
 	| "alwaysAllowSubtasks"
 	| "alwaysAllowExecute"
+	| "alwaysAllowDebug"
 >
 
 export type AutoApproveSetting = keyof AutoApproveToggles
@@ -82,6 +83,13 @@ export const autoApproveSettingsConfig: Record<AutoApproveSetting, AutoApproveCo
 		descriptionKey: "settings:autoApprove.execute.description",
 		icon: "terminal",
 		testId: "always-allow-execute-toggle",
+	},
+	alwaysAllowDebug: {
+		key: "alwaysAllowDebug",
+		labelKey: "settings:autoApprove.debug.label",
+		descriptionKey: "settings:autoApprove.debug.description",
+		icon: "debug",
+		testId: "always-allow-debug-toggle",
 	},
 }
 

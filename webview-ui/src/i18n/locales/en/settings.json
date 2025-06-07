@@ -118,6 +118,10 @@
 			"title": "Max Requests",
 			"description": "Automatically make this many API requests before asking for approval to continue with the task.",
 			"unlimited": "Unlimited"
+		},
+		"debug": {
+			"label": "Debug",
+			"description": "Automatically approve debug operations without requiring confirmation"
 		}
 	},
 	"providers": {

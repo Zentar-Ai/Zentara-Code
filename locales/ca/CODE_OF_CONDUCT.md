@@ -1,81 +1,77 @@
-[English](../../CODE_OF_CONDUCT.md) • <b>Català</b> • [Deutsch](../de/CODE_OF_CONDUCT.md) • [Español](../es/CODE_OF_CONDUCT.md) • [Français](../fr/CODE_OF_CONDUCT.md) • [हिंदी](../hi/CODE_OF_CONDUCT.md) • [Italiano](../it/CODE_OF_CONDUCT.md) • [Nederlands](../nl/CODE_OF_CONDUCT.md) • [Русский](../ru/CODE_OF_CONDUCT.md)
+# Codi de Conducta del Col·laborador
+## El nostre compromís
+Com a membres, col·laboradors i líders, ens comprometem a fer que la participació en la nostra comunitat sigui una experiència lliure d'assetjament per a tothom, independentment de l'edat, la mida corporal, la discapacitat visible o invisible, l'ètnia, les característiques sexuals, la identitat i expressió de gènere, el nivell d'experiència, l'educació, l'estat socioeconòmic, la nacionalitat, l'aparença personal, la raça, la religió o la identitat i orientació sexual.
 
-[日本語](../ja/CODE_OF_CONDUCT.md) • [한국어](../ko/CODE_OF_CONDUCT.md) • [Polski](../pl/CODE_OF_CONDUCT.md) • [Português (BR)](../pt-BR/CODE_OF_CONDUCT.md) • [Türkçe](../tr/CODE_OF_CONDUCT.md) • [Tiếng Việt](../vi/CODE_OF_CONDUCT.md) • [简体中文](../zh-CN/CODE_OF_CONDUCT.md) • [繁體中文](../zh-TW/CODE_OF_CONDUCT.md)
+Ens comprometem a actuar i interactuar de manera que contribueixi a una comunitat oberta, acollidora, diversa, inclusiva i saludable.
 
-# Codi de Conducta del Pacte de Col·laboradors
+## Els nostres estàndards
+Exemples de comportament que contribueixen a un entorn positiu per a la nostra comunitat inclouen:
 
-## El nostre Compromís
+* Demostrar empatia i amabilitat cap a altres persones
+* Ser respectuós amb les diferents opinions, punts de vista i experiències
+* Donar i acceptar amb gràcia els comentaris constructius
+* Acceptar la responsabilitat i demanar disculpes a aquells afectats pels nostres errors, i aprendre de l'experiència
+* Centrar-se en el que és millor no només per a nosaltres com a individus, sinó per a la comunitat en general
 
-En interès de fomentar un entorn obert i acollidor, nosaltres, com a
-col·laboradors i mantenidors, ens comprometem a fer de la participació en el nostre projecte i
-la nostra comunitat una experiència lliure d'assetjament per a tothom, independentment de l'edat, mida
-corporal, discapacitat, ètnia, característiques sexuals, identitat i expressió de gènere,
-nivell d'experiència, educació, estatus socioeconòmic, nacionalitat, aparença
-personal, raça, religió, o identitat i orientació sexual.
+Exemples de comportament inacceptable inclouen:
 
-## Els nostres Estàndards
+* L'ús de llenguatge o imatges sexualitzades, i atenció o avenços sexuals de qualsevol tipus
+* Trolling, comentaris insultants o despectius, i atacs personals o polítics
+* Assetjament públic o privat
+* Publicar informació privada d'altres persones, com ara una adreça física o de correu electrònic, sense el seu permís explícit
+* Altres conductes que raonablement es puguin considerar inadequades en un entorn professional
 
-Exemples de comportament que contribueix a crear un entorn positiu
-inclouen:
+## Responsabilitats d'aplicació
+Els líders de la comunitat són responsables de clarificar i fer complir els nostres estàndards de comportament acceptable i prendran mesures correctives adequades i justes en resposta a qualsevol comportament que considerin inadequat, amenaçador, ofensiu o perjudicial.
 
-- Utilitzar llenguatge acollidor i inclusiu
-- Respectar els diferents punts de vista i experiències
-- Acceptar amb gràcia les crítiques constructives
-- Centrar-se en el que és millor per a la comunitat
-- Mostrar empatia envers altres membres de la comunitat
+Els líders de la comunitat tenen el dret i la responsabilitat de suprimir, editar o rebutjar comentaris, commits, codi, edicions de wiki, problemes i altres contribucions que no s'ajustin a aquest Codi de Conducta, i comunicaran els motius de les decisions de moderació quan sigui apropiat.
 
-Exemples de comportament inacceptable per part dels participants inclouen:
-
-- L'ús de llenguatge o imatges sexualitzades i atencions o
-  avenços sexuals no desitjats
-- Trolling, comentaris insultants/despectius, i atacs personals o polítics
-- Assetjament públic o privat
-- Publicar informació privada d'altres persones, com ara informació física o electrònica
-  adreça, sense permís explícit
-- Altres conductes que raonablement podrien considerar-se inadequades en un
-  entorn professional
-
-## Les nostres Responsabilitats
-
-Els mantenidors del projecte són responsables de clarificar els estàndards de comportament
-acceptable i s'espera que prenguin mesures correctives apropiades i justes en
-resposta a qualsevol cas de comportament inacceptable.
-
-Els mantenidors del projecte tenen el dret i la responsabilitat d'eliminar, editar o
-rebutjar comentaris, commits, codi, edicions wiki, incidències i altres contribucions
-que no estiguin alineades amb aquest Codi de Conducta, o de prohibir temporalment o
-permanentment qualsevol col·laborador per altres comportaments que considerin inapropiats,
-amenaçadors, ofensius o perjudicials.
-
-## Àmbit
-
-Aquest Codi de Conducta s'aplica tant als espais del projecte com als espais públics
-quan un individu representa el projecte o la seva comunitat. Exemples de
-representació d'un projecte o comunitat inclouen l'ús d'un correu electrònic oficial del projecte,
-publicar mitjançant un compte oficial de xarxes socials, o actuar com a representant designat
-en un esdeveniment en línia o fora de línia. La representació d'un projecte pot ser
-definida i clarificada addicionalment pels mantenidors del projecte.
+## Abast
+Aquest Codi de Conducta s'aplica a tots els espais de la comunitat, i també s'aplica quan un individu representa oficialment la comunitat en espais públics. Exemples de representació de la nostra comunitat inclouen l'ús d'una adreça de correu electrònic oficial, la publicació a través d'un compte oficial de xarxes socials o l'actuació com a representant designat en un esdeveniment en línia o fora de línia.
 
 ## Aplicació
+Els casos de comportament abusiu, assetjador o inacceptable d'una altra manera es poden informar als líders de la comunitat responsables de l'aplicació a [INSERT CONTACT METHOD].
+Totes les queixes seran revisades i investigades ràpidament i de manera justa.
 
-Els casos de comportament abusiu, assetjador o altrament inacceptable poden ser
-reportats contactant amb l'equip del projecte a support@roocode.com. Totes les queixes
-seran revisades i investigades i resultaran en una resposta que
-es consideri necessària i adequada a les circumstàncies. L'equip del projecte està
-obligat a mantenir la confidencialitat respecte al reportador d'un incident.
-Es poden publicar separadament més detalls de polítiques d'aplicació específiques.
+Tots els líders de la comunitat estan obligats a respectar la privadesa i la seguretat de la persona que informa de qualsevol incident.
 
-Els mantenidors del projecte que no segueixin o apliquin el Codi de Conducta de bona
-fe poden enfrontar-se a repercussions temporals o permanents determinades per altres
-membres del lideratge del projecte.
+## Directrius d'aplicació
+Els líders de la comunitat seguiran aquestes Directrius d'impacte comunitari per determinar les conseqüències de qualsevol acció que considerin que infringeix aquest Codi de Conducta:
+
+### 1. Correcció
+
+**Impacte comunitari**: Ús de llenguatge inadequat o altre comportament considerat poc professional o no desitjat a la comunitat.
+
+**Conseqüència**: Una advertència privada i escrita dels líders de la comunitat, que aclareixi la naturalesa de la infracció i una explicació de per què el comportament era inadequat. Es pot sol·licitar una disculpa pública.
+
+### 2. Advertència
+
+**Impacte comunitari**: Una infracció a través d'un sol incident o una sèrie d'accions.
+
+**Conseqüència**: Una advertència amb conseqüències per al comportament continuat. No hi ha interacció amb les persones implicades, inclosa la interacció no sol·licitada amb aquells que apliquen el Codi de Conducta, durant un període de temps especificat. Això inclou evitar interaccions en espais de la comunitat, així com canals externs com les xarxes socials. La violació d'aquests termes pot comportar una prohibició temporal o permanent.
+
+### 3. Prohibició temporal
+
+**Impacte comunitari**: Una violació greu dels estàndards de la comunitat, inclòs el comportament inadequat sostingut.
+
+**Conseqüència**: Una prohibició temporal de qualsevol tipus d'interacció o comunicació pública amb la comunitat durant un període de temps especificat. No es permet cap interacció pública o privada amb les persones implicades, inclosa la interacció no sol·licitada amb aquells que apliquen el Codi de Conducta, durant aquest període. La violació d'aquests termes pot comportar una prohibició permanent.
+
+### 4. Prohibició permanent
+
+**Impacte comunitari**: Demostració d'un patró de violació dels estàndards de la comunitat, inclòs el comportament inadequat sostingut, l'assetjament d'un individu o l'agressió o menyspreu de classes d'individus.
+
+**Conseqüència**: Una prohibició permanent de qualsevol tipus d'interacció pública dins de la comunitat.
 
 ## Atribució
 
-Aquest Codi de Conducta està adaptat de la [versió de Cline][cline_coc] del [Pacte de Col·laboradors][homepage], versió 1.4,
-disponible a https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+Aquest Codi de Conducta s'adapta del [Pacte del Col·laborador][homepage], versió 2.1, disponible a
+[https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][v2.1].
 
-[cline_coc]: https://github.com/cline/cline/blob/main/CODE_OF_CONDUCT.md
+Per a respostes a preguntes freqüents sobre aquest codi de conducta, consulteu les PMF a
+[https://www.contributor-covenant.org/faq][faq]. Les traduccions estan disponibles a
+[https://www.contributor-covenant.org/translations][translations].
+
 [homepage]: https://www.contributor-covenant.org
-
-Per a respostes a preguntes freqüents sobre aquest codi de conducta, vegeu
-https://www.contributor-covenant.org/faq
+[v2.1]: https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
+[faq]: https://www.contributor-covenant.org/faq
+[translations]: https://www.contributor-covenant.org/translations

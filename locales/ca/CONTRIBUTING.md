@@ -1,129 +1,85 @@
-[English](../../CONTRIBUTING.md) • <b>Català</b> • [Deutsch](../de/CONTRIBUTING.md) • [Español](../es/CONTRIBUTING.md) • [Français](../fr/CONTRIBUTING.md) • [हिंदी](../hi/CONTRIBUTING.md) • [Italiano](../it/CONTRIBUTING.md) • [Nederlands](../nl/CONTRIBUTING.md) • [Русский](../ru/CONTRIBUTING.md)
+# Contribuir a Zentara Code
 
-[日本語](../ja/CONTRIBUTING.md) • [한국어](../ko/CONTRIBUTING.md) • [Polski](../pl/CONTRIBUTING.md) • [Português (BR)](../pt-BR/CONTRIBUTING.md) • [Türkçe](../tr/CONTRIBUTING.md) • [Tiếng Việt](../vi/CONTRIBUTING.md) • [简体中文](../zh-CN/CONTRIBUTING.md) • [繁體中文](../zh-TW/CONTRIBUTING.md)
+Primer de tot, gràcies per considerar contribuir a Zentara Code! Són persones com tu les que fan que el codi obert sigui una comunitat tan gran.
 
-# Contribuir a Roo Code
+## On vaig a partir d'aquí?
 
-Roo Code és un projecte impulsat per la comunitat i valorem molt cada contribució. Per simplificar la col·laboració, treballem amb un enfoc [Issue-First](#enfoc-issue-first), que significa que tots els [Pull Requests (PRs)](#enviar-un-pull-request) han d'estar primer vinculats a una Issue de GitHub. Si us plau, llegeix aquesta guia amb atenció.
+Si has detectat un error o tens una sol·licitud de funció, [fes-ne una](https://github.com/your-username/zentara-code/issues/new/choose)! (Substitueix `your-username/zentara-code` per la teva ruta real del repositori de GitHub). Generalment és millor que obtinguis la confirmació del teu error o l'aprovació de la teva sol·licitud de funció d'aquesta manera abans de començar a codificar.
 
-## Taula de continguts
+Si tens una pregunta general, també pots obrir un problema.
 
-- [Abans de contribuir](#abans-de-contribuir)
-- [Trobar i planificar la teva contribució](#trobar-i-planificar-la-teva-contribució)
-- [Procés de desenvolupament i enviament](#procés-de-desenvolupament-i-enviament)
-- [Legal](#legal)
+## Bifurca i crea una branca
 
-## Abans de contribuir
+Si creus que pots solucionar-ho, [bifurca Zentara Code](https://github.com/your-username/zentara-code/fork) i crea una branca amb un nom descriptiu.
 
-### 1. Codi de conducta
+Un bon nom de branca seria (on el problema #325 és el tiquet en què estàs treballant):
 
-Tots els col·laboradors han de complir el nostre [Codi de conducta](./CODE_OF_CONDUCT.md).
-
-### 2. Fulla de ruta del projecte
-
-La nostra fulla de ruta orienta la direcció del projecte. Alinea les teves contribucions amb aquests objectius clau:
-
-### Fiabilitat primer
-
-- Garantir que l'edició de diferències i l'execució de comandes siguin consistentment fiables
-- Reduir els punts de fricció que desanimen l'ús regular
-- Garantir un funcionament fluid en tots els idiomes i plataformes
-- Ampliar el suport robust per a una àmplia varietat de proveïdors i models d'IA
-
-### Experiència d'usuari millorada
-
-- Simplificar la interfície d'usuari per a més claredat i intuïció
-- Millorar contínuament el flux de treball per satisfer les altes expectatives dels desenvolupadors
-
-### Lideratge en rendiment dels agents
-
-- Establir punts de referència d'avaluació (evals) complets per mesurar la productivitat real
-- Facilitar que tothom pugui executar i interpretar aquestes avaluacions fàcilment
-- Proporcionar millores que demostrin increments clars en les puntuacions d'avaluació
-
-Esmenta la relació amb aquestes àrees als teus PRs.
-
-### 3. Uneix-te a la comunitat Roo Code
-
-- **Principal:** Uneix-te al nostre [Discord](https://discord.gg/roocode) i envia un DM a **Hannes Rudolph (`hrudolph`)**.
-- **Alternativa:** Els col·laboradors experimentats poden participar directament via [GitHub Projects](https://github.com/orgs/RooCodeInc/projects/1).
-
-## Trobar i planificar la teva contribució
-
-### Tipus de contribucions
-
-- **Correcció d'errors:** Solucionar problemes en el codi.
-- **Noves funcionalitats:** Afegir noves capacitats.
-- **Documentació:** Millorar guies i claredat.
-
-### Enfoc Issue-First
-
-Totes les contribucions han de començar amb una Issue de GitHub.
-
-- **Revisar issues existents:** Cerca a [GitHub Issues](https://github.com/RooCodeInc/Roo-Code/issues).
-- **Crear una issue:** Utilitza les plantilles adequades:
-    - **Errors:** Plantilla "Bug Report".
-    - **Funcionalitats:** Plantilla "Detailed Feature Proposal". Es requereix aprovació abans de començar.
-- **Reclamar issues:** Comenta i espera l'assignació oficial.
-
-**Els PRs sense issues aprovades poden ser tancats.**
-
-### Decidir en què treballar
-
-- Consulta el [Projecte GitHub](https://github.com/orgs/RooCodeInc/projects/1) per trobar "Good First Issues" no assignades.
-- Per a documentació, visita [Roo Code Docs](https://github.com/RooCodeInc/Roo-Code-Docs).
-
-### Informar d'errors
-
-- Comprova primer els informes existents.
-- Crea nous informes d'errors utilitzant la [plantilla "Bug Report"](https://github.com/RooCodeInc/Roo-Code/issues/new/choose).
-- **Vulnerabilitats de seguretat:** Informa de manera privada via [security advisories](https://github.com/RooCodeInc/Roo-Code/security/advisories/new).
-
-## Procés de desenvolupament i enviament
-
-### Configuració de desenvolupament
-
-1. **Fork & Clona:**
-
-```
-git clone https://github.com/EL_TEU_USUARI/Roo-Code.git
+```sh
+git checkout -b 325-add-japanese-localization
 ```
 
-2. **Instal·la dependències:**
+## Fes que la suite de proves funcioni
 
+Assegura't que pots fer que la suite de proves funcioni. Valorem el codi ben provat!
+(Haureu d'afegir instruccions específiques aquí sobre com executar les vostres proves, per exemple, `npm test` o `python -m unittest discover`)
+
+## Implementa la teva correcció o funció
+
+En aquest punt, ja estàs preparat per fer els teus canvis! No dubtis a demanar ajuda; tothom és principiant al principi :smile_cat:
+
+Assegura't de:
+*   Seguir l'estil de codificació del projecte.
+*   Executar linters i formatadors (per exemple, Prettier, ESLint). (Afegeix ordres específiques si estan disponibles)
+*   Afegir proves per als teus canvis.
+
+## Fes una sol·licitud d'extracció
+
+En aquest punt, hauries de tornar a la teva branca principal i assegurar-te que està actualitzada amb la branca principal de Zentara Code:
+
+```sh
+git remote add upstream git@github.com:your-username/zentara-code.git
+git checkout master
+git pull upstream master
 ```
-npm run install:all
+
+Després, actualitza la teva branca de funció des de la teva còpia local de master, i fes-la push!
+
+```sh
+git checkout 325-add-japanese-localization
+git rebase master
+git push --force-with-lease origin 325-add-japanese-localization
 ```
 
-3. **Depuració:** Obre amb VS Code (`F5`).
+Finalment, ves a GitHub i [fes una sol·licitud d'extracció](https://github.com/your-username/zentara-code/compare) :D
 
-### Guia per escriure codi
+### Plantilla de sol·licitud d'extracció
 
-- Un PR centrat per funcionalitat o correcció.
-- Segueix les millors pràctiques d'ESLint i TypeScript.
-- Escriu missatges de commit clars i descriptius que facin referència a issues (ex: `Fixes #123`).
-- Proporciona proves completes (`npm test`).
-- Rebaseja a la branca `main` més recent abans d'enviar.
+Quan obris una sol·licitud d'extracció, utilitza la següent plantilla:
 
-### Enviar un Pull Request
+```markdown
+### Problema(es) enllaçat(s)
 
-- Comença com a **PR en esborrany** si busques feedback primerenc.
-- Descriu clarament els teus canvis seguint la Plantilla de Pull Request.
-- Proporciona captures de pantalla/vídeos per a canvis d'UI.
-- Indica si es necessiten actualitzacions de documentació.
+* Tanca # (número del problema)
 
-### Política de Pull Request
+### Descripció
 
-- Ha de fer referència a issues preaprovades i assignades.
-- Els PRs que no segueixen la política poden ser tancats.
-- Els PRs han de passar els tests de CI, alinear-se amb la fulla de ruta i tenir documentació clara.
+(Proporciona una breu descripció dels canvis en aquesta PR.)
 
-### Procés de revisió
+### Llista de verificació
 
-- **Triatge diari:** Comprovacions ràpides pels mantenidors.
-- **Revisió setmanal detallada:** Avaluació exhaustiva.
-- **Itera ràpidament** en base al feedback.
+- [ ] He llegit el document [CONTRIBUTING.md](CONTRIBUTING.md).
+- [ ] He afegit proves per cobrir els meus canvis.
+- [ ] Totes les proves noves i existents han passat.
+- [ ] He actualitzat la documentació en conseqüència.
+- [ ] He rebasat la meva branca a l'últim commit de `master`.
+- [ ] El meu codi segueix l'estil de codificació del projecte.
+- [ ] He executat linters i he solucionat tots els problemes.
+```
 
-## Legal
+## Codi de Conducta
 
-En enviar un pull request, acceptes que les teves contribucions es llicenciïn sota la Llicència Apache 2.0, d'acord amb la llicència de Roo Code.
+Aquest projecte i tothom que hi participa es regeix pel [Codi de Conducta de Zentara Code](CODE_OF_CONDUCT.md). En participar, s'espera que respectis aquest codi. Si us plau, informa de comportaments inacceptables a [INSERT CONTACT METHOD IN CODE_OF_CONDUCT.MD].
+
+## Llicències
+
+En contribuir, acceptes que les teves contribucions estaran sota la llicència Apache License 2.0, tal com es troba al fitxer [LICENSE](LICENSE).

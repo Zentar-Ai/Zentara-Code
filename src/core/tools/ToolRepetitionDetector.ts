@@ -14,7 +14,7 @@ export class ToolRepetitionDetector {
 	 * Creates a new ToolRepetitionDetector
 	 * @param limit The maximum number of identical consecutive tool calls allowed
 	 */
-	constructor(limit: number = 3) {
+	constructor(limit: number = 20) {
 		this.consecutiveIdenticalToolCallLimit = limit
 	}
 

@@ -1,4 +1,5 @@
 import * as path from "path"
+import { outputChannel } from "../../zentara_debug/src/vscodeUtils"
 import os from "os"
 import crypto from "crypto"
 import EventEmitter from "events"
@@ -196,7 +197,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		enableDiff = false,
 		enableCheckpoints = true,
 		fuzzyMatchThreshold = 1.0,
-		consecutiveMistakeLimit = 3,
+		consecutiveMistakeLimit = 20,
 		task,
 		images,
 		historyItem,
@@ -388,6 +389,10 @@ export class Task extends EventEmitter<ClineEvents> {
 		partial?: boolean,
 		progressStatus?: ToolProgressStatus,
 	): Promise<{ response: ClineAskResponse; text?: string; images?: string[] }> {
+		// outputChannel.appendLine(
+		// 	`[Task.ask] ENTRY POINT - Called with type: ${type}, text: ${text ? (text.length > 100 ? text.substring(0, 100) + "..." : text) : "undefined"}, partial: ${partial}`,
+		// )
+
 		// If this Cline instance was aborted by the provider, then the only
 		// thing keeping us alive is a promise still running in the background,
 		// in which case we don't want to send its result to the webview as it
@@ -484,6 +489,9 @@ export class Task extends EventEmitter<ClineEvents> {
 		}
 
 		const result = { response: this.askResponse!, text: this.askResponseText, images: this.askResponseImages }
+		// outputChannel.appendLine(
+		// 	`[Task.ask] Returning result with response: ${result.response}, text: ${result.text ? "present" : "absent"}`,
+		// )
 		this.askResponse = undefined
 		this.askResponseText = undefined
 		this.askResponseImages = undefined
@@ -492,9 +500,13 @@ export class Task extends EventEmitter<ClineEvents> {
 	}
 
 	async handleWebviewAskResponse(askResponse: ClineAskResponse, text?: string, images?: string[]) {
+		// outputChannel.appendLine(
+		// 	`[Task.handleWebviewAskResponse] Called with response: ${askResponse}, text: ${text ? (text.length > 100 ? text.substring(0, 100) + "..." : text) : "undefined"}`,
+		// )
 		this.askResponse = askResponse
 		this.askResponseText = text
 		this.askResponseImages = images
+		//outputChannel.appendLine(`[Task.handleWebviewAskResponse] Set askResponse to: ${this.askResponse}`)
 	}
 
 	async handleTerminalOperation(terminalOperation: "continue" | "abort") {
@@ -678,6 +690,9 @@ export class Task extends EventEmitter<ClineEvents> {
 	}
 
 	async sayAndCreateMissingParamError(toolName: ToolName, paramName: string, relPath?: string) {
+		outputChannel.appendLine(
+			`[Task] sayAndCreateMissingParamError called for tool '${toolName}', missing param '${paramName}', relPath: ${relPath ?? "none"}`,
+		)
 		await this.say(
 			"error",
 			`Roo tried to use ${toolName}${

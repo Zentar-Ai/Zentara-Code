@@ -4,6 +4,8 @@ import * as path from "path"
 import { fileURLToPath } from "url"
 
 import { getGitSha, copyPaths, copyLocales, copyWasms, generatePackageJson } from "@roo-code/build"
+import pkg from '../../esbuild.js';
+const { copyDebugHelperFiles } = pkg;
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -166,6 +168,7 @@ async function main() {
 		workerBuildContext.rebuild(),
 		workerBuildContext.dispose(),
 	])
+	copyDebugHelperFiles()
 }
 
 main().catch((e) => {

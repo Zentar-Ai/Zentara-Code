@@ -1,11 +1,12 @@
 import cloneDeep from "clone-deep"
 import { serializeError } from "serialize-error"
+import { outputChannel } from "../../zentara_debug/src/vscodeUtils"
 
-import type { ToolName, ClineAsk, ToolProgressStatus } from "@roo-code/types"
+import type { ToolName, ClineAsk, ToolProgressStatus, ModeConfig } from "@roo-code/types"
 import { TelemetryService } from "@roo-code/telemetry"
 
 import { defaultModeSlug, getModeBySlug } from "../../shared/modes"
-import type { ToolParamName, ToolResponse } from "../../shared/tools"
+import type { ToolParamName, ToolResponse, ToolUse, DebugToolUse } from "../../shared/tools"
 
 import { fetchInstructionsTool } from "../tools/fetchInstructionsTool"
 import { listFilesTool } from "../tools/listFilesTool"
@@ -24,6 +25,7 @@ import { askFollowupQuestionTool } from "../tools/askFollowupQuestionTool"
 import { switchModeTool } from "../tools/switchModeTool"
 import { attemptCompletionTool } from "../tools/attemptCompletionTool"
 import { newTaskTool } from "../tools/newTaskTool"
+import { debugTool } from "../tools/debugTool"
 
 import { checkpointSave } from "../checkpoints"
 
@@ -76,9 +78,11 @@ export async function presentAssistantMessage(cline: Task) {
 	}
 
 	const block = cloneDeep(cline.assistantMessageContent[cline.currentStreamingContentIndex]) // need to create copy bc while stream is updating the array, it could be updating the reference block properties too
+	//outputChannel.appendLine(`[presentAssistantMessage] Processing block: ${JSON.stringify(block, null, 2)}`)
 
 	switch (block.type) {
 		case "text": {
+			//outputChannel.appendLine(`[presentAssistantMessage] Processing text block type`)
 			if (cline.didRejectTool || cline.didAlreadyUseTool) {
 				break
 			}
@@ -192,21 +196,33 @@ export async function presentAssistantMessage(cline: Task) {
 						const modeName = getModeBySlug(mode, customModes)?.name ?? mode
 						return `[${block.name} in ${modeName} mode: '${message}']`
 					}
+					default:
+						if (block.name.startsWith("debug_")) {
+							// @ts-expect-error operation is part of debug tool params
+							const operation = block.params?.operation || block.name.substring(6) || "operation"
+							const program = block.params?.program ? ` for ${block.params.program}` : ""
+							return `[debug tool: ${operation}${program}]`
+						}
+						// Fallback for any other unhandled tool names
+						return `[${block.name}]`
 				}
 			}
+			//outputChannel.appendLine(`[Debug] Raw tool use block: ${JSON.stringify(block, null, 2)}`)
+			// toolDescription function removed from here, will use getToolDescriptionString(block) helper
 
 			if (cline.didRejectTool) {
 				// Ignore any tool content after user has rejected tool once.
+				// Pass undefined for customModes here as it's not yet available and getToolDescriptionString can handle it.
 				if (!block.partial) {
 					cline.userMessageContent.push({
 						type: "text",
-						text: `Skipping tool ${toolDescription()} due to user rejecting a previous tool.`,
+						text: `Skipping tool ${getToolDescriptionString(block as ToolUse, undefined)} due to user rejecting a previous tool.`,
 					})
 				} else {
 					// Partial tool after user rejected a previous tool.
 					cline.userMessageContent.push({
 						type: "text",
-						text: `Tool ${toolDescription()} was interrupted and not executed due to user rejecting a previous tool.`,
+						text: `Tool ${getToolDescriptionString(block as ToolUse, undefined)} was interrupted and not executed due to user rejecting a previous tool.`,
 					})
 				}
 
@@ -224,7 +240,11 @@ export async function presentAssistantMessage(cline: Task) {
 			}
 
 			const pushToolResult = (content: ToolResponse) => {
-				cline.userMessageContent.push({ type: "text", text: `${toolDescription()} Result:` })
+				// Use the helper function to get the description string
+				cline.userMessageContent.push({
+					type: "text",
+					text: `${getToolDescriptionString(block as ToolUse, customModes)} Result:`,
+				})
 
 				if (typeof content === "string") {
 					cline.userMessageContent.push({ type: "text", text: content || "(tool did not return anything)" })
@@ -243,27 +263,62 @@ export async function presentAssistantMessage(cline: Task) {
 				partialMessage?: string,
 				progressStatus?: ToolProgressStatus,
 			) => {
-				const { response, text, images } = await cline.ask(type, partialMessage, false, progressStatus)
+				// outputChannel.appendLine(
+				// 	`[askApproval] ENTRY POINT - Called with type: ${type}, partialMessage: ${partialMessage}`,
+				// )
 
-				if (response !== "yesButtonClicked") {
-					// Handle both messageResponse and noButtonClicked with text.
-					if (text) {
-						await cline.say("user_feedback", text, images)
-						pushToolResult(formatResponse.toolResult(formatResponse.toolDeniedWithFeedback(text), images))
-					} else {
-						pushToolResult(formatResponse.toolDenied())
+				try {
+					//outputChannel.appendLine(`[askApproval] About to call cline.ask with type: ${type}`)
+					const { response, text, images } = await cline.ask(type, partialMessage, false, progressStatus)
+					// outputChannel.appendLine(
+					// 	`[askApproval] cline.ask returned response: ${response}, text: ${text ? "present" : "absent"}`,
+					// )
+
+					if (response !== "yesButtonClicked") {
+						//outputChannel.appendLine(`[askApproval] Response is NOT yesButtonClicked, it's: ${response}`)
+						// Handle both messageResponse and noButtonClicked with text.
+						if (text) {
+							//outputChannel.appendLine(`[askApproval] User provided feedback text with denial: ${text}`)
+							await cline.say("user_feedback", text, images)
+							pushToolResult(
+								formatResponse.toolResult(formatResponse.toolDeniedWithFeedback(text), images),
+							)
+						} else {
+							//outputChannel.appendLine(`[askApproval] User denied without feedback text`)
+							pushToolResult(formatResponse.toolDenied())
+						}
+						cline.didRejectTool = true
+						//outputChannel.appendLine(`[askApproval] Returning false (denied)`)
+						return false
 					}
-					cline.didRejectTool = true
-					return false
-				}
 
-				// Handle yesButtonClicked with text.
-				if (text) {
-					await cline.say("user_feedback", text, images)
-					pushToolResult(formatResponse.toolResult(formatResponse.toolApprovedWithFeedback(text), images))
+					//outputChannel.appendLine(`[askApproval] Response is yesButtonClicked - APPROVED`)
+					// Handle yesButtonClicked with text.
+					if (text) {
+						outputChannel.appendLine(`[askApproval] User provided feedback text with approval: ${text}`)
+						await cline.say("user_feedback", text, images)
+						pushToolResult(formatResponse.toolResult(formatResponse.toolApprovedWithFeedback(text), images))
+					}
+					//outputChannel.appendLine(`[askApproval] Returning true (approved)`)
+					return true
+				} catch (askError: any) {
+					outputChannel.appendLine(
+						`[ERROR][askApproval IN CATCH BLOCK] Error during cline.ask: ${askError.message}. Stack: ${askError.stack}`,
+					)
+					try {
+						await handleError(`asking approval via cline.ask for type '${type}'`, askError)
+						//outputChannel.appendLine(`[askApproval IN CATCH BLOCK] handleError completed.`)
+						pushToolResult(formatResponse.toolError(`Error during approval process: ${askError.message}`))
+						//outputChannel.appendLine(`[askApproval IN CATCH BLOCK] pushToolResult completed.`)
+					} catch (handlerError: any) {
+						outputChannel.appendLine(
+							`[ERROR][askApproval IN CATCH BLOCK] Error within error handler: ${handlerError.message}. Stack: ${handlerError.stack}`,
+						)
+					}
+					cline.didRejectTool = true // Treat as a rejection to prevent further tool execution
+					//outputChannel.appendLine(`[askApproval IN CATCH BLOCK] Returning false.`)
+					return false // Indicate approval failed
 				}
-
-				return true
 			}
 
 			const askFinishSubTaskApproval = async () => {
@@ -313,64 +368,90 @@ export async function presentAssistantMessage(cline: Task) {
 				return text.replace(tagRegex, "")
 			}
 
+			//outputChannel.appendLine(`[presentAssistantMessage] Tool use: ${block.name}. Checking browser session.`)
 			if (block.name !== "browser_action") {
-				await cline.browserSession.closeBrowser()
+				try {
+					await cline.browserSession.closeBrowser()
+					//outputChannel.appendLine(`[presentAssistantMessage] Browser session closed (if active).`)
+				} catch (browserError: any) {
+					outputChannel.appendLine(
+						`[ERROR][presentAssistantMessage] Error closing browser session: ${browserError.message}`,
+					)
+				}
 			}
 
 			if (!block.partial) {
 				cline.recordToolUsage(block.name)
 				TelemetryService.instance.captureToolUsage(cline.taskId, block.name)
+				let nameForTelemetry = block.name
+				// If the tool is a specific debug operation (e.g., "debug_launch"),
+				// map it to the generic "debug" tool name for telemetry purposes.
+				// This assumes "debug" is a recognized ToolName and that the ToolName
+				// schema has not yet been updated to include all individual debug_operations.
+				if (nameForTelemetry.startsWith("debug_")) {
+					nameForTelemetry = "debug"
+				}
+				// The following calls assume that `nameForTelemetry` (which is now either an original tool name
+				// or "debug") is a string that is compatible with the expected ToolName type,
+				// or that the functions can gracefully handle strings that might not strictly be ToolName.
+				// If these functions strictly require a validated ToolName, further checks or schema updates are needed.
+				cline.recordToolUsage(nameForTelemetry as ToolName)
 			}
 
 			// Validate tool use before execution.
-			const { mode, customModes } = (await cline.providerRef.deref()?.getState()) ?? {}
+			//outputChannel.appendLine(`[presentAssistantMessage] Getting provider state for tool validation.`)
+			const providerState = await cline.providerRef.deref()?.getState()
+			if (!providerState) {
+				outputChannel.appendLine(
+					`[ERROR][presentAssistantMessage] Provider reference is null before tool validation.`,
+				)
+				pushToolResult(formatResponse.toolError("Internal error: Provider not available for tool validation."))
+				break
+			}
+			const { mode, customModes } = providerState // customModes is needed by getToolDescriptionString
+			//outputChannel.appendLine(
+			//	`[presentAssistantMessage] Provider state obtained. Mode: ${mode}, CustomModes present: ${!!customModes}. About to call validateToolUse.`,
+			//)
 
 			try {
-				validateToolUse(
-					block.name as ToolName,
-					mode ?? defaultModeSlug,
-					customModes ?? [],
-					{ apply_diff: cline.diffEnabled },
-					block.params,
-				)
+				// For new debug_ tools, validation is handled by debugToolValidation.ts (called by debugTool.ts).
+				// So, only call validateToolUse for non-debug_ tools here.
+				if (!block.name.startsWith("debug_")) {
+					validateToolUse(
+						block.name as ToolName,
+						mode ?? defaultModeSlug,
+						customModes ?? [],
+						{ apply_diff: cline.diffEnabled },
+						block.params,
+					)
+				}
 			} catch (error) {
 				cline.consecutiveMistakeCount++
 				pushToolResult(formatResponse.toolError(error.message))
 				break
 			}
 
+			//outputChannel.appendLine(
+			//	`[presentAssistantMessage] validateToolUse completed for non-debug_ tools if applicable.`,
+			//)
 			// Check for identical consecutive tool calls.
 			if (!block.partial) {
-				// Use the detector to check for repetition, passing the ToolUse
-				// block directly.
 				const repetitionCheck = cline.toolRepetitionDetector.check(block)
-
-				// If execution is not allowed, notify user and break.
 				if (!repetitionCheck.allowExecution && repetitionCheck.askUser) {
-					// Handle repetition similar to mistake_limit_reached pattern.
 					const { response, text, images } = await cline.ask(
 						repetitionCheck.askUser.messageKey as ClineAsk,
 						repetitionCheck.askUser.messageDetail.replace("{toolName}", block.name),
 					)
-
 					if (response === "messageResponse") {
-						// Add user feedback to userContent.
 						cline.userMessageContent.push(
-							{
-								type: "text" as const,
-								text: `Tool repetition limit reached. User feedback: ${text}`,
-							},
+							{ type: "text" as const, text: `Tool repetition limit reached. User feedback: ${text}` },
 							...formatResponse.imageBlocks(images),
 						)
-
-						// Add user feedback to chat.
 						await cline.say("user_feedback", text, images)
 
 						// Track tool repetition in telemetry.
 						TelemetryService.instance.captureConsecutiveMistakeError(cline.taskId)
 					}
-
-					// Return tool result message about the repetition
 					pushToolResult(
 						formatResponse.toolError(
 							`Tool call repetition limit reached for ${block.name}. Please try a different approach.`,
@@ -380,96 +461,103 @@ export async function presentAssistantMessage(cline: Task) {
 				}
 			}
 
-			switch (block.name) {
-				case "write_to_file":
-					await writeToFileTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "apply_diff":
-					await applyDiffTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "insert_content":
-					await insertContentTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "search_and_replace":
-					await searchAndReplaceTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "read_file":
-					await readFileTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+			// Dispatch to the appropriate handler
+			if (block.name.startsWith("debug_")) {
+				// Delegate to the new helper function for individual debug tools
+				await handleIndividualDebugTool(cline, block as ToolUse, askApproval, handleError, pushToolResult)
+			} else {
 
-					break
-				case "fetch_instructions":
-					await fetchInstructionsTool(cline, block, askApproval, handleError, pushToolResult)
-					break
-				case "list_files":
-					await listFilesTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "codebase_search":
-					await codebaseSearchTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "list_code_definition_names":
-					await listCodeDefinitionNamesTool(
-						cline,
-						block,
-						askApproval,
-						handleError,
-						pushToolResult,
-						removeClosingTag,
-					)
-					break
-				case "search_files":
-					await searchFilesTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "browser_action":
-					await browserActionTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "execute_command":
-					await executeCommandTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "use_mcp_tool":
-					await useMcpToolTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "access_mcp_resource":
-					await accessMcpResourceTool(
-						cline,
-						block,
-						askApproval,
-						handleError,
-						pushToolResult,
-						removeClosingTag,
-					)
-					break
-				case "ask_followup_question":
-					await askFollowupQuestionTool(
-						cline,
-						block,
-						askApproval,
-						handleError,
-						pushToolResult,
-						removeClosingTag,
-					)
-					break
-				case "switch_mode":
-					await switchModeTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "new_task":
-					await newTaskTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-					break
-				case "attempt_completion":
-					await attemptCompletionTool(
-						cline,
-						block,
-						askApproval,
-						handleError,
-						pushToolResult,
-						removeClosingTag,
-						toolDescription,
-						askFinishSubTaskApproval,
-					)
-					break
-			}
+				switch (block.name) {
+					case "write_to_file":
+						await writeToFileTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "apply_diff":
+						await applyDiffTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "insert_content":
+						await insertContentTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "search_and_replace":
+						await searchAndReplaceTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "read_file":
+						await readFileTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
 
+						break
+					case "fetch_instructions":
+						await fetchInstructionsTool(cline, block, askApproval, handleError, pushToolResult)
+						break
+					case "list_files":
+						await listFilesTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "codebase_search":
+						await codebaseSearchTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "list_code_definition_names":
+						await listCodeDefinitionNamesTool(
+							cline,
+							block,
+							askApproval,
+							handleError,
+							pushToolResult,
+							removeClosingTag,
+						)
+						break
+					case "search_files":
+						await searchFilesTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "browser_action":
+						await browserActionTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "execute_command":
+						await executeCommandTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "use_mcp_tool":
+						await useMcpToolTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "access_mcp_resource":
+						await accessMcpResourceTool(
+							cline,
+							block,
+							askApproval,
+							handleError,
+							pushToolResult,
+							removeClosingTag,
+						)
+						break
+					case "ask_followup_question":
+						await askFollowupQuestionTool(
+							cline,
+							block,
+							askApproval,
+							handleError,
+							pushToolResult,
+							removeClosingTag,
+						)
+						break
+					case "switch_mode":
+						await switchModeTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "new_task":
+						await newTaskTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "attempt_completion":
+						await attemptCompletionTool(
+							cline,
+							block,
+							askApproval,
+							handleError,
+							pushToolResult,
+							removeClosingTag,
+							toolDescription,
+							askFinishSubTaskApproval,
+						)
+						break
+					}
+				}
 			break
-	}
+			
+	} // Correctly closes switch (block.type)
 
 	const recentlyModifiedFiles = cline.fileContextTracker.getAndClearCheckpointPossibleFile()
 
@@ -526,4 +614,122 @@ export async function presentAssistantMessage(cline: Task) {
 	if (cline.presentAssistantMessageHasPendingUpdates) {
 		presentAssistantMessage(cline)
 	}
+} // Correctly closes presentAssistantMessage
+
+/**
+ * Generates a descriptive string for a given tool use block.
+ * This function is defined outside `presentAssistantMessage` to keep it clean.
+ * @param block The tool use content block.
+ * @param customModes Optional custom modes, needed for describing the "new_task" tool.
+ * @returns A string describing the tool and its main parameters.
+ */
+function getToolDescriptionString(block: ToolUse, customModes?: ModeConfig[]): string {
+	// Changed ToolUseBlock to ToolUse
+	if (block.name.startsWith("debug_")) {
+		const operationName = block.name.substring("debug_".length)
+		let paramsString = ""
+		if (block.params && Object.keys(block.params).length > 0) {
+			try {
+				paramsString = JSON.stringify(block.params)
+				if (paramsString.length > 100) {
+					// Truncate for very long params
+					paramsString = paramsString.substring(0, 97) + "..."
+				}
+			} catch (e) {
+				paramsString = "[error stringifying params]"
+			}
+		} else {
+			paramsString = "{}"
+		}
+		return `[${block.name} (operation: '${operationName}') arguments: ${paramsString}]`
+	}
+
+	switch (block.name) {
+		case "execute_command":
+			return `[${block.name} for '${block.params.command}']`
+		case "read_file":
+			return `[${block.name} for '${block.params.path}']`
+		case "fetch_instructions":
+			return `[${block.name} for '${block.params.task}']`
+		case "write_to_file":
+			return `[${block.name} for '${block.params.path}']`
+		case "apply_diff":
+			return `[${block.name} for '${block.params.path}']`
+		case "search_files":
+			return `[${block.name} for '${block.params.regex}'${
+				block.params.file_pattern ? ` in '${block.params.file_pattern}'` : ""
+			}]`
+		case "insert_content":
+			return `[${block.name} for '${block.params.path}']`
+		case "search_and_replace":
+			return `[${block.name} for '${block.params.path}']`
+		case "list_files":
+			return `[${block.name} for '${block.params.path}']`
+		case "list_code_definition_names":
+			return `[${block.name} for '${block.params.path}']`
+		case "browser_action":
+			return `[${block.name} for '${block.params.action}']`
+		case "use_mcp_tool":
+			return `[${block.name} for '${block.params.server_name}']`
+		case "access_mcp_resource":
+			return `[${block.name} for '${block.params.server_name}']`
+		case "ask_followup_question":
+			return `[${block.name} for '${block.params.question}']`
+		case "attempt_completion":
+			return `[${block.name}]`
+		case "switch_mode":
+			return `[${block.name} to '${block.params.mode_slug}'${block.params.reason ? ` because: ${block.params.reason}` : ""}]`
+		case "new_task": {
+			const modeSlug = block.params.mode ?? defaultModeSlug
+			const message = block.params.message ?? "(no message)"
+			// Ensure customModes is an array before calling getModeBySlug
+			const modeName = getModeBySlug(modeSlug, customModes ?? [])?.name ?? modeSlug
+			return `[${block.name} in ${modeName} mode: '${message}']`
+		}
+		case "debug": // Original meta-tool
+			outputChannel.appendLine(
+				`[Debug] Inside getToolDescriptionString for "debug" meta-tool, block params: ${JSON.stringify(block.params, null, 2)}`,
+			)
+			return `[${block.name} operation: '${block.params.debug_operation}' arguments: ${block.params.arguments ?? "{}"}]`
+		default:
+			// Fallback for any unhandled tool names
+			return `[${String(block.name)}]`
+	}
+}
+
+/**
+ * Helper function to handle the invocation of individual debug operation tools.
+ * It reconstructs the tool call to be compatible with the existing `debugTool` (meta-tool)
+ * and then calls `debugTool`.
+ */
+async function handleIndividualDebugTool(
+	cline: Task,
+	block: ToolUse, // Changed ToolUseBlock to ToolUse
+	askApproval: (type: ClineAsk, partialMessage?: string, progressStatus?: ToolProgressStatus) => Promise<boolean>,
+	handleError: (action: string, error: Error) => Promise<void>,
+	pushToolResult: (content: ToolResponse) => void,
+	// removeClosingTag is not needed here as debugTool handles its own presentation
+) {
+	const operationName = block.name.substring("debug_".length)
+
+	// Reconstruct the block for the original debugTool
+	// The 'name' becomes "debug" (the meta-tool name)
+	// 'params' will include 'debug_operation' and all original flat params from the specific tool
+	const reconstructedBlock: DebugToolUse = {
+		type: "tool_use", // type must be "tool_use"
+		name: "debug", // name is "debug" for the meta-tool
+		// tool_input: block.tool_input, // Removed: tool_input is not part of DebugToolUse or ToolUse type
+		params: {
+			...block.params, // Spread all params from the specific tool (e.g., program, path, line)
+			debug_operation: operationName, // Add the debug_operation
+		},
+		partial: block.partial, // Pass through partial status
+	}
+
+	// outputChannel.appendLine(
+	// 	`[handleIndividualDebugTool] Bridging tool: ${block.name} to "debug" meta-tool. Operation: ${operationName}. Reconstructed Params: ${JSON.stringify(reconstructedBlock.params)}`,
+	// )
+
+	// Call the original debugTool with the reconstructed block
+	await debugTool(cline, reconstructedBlock, askApproval, handleError, pushToolResult)
 }

@@ -64,6 +64,7 @@ export interface WebviewMessage {
 		| "autoCondenseContextPercent"
 		| "condensingApiConfigId"
 		| "updateCondensingPrompt"
+		| "alwaysAllowDebug"
 		| "playSound"
 		| "playTts"
 		| "stopTts"
@@ -147,6 +148,7 @@ export interface WebviewMessage {
 		| "indexingStatusUpdate"
 		| "indexCleared"
 		| "codebaseIndexConfig"
+		| "logToDebugConsole" // Added for logging from webview to extension host debug console
 	text?: string
 	disabled?: boolean
 	askResponse?: ClineAskResponse
@@ -176,6 +178,10 @@ export interface WebviewMessage {
 	hasSystemPromptOverride?: boolean
 	terminalOperation?: "continue" | "abort"
 	historyPreviewCollapsed?: boolean
+	// Properties for logToDebugConsole message type
+	logLevel?: "info" | "warn" | "error" | "debug"
+	logMessage?: string
+	logData?: string // JSON stringified data
 }
 
 export const checkoutDiffPayloadSchema = z.object({
