@@ -373,6 +373,7 @@ Zentara Code is licensed under the [Apache License 2.0](./LICENSE).
 
 © 2025 ZentarAI
 
+This project is a fork of [RooCodeInc/Roo-Code](https://github.com/RooCodeInc/Roo-Code). We gratefully acknowledge all contributions made to the original project.
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
