@@ -377,7 +377,7 @@ This project is a fork of [RooCodeInc/Roo-Code](https://github.com/RooCodeInc/Ro
 ## Contributors ✨
 
 Thanks goes to these wonderful people :
-
+[![Contributors](https://img.shields.io/github/contributors/Zentar-Ai/Zentara-Code.svg?style=flat-square)](https://github.com/Zentar-Ai/Zentara-Code/graphs/contributors)
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
