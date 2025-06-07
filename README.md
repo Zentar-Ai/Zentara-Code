@@ -376,14 +376,8 @@ Zentara Code is licensed under the [Apache License 2.0](./LICENSE).
 This project is a fork of [RooCodeInc/Roo-Code](https://github.com/RooCodeInc/Roo-Code). We gratefully acknowledge all contributions made to the original project.
 ## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-# Contributors
+Thanks goes to these wonderful people :
 
-Thanks to all our contributors who have helped make Zentara Code better!
-
-
-
-## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
