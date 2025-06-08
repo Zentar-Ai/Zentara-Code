@@ -601,8 +601,8 @@ importers:
         specifier: ^0.13.0
         version: 0.13.0
       '@mistralai/mistralai':
-        specifier: ^1.3.6
-        version: 1.6.1(zod@3.24.4)
+        specifier: ^1.7.1
+        version: 1.7.1(zod@3.24.4)
       '@modelcontextprotocol/sdk':
         specifier: ^1.12.1
         version: 1.12.1
@@ -1535,6 +1535,10 @@ packages:
 
   '@babel/runtime@7.27.4':
     resolution: {integrity: sha512-t3yaEOuGu9NlIZ+hIeGbBjFtZT7j2cb2tg0fuaJKeGotchRjjLfrBA9Kwf8quhpP1EUuxModQg04q/mBwyg8uA==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.27.6':
+    resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.27.2':
@@ -2506,8 +2510,8 @@ packages:
   '@microsoft/fast-web-utilities@5.4.1':
     resolution: {integrity: sha512-ReWYncndjV3c8D8iq9tp7NcFNc1vbVHvcBFPME2nNFKNbS1XCesYZGlIlf3ot5EmuOXPlrzUHOWzQ2vFpIkqDg==}
 
-  '@mistralai/mistralai@1.6.1':
-    resolution: {integrity: sha512-NFAMamNFSAaLT4YhDrqEjhJALJXSheZdA5jXT6gG5ICCJRk9+WQx7vRQO1sIZNIRP+xpPyROpa7X6ZcufiucIA==}
+  '@mistralai/mistralai@1.7.1':
+    resolution: {integrity: sha512-/kkTLOSty2zkHlwzyfnnIE4XDVVZw/w3O9zO7XuyuvMi7h5H12W7ikFNSskIOcBQuIm8vUx3GLMzjhfduECVHg==}
     peerDependencies:
       zod: '>= 3'
 
@@ -11723,6 +11727,8 @@ snapshots:
 
   '@babel/runtime@7.27.4': {}
 
+  '@babel/runtime@7.27.6': {}
+
   '@babel/template@7.27.2':
     dependencies:
       '@babel/code-frame': 7.27.1
@@ -12697,7 +12703,7 @@ snapshots:
     dependencies:
       exenv-es6: 1.1.1
 
-  '@mistralai/mistralai@1.6.1(zod@3.24.4)':
+  '@mistralai/mistralai@1.7.1(zod@3.24.4)':
     dependencies:
       zod: 3.24.4
       zod-to-json-schema: 3.24.5(zod@3.24.4)
@@ -14505,7 +14511,7 @@ snapshots:
   '@testing-library/dom@10.4.0':
     dependencies:
       '@babel/code-frame': 7.27.1
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2
@@ -15458,7 +15464,7 @@ snapshots:
 
   babel-plugin-macros@3.1.0:
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       cosmiconfig: 7.1.0
       resolve: 1.22.10
     optional: true
