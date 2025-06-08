@@ -1,8 +1,12 @@
 [![Version](0.1.0)]
+
 <!-- Temporarily commented out to resolve SVG restriction issue
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-181-orange.png?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 -->
 [![Marketplace](https://img.shields.io/visual-studio-marketplace/v/your-username.zentara-code)]
 
@@ -23,7 +27,7 @@
 - [Roadmap & Changelog](#roadmap--changelog)
 - [Contributing](#contributing)
 - [License](#license)
-  </details>
+    </details>
 
 ---
 
