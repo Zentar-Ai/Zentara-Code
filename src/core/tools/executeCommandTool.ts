@@ -3,8 +3,8 @@ import * as path from "path"
 
 import delay from "delay"
 
-import { CommandExecutionStatus } from "@roo-code/types"
-import { TelemetryService } from "@roo-code/telemetry"
+import { CommandExecutionStatus } from "@zentara-code/types"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { Task } from "../task/Task"
 

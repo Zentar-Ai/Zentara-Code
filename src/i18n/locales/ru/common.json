@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Roo Code",
+		"name": "Zentara Code",
 		"description": "Целая команда ИИ-разработчиков в вашем редакторе."
 	},
 	"number_format": {
@@ -44,7 +44,7 @@
 		"delete_api_config": "Не удалось удалить конфигурацию API",
 		"list_api_config": "Не удалось получить список конфигураций API",
 		"update_server_timeout": "Не удалось обновить таймаут сервера",
-		"create_mcp_json": "Не удалось создать или открыть .roo/mcp.json: {{error}}",
+		"create_mcp_json": "Не удалось создать или открыть .zentara/mcp.json: {{error}}",
 		"hmr_not_running": "Локальный сервер разработки не запущен, HMR не будет работать. Пожалуйста, запустите 'npm run dev' перед запуском расширения для включения HMR.",
 		"retrieve_current_mode": "Ошибка: не удалось получить текущий режим из состояния.",
 		"failed_delete_repo": "Не удалось удалить связанный теневой репозиторий или ветку: {{error}}",
@@ -95,7 +95,7 @@
 		"enter_valid_path": "Пожалуйста, введите корректный путь"
 	},
 	"input": {
-		"task_prompt": "Что должен сделать Roo?",
+		"task_prompt": "Что должен сделать Zentara?",
 		"task_placeholder": "Введите вашу задачу здесь"
 	},
 	"settings": {

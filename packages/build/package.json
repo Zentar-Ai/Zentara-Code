@@ -1,10 +1,16 @@
 {
-	"name": "@roo-code/build",
-	"description": "ESBuild utilities for Roo Code.",
+	"name": "@zentara-code/build",
+	"description": "ESBuild utilities for Zentara Code.",
 	"private": true,
 	"type": "module",
 	"main": "./dist/index.js",
-	"types": "./src/index.ts",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
 	"scripts": {
 		"lint": "eslint src --ext=ts --max-warnings=0",
 		"check-types": "tsc --noEmit",
@@ -16,8 +22,8 @@
 		"zod": "^3.24.2"
 	},
 	"devDependencies": {
-		"@roo-code/config-eslint": "workspace:^",
-		"@roo-code/config-typescript": "workspace:^",
+		"@zentara-code/config-eslint": "workspace:^",
+		"@zentara-code/config-typescript": "workspace:^",
 		"@types/node": "^22.15.20",
 		"vitest": "^3.1.3"
 	}

@@ -10,7 +10,7 @@ import {
 	IpcOrigin,
 	IpcMessageType,
 	ipcMessageSchema,
-} from "@roo-code/types"
+} from "@zentara-code/types"
 
 export class IpcClient extends EventEmitter<IpcClientEvents> {
 	private readonly _socketPath: string
@@ -23,7 +23,7 @@ export class IpcClient extends EventEmitter<IpcClientEvents> {
 		super()
 
 		this._socketPath = socketPath
-		this._id = `roo-code-evals-${crypto.randomBytes(6).toString("hex")}`
+		this._id = `zentara-code-evals-${crypto.randomBytes(6).toString("hex")}`
 		this._log = log
 
 		ipc.config.silent = true

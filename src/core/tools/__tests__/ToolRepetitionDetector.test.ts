@@ -1,6 +1,6 @@
 // npx jest src/core/tools/__tests__/ToolRepetitionDetector.test.ts
 
-import type { ToolName } from "@roo-code/types"
+import type { ToolName } from "@zentara-code/types"
 
 import type { ToolUse } from "../../../shared/tools"
 
@@ -10,7 +10,7 @@ jest.mock("../../../i18n", () => ({
 	t: jest.fn((key, options) => {
 		// For toolRepetitionLimitReached key, return a message with the tool name.
 		if (key === "tools:toolRepetitionLimitReached" && options?.toolName) {
-			return `Roo appears to be stuck in a loop, attempting the same action (${options.toolName}) repeatedly. This might indicate a problem with its current strategy.`
+			return `Zentara appears to be stuck in a loop, attempting the same action (${options.toolName}) repeatedly. This might indicate a problem with its current strategy.`
 		}
 		return key
 	}),

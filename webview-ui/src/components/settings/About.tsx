@@ -5,8 +5,8 @@ import { Info, Download, Upload, TriangleAlert } from "lucide-react"
 
 import { VSCodeCheckbox, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 
-import { Package } from "@roo/package"
-import { TelemetrySetting } from "@roo/TelemetrySetting"
+import { Package } from "@zentara/package"
+import { TelemetrySetting } from "@zentara/TelemetrySetting"
 
 import { vscode } from "@/utils/vscode"
 import { cn } from "@/lib/utils"
@@ -56,9 +56,8 @@ export const About = ({ telemetrySetting, setTelemetrySetting, className, ...pro
 					<Trans
 						i18nKey="settings:footer.feedback"
 						components={{
-							githubLink: <VSCodeLink href="https://github.com/RooCodeInc/Roo-Code" />,
-							redditLink: <VSCodeLink href="https://reddit.com/r/RooCode" />,
-							discordLink: <VSCodeLink href="https://discord.gg/roocode" />,
+							githubLink: <VSCodeLink href="https://github.com/Zentqar-Ai/Zentara-Code" />,
+
 						}}
 					/>
 				</div>

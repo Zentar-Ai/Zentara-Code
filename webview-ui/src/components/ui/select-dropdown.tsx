@@ -63,7 +63,7 @@ export const SelectDropdown = React.memo(
 			const [open, setOpen] = React.useState(false)
 			const [searchValue, setSearchValue] = React.useState("")
 			const searchInputRef = React.useRef<HTMLInputElement>(null)
-			const portalContainer = useRooPortal("roo-portal")
+			const portalContainer = useRooPortal("zentara-portal")
 
 			// Memoize the selected option to prevent unnecessary calculations
 			const selectedOption = React.useMemo(

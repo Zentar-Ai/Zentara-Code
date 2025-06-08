@@ -4,8 +4,8 @@ import Anthropic from "@anthropic-ai/sdk"
 import * as vscode from "vscode"
 import axios from "axios"
 
-import { type ProviderSettingsEntry, type ClineMessage, ORGANIZATION_ALLOW_ALL } from "@roo-code/types"
-import { TelemetryService } from "@roo-code/telemetry"
+import { type ProviderSettingsEntry, type ClineMessage, ORGANIZATION_ALLOW_ALL } from "@zentara-code/types"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { ExtensionMessage, ExtensionState } from "../../../shared/ExtensionMessage"
 import { defaultModeSlug } from "../../../shared/modes"
@@ -1995,7 +1995,7 @@ describe("Project MCP Settings", () => {
 
 		// Verify directory was created
 		expect(fs.mkdir).toHaveBeenCalledWith(
-			expect.stringContaining(".roo"),
+			expect.stringContaining(".zentara"),
 			expect.objectContaining({ recursive: true }),
 		)
 
@@ -2038,7 +2038,7 @@ describe("Project MCP Settings", () => {
 
 		// Verify error message was shown
 		expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(
-			expect.stringContaining("Failed to create or open .roo/mcp.json"),
+			expect.stringContaining("Failed to create or open .zentara/mcp.json"),
 		)
 	})
 })

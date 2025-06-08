@@ -12,8 +12,8 @@ import {
 	IpcMessageType,
 	EVALS_SETTINGS,
 	EVALS_TIMEOUT,
-} from "@roo-code/types"
-import { IpcClient } from "@roo-code/ipc"
+} from "@zentara-code/types"
+import { IpcClient } from "@zentara-code/ipc"
 
 import { type Run, type Task, updateTask, createTaskMetrics, updateTaskMetrics, createToolError } from "../db/index.js"
 import { exercisesPath } from "../exercises/index.js"
@@ -46,7 +46,7 @@ export const runTask = async ({ run, task, publish, logger }: RunTaskOptions) =>
 	const containerized = isDockerContainer()
 
 	const codeCommand = containerized
-		? `xvfb-run --auto-servernum --server-num=1 code --wait --log trace --disable-workspace-trust --disable-gpu --disable-lcd-text --no-sandbox --user-data-dir /roo/.vscode --password-store="basic" -n ${workspacePath}`
+		? `xvfb-run --auto-servernum --server-num=1 code --wait --log trace --disable-workspace-trust --disable-gpu --disable-lcd-text --no-sandbox --user-data-dir /zentara/.vscode --password-store="basic" -n ${workspacePath}`
 		: `code --disable-workspace-trust -n ${workspacePath}`
 
 	logger.info(codeCommand)

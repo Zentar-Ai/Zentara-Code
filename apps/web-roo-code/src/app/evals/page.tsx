@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { rooCodeSettingsSchema, getModelId } from "@roo-code/types"
+import { rooCodeSettingsSchema, getModelId } from "@zentara-code/types"
 
 import { getRuns } from "@/db"
 import { getLanguageScores } from "@/lib/server"
@@ -11,12 +11,12 @@ import { Evals } from "./evals"
 export const revalidate = 300
 
 export const metadata: Metadata = {
-	title: "Roo Code Evals",
+	title: "Zentara Code Evals",
 	openGraph: {
-		title: "Roo Code Evals",
+		title: "Zentara Code Evals",
 		description: "Quantitative evals of LLM coding skills.",
-		url: "https://roocode.com/evals",
-		siteName: "Roo Code",
+		url: "https://zentar.ai/evals",
+		siteName: "Zentara Code",
 		images: {
 			url: "https://i.imgur.com/ijP7aZm.png",
 			width: 1954,
@@ -26,9 +26,24 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-	const languageScores = await getLanguageScores()
+	let languageScores: any = {}; // Initialize with a default value
+	let rawRuns: any[] = []; // Initialize with a default value
 
-	const runs = (await getRuns())
+	try {
+		languageScores = await getLanguageScores();
+	} catch (error) {
+		console.error("Failed to get language scores during build:", error);
+		// languageScores remains the default empty object
+	}
+
+	try {
+		rawRuns = await getRuns();
+	} catch (error) {
+		console.error("Failed to get runs during build:", error);
+		// rawRuns remains the default empty array
+	}
+
+	const runs = rawRuns
 		.filter((run) => !!run.taskMetrics)
 		.filter(({ settings }) => rooCodeSettingsSchema.safeParse(settings).success)
 		.sort((a, b) => b.passed - a.passed)

@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Roo Code",
+		"name": "Zentara Code",
 		"description": "Un intero team di sviluppatori AI nel tuo editor."
 	},
 	"number_format": {
@@ -45,7 +45,7 @@
 		"list_api_config": "Errore durante l'ottenimento dell'elenco delle configurazioni API",
 		"update_server_timeout": "Errore durante l'aggiornamento del timeout del server",
 		"failed_update_project_mcp": "Errore durante l'aggiornamento dei server MCP del progetto",
-		"create_mcp_json": "Impossibile creare o aprire .roo/mcp.json: {{error}}",
+		"create_mcp_json": "Impossibile creare o aprire .zentara/mcp.json: {{error}}",
 		"hmr_not_running": "Il server di sviluppo locale non è in esecuzione, l'HMR non funzionerà. Esegui 'npm run dev' prima di avviare l'estensione per abilitare l'HMR.",
 		"retrieve_current_mode": "Errore durante il recupero della modalità corrente dallo stato.",
 		"failed_delete_repo": "Impossibile eliminare il repository o il ramo associato: {{error}}",
@@ -95,7 +95,7 @@
 		"enter_valid_path": "Inserisci un percorso valido"
 	},
 	"input": {
-		"task_prompt": "Cosa deve fare Roo?",
+		"task_prompt": "Cosa deve fare Zentara?",
 		"task_placeholder": "Scrivi il tuo compito qui"
 	},
 	"settings": {

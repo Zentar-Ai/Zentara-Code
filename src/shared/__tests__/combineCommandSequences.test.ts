@@ -1,6 +1,6 @@
 // npx jest src/shared/__tests__/combineCommandSequences.test.ts
 
-import type { ClineMessage } from "@roo-code/types"
+import type { ClineMessage } from "@zentara-code/types"
 
 import { combineCommandSequences } from "../combineCommandSequences"
 

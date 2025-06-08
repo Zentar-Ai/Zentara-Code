@@ -1,6 +1,6 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 
-import type { ClineAsk, ToolProgressStatus, ToolGroup, ToolName } from "@roo-code/types"
+import type { ClineAsk, ToolProgressStatus, ToolGroup, ToolName } from "@zentara-code/types"
 
 export type ToolResponse = string | Array<Anthropic.TextBlockParam | Anthropic.ImageBlockParam>
 
@@ -62,6 +62,25 @@ export const toolParamNames = [
 	"start_line",
 	"end_line",
 	"query",
+	"debug_operation",
+	// Debug tool specific parameters
+	"program",
+	"arg",
+	"args",
+	"env",
+	"stopOnEntry",
+	"column",
+	"condition",
+	"hitCondition",
+	"logMessage",
+	"enable",
+	"ignoreCount",
+	"frameId",
+	"linesAround",
+	"expression",
+	"statement",
+	"context",
+	"scopeFilter",
 ] as const
 
 export type ToolParamName = (typeof toolParamNames)[number]
@@ -160,6 +179,40 @@ export interface SearchAndReplaceToolUse extends ToolUse {
 	params: Required<Pick<Record<ToolParamName, string>, "path" | "search" | "replace">> &
 		Partial<Pick<Record<ToolParamName, string>, "use_regex" | "ignore_case" | "start_line" | "end_line">>
 }
+export interface DebugToolUse extends ToolUse {
+	name: "debug"
+	params: Required<Pick<Record<ToolParamName, string>, "debug_operation">> &
+		Partial<
+			Pick<
+				Record<ToolParamName, string>,
+				// Launch parameters
+				| "program"
+				| "mode"
+				| "arg"
+				| "args"
+				| "cwd"
+				| "env"
+				| "stopOnEntry"
+				// Breakpoint parameters
+				| "path"
+				| "line"
+				| "column"
+				| "condition"
+				| "hitCondition"
+				| "logMessage"
+				| "enable"
+				| "ignoreCount"
+				// Frame parameters
+				| "frameId"
+				| "linesAround"
+				| "expression"
+				| "statement"
+				| "context"
+				// Stack frame variables parameters
+				| "scopeFilter"
+			>
+		>
+}
 
 // Define tool group configuration
 export type ToolGroupConfig = {
@@ -186,6 +239,38 @@ export const TOOL_DISPLAY_NAMES: Record<ToolName, string> = {
 	insert_content: "insert content",
 	search_and_replace: "search and replace",
 	codebase_search: "codebase search",
+	debug: "use debugger (internal)", // For internal DebugToolUse compatibility
+	debug_launch: "debug: launch",
+	debug_restart: "debug: restart",
+	debug_quit: "debug: quit",
+	debug_continue: "debug: continue",
+	debug_next: "debug: next",
+	debug_step_in: "debug: step in",
+	debug_step_out: "debug: step out",
+	debug_jump: "debug: jump",
+	debug_until: "debug: until",
+	debug_set_breakpoint: "debug: set breakpoint",
+	debug_set_temp_breakpoint: "debug: set temp breakpoint",
+	debug_remove_breakpoint: "debug: remove breakpoint",
+	debug_remove_all_breakpoints_in_file: "debug: remove all breakpoints in file",
+	debug_disable_breakpoint: "debug: disable breakpoint",
+	debug_enable_breakpoint: "debug: enable breakpoint",
+	debug_ignore_breakpoint: "debug: ignore breakpoint",
+	debug_set_breakpoint_condition: "debug: set breakpoint condition",
+	debug_get_active_breakpoints: "debug: get active breakpoints",
+	debug_stack_trace: "debug: stack trace",
+	debug_list_source: "debug: list source",
+	debug_up: "debug: up",
+	debug_down: "debug: down",
+	debug_goto_frame: "debug: goto frame",
+	debug_get_source: "debug: get source",
+	debug_get_stack_frame_variables: "debug: get stack frame variables",
+	debug_get_args: "debug: get args",
+	debug_evaluate: "debug: evaluate",
+	debug_pretty_print: "debug: pretty print",
+	debug_whatis: "debug: whatis",
+	debug_execute_statement: "debug: execute statement",
+	debug_get_last_stop_info: "debug: get last stop info",
 } as const
 
 // Define available tool groups.
@@ -211,6 +296,41 @@ export const TOOL_GROUPS: Record<ToolGroup, ToolGroupConfig> = {
 	},
 	mcp: {
 		tools: ["use_mcp_tool", "access_mcp_resource"],
+	},
+	debug: {
+		tools: [
+			"debug_launch",
+			"debug_restart",
+			"debug_quit",
+			"debug_continue",
+			"debug_next",
+			"debug_step_in",
+			"debug_step_out",
+			"debug_jump",
+			"debug_until",
+			"debug_set_breakpoint",
+			"debug_set_temp_breakpoint",
+			"debug_remove_breakpoint",
+			"debug_remove_all_breakpoints_in_file",
+			"debug_disable_breakpoint",
+			"debug_enable_breakpoint",
+			"debug_ignore_breakpoint",
+			"debug_set_breakpoint_condition",
+			"debug_get_active_breakpoints",
+			"debug_stack_trace",
+			"debug_list_source",
+			"debug_up",
+			"debug_down",
+			"debug_goto_frame",
+			"debug_get_source",
+			"debug_get_stack_frame_variables",
+			"debug_get_args",
+			"debug_evaluate",
+			"debug_pretty_print",
+			"debug_whatis",
+			"debug_execute_statement",
+			"debug_get_last_stop_info",
+		],
 	},
 	modes: {
 		tools: ["switch_mode", "new_task"],

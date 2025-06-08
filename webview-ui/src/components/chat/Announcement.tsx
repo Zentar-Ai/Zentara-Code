@@ -2,7 +2,7 @@ import { useState, memo } from "react"
 import { Trans } from "react-i18next"
 import { VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 
-import { Package } from "@roo/package"
+import { Package } from "@zentara/package"
 
 import { useAppTranslation } from "@src/i18n/TranslationContext"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@src/components/ui"
@@ -19,7 +19,6 @@ interface AnnouncementProps {
  * updated in state. This ensures that announcements are not shown more than
  * once, even if the user doesn't close it themselves.
  */
-
 const Announcement = ({ hideAnnouncement }: AnnouncementProps) => {
 	const { t } = useAppTranslation()
 	const [open, setOpen] = useState(true)
@@ -93,11 +92,11 @@ const Announcement = ({ hideAnnouncement }: AnnouncementProps) => {
 
 const DiscordLink = () => (
 	<VSCodeLink
-		href="https://discord.gg/roocode"
+		href="https://discord.gg/ZentaraCode"
 		onClick={(e) => {
 			e.preventDefault()
 			window.postMessage(
-				{ type: "action", action: "openExternal", data: { url: "https://discord.gg/roocode" } },
+				{ type: "action", action: "openExternal", data: { url: "https://discord.gg/ZentaraCode" } },
 				"*",
 			)
 		}}>
@@ -107,16 +106,19 @@ const DiscordLink = () => (
 
 const RedditLink = () => (
 	<VSCodeLink
-		href="https://reddit.com/r/RooCode"
+		href="https://reddit.com/r/ZentaraCode"
 		onClick={(e) => {
 			e.preventDefault()
 			window.postMessage(
-				{ type: "action", action: "openExternal", data: { url: "https://reddit.com/r/RooCode" } },
+				{ type: "action", action: "openExternal", data: { url: "https://reddit.com/r/ZentaraCode" } },
 				"*",
 			)
 		}}>
 		Reddit
 	</VSCodeLink>
 )
+
+
+
 
 export default memo(Announcement)

@@ -1,6 +1,6 @@
 {
-	"name": "@roo-code/cloud",
-	"description": "Roo Code Cloud VSCode integration.",
+	"name": "@zentara-code/cloud",
+	"description": "Zentara Code Cloud VSCode integration.",
 	"version": "0.0.0",
 	"type": "module",
 	"exports": "./src/index.ts",
@@ -11,14 +11,14 @@
 		"clean": "rimraf dist .turbo"
 	},
 	"dependencies": {
-		"@roo-code/telemetry": "workspace:^",
-		"@roo-code/types": "workspace:^",
+		"@zentara-code/telemetry": "workspace:^",
+		"@zentara-code/types": "workspace:^",
 		"axios": "^1.7.4",
 		"zod": "^3.24.2"
 	},
 	"devDependencies": {
-		"@roo-code/config-eslint": "workspace:^",
-		"@roo-code/config-typescript": "workspace:^",
+		"@zentara-code/config-eslint": "workspace:^",
+		"@zentara-code/config-typescript": "workspace:^",
 		"@types/node": "^22.15.20",
 		"@types/vscode": "^1.84.0",
 		"vitest": "^3.1.3"

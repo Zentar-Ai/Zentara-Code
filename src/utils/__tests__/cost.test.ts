@@ -1,6 +1,6 @@
 // npx jest src/utils/__tests__/cost.test.ts
 
-import type { ModelInfo } from "@roo-code/types"
+import type { ModelInfo } from "@zentara-code/types"
 
 import { calculateApiCostAnthropic, calculateApiCostOpenAI } from "../../shared/cost"
 

@@ -6,7 +6,7 @@ import { describe, it, expect, beforeEach, vi } from "vitest"
 import * as vscode from "vscode"
 import { PostHog } from "posthog-node"
 
-import { type TelemetryPropertiesProvider, TelemetryEventName } from "@roo-code/types"
+import { type TelemetryPropertiesProvider, TelemetryEventName } from "@zentara-code/types"
 
 import { PostHogTelemetryClient } from "../PostHogTelemetryClient"
 

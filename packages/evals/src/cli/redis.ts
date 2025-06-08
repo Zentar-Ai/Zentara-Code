@@ -1,6 +1,6 @@
 import { createClient, type RedisClientType } from "redis"
 
-import { EVALS_TIMEOUT } from "@roo-code/types"
+import { EVALS_TIMEOUT } from "@zentara-code/types"
 
 let redis: RedisClientType | undefined
 

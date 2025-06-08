@@ -1,7 +1,7 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
 
-import { unboundDefaultModelId, unboundDefaultModelInfo } from "@roo-code/types"
+import { unboundDefaultModelId, unboundDefaultModelInfo } from "@zentara-code/types"
 
 import type { ApiHandlerOptions } from "../../shared/api"
 
@@ -13,10 +13,10 @@ import { addCacheBreakpoints as addGeminiCacheBreakpoints } from "../transform/c
 import type { SingleCompletionHandler, ApiHandlerCreateMessageMetadata } from "../index"
 import { RouterProvider } from "./router-provider"
 
-const ORIGIN_APP = "roo-code"
+const ORIGIN_APP = "zentara-code"
 
 const DEFAULT_HEADERS = {
-	"X-Unbound-Metadata": JSON.stringify({ labels: [{ key: "app", value: "roo-code" }] }),
+	"X-Unbound-Metadata": JSON.stringify({ labels: [{ key: "app", value: "zentara-code" }] }),
 }
 
 interface UnboundUsage extends OpenAI.CompletionUsage {

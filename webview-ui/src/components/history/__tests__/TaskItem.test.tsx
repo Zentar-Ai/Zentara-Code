@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-import type { HistoryItem } from "@roo-code/types"
+import type { HistoryItem } from "@zentara-code/types"
 import TaskItem from "../TaskItem"
 import { vscode } from "@src/utils/vscode"
 

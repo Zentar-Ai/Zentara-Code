@@ -1,10 +1,10 @@
 {
 	"input": {
-		"task_prompt": "Què vols que faci Roo?",
+		"task_prompt": "Què vols que faci Zentara?",
 		"task_placeholder": "Escriu la teva tasca aquí"
 	},
 	"extension": {
-		"name": "Roo Code",
+		"name": "Zentara Code",
 		"description": "Tot un equip de desenvolupadors d'IA al teu editor."
 	},
 	"number_format": {
@@ -49,7 +49,7 @@
 		"list_api_config": "Ha fallat l'obtenció de la llista de configuracions de l'API",
 		"update_server_timeout": "Ha fallat l'actualització del temps d'espera del servidor",
 		"failed_update_project_mcp": "Ha fallat l'actualització dels servidors MCP del projecte",
-		"create_mcp_json": "Ha fallat la creació o obertura de .roo/mcp.json: {{error}}",
+		"create_mcp_json": "Ha fallat la creació o obertura de .zentara/mcp.json: {{error}}",
 		"hmr_not_running": "El servidor de desenvolupament local no està executant-se, l'HMR no funcionarà. Si us plau, executa 'npm run dev' abans de llançar l'extensió per habilitar l'HMR.",
 		"retrieve_current_mode": "Error en recuperar el mode actual de l'estat.",
 		"failed_delete_repo": "Ha fallat l'eliminació del repositori o branca associada: {{error}}",

@@ -9,17 +9,17 @@ import {
 	type ExperimentId,
 	type OrganizationAllowList,
 	ORGANIZATION_ALLOW_ALL,
-} from "@roo-code/types"
+} from "@zentara-code/types"
 
-import { ExtensionMessage, ExtensionState } from "@roo/ExtensionMessage"
-import { findLastIndex } from "@roo/array"
-import { McpServer } from "@roo/mcp"
-import { checkExistKey } from "@roo/checkExistApiConfig"
-import { Mode, defaultModeSlug, defaultPrompts } from "@roo/modes"
-import { CustomSupportPrompts } from "@roo/support-prompt"
-import { experimentDefault } from "@roo/experiments"
-import { TelemetrySetting } from "@roo/TelemetrySetting"
-import { RouterModels } from "@roo/api"
+import { ExtensionMessage, ExtensionState } from "@zentara/ExtensionMessage"
+import { findLastIndex } from "@zentara/array"
+import { McpServer } from "@zentara/mcp"
+import { checkExistKey } from "@zentara/checkExistApiConfig"
+import { Mode, defaultModeSlug, defaultPrompts } from "@zentara/modes"
+import { CustomSupportPrompts } from "@zentara/support-prompt"
+import { experimentDefault } from "@zentara/experiments"
+import { TelemetrySetting } from "@zentara/TelemetrySetting"
+import { RouterModels } from "@zentara/api"
 
 import { vscode } from "@src/utils/vscode"
 import { convertTextMateToHljs } from "@src/utils/textMateToHljs"
@@ -42,6 +42,7 @@ export interface ExtensionStateContextType extends ExtensionState {
 	customCondensingPrompt?: string
 	setCustomCondensingPrompt: (value: string) => void
 	setApiConfiguration: (config: ProviderSettings) => void
+	alwaysAllowDebug?: boolean // Add the new debug auto-approval property
 	setCustomInstructions: (value?: string) => void
 	setAlwaysAllowReadOnly: (value: boolean) => void
 	setAlwaysAllowReadOnlyOutsideWorkspace: (value: boolean) => void
@@ -52,6 +53,7 @@ export interface ExtensionStateContextType extends ExtensionState {
 	setAlwaysAllowMcp: (value: boolean) => void
 	setAlwaysAllowModeSwitch: (value: boolean) => void
 	setAlwaysAllowSubtasks: (value: boolean) => void
+	setAlwaysAllowDebug: (value: boolean) => void // Add the setter for debug auto-approval
 	setBrowserToolEnabled: (value: boolean) => void
 	setShowRooIgnoredFiles: (value: boolean) => void
 	setShowAnnouncement: (value: boolean) => void
@@ -183,6 +185,7 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		condensingApiConfigId: "", // Default empty string for condensing API config ID
 		customCondensingPrompt: "", // Default empty string for custom condensing prompt
 		autoApprovalEnabled: false,
+		alwaysAllowDebug: false, // Default to not auto-approving debug operations
 		customModes: [],
 		maxOpenTabsContext: 20,
 		maxWorkspaceFiles: 200,
@@ -335,6 +338,7 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		setAlwaysAllowMcp: (value) => setState((prevState) => ({ ...prevState, alwaysAllowMcp: value })),
 		setAlwaysAllowModeSwitch: (value) => setState((prevState) => ({ ...prevState, alwaysAllowModeSwitch: value })),
 		setAlwaysAllowSubtasks: (value) => setState((prevState) => ({ ...prevState, alwaysAllowSubtasks: value })),
+		setAlwaysAllowDebug: (value) => setState((prevState) => ({ ...prevState, alwaysAllowDebug: value })),
 		setShowAnnouncement: (value) => setState((prevState) => ({ ...prevState, shouldShowAnnouncement: value })),
 		setAllowedCommands: (value) => setState((prevState) => ({ ...prevState, allowedCommands: value })),
 		setAllowedMaxRequests: (value) => setState((prevState) => ({ ...prevState, allowedMaxRequests: value })),

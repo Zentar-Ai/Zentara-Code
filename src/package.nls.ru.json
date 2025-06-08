@@ -1,10 +1,9 @@
 {
-	"extension.displayName": "Roo Code (ранее Roo Cline)",
-	"extension.description": "Целая команда ИИ-разработчиков в вашем редакторе.",
-	"views.contextMenu.label": "Roo Code",
-	"views.terminalMenu.label": "Roo Code",
-	"views.activitybar.title": "Roo Code",
-	"views.sidebar.name": "Roo Code",
+	"extension.displayName": "Zentara Code",
+	"extension.description": "Агент кода динамической отладки времени выполнения",
+	"views.contextMenu.label": "Zentara Code",
+	"views.terminalMenu.label": "Zentara Code",
+	"views.activitybar.title": "Zentara Code",
 	"command.newTask.title": "Новая задача",
 	"command.mcpServers.title": "MCP серверы",
 	"command.prompts.title": "Режимы",
@@ -23,11 +22,11 @@
 	"command.terminal.fixCommand.title": "Исправить эту команду",
 	"command.terminal.explainCommand.title": "Объяснить эту команду",
 	"command.acceptInput.title": "Принять ввод/предложение",
-	"configuration.title": "Roo Code",
+	"configuration.title": "Zentara Code",
 	"commands.allowedCommands.description": "Команды, которые могут быть автоматически выполнены, когда включена опция 'Всегда подтверждать операции выполнения'",
 	"settings.vsCodeLmModelSelector.description": "Настройки для VSCode Language Model API",
 	"settings.vsCodeLmModelSelector.vendor.description": "Поставщик языковой модели (например, copilot)",
 	"settings.vsCodeLmModelSelector.family.description": "Семейство языковой модели (например, gpt-4)",
 	"settings.customStoragePath.description": "Пользовательский путь хранения. Оставьте пустым для использования пути по умолчанию. Поддерживает абсолютные пути (например, 'D:\\RooCodeStorage')",
-	"settings.rooCodeCloudEnabled.description": "Включить Roo Code Cloud."
+	"settings.rooCodeCloudEnabled.description": "Включить Zentara Code Cloud."
 }

@@ -3,7 +3,7 @@
 import OpenAI from "openai"
 import { Anthropic } from "@anthropic-ai/sdk"
 
-import { type ChutesModelId, chutesDefaultModelId, chutesModels } from "@roo-code/types"
+import { type ChutesModelId, chutesDefaultModelId, chutesModels } from "@zentara-code/types"
 
 import { ChutesHandler } from "../chutes"
 

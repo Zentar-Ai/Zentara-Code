@@ -1,4 +1,5 @@
 import * as path from "path"
+import { outputChannel } from "../../zentara_debug/src/vscodeUtils"
 import os from "os"
 import crypto from "crypto"
 import EventEmitter from "events"
@@ -20,9 +21,9 @@ import {
 	type ToolProgressStatus,
 	type HistoryItem,
 	TelemetryEventName,
-} from "@roo-code/types"
-import { TelemetryService } from "@roo-code/telemetry"
-import { CloudService } from "@roo-code/cloud"
+} from "@zentara-code/types"
+import { TelemetryService } from "@zentara-code/telemetry"
+import { CloudService } from "@zentara-code/cloud"
 
 // api
 import { ApiHandler, ApiHandlerCreateMessageMetadata, buildApiHandler } from "../../api"
@@ -196,7 +197,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		enableDiff = false,
 		enableCheckpoints = true,
 		fuzzyMatchThreshold = 1.0,
-		consecutiveMistakeLimit = 3,
+		consecutiveMistakeLimit = 20,
 		task,
 		images,
 		historyItem,
@@ -375,7 +376,7 @@ export class Task extends EventEmitter<ClineEvents> {
 
 			await this.providerRef.deref()?.updateTaskHistory(historyItem)
 		} catch (error) {
-			console.error("Failed to save Roo messages:", error)
+			console.error("Failed to save Zentara messages:", error)
 		}
 	}
 
@@ -388,6 +389,10 @@ export class Task extends EventEmitter<ClineEvents> {
 		partial?: boolean,
 		progressStatus?: ToolProgressStatus,
 	): Promise<{ response: ClineAskResponse; text?: string; images?: string[] }> {
+		// outputChannel.appendLine(
+		// 	`[Task.ask] ENTRY POINT - Called with type: ${type}, text: ${text ? (text.length > 100 ? text.substring(0, 100) + "..." : text) : "undefined"}, partial: ${partial}`,
+		// )
+
 		// If this Cline instance was aborted by the provider, then the only
 		// thing keeping us alive is a promise still running in the background,
 		// in which case we don't want to send its result to the webview as it
@@ -397,7 +402,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		// simply removes the reference to this instance, but the instance is
 		// still alive until this promise resolves or rejects.)
 		if (this.abort) {
-			throw new Error(`[RooCode#ask] task ${this.taskId}.${this.instanceId} aborted`)
+			throw new Error(`[ZentaraCode#ask] task ${this.taskId}.${this.instanceId} aborted`)
 		}
 
 		let askTs: number
@@ -484,6 +489,9 @@ export class Task extends EventEmitter<ClineEvents> {
 		}
 
 		const result = { response: this.askResponse!, text: this.askResponseText, images: this.askResponseImages }
+		// outputChannel.appendLine(
+		// 	`[Task.ask] Returning result with response: ${result.response}, text: ${result.text ? "present" : "absent"}`,
+		// )
 		this.askResponse = undefined
 		this.askResponseText = undefined
 		this.askResponseImages = undefined
@@ -492,9 +500,13 @@ export class Task extends EventEmitter<ClineEvents> {
 	}
 
 	async handleWebviewAskResponse(askResponse: ClineAskResponse, text?: string, images?: string[]) {
+		// outputChannel.appendLine(
+		// 	`[Task.handleWebviewAskResponse] Called with response: ${askResponse}, text: ${text ? (text.length > 100 ? text.substring(0, 100) + "..." : text) : "undefined"}`,
+		// )
 		this.askResponse = askResponse
 		this.askResponseText = text
 		this.askResponseImages = images
+		//outputChannel.appendLine(`[Task.handleWebviewAskResponse] Set askResponse to: ${this.askResponse}`)
 	}
 
 	async handleTerminalOperation(terminalOperation: "continue" | "abort") {
@@ -587,7 +599,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		contextCondense?: ContextCondense,
 	): Promise<undefined> {
 		if (this.abort) {
-			throw new Error(`[RooCode#say] task ${this.taskId}.${this.instanceId} aborted`)
+			throw new Error(`[ZentaraCode#say] task ${this.taskId}.${this.instanceId} aborted`)
 		}
 
 		if (partial !== undefined) {
@@ -678,9 +690,12 @@ export class Task extends EventEmitter<ClineEvents> {
 	}
 
 	async sayAndCreateMissingParamError(toolName: ToolName, paramName: string, relPath?: string) {
+		outputChannel.appendLine(
+			`[Task] sayAndCreateMissingParamError called for tool '${toolName}', missing param '${paramName}', relPath: ${relPath ?? "none"}`,
+		)
 		await this.say(
 			"error",
-			`Roo tried to use ${toolName}${
+			`Zentara tried to use ${toolName}${
 				relPath ? ` for '${relPath.toPosix()}'` : ""
 			} without value for required parameter '${paramName}'. Retrying...`,
 		)
@@ -1114,7 +1129,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		includeFileDetails: boolean = false,
 	): Promise<boolean> {
 		if (this.abort) {
-			throw new Error(`[RooCode#recursivelyMakeRooRequests] task ${this.taskId}.${this.instanceId} aborted`)
+			throw new Error(`[ZentaraCode#recursivelyMakeRooRequests] task ${this.taskId}.${this.instanceId} aborted`)
 		}
 
 		if (this.consecutiveMistakeCount >= this.consecutiveMistakeLimit) {
@@ -1424,7 +1439,7 @@ export class Task extends EventEmitter<ClineEvents> {
 
 			// Need to call here in case the stream was aborted.
 			if (this.abort || this.abandoned) {
-				throw new Error(`[RooCode#recursivelyMakeRooRequests] task ${this.taskId}.${this.instanceId} aborted`)
+				throw new Error(`[ZentaraCode#recursivelyMakeRooRequests] task ${this.taskId}.${this.instanceId} aborted`)
 			}
 
 			this.didCompleteReadingStream = true

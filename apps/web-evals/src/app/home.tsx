@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Ellipsis, Rocket } from "lucide-react"
 
-import type { Run, TaskMetrics } from "@roo-code/evals"
+import type { Run, TaskMetrics } from "@zentara-code/evals"
 
 import { deleteRun } from "@/actions/runs"
 import { formatCurrency, formatDuration, formatTokens, formatToolUsageSuccessRate } from "@/lib/formatters"

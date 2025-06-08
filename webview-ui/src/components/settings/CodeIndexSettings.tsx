@@ -4,9 +4,9 @@ import * as ProgressPrimitive from "@radix-ui/react-progress"
 import { VSCodeCheckbox, VSCodeTextField, VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 import { Trans } from "react-i18next"
 
-import { CodebaseIndexConfig, CodebaseIndexModels, ProviderSettings } from "@roo-code/types"
+import { CodebaseIndexConfig, CodebaseIndexModels, ProviderSettings } from "@zentara-code/types"
 
-import { EmbedderProvider } from "@roo/embeddingModels"
+import { EmbedderProvider } from "@zentara/embeddingModels"
 
 import { vscode } from "@src/utils/vscode"
 import { useAppTranslation } from "@src/i18n/TranslationContext"

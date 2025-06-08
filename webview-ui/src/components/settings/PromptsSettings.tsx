@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { VSCodeTextArea } from "@vscode/webview-ui-toolkit/react"
 
-import { supportPrompt, SupportPromptType } from "@roo/support-prompt"
+import { supportPrompt, SupportPromptType } from "@zentara/support-prompt"
 
 import { vscode } from "@src/utils/vscode"
 import { useAppTranslation } from "@src/i18n/TranslationContext"

@@ -11,15 +11,15 @@ const RooHero = () => {
 			<div
 				style={{
 					backgroundColor: "var(--vscode-foreground)",
-					WebkitMaskImage: `url('${imagesBaseUri}/roo-logo.svg')`,
+					WebkitMaskImage: `url('${imagesBaseUri}/zentara-logo.svg')`,
 					WebkitMaskRepeat: "no-repeat",
 					WebkitMaskSize: "contain",
-					maskImage: `url('${imagesBaseUri}/roo-logo.svg')`,
+					maskImage: `url('${imagesBaseUri}/zentara-logo.svg')`,
 					maskRepeat: "no-repeat",
 					maskSize: "contain",
 				}}
 				className="mx-auto">
-				<img src={imagesBaseUri + "/roo-logo.svg"} alt="Roo logo" className="h-8 opacity-0" />
+				<img src={imagesBaseUri + "/zentara-logo.svg"} alt="Zentara logo" className="h-8 opacity-0" />
 			</div>
 		</div>
 	)

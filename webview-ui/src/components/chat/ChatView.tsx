@@ -8,17 +8,17 @@ import { VSCodeButton } from "@vscode/webview-ui-toolkit/react"
 import useSound from "use-sound"
 import { LRUCache } from "lru-cache"
 
-import type { ClineAsk, ClineMessage } from "@roo-code/types"
+import type { ClineAsk, ClineMessage } from "@zentara-code/types"
 
-import { ClineSayBrowserAction, ClineSayTool, ExtensionMessage } from "@roo/ExtensionMessage"
-import { McpServer, McpTool } from "@roo/mcp"
-import { findLast } from "@roo/array"
-import { combineApiRequests } from "@roo/combineApiRequests"
-import { combineCommandSequences } from "@roo/combineCommandSequences"
-import { getApiMetrics } from "@roo/getApiMetrics"
-import { AudioType } from "@roo/WebviewMessage"
-import { getAllModes } from "@roo/modes"
-import { ProfileValidator } from "@roo/ProfileValidator"
+import { ClineSayBrowserAction, ClineSayTool, ExtensionMessage } from "@zentara/ExtensionMessage"
+import { McpServer, McpTool } from "@zentara/mcp"
+import { findLast } from "@zentara/array"
+import { combineApiRequests } from "@zentara/combineApiRequests"
+import { combineCommandSequences } from "@zentara/combineCommandSequences"
+import { getApiMetrics } from "@zentara/getApiMetrics"
+import { AudioType } from "@zentara/WebviewMessage"
+import { getAllModes } from "@zentara/modes"
+import { ProfileValidator } from "@zentara/ProfileValidator"
 
 import { vscode } from "@src/utils/vscode"
 import { validateCommand } from "@src/utils/command-validation"
@@ -88,6 +88,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 		autoApprovalEnabled,
 		alwaysAllowModeSwitch,
 		alwaysAllowSubtasks,
+		alwaysAllowDebug, // Added alwaysAllowDebug
 		customModes,
 		telemetrySetting,
 		hasSystemPromptOverride,
@@ -832,6 +833,21 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 		return false
 	}, [])
 
+	const isDebugToolAction = useCallback((message: ClineMessage | undefined) => {
+		if (message?.type === "ask") {
+			if (!message.text) {
+				return false
+			}
+
+			const tool = JSON.parse(message.text)
+
+			// Check if it's the debug meta-tool or any of the specific debug operations
+			return tool.tool === "debug" || tool.tool.startsWith("debug_")
+		}
+
+		return false
+	}, [])
+
 	const isMcpToolAlwaysAllowed = useCallback(
 		(message: ClineMessage | undefined) => {
 			if (message?.type === "ask" && message.ask === "use_mcp_server") {
@@ -915,6 +931,11 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 
 				const isOutsideWorkspace = !!tool.isOutsideWorkspace
 
+				// Check for debug tools
+				if (isDebugToolAction(message)) {
+					return alwaysAllowDebug || false
+				}
+
 				if (isReadOnlyToolAction(message)) {
 					return alwaysAllowReadOnly && (!isOutsideWorkspace || alwaysAllowReadOnlyOutsideWorkspace)
 				}
@@ -941,6 +962,8 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 			isMcpToolAlwaysAllowed,
 			alwaysAllowModeSwitch,
 			alwaysAllowSubtasks,
+			alwaysAllowDebug,
+			isDebugToolAction,
 		],
 	)
 
@@ -1405,17 +1428,17 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 				</div>
 			)}
 
-			{/* 
+			{/*
 			// Flex layout explanation:
 			// 1. Content div above uses flex: "1 1 0" to:
-			//    - Grow to fill available space (flex-grow: 1) 
+			//    - Grow to fill available space (flex-grow: 1)
 			//    - Shrink when AutoApproveMenu needs space (flex-shrink: 1)
 			//    - Start from zero size (flex-basis: 0) to ensure proper distribution
 			//    minHeight: 0 allows it to shrink below its content height
 			//
 			// 2. AutoApproveMenu uses flex: "0 1 auto" to:
 			//    - Not grow beyond its content (flex-grow: 0)
-			//    - Shrink when viewport is small (flex-shrink: 1) 
+			//    - Shrink when viewport is small (flex-shrink: 1)
 			//    - Use its content size as basis (flex-basis: auto)
 			//    This ensures it takes its natural height when there's space
 			//    but becomes scrollable when the viewport is too small
@@ -1554,7 +1577,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 				</div>
 			)}
 
-			<div id="roo-portal" />
+			<div id="zentara-portal" />
 		</div>
 	)
 }

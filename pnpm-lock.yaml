@@ -17,6 +17,9 @@ importers:
       '@vscode/vsce':
         specifier: 3.3.2
         version: 3.3.2
+      all-contributors-cli:
+        specifier: ^6.26.1
+        version: 6.26.1
       esbuild:
         specifier: ^0.25.0
         version: 0.25.5
@@ -41,30 +44,33 @@ importers:
       ovsx:
         specifier: 0.10.4
         version: 0.10.4
+      pkce-challenge:
+        specifier: ^4.1.0
+        version: 4.1.0
       prettier:
         specifier: ^3.4.2
         version: 3.5.3
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
+      tiktoken:
+        specifier: ^1.0.21
+        version: 1.0.21
+      tree-sitter-wasms:
+        specifier: ^0.1.11
+        version: 0.1.12
       turbo:
         specifier: ^2.5.3
         version: 2.5.4
       typescript:
         specifier: ^5.4.5
         version: 5.8.3
+      web-tree-sitter:
+        specifier: ^0.22.6
+        version: 0.22.6
 
   apps/vscode-e2e:
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../../packages/config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../../packages/config-typescript
-      '@roo-code/types':
-        specifier: workspace:^
-        version: link:../../packages/types
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -80,6 +86,15 @@ importers:
       '@vscode/test-electron':
         specifier: ^2.4.0
         version: 2.5.2
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../../packages/config-typescript
+      '@zentara-code/types':
+        specifier: workspace:^
+        version: link:../../packages/types
       glob:
         specifier: ^11.0.1
         version: 11.0.2
@@ -95,7 +110,7 @@ importers:
 
   apps/vscode-nightly:
     devDependencies:
-      '@roo-code/build':
+      '@zentara-code/build':
         specifier: workspace:^
         version: link:../../packages/build
 
@@ -140,15 +155,15 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.1.8
         version: 1.2.6(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@roo-code/evals':
-        specifier: workspace:^
-        version: link:../../packages/evals
-      '@roo-code/types':
-        specifier: workspace:^
-        version: link:../../packages/types
       '@tanstack/react-query':
         specifier: ^5.69.0
         version: 5.76.1(react@18.3.1)
+      '@zentara-code/evals':
+        specifier: workspace:^
+        version: link:../../packages/evals
+      '@zentara-code/types':
+        specifier: workspace:^
+        version: link:../../packages/types
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -204,12 +219,6 @@ importers:
         specifier: ^3.24.2
         version: 3.24.4
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../../packages/config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../../packages/config-typescript
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.1.8
@@ -222,6 +231,12 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.5
         version: 18.3.7(@types/react@18.3.23)
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../../packages/config-typescript
       tailwindcss:
         specifier: ^4
         version: 4.1.6
@@ -240,12 +255,12 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@18.3.23)(react@18.3.1)
-      '@roo-code/types':
-        specifier: workspace:^
-        version: link:../../packages/types
       '@tanstack/react-query':
         specifier: ^5.79.0
         version: 5.80.2(react@18.3.1)
+      '@zentara-code/types':
+        specifier: workspace:^
+        version: link:../../packages/types
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -257,7 +272,7 @@ importers:
         version: 0.41.0(@libsql/client@0.15.8)(better-sqlite3@11.10.0)(gel@2.1.0)(postgres@3.4.7)
       drizzle-zod:
         specifier: ^0.7.1
-        version: 0.7.1(drizzle-orm@0.41.0(@libsql/client@0.15.8)(better-sqlite3@11.10.0)(gel@2.1.0)(postgres@3.4.7))(zod@3.25.49)
+        version: 0.7.1(drizzle-orm@0.41.0(@libsql/client@0.15.8)(better-sqlite3@11.10.0)(gel@2.1.0)(postgres@3.4.7))(zod@3.25.51)
       embla-carousel-auto-scroll:
         specifier: ^8.6.0
         version: 8.6.0(embla-carousel@8.6.0)
@@ -302,14 +317,8 @@ importers:
         version: 1.0.7(tailwindcss@3.4.17)
       zod:
         specifier: ^3.25.41
-        version: 3.25.49
+        version: 3.25.51
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../../packages/config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../../packages/config-typescript
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@3.4.17)
@@ -322,6 +331,12 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.23)
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../../packages/config-typescript
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.4)
@@ -341,25 +356,25 @@ importers:
         specifier: ^3.24.2
         version: 3.24.4
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: ^22.15.20
         version: 22.15.20
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       vitest:
         specifier: ^3.1.3
         version: 3.1.3(@types/debug@4.1.12)(@types/node@22.15.20)(jiti@2.4.2)(jsdom@20.0.3)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0)
 
   packages/cloud:
     dependencies:
-      '@roo-code/telemetry':
+      '@zentara-code/telemetry':
         specifier: workspace:^
         version: link:../telemetry
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       axios:
@@ -369,18 +384,18 @@ importers:
         specifier: ^3.24.2
         version: 3.24.4
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: ^22.15.20
         version: 22.15.20
       '@types/vscode':
         specifier: ^1.84.0
         version: 1.100.0
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       vitest:
         specifier: ^3.1.3
         version: 3.1.3(@types/debug@4.1.12)(@types/node@22.15.20)(jiti@2.4.2)(jsdom@20.0.3)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0)
@@ -422,10 +437,10 @@ importers:
 
   packages/evals:
     dependencies:
-      '@roo-code/ipc':
+      '@zentara-code/ipc':
         specifier: workspace:^
         version: link:../ipc
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       better-sqlite3:
@@ -465,12 +480,6 @@ importers:
         specifier: ^3.24.2
         version: 3.24.4
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: ^22.15.20
         version: 22.15.20
@@ -480,6 +489,12 @@ importers:
       '@types/ps-tree':
         specifier: ^1.1.6
         version: 1.1.6
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       drizzle-kit:
         specifier: ^0.31.1
         version: 0.31.1
@@ -492,32 +507,32 @@ importers:
 
   packages/ipc:
     dependencies:
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       node-ipc:
         specifier: ^12.0.0
         version: 12.0.0
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: ^22.15.20
         version: 22.15.20
       '@types/node-ipc':
         specifier: ^9.2.3
         version: 9.2.3
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       vitest:
         specifier: ^3.1.3
         version: 3.1.3(@types/debug@4.1.12)(@types/node@22.15.20)(jiti@2.4.2)(jsdom@20.0.3)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0)
 
   packages/telemetry:
     dependencies:
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       posthog-node:
@@ -527,18 +542,18 @@ importers:
         specifier: ^3.24.2
         version: 3.24.4
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: ^22.15.20
         version: 22.15.20
       '@types/vscode':
         specifier: ^1.84.0
         version: 1.100.0
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       vitest:
         specifier: ^3.1.3
         version: 3.1.3(@types/debug@4.1.12)(@types/node@22.15.20)(jiti@2.4.2)(jsdom@20.0.3)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0)
@@ -549,15 +564,15 @@ importers:
         specifier: ^3.24.2
         version: 3.24.4
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: ^22.15.20
         version: 22.15.20
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       tsup:
         specifier: ^8.3.5
         version: 8.5.0(jiti@2.4.2)(postcss@8.5.4)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.0)
@@ -589,29 +604,29 @@ importers:
         specifier: ^1.3.6
         version: 1.6.1(zod@3.24.4)
       '@modelcontextprotocol/sdk':
-        specifier: ^1.9.0
-        version: 1.12.0
+        specifier: ^1.12.1
+        version: 1.12.1
       '@qdrant/js-client-rest':
         specifier: ^1.14.0
         version: 1.14.0(typescript@5.8.3)
-      '@roo-code/cloud':
-        specifier: workspace:^
-        version: link:../packages/cloud
-      '@roo-code/ipc':
-        specifier: workspace:^
-        version: link:../packages/ipc
-      '@roo-code/telemetry':
-        specifier: workspace:^
-        version: link:../packages/telemetry
-      '@roo-code/types':
-        specifier: workspace:^
-        version: link:../packages/types
       '@types/lodash.debounce':
         specifier: ^4.0.9
         version: 4.0.9
       '@vscode/codicons':
         specifier: ^0.0.36
         version: 0.0.36
+      '@zentara-code/cloud':
+        specifier: workspace:^
+        version: link:../packages/cloud
+      '@zentara-code/ipc':
+        specifier: workspace:^
+        version: link:../packages/ipc
+      '@zentara-code/telemetry':
+        specifier: workspace:^
+        version: link:../packages/telemetry
+      '@zentara-code/types':
+        specifier: workspace:^
+        version: link:../packages/types
       async-mutex:
         specifier: ^0.5.0
         version: 0.5.0
@@ -772,15 +787,6 @@ importers:
       '@jest/globals':
         specifier: ^29.7.0
         version: 29.7.0
-      '@roo-code/build':
-        specifier: workspace:^
-        version: link:../packages/build
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../packages/config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../packages/config-typescript
       '@types/clone-deep':
         specifier: ^4.0.4
         version: 4.0.4
@@ -832,6 +838,15 @@ importers:
       '@vscode/vsce':
         specifier: 3.3.2
         version: 3.3.2
+      '@zentara-code/build':
+        specifier: workspace:^
+        version: link:../packages/build
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../packages/config-typescript
       esbuild:
         specifier: ^0.25.0
         version: 0.25.4
@@ -925,9 +940,6 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.1.8
         version: 1.2.6(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@roo-code/types':
-        specifier: workspace:^
-        version: link:../packages/types
       '@tailwindcss/vite':
         specifier: ^4.0.0
         version: 4.1.6(vite@6.3.5(@types/node@18.19.100)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0))
@@ -940,6 +952,9 @@ importers:
       '@vscode/webview-ui-toolkit':
         specifier: ^1.4.0
         version: 1.4.0(react@18.3.1)
+      '@zentara-code/types':
+        specifier: workspace:^
+        version: link:../packages/types
       axios:
         specifier: ^1.7.4
         version: 1.9.0
@@ -1061,12 +1076,6 @@ importers:
       '@jest/globals':
         specifier: ^29.7.0
         version: 29.7.0
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../packages/config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../packages/config-typescript
       '@storybook/addon-essentials':
         specifier: ^8.5.6
         version: 8.6.12(@types/react@18.3.23)(storybook@8.6.12(prettier@3.5.3))
@@ -1112,6 +1121,12 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.3.4
         version: 4.4.1(vite@6.3.5(@types/node@18.19.100)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0))
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../packages/config-typescript
       identity-obj-proxy:
         specifier: ^3.0.0
         version: 3.0.0
@@ -2499,8 +2514,8 @@ packages:
   '@mixmark-io/domino@2.2.0':
     resolution: {integrity: sha512-Y28PR25bHXUg88kCV7nivXrP2Nj2RueZ3/l/jdx6J9f8J4nsEGcgX0Qe6lt7Pa+J79+kPiJU3LguR6O/6zrLOw==}
 
-  '@modelcontextprotocol/sdk@1.12.0':
-    resolution: {integrity: sha512-m//7RlINx1F3sz3KqwY1WWzVgTcYX52HYk4bJ1hkBXV3zccAEth+jRvG8DBRrdaQuRsPAJOx2MH3zaHNCKL7Zg==}
+  '@modelcontextprotocol/sdk@1.12.1':
+    resolution: {integrity: sha512-KG1CZhZfWg+u8pxeM/mByJDScJSrjjxLc8fwQqbsS8xCjBmQfMNEBTotYdNanKekepnfRI85GtgQlctLFpcYPw==}
     engines: {node: '>=18'}
 
   '@mswjs/interceptors@0.38.6':
@@ -4791,6 +4806,11 @@ packages:
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
 
+  all-contributors-cli@6.26.1:
+    resolution: {integrity: sha512-Ymgo3FJACRBEd1eE653FD1J/+uD0kqpUNYfr9zNC1Qby0LgbhDBzB3EF6uvkAbYpycStkk41J+0oo37Lc02yEw==}
+    engines: {node: '>=4'}
+    hasBin: true
+
   ansi-colors@4.1.3:
     resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
     engines: {node: '>=6'}
@@ -5250,6 +5270,10 @@ packages:
   class-variance-authority@0.7.1:
     resolution: {integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==}
 
+  cli-cursor@3.1.0:
+    resolution: {integrity: sha512-I/zHAwsKf9FqGoXM4WWRACob9+SNukZTd94DWF57E4toouRulbCxcUh6RKUEOQlYTHJnzkPMySvPNaaSLNfLZw==}
+    engines: {node: '>=8'}
+
   cli-cursor@5.0.0:
     resolution: {integrity: sha512-aCj4O5wKyszjMmDT4tZj93kxyydN/K5zPWSCe6/0AV/AA1pqe5ZBIw0a2ZfPQV7lL5/yb5HsUreJ6UFAF1tEQw==}
     engines: {node: '>=18'}
@@ -5262,8 +5286,15 @@ packages:
     resolution: {integrity: sha512-nPdaFdQ0h/GEigbPClz11D0v/ZJEwxmeVZGeMo3Z5StPtUTkA9o1lD6QwoirYiSDzbcwn2XcjwmCp68W1IS4TA==}
     engines: {node: '>=18'}
 
+  cli-width@3.0.0:
+    resolution: {integrity: sha512-FxqpkPPwu1HjuN93Omfm4h8uIanXofW0RxVEW3k5RKx+mJJYSthzNhp32Kzxxy3YAEZ/Dc/EWN1vZRY0+kOhbw==}
+    engines: {node: '>= 10'}
+
   client-only@0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+
+  cliui@6.0.0:
+    resolution: {integrity: sha512-t6wbgtoCXvAzst7QgXxJYqPt0usEfbgQdftEPbLL/cvv6HPE5VgvqCuAIDR0NgU52ds6rFwqrgakNLrHEjCbrQ==}
 
   cliui@7.0.4:
     resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
@@ -5695,6 +5726,10 @@ packages:
     peerDependenciesMeta:
       supports-color:
         optional: true
+
+  decamelize@1.2.0:
+    resolution: {integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==}
+    engines: {node: '>=0.10.0'}
 
   decamelize@4.0.0:
     resolution: {integrity: sha512-9iE1PgSik9HeIIw2JO94IidnE3eBoQrFJ3w7sFuzSX4DpmZ3v5sZpUiV5Swcf6mQEF+Y0ru8Neo+p+nyh2J+hQ==}
@@ -6533,6 +6568,10 @@ packages:
   fflate@0.4.8:
     resolution: {integrity: sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==}
 
+  figures@3.2.0:
+    resolution: {integrity: sha512-yaduQFRKLXYOGgEn6AZau90j3ggSOyiqXU0F9JZfeXYhNa+Jk4X+s45A2zg5jns87GAFa34BBm2kXw4XpNcbdg==}
+    engines: {node: '>=8'}
+
   figures@6.1.0:
     resolution: {integrity: sha512-d+l3qxjSesT4V7v2fh+QnmFnUWv9lSpjarhShNTgBOfA0ttejbQUAlHLitbjkoRiDulW0OPoQPYIGhIC8ohejg==}
     engines: {node: '>=18'}
@@ -7036,6 +7075,10 @@ packages:
 
   inline-style-prefixer@7.0.1:
     resolution: {integrity: sha512-lhYo5qNTQp3EvSSp3sRvXMbVQTLrvGV6DycRMJ5dm2BLMiJ30wpXKdDdgX+GmJZ5uQMucwRKHamXSst3Sj/Giw==}
+
+  inquirer@7.3.3:
+    resolution: {integrity: sha512-JG3eIAj5V9CwcGvuOmoo6LB9kbAYT8HXffUl6memuszlwDC/qvFAJw49XJ5NROSFNPxp3iQg1GqkFhaY/CR0IA==}
+    engines: {node: '>=8.0.0'}
 
   internal-slot@1.1.0:
     resolution: {integrity: sha512-4gd7VpWNQNB4UKKCFFVcp1AVv+FMOgs9NKzjHKusc8jTMhd5eL1NqQqOpE0KzMds804/yHlglp3uxgluOqAPLw==}
@@ -7566,6 +7609,10 @@ packages:
 
   json-buffer@3.0.1:
     resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
+
+  json-fixer@1.6.15:
+    resolution: {integrity: sha512-TuDuZ5KrgyjoCIppdPXBMqiGfota55+odM+j2cQ5rt/XKyKmqGB3Whz1F8SN8+60yYGy/Nu5lbRZ+rx8kBIvBw==}
+    engines: {node: '>=10'}
 
   json-parse-even-better-errors@2.3.1:
     resolution: {integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==}
@@ -8706,6 +8753,11 @@ packages:
     resolution: {integrity: sha512-v6ZJ/efsBpGrGGknjtq9J/oC8tZWq0KWL5vQrk2GlzLEQPUDB1ex+13Rmidl1neNN358Jn9EHZw5y07FFtaC7A==}
     engines: {node: '>=6.8.1'}
 
+  pegjs@0.10.0:
+    resolution: {integrity: sha512-qI5+oFNEGi3L5HAxDwN2LA4Gg7irF70Zs25edhjld9QemOgp0CbvMtbFcMvFtEo1OityPrcCzkQFB8JP/hxgow==}
+    engines: {node: '>=0.10'}
+    hasBin: true
+
   pend@1.2.0:
     resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
 
@@ -8732,6 +8784,10 @@ packages:
   pify@4.0.1:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
+
+  pify@5.0.0:
+    resolution: {integrity: sha512-eW/gHNMlxdSP6dmG6uJip6FXN0EQBwm2clYYd8Wul42Cwu/DK8HEftzsapcNdYe2MfLiIwZqsDk2RDEsTE79hA==}
+    engines: {node: '>=10'}
 
   pirates@4.0.7:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
@@ -9254,6 +9310,9 @@ packages:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
 
+  require-main-filename@2.0.0:
+    resolution: {integrity: sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==}
+
   requires-port@1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
 
@@ -9287,6 +9346,10 @@ packages:
   resolve@2.0.0-next.5:
     resolution: {integrity: sha512-U7WjGVG9sH8tvjW5SmGbQuui75FiyjAX72HX15DwBBwF9dNiQZRQAg9nnPhYy+TUnE0+VcrttuvNI8oSxZcocA==}
     hasBin: true
+
+  restore-cursor@3.1.0:
+    resolution: {integrity: sha512-l+sSefzHpj5qimhFSE5a8nufZYAM3sBSVMAPtYkmC+4EH2anSGaEMXSD0izRQbu9nfyQ9y5JrVmp7E8oZrUjvA==}
+    engines: {node: '>=8'}
 
   restore-cursor@5.1.0:
     resolution: {integrity: sha512-oMA2dcrw6u0YfxJQXm342bFKX/E4sG9rbTzO9ptUcR/e8A33cHuvStiYOwH7fszkZlZ1z/ta9AAoPk2F4qIOHA==}
@@ -9326,11 +9389,19 @@ packages:
     resolution: {integrity: sha512-9by4Ij99JUr/MCFBUkDKLWK3G9HVXmabKz9U5MlIAIuvuzkiOicRYs8XJLxX+xahD+mLiiCYDqF9dKAgtzKP1A==}
     engines: {node: '>=18'}
 
+  run-async@2.4.1:
+    resolution: {integrity: sha512-tvVnVv01b8c1RrA6Ep7JkStj85Guv/YrMcwqYQnwjsAS2cTmmPGBBjAjpCW7RrSodNSoE2/qg9O4bceNvUuDgQ==}
+    engines: {node: '>=0.12.0'}
+
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
   rw@1.3.3:
     resolution: {integrity: sha512-PdhdWy89SiZogBLaw42zdeqtRJ//zFd2PgQavcICDUgJT5oW10QCRKbJ6bg4r0/UY2M6BWd5tkxuGFRvCkgfHQ==}
+
+  rxjs@6.6.7:
+    resolution: {integrity: sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==}
+    engines: {npm: '>=2.0.0'}
 
   safe-array-concat@1.1.3:
     resolution: {integrity: sha512-AURm5f0jYEOydBj7VQlVvDrjeFgthDdEF5H1dP+6mNpoXOMo1quQqJ4wvJDyRZ9+pO3kGWoOdmV08cSv2aJV6Q==}
@@ -9404,6 +9475,9 @@ packages:
   serve-static@2.2.0:
     resolution: {integrity: sha512-61g9pCh0Vnh7IutZjtLGGpTA355+OPn2TyDv/6ivP2h/AdAVX9azsoxmg2/M6nZeQZNYBEwIcsne1mJd9oQItQ==}
     engines: {node: '>= 18'}
+
+  set-blocking@2.0.0:
+    resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
 
   set-function-length@1.2.2:
     resolution: {integrity: sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==}
@@ -10649,6 +10723,9 @@ packages:
     resolution: {integrity: sha512-K4jVyjnBdgvc86Y6BkaLZEN933SwYOuBFkdmBu9ZfkcAbdVbpITnDmjvZ/aQjRXQrv5EPkTnD1s39GiiqbngCw==}
     engines: {node: '>= 0.4'}
 
+  which-module@2.0.1:
+    resolution: {integrity: sha512-iBdZ57RDvnOR9AGBhML2vFZf7h8vmBjhoaZqODJBFWHVtKkDmKuHai3cx5PgVMrX5YDNp27AofYbAwctSS+vhQ==}
+
   which-pm-runs@1.1.0:
     resolution: {integrity: sha512-n1brCuqClxfFfq/Rb0ICg9giSZqCS+pLtccdag6C2HyufBrh3fBOiy9nb6ggRMvWOVH5GrdJskj5iGTZNxd7SA==}
     engines: {node: '>=4'}
@@ -10693,6 +10770,10 @@ packages:
 
   workerpool@9.2.0:
     resolution: {integrity: sha512-PKZqBOCo6CYkVOwAxWxQaSF2Fvb5Iv2fCeTP7buyWI2GiynWr46NcXSgK/idoV6e60dgCBfgYc+Un3HMvmqP8w==}
+
+  wrap-ansi@6.2.0:
+    resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
+    engines: {node: '>=8'}
 
   wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
@@ -10748,6 +10829,9 @@ packages:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
     engines: {node: '>=0.4'}
 
+  y18n@4.0.3:
+    resolution: {integrity: sha512-JKhqTOwSrqNA1NY5lSztJ1GrBiUodLMmIZuLiDaMRJ+itFd+ABVE8XBjOvIWL+rSqNDC74LCSFmlb/U4UZ4hJQ==}
+
   y18n@5.0.8:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
     engines: {node: '>=10'}
@@ -10771,6 +10855,10 @@ packages:
     engines: {node: '>= 14.6'}
     hasBin: true
 
+  yargs-parser@18.1.3:
+    resolution: {integrity: sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==}
+    engines: {node: '>=6'}
+
   yargs-parser@20.2.9:
     resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}
     engines: {node: '>=10'}
@@ -10782,6 +10870,10 @@ packages:
   yargs-unparser@2.0.0:
     resolution: {integrity: sha512-7pRTIA9Qc1caZ0bZ6RYRGbHJthJWuakf+WmHK0rVeLkNrrGhfoabBNdue6kdINI6r4if7ocq9aD/n7xwKOdzOA==}
     engines: {node: '>=10'}
+
+  yargs@15.4.1:
+    resolution: {integrity: sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==}
+    engines: {node: '>=8'}
 
   yargs@16.2.0:
     resolution: {integrity: sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==}
@@ -10835,9 +10927,6 @@ packages:
 
   zod@3.24.4:
     resolution: {integrity: sha512-OdqJE9UDRPwWsrHjLN2F8bPxvwJBK22EHLWtanu0LSYr5YqzsaaW3RMgmjwr8Rypg5k+meEJdSPXJZXE/yqOMg==}
-
-  zod@3.25.49:
-    resolution: {integrity: sha512-JMMPMy9ZBk3XFEdbM3iL1brx4NUSejd6xr3ELrrGEfGb355gjhiAWtG3K5o+AViV/3ZfkIrCzXsZn6SbLwTR8Q==}
 
   zod@3.25.51:
     resolution: {integrity: sha512-TQSnBldh+XSGL+opiSIq0575wvDPqu09AqWe1F7JhUMKY+M91/aGlK4MhpVNO7MgYfHcVCB1ffwAUTJzllKJqg==}
@@ -12162,8 +12251,8 @@ snapshots:
     dependencies:
       google-auth-library: 9.15.1
       ws: 8.18.2
-      zod: 3.25.49
-      zod-to-json-schema: 3.24.5(zod@3.25.49)
+      zod: 3.25.51
+      zod-to-json-schema: 3.24.5(zod@3.25.51)
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -12561,14 +12650,14 @@ snapshots:
 
   '@manypkg/find-root@1.1.0':
     dependencies:
-      '@babel/runtime': 7.27.1
+      '@babel/runtime': 7.27.4
       '@types/node': 12.20.55
       find-up: 4.1.0
       fs-extra: 8.1.0
 
   '@manypkg/get-packages@1.1.3':
     dependencies:
-      '@babel/runtime': 7.27.1
+      '@babel/runtime': 7.27.4
       '@changesets/types': 4.1.0
       '@manypkg/find-root': 1.1.0
       fs-extra: 8.1.0
@@ -12615,7 +12704,7 @@ snapshots:
 
   '@mixmark-io/domino@2.2.0': {}
 
-  '@modelcontextprotocol/sdk@1.12.0':
+  '@modelcontextprotocol/sdk@1.12.1':
     dependencies:
       ajv: 6.12.6
       content-type: 1.0.5
@@ -12626,8 +12715,8 @@ snapshots:
       express-rate-limit: 7.5.0(express@5.1.0)
       pkce-challenge: 5.0.0
       raw-body: 3.0.0
-      zod: 3.25.49
-      zod-to-json-schema: 3.24.5(zod@3.25.49)
+      zod: 3.25.51
+      zod-to-json-schema: 3.24.5(zod@3.25.51)
     transitivePeerDependencies:
       - supports-color
 
@@ -15161,6 +15250,23 @@ snapshots:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
 
+  all-contributors-cli@6.26.1:
+    dependencies:
+      '@babel/runtime': 7.27.4
+      async: 3.2.6
+      chalk: 4.1.2
+      didyoumean: 1.2.2
+      inquirer: 7.3.3
+      json-fixer: 1.6.15
+      lodash: 4.17.21
+      node-fetch: 2.7.0
+      pify: 5.0.0
+      yargs: 15.4.1
+    optionalDependencies:
+      prettier: 2.8.8
+    transitivePeerDependencies:
+      - encoding
+
   ansi-colors@4.1.3: {}
 
   ansi-escapes@4.3.2:
@@ -15688,6 +15794,10 @@ snapshots:
     dependencies:
       clsx: 2.1.1
 
+  cli-cursor@3.1.0:
+    dependencies:
+      restore-cursor: 3.1.0
+
   cli-cursor@5.0.0:
     dependencies:
       restore-cursor: 5.1.0
@@ -15699,7 +15809,15 @@ snapshots:
       slice-ansi: 5.0.0
       string-width: 7.2.0
 
+  cli-width@3.0.0: {}
+
   client-only@0.0.1: {}
+
+  cliui@6.0.0:
+    dependencies:
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      wrap-ansi: 6.2.0
 
   cliui@7.0.4:
     dependencies:
@@ -16175,6 +16293,8 @@ snapshots:
     optionalDependencies:
       supports-color: 8.1.1
 
+  decamelize@1.2.0: {}
+
   decamelize@4.0.0: {}
 
   decimal.js-light@2.5.1: {}
@@ -16346,10 +16466,10 @@ snapshots:
       gel: 2.1.0
       postgres: 3.4.7
 
-  drizzle-zod@0.7.1(drizzle-orm@0.41.0(@libsql/client@0.15.8)(better-sqlite3@11.10.0)(gel@2.1.0)(postgres@3.4.7))(zod@3.25.49):
+  drizzle-zod@0.7.1(drizzle-orm@0.41.0(@libsql/client@0.15.8)(better-sqlite3@11.10.0)(gel@2.1.0)(postgres@3.4.7))(zod@3.25.51):
     dependencies:
       drizzle-orm: 0.41.0(@libsql/client@0.15.8)(better-sqlite3@11.10.0)(gel@2.1.0)(postgres@3.4.7)
-      zod: 3.25.49
+      zod: 3.25.51
 
   duck@0.1.12:
     dependencies:
@@ -17049,6 +17169,10 @@ snapshots:
 
   fflate@0.4.8: {}
 
+  figures@3.2.0:
+    dependencies:
+      escape-string-regexp: 1.0.5
+
   figures@6.1.0:
     dependencies:
       is-unicode-supported: 2.1.0
@@ -17616,6 +17740,22 @@ snapshots:
   inline-style-prefixer@7.0.1:
     dependencies:
       css-in-js-utils: 3.1.0
+
+  inquirer@7.3.3:
+    dependencies:
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      cli-cursor: 3.1.0
+      cli-width: 3.0.0
+      external-editor: 3.1.0
+      figures: 3.2.0
+      lodash: 4.17.21
+      mute-stream: 0.0.8
+      run-async: 2.4.1
+      rxjs: 6.6.7
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      through: 2.3.8
 
   internal-slot@1.1.0:
     dependencies:
@@ -18414,6 +18554,12 @@ snapshots:
       bignumber.js: 9.3.0
 
   json-buffer@3.0.1: {}
+
+  json-fixer@1.6.15:
+    dependencies:
+      '@babel/runtime': 7.27.4
+      chalk: 4.1.2
+      pegjs: 0.10.0
 
   json-parse-even-better-errors@2.3.1: {}
 
@@ -19851,6 +19997,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  pegjs@0.10.0: {}
+
   pend@1.2.0: {}
 
   picocolors@1.1.1: {}
@@ -19864,6 +20012,8 @@ snapshots:
   pify@2.3.0: {}
 
   pify@4.0.1: {}
+
+  pify@5.0.0: {}
 
   pirates@4.0.7: {}
 
@@ -19896,7 +20046,7 @@ snapshots:
 
   polished@4.3.1:
     dependencies:
-      '@babel/runtime': 7.27.1
+      '@babel/runtime': 7.27.4
 
   possible-typed-array-names@1.1.0: {}
 
@@ -20499,6 +20649,8 @@ snapshots:
 
   require-directory@2.1.1: {}
 
+  require-main-filename@2.0.0: {}
+
   requires-port@1.0.0: {}
 
   resize-observer-polyfill@1.5.1: {}
@@ -20526,6 +20678,11 @@ snapshots:
       is-core-module: 2.16.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
+
+  restore-cursor@3.1.0:
+    dependencies:
+      onetime: 5.1.2
+      signal-exit: 3.0.7
 
   restore-cursor@5.1.0:
     dependencies:
@@ -20588,15 +20745,21 @@ snapshots:
 
   rtl-css-js@1.16.1:
     dependencies:
-      '@babel/runtime': 7.27.1
+      '@babel/runtime': 7.27.4
 
   run-applescript@7.0.0: {}
+
+  run-async@2.4.1: {}
 
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
 
   rw@1.3.3: {}
+
+  rxjs@6.6.7:
+    dependencies:
+      tslib: 1.14.1
 
   safe-array-concat@1.1.3:
     dependencies:
@@ -20683,6 +20846,8 @@ snapshots:
       send: 1.2.0
     transitivePeerDependencies:
       - supports-color
+
+  set-blocking@2.0.0: {}
 
   set-function-length@1.2.2:
     dependencies:
@@ -22244,6 +22409,8 @@ snapshots:
       is-weakmap: 2.0.2
       is-weakset: 2.0.4
 
+  which-module@2.0.1: {}
+
   which-pm-runs@1.1.0: {}
 
   which-typed-array@1.1.19:
@@ -22287,6 +22454,12 @@ snapshots:
 
   workerpool@9.2.0: {}
 
+  wrap-ansi@6.2.0:
+    dependencies:
+      ansi-styles: 4.3.0
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+
   wrap-ansi@7.0.0:
     dependencies:
       ansi-styles: 4.3.0
@@ -22329,6 +22502,8 @@ snapshots:
 
   xtend@4.0.2: {}
 
+  y18n@4.0.3: {}
+
   y18n@5.0.8: {}
 
   yallist@3.1.1: {}
@@ -22342,6 +22517,11 @@ snapshots:
 
   yaml@2.8.0: {}
 
+  yargs-parser@18.1.3:
+    dependencies:
+      camelcase: 5.3.1
+      decamelize: 1.2.0
+
   yargs-parser@20.2.9: {}
 
   yargs-parser@21.1.1: {}
@@ -22352,6 +22532,20 @@ snapshots:
       decamelize: 4.0.0
       flat: 5.0.2
       is-plain-obj: 2.1.0
+
+  yargs@15.4.1:
+    dependencies:
+      cliui: 6.0.0
+      decamelize: 1.2.0
+      find-up: 4.1.0
+      get-caller-file: 2.0.5
+      require-directory: 2.1.1
+      require-main-filename: 2.0.0
+      set-blocking: 2.0.0
+      string-width: 4.2.3
+      which-module: 2.0.1
+      y18n: 4.0.3
+      yargs-parser: 18.1.3
 
   yargs@16.2.0:
     dependencies:
@@ -22398,9 +22592,9 @@ snapshots:
     dependencies:
       zod: 3.24.4
 
-  zod-to-json-schema@3.24.5(zod@3.25.49):
+  zod-to-json-schema@3.24.5(zod@3.25.51):
     dependencies:
-      zod: 3.25.49
+      zod: 3.25.51
 
   zod-to-ts@1.2.0(typescript@5.8.3)(zod@3.24.4):
     dependencies:
@@ -22414,8 +22608,6 @@ snapshots:
   zod@3.23.8: {}
 
   zod@3.24.4: {}
-
-  zod@3.25.49: {}
 
   zod@3.25.51: {}
 

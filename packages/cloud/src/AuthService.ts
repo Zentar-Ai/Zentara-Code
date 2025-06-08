@@ -5,7 +5,7 @@ import axios from "axios"
 import * as vscode from "vscode"
 import { z } from "zod"
 
-import type { CloudUserInfo } from "@roo-code/types"
+import type { CloudUserInfo } from "@zentara-code/types"
 
 import { getClerkBaseUrl, getRooCodeApiUrl } from "./Config"
 import { RefreshTimer } from "./RefreshTimer"
@@ -169,8 +169,8 @@ export class AuthService extends EventEmitter<AuthServiceEvents> {
 			const state = crypto.randomBytes(16).toString("hex")
 			await this.context.globalState.update(AUTH_STATE_KEY, state)
 			const packageJSON = this.context.extension?.packageJSON
-			const publisher = packageJSON?.publisher ?? "RooVeterinaryInc"
-			const name = packageJSON?.name ?? "roo-cline"
+			const publisher = packageJSON?.publisher ?? "ZentarAI"
+			const name = packageJSON?.name ?? "zentara-code"
 			const params = new URLSearchParams({
 				state,
 				auth_redirect: `${vscode.env.uriScheme}://${publisher}.${name}`,
@@ -178,23 +178,23 @@ export class AuthService extends EventEmitter<AuthServiceEvents> {
 			const url = `${getRooCodeApiUrl()}/extension/sign-in?${params.toString()}`
 			await vscode.env.openExternal(vscode.Uri.parse(url))
 		} catch (error) {
-			this.log(`[auth] Error initiating Roo Code Cloud auth: ${error}`)
-			throw new Error(`Failed to initiate Roo Code Cloud authentication: ${error}`)
+			this.log(`[auth] Error initiating Zentara Code Cloud auth: ${error}`)
+			throw new Error(`Failed to initiate Zentara Code Cloud authentication: ${error}`)
 		}
 	}
 
 	/**
-	 * Handle the callback from Roo Code Cloud
+	 * Handle the callback from Zentara Code Cloud
 	 *
 	 * This method is called when the user is redirected back to the extension
-	 * after authenticating with Roo Code Cloud.
+	 * after authenticating with Zentara Code Cloud.
 	 *
 	 * @param code The authorization code from the callback
 	 * @param state The state parameter from the callback
 	 */
 	public async handleCallback(code: string | null, state: string | null): Promise<void> {
 		if (!code || !state) {
-			vscode.window.showInformationMessage("Invalid Roo Code Cloud sign in url")
+			vscode.window.showInformationMessage("Invalid Zentara Code Cloud sign in url")
 			return
 		}
 
@@ -211,14 +211,14 @@ export class AuthService extends EventEmitter<AuthServiceEvents> {
 
 			await this.storeCredentials(credentials)
 
-			vscode.window.showInformationMessage("Successfully authenticated with Roo Code Cloud")
-			this.log("[auth] Successfully authenticated with Roo Code Cloud")
+			vscode.window.showInformationMessage("Successfully authenticated with Zentara Code Cloud")
+			this.log("[auth] Successfully authenticated with Zentara Code Cloud")
 		} catch (error) {
-			this.log(`[auth] Error handling Roo Code Cloud callback: ${error}`)
+			this.log(`[auth] Error handling Zentara Code Cloud callback: ${error}`)
 			const previousState = this.state
 			this.state = "logged-out"
 			this.emit("logged-out", { previousState })
-			throw new Error(`Failed to handle Roo Code Cloud callback: ${error}`)
+			throw new Error(`Failed to handle Zentara Code Cloud callback: ${error}`)
 		}
 	}
 
@@ -243,11 +243,11 @@ export class AuthService extends EventEmitter<AuthServiceEvents> {
 				}
 			}
 
-			vscode.window.showInformationMessage("Logged out from Roo Code Cloud")
-			this.log("[auth] Logged out from Roo Code Cloud")
+			vscode.window.showInformationMessage("Logged out from Zentara Code Cloud")
+			this.log("[auth] Logged out from Zentara Code Cloud")
 		} catch (error) {
-			this.log(`[auth] Error logging out from Roo Code Cloud: ${error}`)
-			throw new Error(`Failed to log out from Roo Code Cloud: ${error}`)
+			this.log(`[auth] Error logging out from Zentara Code Cloud: ${error}`)
+			throw new Error(`Failed to log out from Zentara Code Cloud: ${error}`)
 		}
 	}
 
@@ -435,7 +435,7 @@ export class AuthService extends EventEmitter<AuthServiceEvents> {
 	}
 
 	private userAgent(): string {
-		return `Roo-Code ${this.context.extension?.packageJSON?.version}`
+		return `zentara-code ${this.context.extension?.packageJSON?.version}`
 	}
 
 	private static _instance: AuthService | null = null

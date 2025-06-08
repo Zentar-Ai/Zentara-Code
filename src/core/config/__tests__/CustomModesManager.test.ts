@@ -6,7 +6,7 @@ import * as fs from "fs/promises"
 
 import * as yaml from "yaml"
 
-import type { ModeConfig } from "@roo-code/types"
+import type { ModeConfig } from "@zentara-code/types"
 
 import { fileExistsAtPath } from "../../../utils/fs"
 import { getWorkspacePath, arePathsEqual } from "../../../utils/path"

@@ -1,4 +1,4 @@
-import { type ChutesModelId, chutesDefaultModelId, chutesModels } from "@roo-code/types"
+import { type ChutesModelId, chutesDefaultModelId, chutesModels } from "@zentara-code/types"
 
 import type { ApiHandlerOptions } from "../../shared/api"
 

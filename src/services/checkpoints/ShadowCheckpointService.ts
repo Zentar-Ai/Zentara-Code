@@ -90,7 +90,7 @@ export abstract class ShadowCheckpointService extends EventEmitter {
 			await git.init()
 			await git.addConfig("core.worktree", this.workspaceDir) // Sets the working tree to the current workspace.
 			await git.addConfig("commit.gpgSign", "false") // Disable commit signing for shadow repo.
-			await git.addConfig("user.name", "Roo Code")
+			await git.addConfig("user.name", "Zentara Code")
 			await git.addConfig("user.email", "noreply@example.com")
 			await this.writeExcludeFile()
 			await this.stageAll(git)
@@ -374,7 +374,7 @@ export abstract class ShadowCheckpointService extends EventEmitter {
 		workspaceDir: string
 	}) {
 		const workspaceRepoDir = this.workspaceRepoDir({ globalStorageDir, workspaceDir })
-		const branchName = `roo-${taskId}`
+		const branchName = `zentara-${taskId}`
 		const git = simpleGit(workspaceRepoDir)
 		const success = await this.deleteBranch(git, branchName)
 

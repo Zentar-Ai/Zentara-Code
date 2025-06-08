@@ -29,7 +29,7 @@ export function NavBar({ stars, downloads }: NavBarProps) {
 			<div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
 				<div className="flex items-center">
 					<Link href="/" className="flex items-center">
-						<Image src={logoSrc} alt="Roo Code Logo" width={120} height={40} className="h-8 w-auto" />
+						<Image src={logoSrc} alt="Zentara Code Logo" width={120} height={40} className="h-8 w-auto" />
 					</Link>
 				</div>
 

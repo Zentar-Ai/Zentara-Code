@@ -27,7 +27,7 @@ export default {
 		// PowerShell tests are conditionally skipped in the test files themselves using the setupFilesAfterEnv
 	],
 	moduleNameMapper: {
-		"^vscode$": "<rootDir>/__mocks__/vscode.js",
+		"^vscode$": "<rootDir>/__mocks__/vscode.ts",
 		"@modelcontextprotocol/sdk$": "<rootDir>/__mocks__/@modelcontextprotocol/sdk/index.js",
 		"@modelcontextprotocol/sdk/(.*)": "<rootDir>/__mocks__/@modelcontextprotocol/sdk/$1",
 		"^delay$": "<rootDir>/__mocks__/delay.js",

@@ -1,6 +1,6 @@
 import { execa } from "execa"
 
-import { RooCodeEventName, type TaskEvent } from "@roo-code/types"
+import { RooCodeEventName, type TaskEvent } from "@zentara-code/types"
 
 import { findTask, updateTask, findRun } from "../db/index.js"
 
@@ -65,7 +65,7 @@ export const processTaskInContainer = async ({
 		"-e HOST_EXECUTION_METHOD=docker",
 	]
 
-	const command = `pnpm --filter @roo-code/evals cli --taskId ${taskId}`
+	const command = `pnpm --filter @zentara-code/evals cli --taskId ${taskId}`
 	logger.info(command)
 
 	for (let attempt = 0; attempt <= maxRetries; attempt++) {

@@ -1,6 +1,6 @@
 // npx jest src/utils/__tests__/enhance-prompt.test.ts
 
-import type { ProviderSettings } from "@roo-code/types"
+import type { ProviderSettings } from "@zentara-code/types"
 
 import { singleCompletionHandler } from "../single-completion-handler"
 import { buildApiHandler, SingleCompletionHandler } from "../../api"

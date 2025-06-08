@@ -1,6 +1,6 @@
 // npx jest src/api/transform/__tests__/reasoning.test.ts
 
-import type { ModelInfo, ProviderSettings } from "@roo-code/types"
+import type { ModelInfo, ProviderSettings } from "@zentara-code/types"
 
 import {
 	getOpenRouterReasoning,

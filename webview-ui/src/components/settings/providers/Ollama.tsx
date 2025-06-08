@@ -2,9 +2,9 @@ import { useState, useCallback } from "react"
 import { useEvent } from "react-use"
 import { VSCodeTextField, VSCodeRadioGroup, VSCodeRadio } from "@vscode/webview-ui-toolkit/react"
 
-import type { ProviderSettings } from "@roo-code/types"
+import type { ProviderSettings } from "@zentara-code/types"
 
-import { ExtensionMessage } from "@roo/ExtensionMessage"
+import { ExtensionMessage } from "@zentara/ExtensionMessage"
 
 import { useAppTranslation } from "@src/i18n/TranslationContext"
 

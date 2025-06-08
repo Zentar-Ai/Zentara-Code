@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react"
+import React, { memo, useState, useRef } from "react"
 import { DeleteTaskDialog } from "./DeleteTaskDialog"
 import { BatchDeleteTaskDialog } from "./BatchDeleteTaskDialog"
 import { Virtuoso } from "react-virtuoso"
@@ -36,6 +36,10 @@ const HistoryView = ({ onDone }: HistoryViewProps) => {
 	const [isSelectionMode, setIsSelectionMode] = useState(false)
 	const [selectedTaskIds, setSelectedTaskIds] = useState<string[]>([])
 	const [showBatchDeleteDialog, setShowBatchDeleteDialog] = useState<boolean>(false)
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const wasTextSelectedInMouseEvent = useRef(false)
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const mouseDownPositionRef = useRef<{ x: number; y: number } | null>(null)
 
 	// Toggle selection mode
 	const toggleSelectionMode = () => {

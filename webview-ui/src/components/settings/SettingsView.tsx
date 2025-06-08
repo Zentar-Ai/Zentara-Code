@@ -25,9 +25,9 @@ import {
 	LucideIcon,
 } from "lucide-react"
 
-import type { ProviderSettings, ExperimentId } from "@roo-code/types"
+import type { ProviderSettings, ExperimentId } from "@zentara-code/types"
 
-import { TelemetrySetting } from "@roo/TelemetrySetting"
+import { TelemetrySetting } from "@zentara/TelemetrySetting"
 
 import { vscode } from "@src/utils/vscode"
 import { useAppTranslation } from "@src/i18n/TranslationContext"

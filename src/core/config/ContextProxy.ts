@@ -14,8 +14,8 @@ import {
 	providerSettingsSchema,
 	globalSettingsSchema,
 	isSecretStateKey,
-} from "@roo-code/types"
-import { TelemetryService } from "@roo-code/telemetry"
+} from "@zentara-code/types"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { logger } from "../../utils/logging"
 

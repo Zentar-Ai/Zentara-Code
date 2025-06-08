@@ -2,7 +2,7 @@
 
 import { describe, expect, it, jest, beforeEach } from "@jest/globals"
 
-import type { ToolUsage } from "@roo-code/types"
+import type { ToolUsage } from "@zentara-code/types"
 
 import { Task } from "../../task/Task"
 import { formatResponse } from "../../prompts/responses"

@@ -1,7 +1,7 @@
 import * as vscode from "vscode"
 import * as os from "os"
 
-import type { ModeConfig, PromptComponent, CustomModePrompts } from "@roo-code/types"
+import type { ModeConfig, PromptComponent, CustomModePrompts } from "@zentara-code/types"
 
 import { Mode, modes, defaultModeSlug, getModeBySlug, getGroupName, getModeSelection } from "../../shared/modes"
 import { DiffStrategy } from "../../shared/tools"

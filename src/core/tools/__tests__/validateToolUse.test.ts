@@ -1,6 +1,6 @@
 // npx jest src/core/tools/__tests__/validateToolUse.test.ts
 
-import type { ModeConfig } from "@roo-code/types"
+import type { ModeConfig } from "@zentara-code/types"
 
 import { isToolAllowedForMode, modes } from "../../../shared/modes"
 import { TOOL_GROUPS } from "../../../shared/tools"

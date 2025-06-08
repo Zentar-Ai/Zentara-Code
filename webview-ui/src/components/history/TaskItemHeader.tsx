@@ -1,5 +1,5 @@
 import React from "react"
-import type { HistoryItem } from "@roo-code/types"
+import type { HistoryItem } from "@zentara-code/types"
 import prettyBytes from "pretty-bytes"
 import { vscode } from "@/utils/vscode"
 import { formatDate } from "@/utils/format"

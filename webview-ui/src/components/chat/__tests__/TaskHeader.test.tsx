@@ -4,7 +4,7 @@ import React from "react"
 import { render, screen, fireEvent } from "@testing-library/react"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
-import type { ProviderSettings } from "@roo-code/types"
+import type { ProviderSettings } from "@zentara-code/types"
 
 import TaskHeader, { TaskHeaderProps } from "../TaskHeader"
 

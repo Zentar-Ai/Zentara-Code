@@ -2,10 +2,10 @@ import React, { forwardRef, useCallback, useEffect, useLayoutEffect, useMemo, us
 import { useEvent } from "react-use"
 import DynamicTextArea from "react-textarea-autosize"
 
-import { mentionRegex, mentionRegexGlobal, unescapeSpaces } from "@roo/context-mentions"
-import { WebviewMessage } from "@roo/WebviewMessage"
-import { Mode, getAllModes } from "@roo/modes"
-import { ExtensionMessage } from "@roo/ExtensionMessage"
+import { mentionRegex, mentionRegexGlobal, unescapeSpaces } from "@zentara/context-mentions"
+import { WebviewMessage } from "@zentara/WebviewMessage"
+import { Mode, getAllModes } from "@zentara/modes"
+import { ExtensionMessage } from "@zentara/ExtensionMessage"
 
 import { vscode } from "@/utils/vscode"
 import { useExtensionState } from "@/context/ExtensionStateContext"

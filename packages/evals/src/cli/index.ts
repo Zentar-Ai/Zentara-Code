@@ -48,7 +48,7 @@ const main = async () => {
 
 if (!fs.existsSync(exercisesPath)) {
 	console.error(
-		`Exercises do not exist at ${exercisesPath}. Please run "git clone https://github.com/RooCodeInc/Roo-Code-Evals.git evals".`,
+		`Exercises do not exist at ${exercisesPath}. Please run "git clone https://github.com/Zentar-Ai/zentara-code-Evals.git evals".`,
 	)
 
 	process.exit(1)

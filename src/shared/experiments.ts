@@ -1,4 +1,4 @@
-import type { AssertEqual, Equals, Keys, Values, ExperimentId } from "@roo-code/types"
+import type { AssertEqual, Equals, Keys, Values, ExperimentId } from "@zentara-code/types"
 
 export const EXPERIMENT_IDS = {
 	POWER_STEERING: "powerSteering",

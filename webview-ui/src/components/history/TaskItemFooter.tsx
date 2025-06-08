@@ -1,5 +1,5 @@
 import React from "react"
-import type { HistoryItem } from "@roo-code/types"
+import type { HistoryItem } from "@zentara-code/types"
 import { Coins } from "lucide-react"
 import { formatLargeNumber } from "@/utils/format"
 import { cn } from "@/lib/utils"

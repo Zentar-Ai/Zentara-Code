@@ -16,7 +16,7 @@ export default async function Enterprise() {
 						<div className="flex flex-col justify-center space-y-6 sm:space-y-8">
 							<div>
 								<h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-									<span className="block">Roo Code for</span>
+									<span className="block">Zentara Code for</span>
 									<AnimatedText className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
 										Enterprise
 									</AnimatedText>
@@ -63,7 +63,7 @@ export default async function Enterprise() {
 							<div className="relative z-10 rounded-lg border border-border bg-card p-6 shadow-lg">
 								<div className="mb-4 flex items-center space-x-2">
 									<Code className="h-6 w-6 text-blue-400" />
-									<h3 className="text-lg font-semibold">Roo Code Enterprise</h3>
+									<h3 className="text-lg font-semibold">Zentara Code Enterprise</h3>
 								</div>
 								<p className="mb-4 text-sm text-muted-foreground">
 									An AI extension of your team that handles coding tasks, from new code generation to
@@ -99,7 +99,7 @@ export default async function Enterprise() {
 					<div className="mb-12 text-center">
 						<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Empower Your Development Team</h2>
 						<p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-							Roo Code functions like an entire AI dev team embedded in your developers&apos; IDE, ready
+							Zentara Code functions like an entire AI dev team embedded in your developers&apos; IDE, ready
 							to accelerate software delivery and improve code quality.
 						</p>
 					</div>
@@ -138,7 +138,7 @@ export default async function Enterprise() {
 							</div>
 							<h3 className="mb-2 text-xl font-bold">Augment Your Team with AI Agents</h3>
 							<p className="text-muted-foreground">
-								Roo Code functions like an AI extension of your team, handling various coding tasks.
+								Zentara Code functions like an AI extension of your team, handling various coding tasks.
 							</p>
 							<ul className="mt-4 space-y-2">
 								<li className="flex items-start">
@@ -265,9 +265,9 @@ export default async function Enterprise() {
 			<section className="py-16">
 				<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="mb-12 text-center">
-						<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">What Makes Roo Code Unique</h2>
+						<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">What Makes Zentara Code Unique</h2>
 						<p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-							Unlike traditional code editors or basic autocomplete tools, Roo Code is an autonomous
+							Unlike traditional code editors or basic autocomplete tools, Zentara Code is an autonomous
 							coding agent with powerful capabilities.
 						</p>
 					</div>
@@ -355,7 +355,7 @@ export default async function Enterprise() {
 						</div>
 
 						<div className="rounded-lg border border-border bg-card p-8 shadow-sm">
-							<h3 className="mb-4 text-2xl font-bold text-blue-400">Roo Code Enterprise</h3>
+							<h3 className="mb-4 text-2xl font-bold text-blue-400">Zentara Code Enterprise</h3>
 							<ul className="space-y-3">
 								<li className="flex items-start">
 									<CheckCircle className="mr-2 mt-0.5 h-5 w-5 text-green-500" />
@@ -391,21 +391,21 @@ export default async function Enterprise() {
 							Ready to Transform Your Development Process?
 						</h2>
 						<p className="mb-8 text-lg text-muted-foreground">
-							Join our early access program and be among the first to experience the power of Roo Code for
+							Join our early access program and be among the first to experience the power of Zentara Code for
 							Enterprise.
 						</p>
 						<div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
 							<div className="rounded-lg border border-border bg-card p-6 text-center shadow-sm">
 								<h3 className="mb-2 text-xl font-bold">Become an Early Access Partner</h3>
 								<p className="mb-4 text-muted-foreground">
-									Collaborate in shaping Roo Code&apos;s enterprise solution.
+									Collaborate in shaping Zentara Code&apos;s enterprise solution.
 								</p>
 								<ContactForm formType="early-access" buttonText="Apply Now" buttonClassName="w-full" />
 							</div>
 							<div className="rounded-lg border border-border bg-card p-6 text-center shadow-sm">
 								<h3 className="mb-2 text-xl font-bold">Request a Demo</h3>
 								<p className="mb-4 text-muted-foreground">
-									See Roo Code&apos;s enterprise capabilities in action.
+									See Zentara Code&apos;s enterprise capabilities in action.
 								</p>
 								<ContactForm formType="demo" buttonText="Contact Us" buttonClassName="w-full" />
 							</div>
@@ -413,7 +413,7 @@ export default async function Enterprise() {
 						<div className="mt-8">
 							<Button variant="outline" size="lg">
 								<a
-									href="mailto:enterprise@roocode.com?subject=Enterprise Guide Request"
+									href="mailto:enterprise@zentar.ai?subject=Enterprise Guide Request"
 									className="flex items-center justify-center">
 									Download the Enterprise Guide
 								</a>
