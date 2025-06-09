@@ -18,7 +18,7 @@ import {
 } from "../debug/events" // Import shared emitter, event name, and last stop info
 import { vsCodeDebugController } from "../VsCodeDebugController"; // Added for IV.B
 import { _executeDapRequestAndProcessOutcome, LaunchOperationInfo, continueExecution } from './execution'; // Added for launchSession refactor & continue
-import { setBreakpoint, removeBreakpoint } from "./breakpoints"; // Added removeBreakpoint
+import { setBreakpoint, removeBreakpointByLocation } from "./breakpoints"; // Added removeBreakpoint
 
 // --- Session Helper Functions ---
 
@@ -712,11 +712,10 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 		// Check if this stop is an entry-like stop where we should remove the breakpoint and continue
 		if (
 			navigationResult.frame &&
-			navigationResult.frame.source &&
-			navigationResult.frame.source.path &&
+			navigationResult.frame.sourcePath && // Changed from navigationResult.frame.source.path
 			(navigationResult.stopReason === "breakpoint" || navigationResult.stopReason === "entry" || navigationResult.stopReason === "step")
 		) {
-			const pathToRemoveBp = navigationResult.frame.source.path;
+			const pathToRemoveBp = navigationResult.frame.sourcePath; // Changed from navigationResult.frame.source.path
 			const lineToRemoveBp = navigationResult.frame.line;
 			const weSetThisExplicitly = params.program && params.program === pathToRemoveBp && lineToRemoveBp === 1;
 
@@ -725,7 +724,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 			);
 
 			try {
-				const removeBpResult = await removeBreakpoint({
+				const removeBpResult = await removeBreakpointByLocation({ // Changed from removeBreakpoint
 					location: { path: pathToRemoveBp, line: lineToRemoveBp },
 				});
 				if (removeBpResult.success) {
