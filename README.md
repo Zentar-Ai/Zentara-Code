@@ -1,6 +1,6 @@
 # Zentara Code
 
-**Zentara Code** is an advanced AI-powered coding agent, forked from Zentara Code, that writes, refactors and debugs code like a professional software engineer—directly inside VS Code.
+**Zentara Code** is an advanced AI-powered coding agent, forked from Roo-Code, that writes, refactors and debugs code like a professional software engineer—directly inside VS Code.
 
 [More Info](https://zentar.ai)
 
