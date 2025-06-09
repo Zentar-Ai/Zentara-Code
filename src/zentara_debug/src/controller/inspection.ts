@@ -13,6 +13,7 @@ import {
     GotoFrameParams // Import GotoFrameParams
 } from '../IDebugController'; // Adjust path as needed
 import { outputChannel } from '../vscodeUtils'; // Use local outputChannel
+import { currentTopFrameId as globalCurrentTopFrameId } from '../debug/events'; // Import the global frame ID
 // fs/promises is not needed if we use vscode.workspace.fs
 // import * as fs from 'fs/promises';
 
@@ -161,11 +162,18 @@ export async function stackTrace(session: vscode.DebugSession): Promise<StackTra
  */
 export async function getStackFrameVariables(session: vscode.DebugSession, params: GetStackFrameVariablesParams): Promise<GetStackFrameVariablesResult> {
     try {
+        const frameIdToUse = params.frameId ?? globalCurrentTopFrameId;
+        if (frameIdToUse === undefined) {
+            const errorMessage = 'Frame ID is required for getStackFrameVariables, but none was provided and no current top frame ID is available.';
+            outputChannel.appendLine(`[ERROR] getStackFrameVariables: ${errorMessage}`);
+            return { success: false, errorMessage, scopes: [] };
+        }
+
         // DAP Request: scopes
         const scopesResponse = await customRequestWithTimeout(
             session,
             'scopes',
-            { frameId: params.frameId },
+            { frameId: frameIdToUse },
             VARIABLES_REQUEST_TIMEOUT_MS
         );
         if (!scopesResponse?.scopes) {
@@ -217,7 +225,8 @@ export async function getStackFrameVariables(session: vscode.DebugSession, param
         return { success: true, scopes: resultScopes };
 
     } catch (error: any) {
-        outputChannel.appendLine(`[ERROR] Error getting stack frame variables: ${error.message}`);
+        const frameIdForError = params.frameId ?? globalCurrentTopFrameId ?? "unknown";
+        outputChannel.appendLine(`[ERROR] Error getting stack frame variables for frame ${frameIdForError}: ${error.message}`);
         return { success: false, errorMessage: `Failed to retrieve variables: ${error.message}`, scopes: [] };
     }
 }
@@ -230,19 +239,26 @@ export async function getStackFrameVariables(session: vscode.DebugSession, param
  */
 export async function listSource(session: vscode.DebugSession, params: ListSourceParams): Promise<ListSourceResult> {
     try {
+        const frameIdToUse = params.frameId ?? globalCurrentTopFrameId;
+        if (frameIdToUse === undefined) {
+            const errorMessage = 'Frame ID is required for listSource, but none was provided and no current top frame ID is available.';
+            outputChannel.appendLine(`[ERROR] listSource: ${errorMessage}`);
+            return { success: false, errorMessage };
+        }
+
         // First, get the stack trace to find the frame
         const traceResult = await stackTrace(session);
         if (!traceResult.success || !traceResult.frames) {
             return { success: false, errorMessage: traceResult.errorMessage || 'Failed to get stack trace to list source.' };
         }
 
-        const frame = traceResult.frames.find(f => f.id === params.frameId);
+        const frame = traceResult.frames.find(f => f.id === frameIdToUse);
         if (!frame) {
-            return { success: false, errorMessage: `Frame ID ${params.frameId} not found in stack trace.` };
+            return { success: false, errorMessage: `Frame ID ${frameIdToUse} not found in stack trace.` };
         }
 
         if (!frame.sourcePath || frame.line <= 0) {
-            return { success: false, errorMessage: `Frame ${params.frameId} does not have a valid source path or line number.` };
+            return { success: false, errorMessage: `Frame ${frameIdToUse} does not have a valid source path or line number.` };
         }
 
         // Read the source file content
@@ -279,7 +295,8 @@ export async function listSource(session: vscode.DebugSession, params: ListSourc
         return { success: true, sourceCode: sourceCode, currentLine: frame.line };
 
     } catch (error: any) {
-        outputChannel.appendLine(`[ERROR] Error listing source for frame ${params.frameId}: ${error.message}`);
+        const frameIdForError = params.frameId ?? globalCurrentTopFrameId ?? "unknown";
+        outputChannel.appendLine(`[ERROR] Error listing source for frame ${frameIdForError}: ${error.message}`);
         return { success: false, errorMessage: `Failed to list source: ${error.message}` };
     }
 }
@@ -316,17 +333,24 @@ export async function down(_session: vscode.DebugSession): Promise<DebuggerRespo
  */
 export async function getSource(session: vscode.DebugSession, params: GetSourceParams): Promise<GetSourceResult> {
     try {
+        const frameIdToUse = params.frameId ?? globalCurrentTopFrameId;
+        if (frameIdToUse === undefined) {
+            const errorMessage = 'Frame ID is required for getSource, but none was provided and no current top frame ID is available.';
+            outputChannel.appendLine(`[ERROR] getSource: ${errorMessage}`);
+            return { success: false, errorMessage };
+        }
+
         // Find the frame to get context
         const traceResult = await stackTrace(session);
         if (!traceResult.success || !traceResult.frames) {
             return { success: false, errorMessage: traceResult.errorMessage || 'Failed to get stack trace to find source.' };
         }
-        const frame = traceResult.frames.find(f => f.id === params.frameId);
+        const frame = traceResult.frames.find(f => f.id === frameIdToUse);
         if (!frame) {
-            return { success: false, errorMessage: `Frame ID ${params.frameId} not found in stack trace.` };
+            return { success: false, errorMessage: `Frame ID ${frameIdToUse} not found in stack trace.` };
         }
         if (!frame.sourcePath || frame.line <= 0) {
-            return { success: false, errorMessage: `Frame ${params.frameId} does not have a valid source path or line number.` };
+            return { success: false, errorMessage: `Frame ${frameIdToUse} does not have a valid source path or line number.` };
         }
 
         // DAP Request: gotoTargets
@@ -346,7 +370,7 @@ export async function getSource(session: vscode.DebugSession, params: GetSourceP
         const dapResponse = await customRequestWithTimeout(session, 'gotoTargets', dapArgs);
 
         if (!dapResponse?.targets?.length) {
-            outputChannel.appendLine(`[WARN] getSource: No goto targets found for expression "${params.expression}" in frame ${params.frameId}.`);
+            outputChannel.appendLine(`[WARN] getSource: No goto targets found for expression "${params.expression}" in frame ${frameIdToUse}.`);
             return { success: false, errorMessage: `Could not find definition for "${params.expression}".` };
         }
 
@@ -364,7 +388,8 @@ export async function getSource(session: vscode.DebugSession, params: GetSourceP
         };
 
     } catch (error: any) {
-        outputChannel.appendLine(`[ERROR] Error getting source for expression "${params.expression}": ${error.message}`);
+        const frameIdForError = params.frameId ?? globalCurrentTopFrameId ?? "unknown";
+        outputChannel.appendLine(`[ERROR] Error getting source for expression "${params.expression}" in frame ${frameIdForError}: ${error.message}`);
         // Check if the error indicates the request is not supported
         if (error.message?.includes('not supported') || error.message?.includes('unknown request')) {
              return { success: false, errorMessage: `Debugger does not support finding source for expression ('gotoTargets' failed).` };
@@ -384,18 +409,26 @@ export async function gotoFrame(session: vscode.DebugSession, params: GotoFrameP
     // No DAP request needed here as frame selection is managed client-side based on stackTrace result.
     // We just acknowledge the request and verify the frame exists conceptually.
     try {
+        const frameIdToUse = params.frameId ?? globalCurrentTopFrameId;
+        if (frameIdToUse === undefined) {
+            const errorMessage = 'Frame ID is required for gotoFrame, but none was provided and no current top frame ID is available.';
+            outputChannel.appendLine(`[ERROR] gotoFrame: ${errorMessage}`);
+            return { success: false, errorMessage };
+        }
+
         const traceResult = await stackTrace(session);
         if (!traceResult.success || !traceResult.frames) {
             return { success: false, errorMessage: traceResult.errorMessage || 'Failed to get stack trace to validate frame ID.' };
         }
-        const frameExists = traceResult.frames.some(f => f.id === params.frameId);
+        const frameExists = traceResult.frames.some(f => f.id === frameIdToUse);
         if (!frameExists) {
-             return { success: false, errorMessage: `Frame ID ${params.frameId} not found in current stack trace.` };
+             return { success: false, errorMessage: `Frame ID ${frameIdToUse} not found in current stack trace.` };
         }
-        outputChannel.appendLine(`gotoFrame: Conceptually moving focus to frame ${params.frameId}. Client should use this ID for subsequent requests.`);
+        outputChannel.appendLine(`gotoFrame: Conceptually moving focus to frame ${frameIdToUse}. Client should use this ID for subsequent requests.`);
         return { success: true };
     } catch (error: any) {
-         outputChannel.appendLine(`[ERROR] Error during gotoFrame validation for frame ${params.frameId}: ${error.message}`);
+         const frameIdForError = params.frameId ?? globalCurrentTopFrameId ?? "unknown";
+         outputChannel.appendLine(`[ERROR] Error during gotoFrame validation for frame ${frameIdForError}: ${error.message}`);
          return { success: false, errorMessage: `Failed during gotoFrame validation: ${error.message}` };
     }
 }

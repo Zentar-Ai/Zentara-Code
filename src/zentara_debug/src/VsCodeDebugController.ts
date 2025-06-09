@@ -31,7 +31,7 @@ import {
 } from "./IDebugController" // ESBuild handles this
 import { launchSession, restartSession, quitSession, getActiveSession, ensureActiveSession } from "./controller/session" // ESBuild handles this
 import { continueExecution, nextStep, stepIn, stepOut, jumpToLine } from "./controller/execution" // ESBuild handles this
-import { lastKnownStopEventBody, lastKnownStopEventSessionId } from "./debug/events" // ESBuild handles this
+import { lastKnownStopEventBody, lastKnownStopEventSessionId, updateCurrentTopFrameId, clearCurrentTopFrameId, currentTopFrameId as globalCurrentTopFrameId } from "./debug/events" // ESBuild handles this
 import {
 	setBreakpoint,
 	removeAllBreakpointsInFile,
@@ -309,9 +309,19 @@ export class VsCodeDebugController implements IDebugController {
 		return getStackFrameVariables(session, params)
 	}
 
-	async getArgs(params: { frameId: number }): Promise<GetStackFrameVariablesResult> {
-		//outputChannel.appendLine(`[getArgs] Params: ${stringifySafe(params)}`)
-		const allScopesResult = await this.getStackFrameVariables({ frameId: params.frameId })
+	async getArgs(params: { frameId?: number }): Promise<GetStackFrameVariablesResult> {
+		const operationName = "getArgs";
+		const frameIdToUse = params.frameId ?? globalCurrentTopFrameId;
+
+		//outputChannel.appendLine(`[${operationName}] Effective Frame ID: ${frameIdToUse}, Original Params: ${stringifySafe(params)}`)
+
+		if (frameIdToUse === undefined) {
+			const errorMessage = `Error ${operationName}: Frame ID is required, but none was provided and no current top frame ID is available.`;
+			outputChannel.appendLine(`[ERROR][${operationName}] ${errorMessage}`);
+			return { success: false, errorMessage, scopes: [] };
+		}
+
+		const allScopesResult = await this.getStackFrameVariables({ frameId: frameIdToUse })
 
 		if (!allScopesResult.success || !allScopesResult.scopes) {
 			return allScopesResult
@@ -421,56 +431,58 @@ export class VsCodeDebugController implements IDebugController {
 	}
 
 	private async _handleDapStopEvent(eventData: { sessionId: string; body: any }): Promise<void> {
-		if (eventData.body?.reason !== "breakpoint" || this.temporaryBreakpoints.size === 0) {
-			return
-		}
-
 		const activeSession = getActiveSession()
 		if (!activeSession || activeSession.id !== eventData.sessionId) {
+			clearCurrentTopFrameId() // Clear if session is not active or doesn't match
 			return
 		}
 
-		const stopReason = eventData.body?.reason
 		//outputChannel.appendLine(
-		//	`VsCodeDebugController: Handling DAP stop event for session ${eventData.sessionId}. Reason: ${stopReason}`,
+		//	`VsCodeDebugController: Handling DAP stop event for session ${eventData.sessionId}. Reason: ${eventData.body?.reason}`,
 		//)
 
-		if (stopReason !== "breakpoint") {
+		const framesResult = await stackTrace(activeSession)
+		if (!framesResult.success || !framesResult.frames.length) {
+			outputChannel.appendLine(`VsCodeDebugController: Could not get stack frames for stop event. Clearing top frame ID.`)
+			clearCurrentTopFrameId()
 			return
 		}
 
-		//outputChannel.appendLine(`VsCodeDebugController: Processing 'breakpoint' stop event...`)
-
-		const frames = await stackTrace(activeSession)
-		if (!frames.success || !frames.frames.length) {
-			outputChannel.appendLine(`VsCodeDebugController: Could not get stack frames for breakpoint stop event.`)
-			return
+		const topFrame = framesResult.frames[0]
+		// Ensure topFrame and its id are valid before updating
+		if (topFrame && typeof topFrame.id === 'number') {
+			updateCurrentTopFrameId(topFrame.id)
+			//outputChannel.appendLine(`VsCodeDebugController: Updated currentTopFrameId to ${topFrame.id}`)
+		} else {
+			outputChannel.appendLine(`VsCodeDebugController: Top frame or top frame ID is invalid. Clearing top frame ID.`)
+			clearCurrentTopFrameId()
+			// We might still proceed if only sourcePath is missing but ID was set,
+			// but for temporary breakpoint removal, sourcePath is crucial.
 		}
 
-		const topFrame = frames.frames[0]
-		if (!topFrame.sourcePath) {
-			outputChannel.appendLine(`VsCodeDebugController: Top stack frame has no source path.`)
-			return
-		}
+		// Temporary breakpoint removal logic (requires sourcePath)
+		if (eventData.body?.reason === "breakpoint" && this.temporaryBreakpoints.size > 0) {
+			if (!topFrame.sourcePath) {
+				outputChannel.appendLine(`VsCodeDebugController: Top stack frame has no source path, cannot process temporary breakpoint removal.`)
+				return // Cannot proceed with temp bp logic without source path
+			}
 
-		const locationKey = this._getLocationKey({
-			path: topFrame.sourcePath,
-			line: topFrame.line,
-		})
-
-		if (!this.temporaryBreakpoints.has(locationKey)) {
-			return
-		}
-
-		//outputChannel.appendLine(`VsCodeDebugController: Removing temporary breakpoint at ${locationKey}`)
-
-		await removeBreakpointByLocation({
-			location: {
+			const locationKey = this._getLocationKey({
 				path: topFrame.sourcePath,
 				line: topFrame.line,
-			},
-		})
-		this.temporaryBreakpoints.delete(locationKey)
+			})
+
+			if (this.temporaryBreakpoints.has(locationKey)) {
+				//outputChannel.appendLine(`VsCodeDebugController: Removing temporary breakpoint at ${locationKey}`)
+				await removeBreakpointByLocation({
+					location: {
+						path: topFrame.sourcePath,
+						line: topFrame.line,
+					},
+				})
+				this.temporaryBreakpoints.delete(locationKey)
+			}
+		}
 	}
 
 	public dispose(): void {

@@ -7,18 +7,18 @@ The "debug_whatis" tool evaluates an expression within a specified stack frame a
 ────────────────────────  QUICK-START  ────────────────────────
 ✅ **Usage**
 1️⃣ Use the <debug_whatis> tag.
-2️⃣ Provide the REQUIRED <frameId> child tag, typically 0 for the current frame.
+2️⃣ Optionally, provide the <frameId> child tag. If omitted, the current top frame ID from the last debugger stop event will be used.
 3️⃣ Provide the REQUIRED <expression> child tag with the expression whose type you want to determine.
 4️⃣ Optionally, provide <context> (e.g., "watch", "repl", "hover").
 5️⃣ Ensure all tags are correctly closed.
 
 ⚠️ **Common Breakers**
-• Missing <frameId> or <expression> tags.
+• Missing <expression> tag. If <frameId> is omitted, the current top frame will be used (if available). An error will occur if no frameId is provided and no global current frame ID is available.
 • Expression is syntactically incorrect or refers to undefined variables.
 
 ────────────  COPY-READY TEMPLATE  ────────────
   <debug_whatis>
-    <frameId>0</frameId>
+    <!-- Optional: <frameId>0</frameId> (Defaults to current top frame if omitted) -->
     <expression>my_variable</expression>
     <!-- Optional: <context>hover</context> -->
   </debug_whatis>
@@ -27,7 +27,7 @@ The "debug_whatis" tool evaluates an expression within a specified stack frame a
 ### Parameters:
 All parameters are provided as child XML tags within the <debug_whatis> tag.
 
--   <frameId> (number, REQUIRED): The ID of the stack frame in which to evaluate the expression. Frame ID 0 is usually the current frame.
+-   <frameId> (number, optional): The ID of the stack frame in which to evaluate the expression. If omitted, the current top frame ID from the last debugger stop event will be used. An error will occur if no frameId is provided and no global current frame ID is available. Frame ID 0 is usually the current frame.
 -   <expression> (string, REQUIRED): The expression whose type is to be determined.
 -   <context> (string, optional): Hints the context of the evaluation (e.g., "watch", "repl", "hover").
 

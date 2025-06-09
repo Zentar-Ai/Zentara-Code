@@ -9,6 +9,7 @@ import {
     DebuggerResponse
 } from '../IDebugController'; // Adjust path as needed
 import { outputChannel, stringifySafe } from '../vscodeUtils'; // Use local outputChannel
+import { currentTopFrameId as globalCurrentTopFrameId } from '../debug/events'; // Import the global frame ID
 
 /**
  * Evaluates an expression in the context of a specific stack frame.
@@ -19,10 +20,18 @@ import { outputChannel, stringifySafe } from '../vscodeUtils'; // Use local outp
  */
 export async function evaluate(session: vscode.DebugSession, params: EvaluateParams): Promise<EvaluateResult> {
     try {
+        const frameIdToUse = params.frameId ?? globalCurrentTopFrameId;
+
+        if (frameIdToUse === undefined) {
+            const errorMessage = 'Frame ID is required for evaluation, but none was provided and no current top frame ID is available.';
+            outputChannel.appendLine(`[ERROR] evaluate: ${errorMessage}`);
+            return { success: false, errorMessage, result: '', variablesReference: 0 };
+        }
+
         // DAP Request: evaluate
         const dapResponse = await session.customRequest('evaluate', {
             expression: params.expression,
-            frameId: params.frameId,
+            frameId: frameIdToUse,
             context: params.context ?? 'repl', // Default context to 'repl' if not provided
         });
 
@@ -30,7 +39,7 @@ export async function evaluate(session: vscode.DebugSession, params: EvaluatePar
         if (dapResponse === undefined || dapResponse === null || typeof dapResponse.result !== 'string') {
              // Some debug adapters might return an error message within the response instead of throwing
              const errorMessage = dapResponse?.message || 'Received invalid evaluation result from the debugger.';
-             outputChannel.appendLine(`[WARN] evaluate: Invalid response for expression "${params.expression}". Response: ${stringifySafe(dapResponse)}`);
+             outputChannel.appendLine(`[WARN] evaluate: Invalid response for expression "${params.expression}" in frame ${frameIdToUse}. Response: ${stringifySafe(dapResponse)}`);
              return { success: false, errorMessage: errorMessage, result: '', variablesReference: 0 };
         }
 
@@ -43,7 +52,8 @@ export async function evaluate(session: vscode.DebugSession, params: EvaluatePar
 
     } catch (error: any) {
         // DAP often throws an error for invalid expressions
-        outputChannel.appendLine(`[ERROR] Error evaluating expression "${params.expression}": ${error.message}`);
+        const frameIdForError = params.frameId ?? globalCurrentTopFrameId ?? "unknown";
+        outputChannel.appendLine(`[ERROR] Error evaluating expression "${params.expression}" in frame ${frameIdForError}: ${error.message}`);
         return { success: false, errorMessage: `Failed to evaluate expression: ${error.message}`, result: '', variablesReference: 0 };
     }
 }
@@ -81,8 +91,9 @@ export async function whatis(session: vscode.DebugSession, params: EvaluateParam
  */
 export async function executeStatement(session: vscode.DebugSession, params: ExecuteStatementParams): Promise<EvaluateResult> {
     // Delegate to evaluate, ensuring the context is 'repl'
+    // The evaluate function will handle the frameId logic (using globalCurrentTopFrameId if params.frameId is undefined)
     return evaluate(session, {
-        frameId: params.frameId,
+        frameId: params.frameId, // Pass it along; evaluate will use global if undefined
         expression: params.statement, // Use the statement as the expression
         context: 'repl'
     });
@@ -95,9 +106,11 @@ export async function executeStatement(session: vscode.DebugSession, params: Exe
  * @param params Parameters specifying the expression to watch.
  * @returns A promise resolving to a standard debugger response.
  */
-export async function watch(session: vscode.DebugSession, params: WatchParams): Promise<DebuggerResponse> {
+export async function watch(_session: vscode.DebugSession, params: WatchParams): Promise<DebuggerResponse> {
     // No specific DAP action needed here, just acknowledge.
-    outputChannel.appendLine(`Watch requested for expression: "${params.expression}" in frame ${params.frameId}`);
+    // The frameId is optional, so we need to handle its potential undefined state for logging.
+    const frameIdToLog = params.frameId ?? globalCurrentTopFrameId ?? "unknown (and no global default)";
+    outputChannel.appendLine(`Watch requested for expression: "${params.expression}" in frame ${frameIdToLog}`);
     return { success: true };
 }
 

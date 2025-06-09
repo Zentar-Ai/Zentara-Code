@@ -36,6 +36,11 @@ export let lastKnownStopEventBody: any | undefined = undefined;
 export let lastKnownStopEventSessionId: string | undefined = undefined;
 
 /**
+ * Stores the ID of the top-most stack frame from the last DAP 'stopped' event.
+ */
+export let currentTopFrameId: number | undefined = undefined;
+
+/**
  * Updates the last known stop event details.
  * @param sessionId The ID of the session that stopped.
  * @param body The body of the DAP 'stopped' event.
@@ -54,9 +59,31 @@ export function clearLastKnownStopEvent(): void {
     outputChannel.appendLine(`[Debug Events ${new Date().toISOString()}] Clearing last known stop event. Previous session: ${previous}`);
     lastKnownStopEventBody = undefined;
     lastKnownStopEventSessionId = undefined;
-}
-
-// --- DAP Output Capture Buffers and Functions ---
+   }
+   
+   /**
+    * Updates the current top frame ID.
+    * @param frameId The ID of the top stack frame, or undefined to clear it.
+    */
+   export function updateCurrentTopFrameId(frameId: number | undefined): void {
+       const previousFrameId = currentTopFrameId;
+       currentTopFrameId = frameId;
+       if (previousFrameId !== frameId) {
+           outputChannel.appendLine(`[Debug Events ${new Date().toISOString()}] Updated currentTopFrameId from ${previousFrameId} to ${frameId}.`);
+       }
+   }
+   
+   /**
+    * Clears the current top frame ID.
+    */
+   export function clearCurrentTopFrameId(): void {
+       if (currentTopFrameId !== undefined) {
+           outputChannel.appendLine(`[Debug Events ${new Date().toISOString()}] Clearing currentTopFrameId. Previous value: ${currentTopFrameId}.`);
+           currentTopFrameId = undefined;
+       }
+   }
+   
+   // --- DAP Output Capture Buffers and Functions ---
 
 /**
  * Stores active DAP output buffers for ongoing debug sessions.

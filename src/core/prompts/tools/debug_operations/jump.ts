@@ -7,18 +7,18 @@ The "debug_jump" tool changes the next line of code that will be executed within
 ────────────────────────  QUICK-START  ────────────────────────
 ✅ **Usage**
 1️⃣ Use the <debug_jump> tag.
-2️⃣ Provide the REQUIRED <frameId> child tag, typically 0 for the current frame.
+2️⃣ Optionally, provide the <frameId> child tag. If omitted, the current top frame ID from the last debugger stop event will be used.
 3️⃣ Provide the REQUIRED <line> child tag with the target line number in the current source file.
 4️⃣ Ensure all tags are correctly closed.
 
 ⚠️ **Common Breakers**
-• Missing <frameId> or <line> tags.
+• Missing <line> tag. If <frameId> is omitted, the current top frame will be used (if available). An error will occur if no frameId is provided and no global current frame ID is available.
 • Providing a non-existent line number for the jump.
 • Jumping to a line that results in an invalid program state (e.g., skipping variable initializations).
 
 ────────────  COPY-READY TEMPLATE  ────────────
   <debug_jump>
-    <frameId>0</frameId>
+    <!-- Optional: <frameId>0</frameId> (Defaults to current top frame if omitted) -->
     <line>TARGET_LINE_NUMBER</line>
   </debug_jump>
 ───────────────────────────────────────────────
@@ -26,7 +26,7 @@ The "debug_jump" tool changes the next line of code that will be executed within
 ### Parameters:
 All parameters are provided as child XML tags within the <debug_jump> tag.
 
--   <frameId> (number, REQUIRED): The ID of the stack frame in which to perform the jump. Frame ID 0 usually refers to the topmost (current) frame.
+-   <frameId> (number, optional): The ID of the stack frame in which to perform the jump. If omitted, the current top frame ID from the last debugger stop event will be used. An error will occur if no frameId is provided and no global current frame ID is available. Frame ID 0 usually refers to the topmost (current) frame.
 -   <line> (number, REQUIRED): The line number in the source file of the current frame to jump to. This line must be within the current function/method scope.
 
 ### Examples:

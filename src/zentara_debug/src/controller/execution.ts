@@ -4,7 +4,7 @@ import { stackTrace } from './inspection';
 import { getActiveSession, getLastSessionDapOutput, rawTerminalOutputManager, waitForDapStop } from './session'; // StopWaitResult is an inline type, removed from import
 import { processStopEvent } from './eventProcessor';
 import { outputChannel, stringifySafe } from '../vscodeUtils';
-import { getActiveSessionDapOutput, lastKnownStopEventBody, lastKnownStopEventSessionId, clearLastKnownStopEvent } from '../debug/events';
+import { getActiveSessionDapOutput, lastKnownStopEventBody, lastKnownStopEventSessionId, clearLastKnownStopEvent, currentTopFrameId as globalCurrentTopFrameId } from '../debug/events';
 
 // Define LaunchOperationInfo interface
 export interface LaunchOperationInfo {
@@ -401,17 +401,24 @@ export async function jumpToLine(session: vscode.DebugSession | undefined, param
 	}
 
 	try {
+		const frameIdToUse = params.frameId ?? globalCurrentTopFrameId;
+		if (frameIdToUse === undefined) {
+			const errorMessage = `Error ${operationName}: Frame ID is required, but none was provided and no current top frame ID is available.`;
+			outputChannel.appendLine(`[ERROR][${operationName}] ${errorMessage}`);
+			return _buildNavigationResult({ success: false, errorMessage }, operationName);
+		}
+
 		const traceResult = await stackTrace(activeSession);
 		if (!traceResult.success || !traceResult.frames || traceResult.frames.length === 0) {
 			const errMessage = traceResult.errorMessage?.includes('No active debug session') ? 'Failed to get stack trace for jump: Debug session ended.' : traceResult.errorMessage || 'Failed to get stack trace for jump.';
 			return _buildNavigationResult({ success: false, errorMessage: errMessage, stopReason: 'terminated' }, operationName);
 		}
-		const frame = traceResult.frames.find(f => f.id === params.frameId);
+		const frame = traceResult.frames.find(f => f.id === frameIdToUse);
 		if (!frame) {
-			return _buildNavigationResult({ success: false, errorMessage: `Frame ID ${params.frameId} not found in stack trace.` }, operationName);
+			return _buildNavigationResult({ success: false, errorMessage: `Frame ID ${frameIdToUse} not found in stack trace.` }, operationName);
 		}
 		if (!frame.sourcePath) {
-			return _buildNavigationResult({ success: false, errorMessage: `Frame ${params.frameId} does not have a source path.` }, operationName);
+			return _buildNavigationResult({ success: false, errorMessage: `Frame ${frameIdToUse} does not have a source path.` }, operationName);
 		}
 
 		const gotoTargetsArgs = { source: { path: frame.sourcePath }, line: params.line };
@@ -448,7 +455,8 @@ export async function jumpToLine(session: vscode.DebugSession | undefined, param
 		return navOutcome;
 
 	} catch (error: any) {
-		outputChannel.appendLine(`[ERROR][${operationName}] Error during jump to line ${params.line} in frame ${params.frameId}: ${error.message}`);
+		const frameIdForError = params.frameId ?? globalCurrentTopFrameId ?? "unknown";
+		outputChannel.appendLine(`[ERROR][${operationName}] Error during jump to line ${params.line} in frame ${frameIdForError}: ${error.message}`);
 		const dapOutput = activeSession ? (getActiveSessionDapOutput(activeSession.id) || getLastSessionDapOutput(activeSession.id)) : undefined;
 		const rawOutput = activeSession ? (rawTerminalOutputManager.getActiveSessionRawTerminalOutput(activeSession.id) || rawTerminalOutputManager.getFinalizedSessionRawTerminalOutput(activeSession.id)) : undefined;
 		let specificErrorMessage = `Failed to jump: ${error.message}`;

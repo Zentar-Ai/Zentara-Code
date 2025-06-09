@@ -7,18 +7,18 @@ The "debug_get_stack_frame_variables" tool retrieves variables from specified sc
 ────────────────────────  QUICK-START  ────────────────────────
 ✅ **Usage**
 1️⃣ Use the <debug_get_stack_frame_variables> tag.
-2️⃣ Provide the REQUIRED <frameId> child tag, typically 0 for the current frame.
+2️⃣ Optionally, provide the <frameId> child tag. If omitted, the current top frame ID from the last debugger stop event will be used.
 3️⃣ Optionally, provide one or more <scopeFilter> tags to specify which scopes to retrieve variables from. If no filter is provided, variables from all available scopes might be returned (debugger-dependent).
     Valid scopeFilter values: "Arguments", "Local", "Closure", "Global", "Registers".
 4️⃣ Ensure all tags are correctly closed.
 
 ⚠️ **Common Breakers**
-• Missing <frameId> tag.
+• If <frameId> is omitted, the current top frame will be used (if available). An error will occur if no frameId is provided and no global current frame ID is available.
 • Using an invalid value for <scopeFilter>.
 
 ────────────  COPY-READY TEMPLATE  ────────────
   <debug_get_stack_frame_variables>
-    <frameId>0</frameId>
+    <!-- Optional: <frameId>0</frameId> (Defaults to current top frame if omitted) -->
     <!-- Optional: <scopeFilter>Local</scopeFilter> -->
     <!-- Optional: <scopeFilter>Arguments</scopeFilter> -->
   </debug_get_stack_frame_variables>
@@ -27,7 +27,7 @@ The "debug_get_stack_frame_variables" tool retrieves variables from specified sc
 ### Parameters:
 All parameters are provided as child XML tags within the <debug_get_stack_frame_variables> tag.
 
--   <frameId> (number, REQUIRED): The ID of the stack frame from which to retrieve variables. Frame ID 0 is usually the current frame.
+-   <frameId> (number, optional): The ID of the stack frame from which to retrieve variables. If omitted, the current top frame ID from the last debugger stop event will be used. An error will occur if no frameId is provided and no global current frame ID is available. Frame ID 0 is usually the current frame.
 -   <scopeFilter> (string, optional, multiple allowed): Filters the scopes from which to retrieve variables. If omitted, the debugger might return variables from all scopes or a default set.
     Possible values: "Arguments", "Local", "Closure", "Global", "Registers".
     You can include multiple <scopeFilter> tags.

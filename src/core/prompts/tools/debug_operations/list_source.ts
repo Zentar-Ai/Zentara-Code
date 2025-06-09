@@ -7,17 +7,17 @@ The "debug_list_source" tool displays lines of source code around the current ex
 ────────────────────────  QUICK-START  ────────────────────────
 ✅ **Usage**
 1️⃣ Use the <debug_list_source> tag.
-2️⃣ Provide the REQUIRED <frameId> child tag, typically 0 for the current frame.
+2️⃣ Optionally, provide the <frameId> child tag. If omitted, the current top frame ID from the last debugger stop event will be used.
 3️⃣ Optionally, provide <linesAround> to specify how many lines before and after the current line to display.
 4️⃣ Ensure all tags are correctly closed.
 
 ⚠️ **Common Breakers**
-• Missing <frameId> tag.
+• If <frameId> is omitted, the current top frame will be used (if available). An error will occur if no frameId is provided and no global current frame ID is available.
 • Invalid <frameId> or <linesAround> value.
 
 ────────────  COPY-READY TEMPLATE  ────────────
   <debug_list_source>
-    <frameId>0</frameId>
+    <!-- Optional: <frameId>0</frameId> (Defaults to current top frame if omitted) -->
     <!-- Optional: <linesAround>5</linesAround> -->
   </debug_list_source>
 ───────────────────────────────────────────────
@@ -25,7 +25,7 @@ The "debug_list_source" tool displays lines of source code around the current ex
 ### Parameters:
 All parameters are provided as child XML tags within the <debug_list_source> tag.
 
--   <frameId> (number, REQUIRED): The ID of the stack frame for which to list source. Frame ID 0 is usually the current frame.
+-   <frameId> (number, optional): The ID of the stack frame for which to list source. If omitted, the current top frame ID from the last debugger stop event will be used. An error will occur if no frameId is provided and no global current frame ID is available. Frame ID 0 is usually the current frame.
 -   <linesAround> (number, optional): The number of lines to show before and after the current execution line. If not specified, a default number of lines (e.g., 5 or 10) will be shown.
 
 ### Result:

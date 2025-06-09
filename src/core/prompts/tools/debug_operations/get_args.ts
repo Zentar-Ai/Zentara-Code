@@ -7,23 +7,23 @@ The "debug_get_args" tool retrieves the arguments passed to the function/method 
 ────────────────────────  QUICK-START  ────────────────────────
 ✅ **Usage**
 1️⃣ Use the <debug_get_args> tag.
-2️⃣ Provide the REQUIRED <frameId> child tag, typically 0 for the current frame.
+2️⃣ Optionally, provide the <frameId> child tag. If omitted, the current top frame ID from the last debugger stop event will be used.
 3️⃣ Ensure all tags are correctly closed.
 
 ⚠️ **Common Breakers**
-• Missing <frameId> tag.
+• If <frameId> is omitted, the current top frame will be used (if available). An error will occur if no frameId is provided and no global current frame ID is available.
 • Providing an invalid frame ID.
 
 ────────────  COPY-READY TEMPLATE  ────────────
   <debug_get_args>
-    <frameId>0</frameId>
+    <!-- Optional: <frameId>0</frameId> (Defaults to current top frame if omitted) -->
   </debug_get_args>
 ───────────────────────────────────────────────
 
 ### Parameters:
 All parameters are provided as child XML tags within the <debug_get_args> tag.
 
--   <frameId> (number, REQUIRED): The ID of the stack frame for which to retrieve arguments. Frame ID 0 is usually the current frame.
+-   <frameId> (number, optional): The ID of the stack frame for which to retrieve arguments. If omitted, the current top frame ID from the last debugger stop event will be used. An error will occur if no frameId is provided and no global current frame ID is available. Frame ID 0 is usually the current frame.
 
 ### Result:
 The result is typically a JSON string representing an array or object of arguments, with each argument showing its name, type, and current value.

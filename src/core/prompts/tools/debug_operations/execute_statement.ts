@@ -7,17 +7,17 @@ The "debug_execute_statement" tool executes a given statement within the context
 ────────────────────────  QUICK-START  ────────────────────────
 ✅ **Usage**
 1️⃣ Use the <debug_execute_statement> tag.
-2️⃣ Provide the REQUIRED <frameId> child tag, typically 0 for the current frame.
+2️⃣ Optionally, provide the <frameId> child tag. If omitted, the current top frame ID from the last debugger stop event will be used.
 3️⃣ Provide the REQUIRED <statement> child tag with the statement to execute.
 4️⃣ Ensure all tags are correctly closed.
 
 ⚠️ **Common Breakers**
-• Missing <frameId> or <statement> tags.
+• Missing <statement> tag. If <frameId> is omitted, the current top frame will be used (if available). An error will occur if no frameId is provided and no global current frame ID is available.
 • Statement is syntactically incorrect or causes an error during execution.
 
 ────────────  COPY-READY TEMPLATE  ────────────
   <debug_execute_statement>
-    <frameId>0</frameId>
+    <!-- Optional: <frameId>0</frameId> (Defaults to current top frame if omitted) -->
     <statement>my_variable = new_value</statement>
   </debug_execute_statement>
 ───────────────────────────────────────────────
@@ -25,7 +25,7 @@ The "debug_execute_statement" tool executes a given statement within the context
 ### Parameters:
 All parameters are provided as child XML tags within the <debug_execute_statement> tag.
 
--   <frameId> (number, REQUIRED): The ID of the stack frame in which to execute the statement. Frame ID 0 is usually the current frame.
+-   <frameId> (number, optional): The ID of the stack frame in which to execute the statement. If omitted, the current top frame ID from the last debugger stop event will be used. An error will occur if no frameId is provided and no global current frame ID is available. Frame ID 0 is usually the current frame.
 -   <statement> (string, REQUIRED): The statement to execute. This statement can modify program state.
 
 ### Result:

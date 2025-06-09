@@ -81,7 +81,7 @@ export interface SetBreakpointConditionParams {
 }
 
 export interface JumpParams {
-    frameId: number; // Requires frameId from stackTrace
+    frameId?: number; // Requires frameId from stackTrace, now optional
     line: number; // 1-based line number to jump to
 }
 
@@ -90,28 +90,28 @@ export interface UntilParams {
 }
 
 export interface ListSourceParams {
-    frameId: number; // Requires frameId from stackTrace
+    frameId?: number; // Requires frameId from stackTrace, now optional
     linesAround?: number; // How many lines before/after to show (e.g., 10)
 }
 
 export interface GetSourceParams {
-    frameId: number; // Requires frameId from stackTrace
+    frameId?: number; // Requires frameId from stackTrace, now optional
     expression: string; // Expression evaluating to the object/function
 }
 
 export interface GetStackFrameVariablesParams {
-    frameId: number; // Requires frameId from stackTrace
+    frameId?: number; // Requires frameId from stackTrace, now optional
     scopeFilter?: ('Arguments' | 'Local' | 'Closure' | 'Global' | 'Registers')[]; // Optional filter
 }
 
 export interface EvaluateParams {
-    frameId: number; // Requires frameId from stackTrace
+    frameId?: number; // Requires frameId from stackTrace, now optional
     expression: string;
     context?: 'watch' | 'repl' | 'hover'; // DAP context
 }
 
 export interface WatchParams {
-    frameId: number; // Requires frameId from stackTrace
+    frameId?: number; // Requires frameId from stackTrace, now optional
     expression: string;
 }
 
@@ -120,12 +120,12 @@ export interface UnwatchParams {
 }
 
 export interface ExecuteStatementParams {
-    frameId: number; // Requires frameId from stackTrace
+    frameId?: number; // Requires frameId from stackTrace, now optional
     statement: string;
 }
 
 export interface GotoFrameParams {
-    frameId: number; // Target frame ID from stackTrace
+    frameId?: number; // Target frame ID from stackTrace, now optional
 }
 
 // --- Return Value Types ---
@@ -240,7 +240,7 @@ export interface IDebugController {
 
     // State Inspection & Evaluation
     getStackFrameVariables(params: GetStackFrameVariablesParams): Promise<GetStackFrameVariablesResult>;
-    getArgs(params: { frameId: number }): Promise<GetStackFrameVariablesResult>;
+    getArgs(params: { frameId?: number }): Promise<GetStackFrameVariablesResult>; // frameId is now optional here too
     evaluate(params: EvaluateParams): Promise<EvaluateResult>;
     prettyPrint(params: EvaluateParams): Promise<EvaluateResult>;
     whatis(params: EvaluateParams): Promise<EvaluateResult>;

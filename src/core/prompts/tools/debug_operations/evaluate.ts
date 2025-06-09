@@ -7,19 +7,19 @@ The "debug_evaluate" tool evaluates an arbitrary expression within the context o
 ────────────────────────  QUICK-START  ────────────────────────
 ✅ **Usage**
 1️⃣ Use the <debug_evaluate> tag.
-2️⃣ Provide the REQUIRED <frameId> child tag, typically 0 for the current frame.
+2️⃣ Optionally, provide the <frameId> child tag. If omitted, the current top frame ID from the last debugger stop event will be used.
 3️⃣ Provide the REQUIRED <expression> child tag with the expression to evaluate.
 4️⃣ Optionally, provide <context> (e.g., "watch", "repl", "hover") to hint how the result might be used, though this may not affect all debuggers.
 5️⃣ Ensure all tags are correctly closed.
 
 ⚠️ **Common Breakers**
-• Missing <frameId> or <expression> tags.
+• Missing <expression> tag. If <frameId> is omitted, the current top frame will be used (if available). An error will occur if no frameId is provided and no global current frame ID is available.
 • Expression is syntactically incorrect or refers to undefined variables in the current context.
 • Expression has side effects that alter program state unexpectedly (use "execute_statement" for intentional side effects).
 
 ────────────  COPY-READY TEMPLATE  ────────────
   <debug_evaluate>
-    <frameId>0</frameId>
+    <!-- Optional: <frameId>0</frameId> (Defaults to current top frame if omitted) -->
     <expression>my_variable + 5</expression>
     <!-- Optional: <context>watch</context> -->
   </debug_evaluate>
@@ -28,7 +28,7 @@ The "debug_evaluate" tool evaluates an arbitrary expression within the context o
 ### Parameters:
 All parameters are provided as child XML tags within the <debug_evaluate> tag.
 
--   <frameId> (number, REQUIRED): The ID of the stack frame in which to evaluate the expression. Frame ID 0 is usually the current frame.
+-   <frameId> (number, optional): The ID of the stack frame in which to evaluate the expression. If omitted, the current top frame ID from the last debugger stop event will be used. An error will occur if no frameId is provided and no global current frame ID is available. Frame ID 0 is usually the current frame.
 -   <expression> (string, REQUIRED): The expression to evaluate.
 -   <context> (string, optional): Hints the context of the evaluation. Common values include "watch" (for watch expressions), "repl" (for console/REPL input), "hover" (for hover evaluations). The debugger may use this to format the result differently or enable/disable certain features.
 
