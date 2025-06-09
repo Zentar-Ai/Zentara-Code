@@ -30,7 +30,7 @@ Zentara Code goes beyond simple code generation. It's an intelligent agent that 
 - **Debug autonomously:** Utilize a full suite of runtime debugging tools to diagnose and fix issues in the code it writes, or in existing codebases.
 - **Integrate with VS Code:** Seamlessly works within your VS Code environment, using its familiar debugging interfaces.
 
-Zentara Code's powerful debugging operations are primarily utilized when it operates in **Code Mode** (for writing and then debugging code) and **Debug Mode** (for focused debugging tasks). For general information about Zentara Code's broader capabilities as a coding agent (forked from Zentara Code), please refer to the [Zentara Code documentation](https://zentar.ai/).
+Zentara Code's powerful debugging operations are primarily utilized when it operates in **Code Mode** (for writing and then debugging code) and **Debug Mode** (for focused debugging tasks). For general information about Zentara Code's broader capabilities as a coding agent (forked from Roo-Code), please refer to the [Roo-Code documentation]().
 
 This empowers developers by automating complex coding and debugging tasks, allowing for faster development cycles and more robust software.
 
