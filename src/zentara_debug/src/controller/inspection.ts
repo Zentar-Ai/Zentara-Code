@@ -162,12 +162,16 @@ export async function stackTrace(session: vscode.DebugSession): Promise<StackTra
  */
 export async function getStackFrameVariables(session: vscode.DebugSession, params: GetStackFrameVariablesParams): Promise<GetStackFrameVariablesResult> {
     try {
+        outputChannel.appendLine(`[GETSTACKFRAMEVARIABLES] getStackFrameVariables called with params: ${JSON.stringify(params)}`);
+        outputChannel.appendLine(`[GETSTACKFRAMEVARIABLES] Current top frame ID: ${globalCurrentTopFrameId}`);
         const frameIdToUse = params.frameId ?? globalCurrentTopFrameId;
         if (frameIdToUse === undefined) {
             const errorMessage = 'Frame ID is required for getStackFrameVariables, but none was provided and no current top frame ID is available.';
             outputChannel.appendLine(`[ERROR] getStackFrameVariables: ${errorMessage}`);
             return { success: false, errorMessage, scopes: [] };
         }
+        outputChannel.appendLine(`[GETSTACKFRAMEVARIABLES] Using frame ID: ${frameIdToUse}`);
+    
 
         // DAP Request: scopes
         const scopesResponse = await customRequestWithTimeout(

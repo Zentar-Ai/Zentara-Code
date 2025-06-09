@@ -329,10 +329,10 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 			// <frameId>0</frameId>
 			// <line>20</line>
 			const params: JumpParams = args
-			if (!isNumber(params.frameId)) {
+			if (params.frameId !== undefined && !isNumber(params.frameId)) {
 				return {
 					isValid: false,
-					message: "Missing or invalid 'frameId' (number) for jump operation. Expected <frameId> tag.",
+					message: "Invalid 'frameId' (number, optional) for jump operation. Expected <frameId> tag.",
 				}
 			}
 			if (!isNumber(params.line)) {
@@ -460,8 +460,8 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 			// <frameId>0</frameId>
 			// <linesAround>5</linesAround> (optional)
 			const params: ListSourceParams = args
-			if (!isNumber(params.frameId)) {
-				return { isValid: false, message: "Missing or invalid 'frameId' (number) for list_source operation." }
+			if (params.frameId !== undefined && !isNumber(params.frameId)) {
+				return { isValid: false, message: "Invalid 'frameId' (number, optional) for list_source operation." }
 			}
 			if (params.linesAround !== undefined && !isNumber(params.linesAround)) {
 				return {
@@ -476,8 +476,8 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 			// <frameId>0</frameId>
 			// <expression>myVar</expression>
 			const params: GetSourceParams = args
-			if (!isNumber(params.frameId)) {
-				return { isValid: false, message: "Missing or invalid 'frameId' (number) for get_source operation." }
+			if (params.frameId !== undefined && !isNumber(params.frameId)) {
+				return { isValid: false, message: "Invalid 'frameId' (number, optional) for get_source operation." }
 			}
 			if (!isNonEmptyString(params.expression)) {
 				return { isValid: false, message: "Missing or invalid 'expression' (string) for get_source operation." }
@@ -490,10 +490,10 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 			// <scopeFilter>Local</scopeFilter> (optional, multiple)
 			// <scopeFilter>Arguments</scopeFilter>
 			const params: GetStackFrameVariablesParams = args
-			if (!isNumber(params.frameId)) {
+			if (params.frameId !== undefined && !isNumber(params.frameId)) {
 				return {
 					isValid: false,
-					message: "Missing or invalid 'frameId' (number) for get_stack_frame_variables operation.",
+					message: "Invalid 'frameId' (number, optional) for get_stack_frame_variables operation.",
 				}
 			}
 			const scopeFilters = ensureArray(params.scopeFilter)
@@ -516,9 +516,9 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 		case "get_args": {
 			// Note: zentara_debug type is { frameId: number }
 			// <frameId>0</frameId>
-			const params: { frameId: number } = args // Explicitly type for clarity
-			if (!isNumber(params.frameId)) {
-				return { isValid: false, message: "Missing or invalid 'frameId' (number) for get_args operation." }
+			const params: { frameId?: number } = args // Explicitly type for clarity, frameId is now optional
+			if (params.frameId !== undefined && !isNumber(params.frameId)) {
+				return { isValid: false, message: "Invalid 'frameId' (number, optional) for get_args operation." }
 			}
 			return { isValid: true, transformedArgs: params }
 		}
@@ -530,8 +530,8 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 			// <expression>myVar</expression>
 			// <context>watch</context> (optional: 'watch', 'repl', 'hover')
 			const params: EvaluateParams = args
-			if (!isNumber(params.frameId)) {
-				return { isValid: false, message: `Missing or invalid 'frameId' (number) for ${operation} operation.` }
+			if (params.frameId !== undefined && !isNumber(params.frameId)) {
+				return { isValid: false, message: `Invalid 'frameId' (number, optional) for ${operation} operation.` }
 			}
 			if (!isNonEmptyString(params.expression)) {
 				return {
@@ -555,10 +555,10 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 			// <frameId>0</frameId>
 			// <statement>x = 10</statement>
 			const params: ExecuteStatementParams = args
-			if (!isNumber(params.frameId)) {
+			if (params.frameId !== undefined && !isNumber(params.frameId)) {
 				return {
 					isValid: false,
-					message: "Missing or invalid 'frameId' (number) for execute_statement operation.",
+					message: "Invalid 'frameId' (number, optional) for execute_statement operation.",
 				}
 			}
 			if (!isNonEmptyString(params.statement)) {
@@ -573,8 +573,8 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 		case "goto_frame": {
 			// <frameId>0</frameId>
 			const params: GotoFrameParams = args
-			if (!isNumber(params.frameId)) {
-				return { isValid: false, message: "Missing or invalid 'frameId' (number) for goto_frame operation." }
+			if (params.frameId !== undefined && !isNumber(params.frameId)) {
+				return { isValid: false, message: "Invalid 'frameId' (number, optional) for goto_frame operation." }
 			}
 			return { isValid: true, transformedArgs: params }
 		}

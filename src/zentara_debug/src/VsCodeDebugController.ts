@@ -452,7 +452,7 @@ export class VsCodeDebugController implements IDebugController {
 		// Ensure topFrame and its id are valid before updating
 		if (topFrame && typeof topFrame.id === 'number') {
 			updateCurrentTopFrameId(topFrame.id)
-			//outputChannel.appendLine(`VsCodeDebugController: Updated currentTopFrameId to ${topFrame.id}`)
+			outputChannel.appendLine(`VsCodeDebugController: Updated currentTopFrameId to ${topFrame.id}`)
 		} else {
 			outputChannel.appendLine(`VsCodeDebugController: Top frame or top frame ID is invalid. Clearing top frame ID.`)
 			clearCurrentTopFrameId()
