@@ -487,7 +487,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 					outputChannel.appendLine(
 						`[Session] Successfully set entry breakpoint for ${params.program}:1.`,
 					)
-					params.stopOnEntry = true // Modify the incoming params
+					params.stopOnEntry = false // Modify the incoming params , we always set stopOnEntry to false after setting the breakpoint
 					outputChannel.appendLine(`[Session] params.stopOnEntry is now false.`)
 				} else {
 					outputChannel.appendLine(
@@ -550,7 +550,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 					_PYTEST_RAISE: "1",
 					PYTHONNOUSERSITE: "1",
 				},
-				stopOnEntry:true,
+				stopOnEntry:false,
 				uncaughtExceptions: true,
 			} as vscode.DebugConfiguration
 			configName = configToUse.name; // Update configName for logging
@@ -564,7 +564,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				justMyCode: true,
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath ?? (program ? path.dirname(program) : undefined),
 				env: params.env ?? undefined,
-				stopOnEntry: true,
+				stopOnEntry: false,
 				args: params.args
 			} as vscode.DebugConfiguration
 			configName = configToUse.name;
@@ -578,7 +578,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				args: params.args ?? [],
 				console: "internalConsole",
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath ?? (program ? path.dirname(program) : undefined),
-				stopOnEntry: true, // Defaulting to true as per original
+				stopOnEntry: false, // Defaulting to true as per original
 				env: params.env
 			} as vscode.DebugConfiguration
 			configName = configToUse.name;
@@ -591,7 +591,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				args: params.args ?? [],
 				console: "internalConsole",
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath ?? (program ? path.dirname(program) : undefined),
-				stopOnEntry: true, // Defaulting to true as per original
+				stopOnEntry: false, // Defaulting to true as per original
 				env: params.env
 			} as vscode.DebugConfiguration
 			configName = configToUse.name;
@@ -614,7 +614,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 	configToUse.env = { ...(configToUse.env || {}), ...(params.env || {}) };
 	// stopOnEntry: if params.stopOnEntry is defined, use it. Otherwise, use configToUse.stopOnEntry. If that's also undefined, default to true.
 	//configToUse.stopOnEntry = params.stopOnEntry !== undefined ? params.stopOnEntry : (configToUse.stopOnEntry !== undefined ? configToUse.stopOnEntry : true);
-	configToUse.stopOnEntry = true; // Force stopOnEntry to true for all sessions as per original logic
+	configToUse.stopOnEntry = false; // Force stopOnEntry to false for all sessions as per original logic. Instead use setBreakpoint for entry-like stops, so that it stops at our program, not in the plugin internals.
 
 	outputChannel.appendLine(`[Session] Launching with effective args: ${stringifySafe(configToUse.args)}`)
 	outputChannel.appendLine(`[Session] Launching with effective env: ${stringifySafe(configToUse.env)}`)
