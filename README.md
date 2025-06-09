@@ -1,14 +1,6 @@
-[![Version](0.1.0)]
-<!-- Temporarily commented out to resolve SVG restriction issue
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-181-orange.png?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
--->
-[![Marketplace](https://img.shields.io/visual-studio-marketplace/v/your-username.zentara-code)]
-
 # Zentara Code
 
-**Zentara Code** is an advanced AI-powered coding agent, forked from Zentara Code, that writes, refactors and debugs code like a professional software engineer—directly inside VS Code. :contentReference[oaicite:1]{index=1}
+**Zentara Code** is an advanced AI-powered coding agent, forked from Zentara Code, that writes, refactors and debugs code like a professional software engineer—directly inside VS Code.
 
 [More Info](https://zentar.ai)
 
@@ -27,7 +19,6 @@
 
 ---
 
-\*\*
 
 [![Watch the Zentara Code Demo Video](assets/images/demo.png)](https://www.youtube.com/watch?v=tzaHKvC98jE)
 
@@ -63,7 +54,6 @@ This empowers developers by automating complex coding and debugging tasks, allow
     - Leverages the Debug Adapter Protocol (DAP) to debug any programming language that has a DAP-compliant debugger available in VS Code. This means Zentara Code is not limited to specific languages but can adapt to your project's needs.
 - **VS Code Native Experience:** Integrates seamlessly with VS Code's debugging infrastructure, providing a familiar and powerful experience.
 
-_(More capabilities can be detailed here as the project evolves)_
 
 ## Detailed Debugging Operations
 
@@ -180,8 +170,8 @@ This tutorial demonstrates debugging a standard Python script. We'll use an exam
 
 **b. Initiate Debugging with Zentara Code:**
 Instruct Zentara Code (e.g., in Code Mode or Debug Mode):
-"Zentara, start debugging `testdata/quicksort_buggy.debug.py`. Stop at the beginning of the script."
-_(Zentara Code would use `debug_launch` with `program: "testdata/quicksort_buggy.debug.py"` and `stopOnEntry: true`)_
+"Zentara, start debugging `testdata/quicksort_buggy.debug.py`"
+_(Zentara Code would use `debug_launch` with `program: "testdata/quicksort_buggy.debug.py"`)_
 
 **c. Observe Initial Behavior (Optional):**
 "Zentara, continue execution and let me know what happens."
@@ -190,7 +180,7 @@ The script might run to completion, show errors, or fail assertions.
 
 **d. Set Breakpoints & Investigate:**
 Assume an error occurs related to sorting an empty list.
-"Zentara, restart the debug session for `testdata/quicksort_buggy.debug.py`, stopping at the entry.
+"Zentara, restart the debug session for `testdata/quicksort_buggy.debug.py`.
 Set a breakpoint at the beginning of the `quick_sort` function in `testdata/quicksort_buggy.debug.py`.
 Also, set a breakpoint where `quick_sort` is called for an empty list scenario (likely within the script's own test harness).
 Continue execution until the breakpoint for the empty list call is hit."
@@ -224,8 +214,8 @@ This tutorial shows how to debug Python code using `pytest`.
 - It's good practice to have tests import from a copy, e.g., `testdata/quicksort_buggy.debug.py`. Create this copy.
 
 **b. Initiate Pytest Debugging:**
-"Zentara, debug the tests in `testdata/test_quicksort_pytest.py` using pytest. Stop on entry."
-_(Zentara Code uses `debug_launch` with `program: "testdata/test_quicksort_pytest.py"`, `mode: "pytest"`, and `stopOnEntry: true`)_
+"Zentara, debug the tests in `testdata/test_quicksort_pytest.py` using pytest."
+_(Zentara Code uses `debug_launch` with `program: "testdata/test_quicksort_pytest.py"`, `mode: "pytest"')_
 
 **c. Observe Initial Test Failures:**
 "Zentara, continue execution and report the pytest results."
@@ -264,7 +254,7 @@ This tutorial covers debugging a typical JavaScript (e.g., Node.js) script. We'l
 - (Optional) Create a copy, e.g., `testdata/merge_sort_buggy.debug.js`.
 
 **b. Initiate JavaScript Debugging:**
-"Zentara, start debugging `testdata/merge_sort_buggy.debug.js`. Stop at the beginning."
+"Zentara, start debugging `testdata/merge_sort_buggy.debug.js`"
 _(Zentara Code uses `debug_launch` with `program: "testdata/merge_sort_buggy.debug.js"` and `stopOnEntry: true`)_
 
 **c. Observe Initial Output:**
@@ -273,7 +263,7 @@ _(Zentara Code uses `debug_continue`)_
 
 **d. Set Breakpoints & Investigate:**
 Suppose an array `[5, 2, 8, 1, 9, 4]` is sorted incorrectly.
-"Zentara, restart debugging for `testdata/merge_sort_buggy.debug.js`, stop at entry.
+"Zentara, restart debugging for `testdata/merge_sort_buggy.debug.js`.
 Set a breakpoint at the start of the `mergeSort` function in `testdata/merge_sort_buggy.debug.js`.
 Set another breakpoint where `mergeSort` is called with `[5, 2, 8, 1, 9, 4]` (within the script's test calls).
 Continue."
@@ -299,8 +289,8 @@ _(Zentara Code would use `execute_command` with `command: "tsc testdata/insertio
 This creates `testdata/insertion_sort_buggy.js`.
 
 **b. Initiate Debugging on Compiled JS:**
-"Zentara, debug the compiled `testdata/insertion_sort_buggy.js`. Stop at the beginning."
-_(Zentara Code uses `debug_launch` with `program: "testdata/insertion_sort_buggy.js"` and `stopOnEntry: true`)_
+"Zentara, debug the compiled `testdata/insertion_sort_buggy.js`"
+_(Zentara Code uses `debug_launch` with `program: "testdata/insertion_sort_buggy.js"`)_
 
 **c. Observe Initial Assertion Failures:**
 "Zentara, continue execution and report any assertion failures."
@@ -308,7 +298,7 @@ _(Zentara Code uses `debug_continue`)_
 
 **d. Set Breakpoints & Investigate:**
 If an assertion for a test array fails:
-"Zentara, restart debugging for `testdata/insertion_sort_buggy.js`, stop at entry.
+"Zentara, restart debugging for `testdata/insertion_sort_buggy.js`.
 Set a breakpoint at the start of the `insertionSort` function (in `testdata/insertion_sort_buggy.js`).
 Set another where `insertionSort` is called for the failing test case (within the script's test calls).
 Continue."
@@ -359,14 +349,13 @@ Replace `/path/to/your/conda/env/bin/python` with the actual path to your Python
 
 ## Roadmap & Changelog
 
-We're constantly evolving Zentara Code. Check out our [issue tracker](https://github.com/your-username/zentara-code/issues?q=is%3Aopen+is%3Aissue+label%3Aroadmap) for our public roadmap and planned features. If you're looking to contribute, `good first issue` labels are a great place to start!
+We're constantly evolving Zentara Code. Check out our [issue tracker](https://github.com/Zentar-Ai/Zentara-code/issues?q=is%3Aopen+is%3Aissue+label%3Aroadmap) for our public roadmap and planned features. If you're looking to contribute, `good first issue` labels are a great place to start!
 
 ## Contributing
 
 Zentara Code thrives on community involvement! We welcome contributions of all kinds.
 
-- **[Issue Tracker](https://github.com/your-username/zentara-code/issues)** (Replace with your actual GitHub repo path)
-- **[Contributing Guidelines](CONTRIBUTING.md)**
+- **[Issue Tracker](https://github.com/Zentar-Ai/zentara-code/issues)** 
 - **[Code of Conduct](CODE_OF_CONDUCT.md)**
 
 ## License
@@ -375,4 +364,4 @@ Zentara Code is licensed under the [Apache License 2.0](./LICENSE).
 
 © 2025 ZentarAI
 
-This project is a fork of [Zentar-Ai/zentara-code](https://github.com/Zentar-Ai/zentara-code). We gratefully acknowledge all contributions made to the original project.
+This project is a fork of [RooCodeInc/Roo-Code)](https://github.com/RooCodeInc/Roo-Code). We gratefully acknowledge all contributions made to the original project.
