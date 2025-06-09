@@ -4,14 +4,15 @@ export function getDebugLaunchToolDescription(args: ToolArgs): string {
 	return `## debug_launch – Start a New Debugging Session
 
 Description:
-The "debug_launch" tool starts a new debugging session for a specified program or test. It allows you to control the initial state of the debugger, such as stopping at the entry point of the program or passing specific arguments.
+The "debug_launch" tool starts a new debugging session for a specified program or test. It allows you to control the initial state of the debugger,  passing specific arguments.
+The program will alwasy stop at the first line of the program, so you can set breakpoints and inspect variables from the very beginning.
 NEVER this one if you want to restart the debugging session, use \`debug_restart\` instead. This operation is used to start a new debugging session, not to restart an existing one.
 Alway use debug_restart tool when you want to launch the session for the same file as previous successful launch. This way you substantially increase the success of launch.
 ────────────────────────  QUICK-START  ────────────────────────
 ✅ **Usage**
 1️⃣ Use the <debug_launch> tag.
 2️⃣ Provide the REQUIRED <program> child tag specifying the path to the executable or test file/directory.
-3️⃣ Optionally, include other supported child tags like <stopOnEntry>, <mode>, <arg>, <cwd>, or <env> to customize the launch.
+3️⃣ Optionally, include other supported child tags like  <mode>, <arg>, <cwd>, or <env> to customize the launch.
 4️⃣ Ensure all tags are correctly closed.
 
 ⚠️ **Common Breakers**
@@ -24,7 +25,6 @@ NEVER TRUNCATE THE PROGRAM PATH  !!!
 ────────────  COPY-READY TEMPLATE  ────────────
   <debug_launch>
     <program>PATH_TO_YOUR_PROGRAM_OR_TEST_FILE</program>
-    <!-- Optional: <stopOnEntry>true_or_false</stopOnEntry> -->
     <!-- Optional: <mode>pytest_or_other_mode</mode> -->
     <!-- Optional: <arg>first_argument</arg> -->
     <!-- Optional: <arg>second_argument</arg> -->
@@ -48,16 +48,14 @@ NEVER MISS the program path. NEVER TRUNCATE the program path in any case, NEVER.
     -   Example: <cwd>src/app</cwd>
 -   <env> (object, optional): Environment variables to set for the debugged process. Each key-value pair should be a child tag within <env>.
     -   Example: <env><PYTHONPATH>/custom/lib</PYTHONPATH><DEBUG_MODE>1</DEBUG_MODE></env>
--   <stopOnEntry> (boolean, optional): If \`true\`, the debugger will stop at the very beginning of the program execution. Defaults to \`false\` if not specified.
-    -   Example: <stopOnEntry>true</stopOnEntry>
+
 
 ### Examples:
 
-1.  **Launch a Python script and stop at entry:**
+1.  **Launch a Python script :**
     \`\`\`xml
     <debug_launch>
       <program>src/app/main.py</program>
-      <stopOnEntry>true</stopOnEntry>
     </debug_launch>
     \`\`\`
 

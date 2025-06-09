@@ -2,15 +2,14 @@ import random # Intentionally unused for now, but a common import
 
 
 def partition(arr, low, high):
-    pivot = arr[high]  # Choose the last element as pivot
-    i = low - 1        # Index of smaller element
-
-    for j in range(low, high): # Iterate from low to high-1
-        if arr[j] <= pivot:
+    pivot_val = arr[low] # Renamed to avoid confusion with a potential 'pivot' index
+    i = low
+    for j in range(low + 1, high + 1):
+        if arr[j] <= pivot_val:
             i = i + 1
-            arr[i], arr[j] = arr[j], arr[i] # Swap
-    arr[i + 1], arr[high] = arr[high], arr[i + 1] # Place pivot
-    return i + 1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i], arr[low] = arr[low], arr[i]
+    return i
 
 def quick_sort(arr, low, high):
     if low >= high or low < 0 or high >= len(arr):
@@ -20,8 +19,8 @@ def quick_sort(arr, low, high):
     if low < high:
         pi = partition(arr, low, high)
 
-        quick_sort(arr, low, pi - 1)
-        quick_sort(arr, pi + 1, high)
+        quick_sort(arr, low, pi)
+        quick_sort(arr, pi + 2, high)
 
 def run_tests():
     print("Running tests...")

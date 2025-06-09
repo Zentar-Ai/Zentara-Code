@@ -17,8 +17,8 @@ import {
 	getActiveSessionDapOutput // Added for launchSession refactor
 } from "../debug/events" // Import shared emitter, event name, and last stop info
 import { vsCodeDebugController } from "../VsCodeDebugController"; // Added for IV.B
-import { _executeDapRequestAndProcessOutcome, LaunchOperationInfo } from './execution'; // Added for launchSession refactor
-import { setBreakpoint } from "./breakpoints";
+import { _executeDapRequestAndProcessOutcome, LaunchOperationInfo, continueExecution } from './execution'; // Added for launchSession refactor & continue
+import { setBreakpoint, removeBreakpoint } from "./breakpoints"; // Added removeBreakpoint
 
 // --- Session Helper Functions ---
 
@@ -473,9 +473,11 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 		// If stopOnEntry is true, set a breakpoint at the program's first line
 		// and then change stopOnEntry to false. This is to avoid stopping
 		// in debugger internals (e.g., pytest plugin) when stopOnEntry is used.
-		if (params.stopOnEntry === true && params.program) {
+		// Modified: Always attempt to set an entry breakpoint if a program is specified,
+		// to ensure stability with fast-finishing scripts.
+		if (params.program) {
 			outputChannel.appendLine(
-				`[Session] params.stopOnEntry is true. Attempting to set breakpoint at ${params.program}:1 and then set params.stopOnEntry=false.`,
+				`[Session] Program specified. Attempting to set entry breakpoint at ${params.program}:1. Original params.stopOnEntry: ${params.stopOnEntry}. Will set params.stopOnEntry=false for debug config.`,
 			)
 			try {
 				const setBpResult = await setBreakpoint({
@@ -485,7 +487,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 					outputChannel.appendLine(
 						`[Session] Successfully set entry breakpoint for ${params.program}:1.`,
 					)
-					params.stopOnEntry = false // Modify the incoming params
+					params.stopOnEntry = true // Modify the incoming params
 					outputChannel.appendLine(`[Session] params.stopOnEntry is now false.`)
 				} else {
 					outputChannel.appendLine(
@@ -548,7 +550,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 					_PYTEST_RAISE: "1",
 					PYTHONNOUSERSITE: "1",
 				},
-				stopOnEntry:false,
+				stopOnEntry:true,
 				uncaughtExceptions: true,
 			} as vscode.DebugConfiguration
 			configName = configToUse.name; // Update configName for logging
@@ -562,7 +564,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				justMyCode: true,
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath ?? (program ? path.dirname(program) : undefined),
 				env: params.env ?? undefined,
-				stopOnEntry: params.stopOnEntry ?? false, // Defaulting to false as per original
+				stopOnEntry: true,
 				args: params.args
 			} as vscode.DebugConfiguration
 			configName = configToUse.name;
@@ -576,7 +578,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				args: params.args ?? [],
 				console: "internalConsole",
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath ?? (program ? path.dirname(program) : undefined),
-				stopOnEntry: params.stopOnEntry ?? true, // Defaulting to true as per original
+				stopOnEntry: true, // Defaulting to true as per original
 				env: params.env
 			} as vscode.DebugConfiguration
 			configName = configToUse.name;
@@ -589,7 +591,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				args: params.args ?? [],
 				console: "internalConsole",
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath ?? (program ? path.dirname(program) : undefined),
-				stopOnEntry: params.stopOnEntry ?? true, // Defaulting to true as per original
+				stopOnEntry: true, // Defaulting to true as per original
 				env: params.env
 			} as vscode.DebugConfiguration
 			configName = configToUse.name;
@@ -612,7 +614,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 	configToUse.env = { ...(configToUse.env || {}), ...(params.env || {}) };
 	// stopOnEntry: if params.stopOnEntry is defined, use it. Otherwise, use configToUse.stopOnEntry. If that's also undefined, default to true.
 	//configToUse.stopOnEntry = params.stopOnEntry !== undefined ? params.stopOnEntry : (configToUse.stopOnEntry !== undefined ? configToUse.stopOnEntry : true);
-	configToUse.stopOnEntry = false
+	configToUse.stopOnEntry = true; // Force stopOnEntry to true for all sessions as per original logic
 
 	outputChannel.appendLine(`[Session] Launching with effective args: ${stringifySafe(configToUse.args)}`)
 	outputChannel.appendLine(`[Session] Launching with effective env: ${stringifySafe(configToUse.env)}`)
@@ -705,12 +707,51 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 
 	if (navigationResult.success) {
 		lastUsedLaunchParams = originalParamsSnapshot;
-		outputChannel.appendLine(`[Session] Successfully launched. Stored lastUsedLaunchParams for restart: ${stringifySafe(lastUsedLaunchParams)}`);
-	}
+		outputChannel.appendLine(`[Session] Initial launch/stop successful. Stored lastUsedLaunchParams for restart: ${stringifySafe(lastUsedLaunchParams)}`);
 
+		// Check if this stop is an entry-like stop where we should remove the breakpoint and continue
+		if (
+			navigationResult.frame &&
+			navigationResult.frame.source &&
+			navigationResult.frame.source.path &&
+			(navigationResult.stopReason === "breakpoint" || navigationResult.stopReason === "entry" || navigationResult.stopReason === "step")
+		) {
+			const pathToRemoveBp = navigationResult.frame.source.path;
+			const lineToRemoveBp = navigationResult.frame.line;
+			const weSetThisExplicitly = params.program && params.program === pathToRemoveBp && lineToRemoveBp === 1;
+
+			outputChannel.appendLine(
+				`[Session] Stopped at entry-like point (${pathToRemoveBp}:${lineToRemoveBp}, reason: ${navigationResult.stopReason}). Explicitly set by us: ${weSetThisExplicitly}. Attempting to remove breakpoint and continue.`,
+			);
+
+			try {
+				const removeBpResult = await removeBreakpoint({
+					location: { path: pathToRemoveBp, line: lineToRemoveBp },
+				});
+				if (removeBpResult.success) {
+					outputChannel.appendLine(
+						`[Session] Successfully removed breakpoint at ${pathToRemoveBp}:${lineToRemoveBp}. Session remains paused.`,
+					);
+				} else {
+					outputChannel.appendLine(
+						`[WARN] [Session] Failed to remove breakpoint at ${pathToRemoveBp}:${lineToRemoveBp}: ${removeBpResult.errorMessage}. Session remains paused.`,
+					);
+				}
+				// Do not continue. Return the original navigation result, as the session is still paused at this point.
+				// The side effect of removing the breakpoint has occurred.
+			} catch (error: any) {
+				outputChannel.appendLine(
+					`[ERROR] [Session] Error during post-entry-breakpoint processing (remove): ${error.message}`,
+				);
+				// Fall through to return the original navigationResult if post-processing fails
+			}
+		}
+	}
+	// If the "remove and continue" logic was not hit, or if it fell through due to an error,
+	// or if navigationResult.success was false initially.
 	return {
 		success: navigationResult.success,
-		sessionId: activeSessionAfterLaunch.id,
+		sessionId: navigationResult.success ? activeSessionAfterLaunch.id : undefined,
 		errorMessage: navigationResult.errorMessage,
 		stopReason: navigationResult.stopReason,
 		frame: navigationResult.frame,
