@@ -153,6 +153,8 @@ If you want to contribute or run the latest development version:
 
 ## Quick Example
 
+***Important***: This extension has been validated with Google Gemini 2.5 Pro (build 0506). Other models are not fully supported because they cannot invoke the function tool reliably.
+
 Here are a few examples of how you can use Zentara Code to debug different types of projects.
 The example scripts (`quicksort_buggy.py`, `test_quicksort_pytest.py`, `merge_sort_buggy.js`, `insertion_sort_buggy.ts`, etc.) mentioned in these tutorials can be found in the `testdata/` directory of this repository.
 These tutorials are condensed versions; for more detailed step-by-step guides, please refer to the corresponding markdown files in the `testdata/` directory (e.g., `debugging_demo.md`, `debugging_demo_pytest.md`).
