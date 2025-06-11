@@ -9,37 +9,39 @@ The "debug_remove_all_breakpoints_in_file" tool removes all breakpoints currentl
 ────────────────────────  QUICK-START  ────────────────────────
 ✅ **Usage**
 1️⃣ Use the <debug_remove_all_breakpoints_in_file> tag.
-2️⃣ Optionally, provide the <path> child tag with the file path from which to remove all breakpoints. If omitted, the currently active file will be used.
-3️⃣ Ensure all tags are correctly closed.
+2️⃣ Provide parameters as a single, well-formed JSON object string as the text content of the <debug_remove_all_breakpoints_in_file> tag.
+3️⃣ Optionally, include a "path" (string) key in the JSON object. If "path" is omitted, the currently active file will be used. If no "path" is needed (to default to active file), provide an empty JSON object \`{}\` or leave the content empty.
+4️⃣ Ensure the <debug_remove_all_breakpoints_in_file> tag is correctly closed.
 
 ⚠️ **Common Breakers**
-• If <path> is provided, ensuring it's a complete and valid path.
-• Specifying a path (either provided or the active file) to a file that has no breakpoints (though this is not an error, just no action).
+• Malformed JSON string.
+• If "path" is provided, ensuring its value is a complete and valid path.
+• Specifying a "path" (either provided or the active file) to a file that has no breakpoints (though this is not an error, just no action).
 
 ────────────  COPY-READY TEMPLATE  ────────────
-  <debug_remove_all_breakpoints_in_file>
-    <!-- Optional: <path>PATH_TO_FILE</path> (Defaults to active file if omitted) -->
-  </debug_remove_all_breakpoints_in_file>
+  <debug_remove_all_breakpoints_in_file>{"path": "PATH_TO_FILE"}</debug_remove_all_breakpoints_in_file>
+  <!-- Or for active file: <debug_remove_all_breakpoints_in_file>{}</debug_remove_all_breakpoints_in_file> or <debug_remove_all_breakpoints_in_file></debug_remove_all_breakpoints_in_file> -->
 ───────────────────────────────────────────────
 
 ### Parameters:
-All parameters are provided as child XML tags within the <debug_remove_all_breakpoints_in_file> tag.
+Parameters are provided as key-value pairs within a single JSON object, which is the text content of the <debug_remove_all_breakpoints_in_file> tag.
 
--   <path> (string, optional): The path to the source file from which all breakpoints will be removed (relative to the current workspace directory ${args.cwd}). If omitted, the path of the currently active file will be used. If provided, it must be a complete and valid path.
+-   "path" (string, optional): The path to the source file from which all breakpoints will be removed (relative to the current workspace directory ${args.cwd}). If omitted, the path of the currently active file will be used. If provided, it must be a complete and valid path. If no "path" is needed (to default to active file), an empty JSON object \`{}\` can be used.
 
 ### Examples:
 
 1.  **Remove all breakpoints from \`src/app.py\`:**
     \`\`\`xml
-    <debug_remove_all_breakpoints_in_file>
-      <path>src/app.py</path>
-    </debug_remove_all_breakpoints_in_file>
+    <debug_remove_all_breakpoints_in_file>{"path": "src/app.py"}</debug_remove_all_breakpoints_in_file>
     \`\`\`
 
 2.  **Remove all breakpoints from the currently active file:**
     \`\`\`xml
-    <debug_remove_all_breakpoints_in_file>
-    </debug_remove_all_breakpoints_in_file>
+    <debug_remove_all_breakpoints_in_file>{}</debug_remove_all_breakpoints_in_file>
+    \`\`\`
+    Or:
+    \`\`\`xml
+    <debug_remove_all_breakpoints_in_file></debug_remove_all_breakpoints_in_file>
     \`\`\`
 ────────────────────────────────────────────────────────────────────────────
 `

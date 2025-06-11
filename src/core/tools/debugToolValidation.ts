@@ -90,18 +90,19 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 				}
 			}
 
-			// Validate 'arg' from the raw XML-parsed object (args)
-			// (args as any).arg is used because 'arg' is from XML, not strictly from LaunchParams type.
-			const launchXmlArgs = ensureArray((args as any).arg)
-			if (!launchXmlArgs.every(isNonEmptyString)) {
-				return {
-					isValid: false,
-					message:
-						"Invalid 'arg' (array of strings, optional) for launch operation. Expected <arg> tags with string content.",
+			// Validate 'args' directly from the parsed JSON object (params.args)
+			// LaunchParams expects 'args?: string[]'
+			if (params.args !== undefined) {
+				if (!Array.isArray(params.args) || !params.args.every(isNonEmptyString)) {
+					return {
+						isValid: false,
+						message:
+							"Invalid 'args' (array of non-empty strings, optional) for launch operation. Expected JSON format: \"args\": [\"arg1\", \"arg2\"]",
+					}
 				}
 			}
-			// The transformation from 'arg' to 'args' (as expected by LaunchParams for the controller)
-			// is handled in debugTool.ts before calling the controller.
+			// The 'arg' property (from old XML format) is no longer expected.
+			// If the LLM sends "arg", it will be ignored unless LaunchParams includes it, which it shouldn't for the new JSON approach.
 
 			if (params.cwd !== undefined && !isNonEmptyString(params.cwd)) {
 				return {

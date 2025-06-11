@@ -96,45 +96,51 @@ export async function debugTool(
 	handleError: HandleError,
 	pushToolResult: PushToolResult,
 ): Promise<void> {
-	const { debug_operation, ...otherParams } = block.params
-	// Convert all other params to XML for parsing
-	const argsXml = Object.entries(otherParams)
-		.map(([key, value]) => `<${key}>${value}</${key}>`)
-		.join("\n")
-	// Use the module-level controller, operationMap, and xmlParser instead of creating new ones
-	// This prevents them from being included in the state sent to the webview
+	const { debug_operation, _text, ...otherParams } = block.params // Extract _text
+	// Use the module-level controller, operationMap, and xmlParser
 
 	try {
 		//outputChannel.appendLine(`[Debug Tool] Raw tool use block: ${JSON.stringify(block, null, 2)}`)
 		outputChannel.appendLine(
-			`[Debug Tool] Processing operation '${debug_operation}' with arguments: ${
-				Object.keys(otherParams).length > 0 ? JSON.stringify(otherParams, null, 2) : "{}"
-			}`,
+			`[Debug Tool] Processing operation '${debug_operation}'. Raw params: ${JSON.stringify(block.params)}`,
 		)
-
+	
 		if (!debug_operation) {
 			cline.consecutiveMistakeCount++
 			cline.recordToolError("debug")
 			pushToolResult(await cline.sayAndCreateMissingParamError("debug", "debug_operation"))
 			return
 		}
-
-		// Ask for approval at the beginning, before any large objects are referenced
-		// This follows the pattern that works well in other tools
-		//outputChannel.appendLine(`[Debug Tool] Preparing approval prompt for '${debug_operation}'.`)
-
-		// Create a properly formatted ClineSayTool JSON string for the approval prompt
-		// Following the pattern in readFileTool.ts
+	
+		// Determine content for approval prompt
+		let approvalDisplayContent: string
+		if (typeof _text === "string" && _text.trim().length > 0) { // Check if _text is a non-empty string
+			try {
+				// Try to parse and pretty-print JSON for approval
+				const parsedJsonPayload = JSON.parse(_text)
+				approvalDisplayContent = JSON.stringify(parsedJsonPayload, null, 2)
+				outputChannel.appendLine(`[Debug Tool] Using _text (JSON) for approval prompt: ${approvalDisplayContent}`)
+			} catch (e) {
+				// If _text is present but fails to parse as JSON, show raw _text for approval,
+				// but actual parsing later will fail if it's not valid JSON.
+				approvalDisplayContent = _text
+				outputChannel.appendLine(`[Debug Tool] _text failed JSON.parse for approval, showing raw: ${approvalDisplayContent}. Error will be caught during actual parsing if invalid.`)
+			}
+		} else {
+			// If _text is not a string, or is an empty string, then no arguments are provided.
+			approvalDisplayContent = "(No arguments)"
+			outputChannel.appendLine(`[Debug Tool] No _text content for arguments. Approval prompt shows: ${approvalDisplayContent}`)
+		}
+	
 		const sharedMessageProps = {
 			tool: "debug" as const,
 		}
-
 		const completeMessage = JSON.stringify({
 			...sharedMessageProps,
 			operation: debug_operation,
-			content: Object.keys(otherParams).length > 0 ? JSON.stringify(otherParams, null, 2) : "(No arguments)",
+			content: approvalDisplayContent,
 		} satisfies ClineSayTool)
-
+	
 		outputChannel.appendLine(`[Debug Tool] Approval prompt prepared: ${completeMessage}`)
 		outputChannel.appendLine(`[Debug Tool] About to call askApproval.`)
 
@@ -167,24 +173,47 @@ export async function debugTool(
 
 		// Only proceed with parsing and validation if approval is granted
 		let operationArgs: any = {}
-		if (argsXml && argsXml.trim() !== "") {
+
+		// Parameters must now come from the JSON payload in _text.
+		if (typeof _text === "string" && _text.trim().length > 0) {
+			outputChannel.appendLine(`[Debug Tool] Attempting to parse _text as JSON: ${_text}`)
 			try {
-				// The XML parser typically returns an object where the root tag is the key.
-				// With the flat XML structure, we directly use the parsed XML object
-				const parsedXml = moduleXmlParser.parse(argsXml)
-
-				// Use the parsed XML directly as operation arguments
-				operationArgs = parsedXml
-
-				// Ensure operationArgs is an object, even if XML was empty or only contained a primitive after parsing
-				if (typeof operationArgs !== "object" || operationArgs === null) {
-					operationArgs = {} // Default to empty object if parsing results in non-object (e.g. empty string)
-				}
+				operationArgs = JSON.parse(_text)
+				// Ensure operationArgs is an object if it parsed to null,
+				// or handle cases where it might parse to a primitive if that's valid for some ops.
+				// For most debug operations, an object (even empty) or an array is expected.
+				if (operationArgs === null) {
+					operationArgs = {} // Treat JSON "null" as empty args object for consistency
+					outputChannel.appendLine(`[Debug Tool] _text parsed to null, defaulting operationArgs to {}.`)
+				} else if (typeof operationArgs !== "object" && !Array.isArray(operationArgs)) {
+		                  // If JSON parsed to a primitive (string, number, boolean)
+		                  // This is generally unexpected for debug operations that take multiple params.
+		                  // The validation step should catch if this type is inappropriate for the specific operation.
+		                  // If an operation legitimately takes a single primitive, validation should allow it.
+		                  // Otherwise, validation should fail.
+					outputChannel.appendLine(
+						`[Debug Tool] _text parsed to a non-object/non-array primitive: ${typeof operationArgs}. Validation will determine if this is acceptable for '${debug_operation}'.`
+					);
+		              }
+				outputChannel.appendLine(`[Debug Tool] Successfully parsed _text as JSON. operationArgs: ${JSON.stringify(operationArgs)}`)
 			} catch (e) {
-				await handleError(`parsing XML arguments for debug operation ${debug_operation}`, e as Error)
-				pushToolResult(formatResponse.toolError(`Invalid XML provided for arguments: ${(e as Error).message}`))
+				await handleError(`parsing JSON content for debug operation ${debug_operation}`, e as Error)
+				pushToolResult(
+					formatResponse.toolError(
+						`Invalid JSON content provided for operation '${debug_operation}': ${(e as Error).message}. Parameters must be a valid JSON object or array within the operation tag.`,
+					),
+				)
 				return
 			}
+		} else {
+			// No _text provided, or it's an empty string.
+			// This means no arguments are passed for the operation.
+			// Some operations are valid without arguments (e.g., quit, continue).
+			// Validation will check if arguments are required for the specific 'debug_operation'.
+			outputChannel.appendLine(
+				`[Debug Tool] No JSON _text content found or _text is empty. Assuming no arguments for '${debug_operation}'. Validation will check if args are required.`,
+			)
+			operationArgs = {} // Default to empty object if no _text
 		}
 
 		// Validate arguments after approval
@@ -208,15 +237,6 @@ export async function debugTool(
 		if (targetMethod) {
 			try {
 				//outputChannel.appendLine(`[Debug Tool] Executing operation '${debug_operation}'...`)
-
-				// Special handling for 'launch' operation to map 'arg' (from XML) to 'args' (expected by controller)
-				if (debug_operation === "launch" && transformedArgs.arg !== undefined) {
-					const launchArgsArray = Array.isArray(transformedArgs.arg)
-						? transformedArgs.arg
-						: [transformedArgs.arg]
-					transformedArgs.args = launchArgsArray.filter((a: any) => typeof a === "string") // Ensure it's string array
-					delete transformedArgs.arg // Remove the original 'arg' property
-				}
 
 				// Some methods on IDebugController might not expect any arguments.
 				// The `transformedArgs` will be an empty object {} if argsXml is undefined or empty.

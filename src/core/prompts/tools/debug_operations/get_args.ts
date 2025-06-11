@@ -7,23 +7,24 @@ The "debug_get_args" tool retrieves the arguments passed to the function/method 
 ────────────────────────  QUICK-START  ────────────────────────
 ✅ **Usage**
 1️⃣ Use the <debug_get_args> tag.
-2️⃣ Optionally, provide the <frameId> child tag. If omitted, the current top frame ID from the last debugger stop event will be used.
-3️⃣ Ensure all tags are correctly closed.
+2️⃣ Provide parameters as a single, well-formed JSON object string as the text content of the <debug_get_args> tag.
+3️⃣ Optionally, include "frameId" (integer) in the JSON object. If "frameId" is omitted, the current top frame ID from the last debugger stop event will be used. If no parameters are needed, provide an empty JSON object \`{}\` or leave the content empty.
+4️⃣ Ensure the <debug_get_args> tag is correctly closed.
 
 ⚠️ **Common Breakers**
-• If <frameId> is omitted, the current top frame will be used (if available). An error will occur if no frameId is provided and no global current frame ID is available.
-• Providing an invalid frame ID.
+• Malformed JSON string.
+• If "frameId" is omitted, the current top frame will be used (if available). An error will occur if no frameId is provided and no global current frame ID is available.
+• Providing an invalid "frameId" value.
 
 ────────────  COPY-READY TEMPLATE  ────────────
-  <debug_get_args>
-    <!-- Optional: <frameId>0</frameId> (Defaults to current top frame if omitted) -->
-  </debug_get_args>
+  <debug_get_args>{"frameId": 0}</debug_get_args>
+  <!-- Or for current top frame (if available): <debug_get_args>{}</debug_get_args> or <debug_get_args></debug_get_args> -->
 ───────────────────────────────────────────────
 
 ### Parameters:
-All parameters are provided as child XML tags within the <debug_get_args> tag.
+Parameters are provided as key-value pairs within a single JSON object, which is the text content of the <debug_get_args> tag.
 
--   <frameId> (number, optional): The ID of the stack frame for which to retrieve arguments. If omitted, the current top frame ID from the last debugger stop event will be used. An error will occur if no frameId is provided and no global current frame ID is available. Frame ID 0 is usually the current frame.
+-   "frameId" (number, optional): The ID of the stack frame for which to retrieve arguments. If omitted, the current top frame ID from the last debugger stop event will be used. An error will occur if no frameId is provided and no global current frame ID is available. Frame ID 0 is usually the current frame. If no parameters are needed, an empty JSON object \`{}\` can be used.
 
 ### Result:
 The result is typically a JSON string representing an array or object of arguments, with each argument showing its name, type, and current value.
@@ -32,9 +33,16 @@ The result is typically a JSON string representing an array or object of argumen
 
 1.  **Get arguments for the current stack frame (frame 0):**
     \`\`\`xml
-    <debug_get_args>
-      <frameId>0</frameId>
-    </debug_get_args>
+    <debug_get_args>{"frameId": 0}</debug_get_args>
+    \`\`\`
+
+2.  **Get arguments for the current top frame (if available, by omitting frameId or using empty JSON):**
+    \`\`\`xml
+    <debug_get_args>{}</debug_get_args>
+    \`\`\`
+    Or:
+    \`\`\`xml
+    <debug_get_args></debug_get_args>
     \`\`\`
 ────────────────────────────────────────────────────────────────────────────
 `

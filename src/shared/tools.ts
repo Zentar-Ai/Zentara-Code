@@ -62,6 +62,7 @@ export const toolParamNames = [
 	"start_line",
 	"end_line",
 	"query",
+	"_text", // Added for XML parser text content
 	"debug_operation",
 	// Debug tool specific parameters
 	"program",
@@ -185,6 +186,7 @@ export interface DebugToolUse extends ToolUse {
 		Partial<
 			Pick<
 				Record<ToolParamName, string>,
+				| "_text" // Allow _text for XML content
 				// Launch parameters
 				| "program"
 				| "mode"

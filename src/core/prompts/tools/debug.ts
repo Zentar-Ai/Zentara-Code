@@ -4,8 +4,11 @@ export function getDebugToolDescription(): string {
 Calling this generic 'debug' tool will result in failure.
 If you need to perform debugging operations, you MUST use the specific debug tools listed below. Each tool corresponds to a distinct debugger action:
 
-GENERAL PARAMETER REQUIREMENTS: When using any of the specific debug tools listed below, you MUST ensure that all required parameters are provided in their full and correct format. For operations involving file paths (e.g., setting or removing breakpoints), the path parameter can be omitted to default to the currently active file. However, if a file path *is* provided, it must be complete and not truncated (e.g., '<path>testdata/quicksort_buggy.debug.py</path>' is correct, while '<path>testdata/quicksort_buggy</path>' is incorrect if the file has an extension).
-If you forget to provide required parameters, the operation will fail and you cannot process further. Exception will be generated.  So do not do that in any case.
+GENERAL PARAMETER REQUIREMENTS: When using any of the specific debug tools listed below, parameters MUST be provided as a single, well-formed JSON object string, which is the text content of the main operation tag.
+Example: <debug_launch>{"program": "path/to/script.py", "args": ["--verbose"], "stopOnEntry": true}</debug_launch>
+The JSON string itself must be valid. For operations involving file paths (e.g., in the "program" field or a "path" field for breakpoints), if a path is provided, it must be complete. If a path parameter is optional for an operation, it can be omitted from the JSON object to default to the currently active file (if applicable to the operation).
+If the JSON is malformed or required parameters within the JSON object are missing or invalid, the operation will fail. Ensure all necessary key-value pairs are present in the JSON according to the specific debug operation's needs.
+If you forget to provide required parameters within the JSON, or the JSON itself is invalid, the operation will fail and you cannot process further. Exception will be generated. So do not do that in any case.
 - debug_launch: Starts a new debugging session.
 - debug_quit: Stops the current debugging session.
 - debug_continue: Continues program execution until the next breakpoint or end.

@@ -7,19 +7,21 @@ The "debug_stack_trace" tool displays the current call stack of the paused progr
 ────────────────────────  QUICK-START  ────────────────────────
 ✅ **Usage**
 1️⃣ Use the <debug_stack_trace> tag.
-2️⃣ This operation takes no arguments.
+2️⃣ For operations that take no arguments, provide an empty JSON object \`{}\` as the text content, or leave the content empty.
+   Example: \`<debug_stack_trace>{}</debug_stack_trace>\` or \`<debug_stack_trace></debug_stack_trace>\`.
 3️⃣ Ensure the tag is correctly closed: </debug_stack_trace>.
 
 ⚠️ **Common Breakers**
-• Including unexpected child tags (it takes no arguments).
+• Providing unexpected JSON content (it should be empty \`{}\` or no content).
 • Forgetting to close the <debug_stack_trace> tag.
 
 ────────────  COPY-READY TEMPLATE  ────────────
-  <debug_stack_trace></debug_stack_trace>
+  <debug_stack_trace>{}</debug_stack_trace>
+  <!-- Alternatively, with no content: <debug_stack_trace></debug_stack_trace> -->
 ───────────────────────────────────────────────
 
 ### Parameters:
-This operation takes no parameters.
+This operation takes no parameters. The JSON content should be an empty object \`{}\` or the tag content can be empty.
 
 ### Result:
 The result will be a JSON string representing an array of stack frame objects. Each frame typically includes:
@@ -33,6 +35,10 @@ Other debugger-specific information might also be present.
 ### Examples:
 
 1.  **Display the current call stack:**
+    \`\`\`xml
+    <debug_stack_trace>{}</debug_stack_trace>
+    \`\`\`
+    Or:
     \`\`\`xml
     <debug_stack_trace></debug_stack_trace>
     \`\`\`
