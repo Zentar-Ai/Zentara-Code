@@ -520,7 +520,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 			const pluginPath = vscode.Uri.file(extensionPath).with({
 				path: vscode.Uri.joinPath(
 					vscode.Uri.file(extensionPath),
-					"out",
+					"dist",
 					"debug_helper", // Corrected path based on current file content
 					"pytest_raise_plugin.py",
 				).path,
