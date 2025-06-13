@@ -710,6 +710,7 @@ async function handleIndividualDebugTool(
 	pushToolResult: (content: ToolResponse) => void,
 	// removeClosingTag is not needed here as debugTool handles its own presentation
 ) {
+	//outputChannel.appendLine(`[handleIndividualDebugTool] Entry. Received block.name: ${block.name}, block.params: ${JSON.stringify(block.params, null, 2)}`);
 	const operationName = block.name.substring("debug_".length)
 
 	// Reconstruct the block for the original debugTool
@@ -726,9 +727,9 @@ async function handleIndividualDebugTool(
 		partial: block.partial, // Pass through partial status
 	}
 
-	// outputChannel.appendLine(
-	// 	`[handleIndividualDebugTool] Bridging tool: ${block.name} to "debug" meta-tool. Operation: ${operationName}. Reconstructed Params: ${JSON.stringify(reconstructedBlock.params)}`,
-	// )
+	//outputChannel.appendLine(
+	//	`[handleIndividualDebugTool] Bridging tool: ${block.name} to "debug" meta-tool. Operation: ${operationName}. Reconstructed Params: ${JSON.stringify(reconstructedBlock.params, null, 2)}`
+	//)
 
 	// Call the original debugTool with the reconstructed block
 	await debugTool(cline, reconstructedBlock, askApproval, handleError, pushToolResult)

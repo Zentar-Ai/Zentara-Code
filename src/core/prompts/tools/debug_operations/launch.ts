@@ -5,7 +5,7 @@ export function getDebugLaunchToolDescription(args: ToolArgs): string {
 
 Description:
 The "debug_launch" tool starts a new debugging session for a specified program or test. It allows you to control the initial state of the debugger,  passing specific arguments.
-The program will alwasy stop at the first line of the program, so you can set breakpoints and inspect variables from the very beginning.
+The program will always stop at the first line of the program, so you can set breakpoints and inspect variables from the very beginning.
 NEVER this one if you want to restart the debugging session, use \`debug_restart\` instead. This operation is used to start a new debugging session, not to restart an existing one.
 Alway use debug_restart tool when you want to launch the session for the same file as previous successful launch. This way you substantially increase the success of launch.
 ────────────────────────  QUICK-START  ────────────────────────
