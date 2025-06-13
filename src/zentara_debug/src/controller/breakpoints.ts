@@ -116,9 +116,9 @@ async function findBreakpointWithPolling(
 	}
 
 	// Log final state if timeout occurs
-	outputChannel.appendLine(
-		`[WARN] [findBreakpointWithPolling] Timeout after ${attempt} attempts and ${Date.now() - startTime}ms waiting for breakpoint at ${absoluteTargetPath}:${targetLine1Based}. Final vscode.debug.breakpoints: ${stringifySafe(vscode.debug.breakpoints)}`,
-	)
+	//outputChannel.appendLine(
+	//	`[WARN] [findBreakpointWithPolling] Timeout after ${attempt} attempts and ${Date.now() - startTime}ms waiting for breakpoint at ${absoluteTargetPath}:${targetLine1Based}. Final vscode.debug.breakpoints: ${stringifySafe(vscode.debug.breakpoints)}`,
+	//)
 	return undefined // Not found within timeout
 }
 

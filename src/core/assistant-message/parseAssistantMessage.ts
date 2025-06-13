@@ -152,7 +152,7 @@ export function parseAssistantMessage(assistantMessage: string): AssistantMessag
 			// Tool call has a parameter that was not completed.
 			currentToolUse.params[currentParamName] = accumulator.slice(currentParamValueStartIndex).trim()
 		}
-		outputChannel.appendLine(`[parseAisstantMessage]: ${assistantMessage}`);
+		outputChannel.appendLine(`[parseAssistantMessage]: ${assistantMessage}`);
 		contentBlocks.push(currentToolUse)
 	}
 

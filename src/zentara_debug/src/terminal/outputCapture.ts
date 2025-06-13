@@ -36,8 +36,8 @@ export class RawTerminalOutputManager {
         		? onDidWriteTerminalData((e: { terminal: vscode.Terminal; data: string }) => {
         				if (e.terminal === terminal) {
         					buffer.push(e.data);
-        					outputChannel.appendLine(`[RawTerminalOutputManager]:line 33,  event data:  ${JSON.stringify(e.data)}`);
-        					outputChannel.appendLine(`[RawTerminalOutputManager]:line 34,  buffer:  ${JSON.stringify(buffer)}`);
+        					//outputChannel.appendLine(`[RawTerminalOutputManager]:line 33,  event data:  ${JSON.stringify(e.data)}`);
+        					//outputChannel.appendLine(`[RawTerminalOutputManager]:line 34,  buffer:  ${JSON.stringify(buffer)}`);
         				}
         			})
         		: { dispose: () => {} }; // Fallback
