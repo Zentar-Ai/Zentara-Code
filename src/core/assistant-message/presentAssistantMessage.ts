@@ -464,6 +464,7 @@ export async function presentAssistantMessage(cline: Task) {
 			// Dispatch to the appropriate handler
 			if (block.name.startsWith("debug_")) {
 				// Delegate to the new helper function for individual debug tools
+				outputChannel.appendLine(`[presentAssistantMessage] calling Handling individual debug tool with block: ${JSON.stringify(block, null, 2)}`);
 				await handleIndividualDebugTool(cline, block as ToolUse, askApproval, handleError, pushToolResult)
 			} else {
 
@@ -710,8 +711,13 @@ async function handleIndividualDebugTool(
 	pushToolResult: (content: ToolResponse) => void,
 	// removeClosingTag is not needed here as debugTool handles its own presentation
 ) {
-	//outputChannel.appendLine(`[handleIndividualDebugTool] Entry. Received block.name: ${block.name}, block.params: ${JSON.stringify(block.params, null, 2)}`);
+	outputChannel.appendLine(`[handleIndividualDebugTool] Entry. Received block.name: ${block.name}, block.params: ${JSON.stringify(block.params, null, 2)}, block: ${JSON.stringify(block, null, 2)}`);
 	const operationName = block.name.substring("debug_".length)
+	// Wait if block until block is full
+	if (block.partial)
+		{
+			return
+		}
 
 	// Reconstruct the block for the original debugTool
 	// The 'name' becomes "debug" (the meta-tool name)
