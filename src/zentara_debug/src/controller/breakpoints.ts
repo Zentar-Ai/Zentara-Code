@@ -68,7 +68,7 @@ async function findBreakpointWithPolling(
 ): Promise<vscode.SourceBreakpoint | undefined> {
 	const absoluteTargetPath = resolvePathToAbsolute(location.path)
 	if (!absoluteTargetPath) {
-		outputChannel.appendLine(`[findBreakpointWithPolling] Could not resolve path: ${location.path}`)
+		//outputChannel.appendLine(`[findBreakpointWithPolling] Could not resolve path: ${location.path}`)
 		return undefined
 	}
 	const targetLine1Based = location.line
@@ -77,9 +77,9 @@ async function findBreakpointWithPolling(
 	const startTime = Date.now()
 	let attempt = 0
 
-	outputChannel.appendLine(
-		`[findBreakpointWithPolling] Starting poll for ${absoluteTargetPath}:${targetLine1Based} (0-based: ${targetLine0Based}), Timeout: ${timeoutMs}ms`,
-	)
+	// outputChannel.appendLine(
+	// 	`[findBreakpointWithPolling] Starting poll for ${absoluteTargetPath}:${targetLine1Based} (0-based: ${targetLine0Based}), Timeout: ${timeoutMs}ms`,
+	// )
 
 	while (Date.now() - startTime < timeoutMs) {
 		attempt++
@@ -107,9 +107,9 @@ async function findBreakpointWithPolling(
 		}
 
 		if (foundBreakpoint) {
-			outputChannel.appendLine(
-				`[findBreakpointWithPolling] Found breakpoint after ${attempt} attempts and ${Date.now() - startTime}ms.`,
-			)
+			// outputChannel.appendLine(
+			// 	`[findBreakpointWithPolling] Found breakpoint after ${attempt} attempts and ${Date.now() - startTime}ms.`,
+			// )
 			return foundBreakpoint
 		}
 		await new Promise((resolve) => setTimeout(resolve, pollIntervalMs))
