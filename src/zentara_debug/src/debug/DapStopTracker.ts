@@ -10,6 +10,7 @@ import {
 import { outputChannel } from "../vscodeUtils" // Use local outputChannel
 // TODO: Refactor to avoid direct import if possible, or pass instance through factory/constructor
 import { rawTerminalOutputManager } from "../controller/session" // Added for IV.A.1
+import { json } from "stream/consumers"
 
 
 /**
@@ -32,9 +33,9 @@ export class DapStopTracker implements vscode.DebugAdapterTracker {
 	async onDidSendMessage(message: any): Promise<void> {
 		// Make async
 		// Log all DAP messages from debug adapter to VS Code
-		//outputChannel.appendLine(`[DapStopTracker ${new Date().toISOString()}] [RECEIVED from DA] Session ${this.sessionId}:`);
-		//outputChannel.appendLine(JSON.stringify(message, null, 2));
-		//outputChannel.appendLine('-------------------');
+		outputChannel.appendLine(`[DapStopTracker ${new Date().toISOString()}] [RECEIVED from DA] Session ${this.sessionId}:`);
+		outputChannel.appendLine(JSON.stringify(message, null, 2));
+		outputChannel.appendLine('-------------------');
 
 		// Handle 'output' events for DAP console capture
 		if (message.type === "event" && message.event === "output") {
@@ -137,6 +138,7 @@ export class DapStopTracker implements vscode.DebugAdapterTracker {
 		)
 		if (message && message.command) {
 			outputChannel.appendLine(message.command);
+			outputChannel.appendLine(JSON.stringify(message, null, 2));
 		}
 		outputChannel.appendLine("-------------------")
 	}

@@ -238,9 +238,11 @@ export async function waitForDapStop(
 		// 	`[waitForDapStop] Found PRE-EXISTING stop event for session ${sessionId}. Reason: ${lastKnownStopEventBody.reason}.`,
 		// )
 		const body = lastKnownStopEventBody
-		// It's important to clear this once consumed here to avoid reprocessing if waitForDapStop is called again for the same stop.
-		// However, processStopEvent might also need it. Let's assume processStopEvent handles it or it's cleared after processing.
-		// For now, let's not clear it here, assuming the event processor chain will handle it.
+		// IMPORTANT FIX: Clear the event once it's been consumed here to prevent staleness
+		clearLastKnownStopEvent();
+		// outputChannel.appendLine(
+		// 	`[waitForDapStop] Cleared pre-existing stop event for session ${sessionId} after consumption.`,
+		// )
 		return Promise.resolve({ stopped: true, eventBody: body })
 	}
 
