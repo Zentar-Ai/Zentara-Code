@@ -47,7 +47,7 @@
 		"@zentara-code/config-eslint": "workspace:^",
 		"@zentara-code/config-typescript": "workspace:^",
 		"@tailwindcss/typography": "^0.5.16",
-		"@types/node": "^20.17.54",
+		"@types/node": "^24.0.1",
 		"@types/react": "^18.3.23",
 		"@types/react-dom": "^18.3.7",
 		"autoprefixer": "^10.4.21",
