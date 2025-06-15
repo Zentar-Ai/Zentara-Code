@@ -45,7 +45,7 @@ export function InstallSection({ downloads }: InstallSectionProps) {
 					</p>
 					<div className="mt-10 flex flex-col items-center justify-center gap-6">
 						<Link
-							href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline"
+							href="https://marketplace.visualstudio.com/items?itemName=ZentarAI.roo-code"
 							target="_blank"
 							className="group relative inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border/50 bg-background/30 px-4 py-3 text-base backdrop-blur-xl transition-all duration-300 hover:border-border hover:bg-background/40 sm:w-auto sm:gap-3 sm:px-6 sm:py-4 sm:text-lg md:text-2xl">
 							<div className="absolute -inset-px rounded-xl bg-gradient-to-r from-blue-500/30 via-cyan-500/30 to-purple-500/30 opacity-0 blur-sm transition-opacity duration-500 group-hover:opacity-100" />
@@ -73,7 +73,7 @@ export function InstallSection({ downloads }: InstallSectionProps) {
 								<div className="overflow-x-auto">
 									<pre className="p-3 sm:p-4">
 										<code className="whitespace-pre-wrap break-all text-sm text-foreground/90 sm:break-normal">
-											code --install-extension RooVeterinaryInc.roo-cline
+											code --install-extension ZentarAI.roo-code
 										</code>
 									</pre>
 								</div>

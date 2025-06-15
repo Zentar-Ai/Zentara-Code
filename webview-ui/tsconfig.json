@@ -21,7 +21,9 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"@src/*": ["./src/*"],
-			"@roo/*": ["../src/shared/*"]
+			"@roo/*": ["../src/shared/*"],
+			"@roo-code/types": ["../packages/types/src/index.ts"],
+			"@roo-code/*": ["../packages/*/src"]
 		}
 	},
 	"include": ["src", "../src/shared"]

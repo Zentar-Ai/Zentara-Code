@@ -1,9 +1,9 @@
 {
-	"name": "roo-cline",
+	"name": "roo-code",
 	"displayName": "%extension.displayName%",
 	"description": "%extension.description%",
-	"publisher": "RooVeterinaryInc",
-	"version": "3.20.3",
+	"publisher": "ZentarAI",
+	"version": "0.1.2",
 	"icon": "assets/icons/icon.png",
 	"galleryBanner": {
 		"color": "#617A91",
@@ -18,9 +18,9 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/RooCodeInc/Roo-Code"
+		"url": "https://github.com/Zentar-Ai/roo-code"
 	},
-	"homepage": "https://github.com/RooCodeInc/Roo-Code",
+	"homepage": "https://zentar.ai",
 	"categories": [
 		"AI",
 		"Chat",
@@ -42,8 +42,12 @@
 		"sonnet",
 		"ai",
 		"llama",
-		"roo code",
-		"roocode"
+	"roocode",
+	"roo-code",
+		"roo",
+		"code",
+		"cloud"
+		
 	],
 	"activationEvents": [
 		"onLanguage",
@@ -54,120 +58,120 @@
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "roo-cline-ActivityBar",
+					"id": "roo-code-ActivityBar",
 					"title": "%views.activitybar.title%",
 					"icon": "assets/icons/icon.svg"
 				}
 			]
 		},
 		"views": {
-			"roo-cline-ActivityBar": [
+			"roo-code-ActivityBar": [
 				{
 					"type": "webview",
-					"id": "roo-cline.SidebarProvider",
+					"id": "roo-code.SidebarProvider",
 					"name": "%views.sidebar.name%"
 				}
 			]
 		},
 		"commands": [
 			{
-				"command": "roo-cline.plusButtonClicked",
+				"command": "roo-code.plusButtonClicked",
 				"title": "%command.newTask.title%",
 				"icon": "$(add)"
 			},
 			{
-				"command": "roo-cline.mcpButtonClicked",
+				"command": "roo-code.mcpButtonClicked",
 				"title": "%command.mcpServers.title%",
 				"icon": "$(server)"
 			},
 			{
-				"command": "roo-cline.promptsButtonClicked",
+				"command": "roo-code.promptsButtonClicked",
 				"title": "%command.prompts.title%",
 				"icon": "$(organization)"
 			},
 			{
-				"command": "roo-cline.historyButtonClicked",
+				"command": "roo-code.historyButtonClicked",
 				"title": "%command.history.title%",
 				"icon": "$(history)"
 			},
 			{
-				"command": "roo-cline.marketplaceButtonClicked",
+				"command": "roo-code.marketplaceButtonClicked",
 				"title": "%command.marketplace.title%",
 				"icon": "$(extensions)"
 			},
 			{
-				"command": "roo-cline.popoutButtonClicked",
+				"command": "roo-code.popoutButtonClicked",
 				"title": "%command.openInEditor.title%",
 				"icon": "$(link-external)"
 			},
 			{
-				"command": "roo-cline.accountButtonClicked",
+				"command": "roo-code.accountButtonClicked",
 				"title": "Account",
 				"icon": "$(account)",
-				"when": "config.roo-cline.rooCodeCloudEnabled"
+				"when": "config.roo-code.rooCodeCloudEnabled"
 			},
 			{
-				"command": "roo-cline.settingsButtonClicked",
+				"command": "roo-code.settingsButtonClicked",
 				"title": "%command.settings.title%",
 				"icon": "$(settings-gear)"
 			},
 			{
-				"command": "roo-cline.openInNewTab",
+				"command": "roo-code.openInNewTab",
 				"title": "%command.openInNewTab.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-cline.explainCode",
+				"command": "roo-code.explainCode",
 				"title": "%command.explainCode.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-cline.fixCode",
+				"command": "roo-code.fixCode",
 				"title": "%command.fixCode.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-cline.improveCode",
+				"command": "roo-code.improveCode",
 				"title": "%command.improveCode.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-cline.addToContext",
+				"command": "roo-code.addToContext",
 				"title": "%command.addToContext.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-cline.newTask",
+				"command": "roo-code.newTask",
 				"title": "%command.newTask.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-cline.terminalAddToContext",
+				"command": "roo-code.terminalAddToContext",
 				"title": "%command.terminal.addToContext.title%",
 				"category": "Terminal"
 			},
 			{
-				"command": "roo-cline.terminalFixCommand",
+				"command": "roo-code.terminalFixCommand",
 				"title": "%command.terminal.fixCommand.title%",
 				"category": "Terminal"
 			},
 			{
-				"command": "roo-cline.terminalExplainCommand",
+				"command": "roo-code.terminalExplainCommand",
 				"title": "%command.terminal.explainCommand.title%",
 				"category": "Terminal"
 			},
 			{
-				"command": "roo-cline.setCustomStoragePath",
+				"command": "roo-code.setCustomStoragePath",
 				"title": "%command.setCustomStoragePath.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-cline.focusInput",
+				"command": "roo-code.focusInput",
 				"title": "%command.focusInput.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-cline.acceptInput",
+				"command": "roo-code.acceptInput",
 				"title": "%command.acceptInput.title%",
 				"category": "%configuration.title%"
 			}
@@ -175,138 +179,138 @@
 		"menus": {
 			"editor/context": [
 				{
-					"submenu": "roo-cline.contextMenu",
+					"submenu": "roo-code.contextMenu",
 					"group": "1"
 				}
 			],
-			"roo-cline.contextMenu": [
+			"roo-code.contextMenu": [
 				{
-					"command": "roo-cline.addToContext",
+					"command": "roo-code.addToContext",
 					"group": "1_actions@1"
 				},
 				{
-					"command": "roo-cline.explainCode",
+					"command": "roo-code.explainCode",
 					"group": "1_actions@2"
 				},
 				{
-					"command": "roo-cline.improveCode",
+					"command": "roo-code.improveCode",
 					"group": "1_actions@3"
 				}
 			],
 			"terminal/context": [
 				{
-					"submenu": "roo-cline.terminalMenu",
+					"submenu": "roo-code.terminalMenu",
 					"group": "2"
 				}
 			],
-			"roo-cline.terminalMenu": [
+			"roo-code.terminalMenu": [
 				{
-					"command": "roo-cline.terminalAddToContext",
+					"command": "roo-code.terminalAddToContext",
 					"group": "1_actions@1"
 				},
 				{
-					"command": "roo-cline.terminalFixCommand",
+					"command": "roo-code.terminalFixCommand",
 					"group": "1_actions@2"
 				},
 				{
-					"command": "roo-cline.terminalExplainCommand",
+					"command": "roo-code.terminalExplainCommand",
 					"group": "1_actions@3"
 				}
 			],
 			"view/title": [
 				{
-					"command": "roo-cline.plusButtonClicked",
+					"command": "roo-code.plusButtonClicked",
 					"group": "navigation@1",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == roo-code.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.promptsButtonClicked",
+					"command": "roo-code.promptsButtonClicked",
 					"group": "navigation@2",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == roo-code.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.mcpButtonClicked",
+					"command": "roo-code.mcpButtonClicked",
 					"group": "navigation@3",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == roo-code.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.marketplaceButtonClicked",
+					"command": "roo-code.marketplaceButtonClicked",
 					"group": "navigation@4",
-					"when": "view == roo-cline.SidebarProvider && roo-cline.marketplaceEnabled"
+					"when": "view == roo-code.SidebarProvider && roo-code.marketplaceEnabled"
 				},
 				{
-					"command": "roo-cline.historyButtonClicked",
+					"command": "roo-code.historyButtonClicked",
 					"group": "navigation@5",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == roo-code.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.popoutButtonClicked",
+					"command": "roo-code.popoutButtonClicked",
 					"group": "navigation@6",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == roo-code.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.accountButtonClicked",
+					"command": "roo-code.accountButtonClicked",
 					"group": "navigation@7",
-					"when": "view == roo-cline.SidebarProvider && config.roo-cline.rooCodeCloudEnabled"
+					"when": "view == roo-code.SidebarProvider && config.roo-code.rooCodeCloudEnabled"
 				},
 				{
-					"command": "roo-cline.settingsButtonClicked",
+					"command": "roo-code.settingsButtonClicked",
 					"group": "navigation@8",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == roo-code.SidebarProvider"
 				}
 			],
 			"editor/title": [
 				{
-					"command": "roo-cline.plusButtonClicked",
+					"command": "roo-code.plusButtonClicked",
 					"group": "navigation@1",
-					"when": "activeWebviewPanelId == roo-cline.TabPanelProvider"
+					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
 				},
 				{
-					"command": "roo-cline.promptsButtonClicked",
+					"command": "roo-code.promptsButtonClicked",
 					"group": "navigation@2",
-					"when": "activeWebviewPanelId == roo-cline.TabPanelProvider"
+					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
 				},
 				{
-					"command": "roo-cline.mcpButtonClicked",
+					"command": "roo-code.mcpButtonClicked",
 					"group": "navigation@3",
-					"when": "activeWebviewPanelId == roo-cline.TabPanelProvider"
+					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
 				},
 				{
-					"command": "roo-cline.marketplaceButtonClicked",
+					"command": "roo-code.marketplaceButtonClicked",
 					"group": "navigation@4",
-					"when": "activeWebviewPanelId == roo-cline.TabPanelProvider && roo-cline.marketplaceEnabled"
+					"when": "activeWebviewPanelId == roo-code.TabPanelProvider && roo-code.marketplaceEnabled"
 				},
 				{
-					"command": "roo-cline.historyButtonClicked",
+					"command": "roo-code.historyButtonClicked",
 					"group": "navigation@5",
-					"when": "activeWebviewPanelId == roo-cline.TabPanelProvider"
+					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
 				},
 				{
-					"command": "roo-cline.accountButtonClicked",
+					"command": "roo-code.accountButtonClicked",
 					"group": "navigation@6",
-					"when": "activeWebviewPanelId == roo-cline.TabPanelProvider && config.roo-cline.rooCodeCloudEnabled"
+					"when": "activeWebviewPanelId == roo-code.TabPanelProvider && config.roo-code.rooCodeCloudEnabled"
 				},
 				{
-					"command": "roo-cline.settingsButtonClicked",
+					"command": "roo-code.settingsButtonClicked",
 					"group": "navigation@7",
-					"when": "activeWebviewPanelId == roo-cline.TabPanelProvider"
+					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
 				}
 			]
 		},
 		"submenus": [
 			{
-				"id": "roo-cline.contextMenu",
+				"id": "roo-code.contextMenu",
 				"label": "%views.contextMenu.label%"
 			},
 			{
-				"id": "roo-cline.terminalMenu",
+				"id": "roo-code.terminalMenu",
 				"label": "%views.terminalMenu.label%"
 			}
 		],
 		"configuration": {
 			"title": "%configuration.title%",
 			"properties": {
-				"roo-cline.allowedCommands": {
+				"roo-code.allowedCommands": {
 					"type": "array",
 					"items": {
 						"type": "string"
@@ -321,7 +325,7 @@
 					],
 					"description": "%commands.allowedCommands.description%"
 				},
-				"roo-cline.vsCodeLmModelSelector": {
+				"roo-code.vsCodeLmModelSelector": {
 					"type": "object",
 					"properties": {
 						"vendor": {
@@ -335,12 +339,12 @@
 					},
 					"description": "%settings.vsCodeLmModelSelector.description%"
 				},
-				"roo-cline.customStoragePath": {
+				"roo-code.customStoragePath": {
 					"type": "string",
 					"default": "",
 					"description": "%settings.customStoragePath.description%"
 				},
-				"roo-cline.rooCodeCloudEnabled": {
+				"roo-code.rooCodeCloudEnabled": {
 					"type": "boolean",
 					"default": false,
 					"description": "%settings.rooCodeCloudEnabled.description%"
@@ -352,7 +356,7 @@
 		"lint": "eslint . --ext=ts --max-warnings=0",
 		"check-types": "tsc --noEmit",
 		"pretest": "turbo run bundle --cwd ..",
-		"test": "jest -w=40% && vitest run",
+		"test": "jest -w=40% --verbose && vitest run",
 		"format": "prettier --write .",
 		"bundle": "node esbuild.mjs",
 		"vscode:prepublish": "pnpm bundle --production",
@@ -370,12 +374,12 @@
 		"@aws-sdk/credential-providers": "^3.806.0",
 		"@google/genai": "^1.0.0",
 		"@mistralai/mistralai": "^1.3.6",
-		"@modelcontextprotocol/sdk": "^1.9.0",
+		"@modelcontextprotocol/sdk": "^1.12.1",
+		"@qdrant/js-client-rest": "^1.14.0",
 		"@roo-code/cloud": "workspace:^",
 		"@roo-code/ipc": "workspace:^",
 		"@roo-code/telemetry": "workspace:^",
 		"@roo-code/types": "workspace:^",
-		"@qdrant/js-client-rest": "^1.14.0",
 		"@types/lodash.debounce": "^4.0.9",
 		"@vscode/codicons": "^0.0.36",
 		"async-mutex": "^0.5.0",

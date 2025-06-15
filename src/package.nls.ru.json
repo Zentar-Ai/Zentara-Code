@@ -1,10 +1,9 @@
 {
-	"extension.displayName": "Roo Code (ранее Roo Cline)",
-	"extension.description": "Целая команда ИИ-разработчиков в вашем редакторе.",
+	"extension.displayName": "Roo Code",
+	"extension.description": "Агент кода динамической отладки времени выполнения",
 	"views.contextMenu.label": "Roo Code",
 	"views.terminalMenu.label": "Roo Code",
 	"views.activitybar.title": "Roo Code",
-	"views.sidebar.name": "Roo Code",
 	"command.newTask.title": "Новая задача",
 	"command.mcpServers.title": "MCP серверы",
 	"command.prompts.title": "Режимы",

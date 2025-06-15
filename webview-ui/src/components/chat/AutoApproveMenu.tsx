@@ -26,6 +26,7 @@ const AutoApproveMenu = ({ style }: AutoApproveMenuProps) => {
 		alwaysAllowSubtasks,
 		alwaysApproveResubmit,
 		allowedMaxRequests,
+		alwaysAllowDebug,
 		setAlwaysAllowReadOnly,
 		setAlwaysAllowWrite,
 		setAlwaysAllowExecute,
@@ -35,6 +36,7 @@ const AutoApproveMenu = ({ style }: AutoApproveMenuProps) => {
 		setAlwaysAllowSubtasks,
 		setAlwaysApproveResubmit,
 		setAllowedMaxRequests,
+		setAlwaysAllowDebug,
 	} = useExtensionState()
 
 	const { t } = useAppTranslation()
@@ -68,6 +70,9 @@ const AutoApproveMenu = ({ style }: AutoApproveMenuProps) => {
 				case "alwaysApproveResubmit":
 					setAlwaysApproveResubmit(value)
 					break
+				case "alwaysAllowDebug":
+					setAlwaysAllowDebug(value)
+					break
 			}
 		},
 		[
@@ -79,6 +84,7 @@ const AutoApproveMenu = ({ style }: AutoApproveMenuProps) => {
 			setAlwaysAllowModeSwitch,
 			setAlwaysAllowSubtasks,
 			setAlwaysApproveResubmit,
+			setAlwaysAllowDebug,
 		],
 	)
 
@@ -94,6 +100,7 @@ const AutoApproveMenu = ({ style }: AutoApproveMenuProps) => {
 			alwaysAllowModeSwitch: alwaysAllowModeSwitch,
 			alwaysAllowSubtasks: alwaysAllowSubtasks,
 			alwaysApproveResubmit: alwaysApproveResubmit,
+			alwaysAllowDebug: alwaysAllowDebug,
 		}),
 		[
 			alwaysAllowReadOnly,
@@ -104,6 +111,7 @@ const AutoApproveMenu = ({ style }: AutoApproveMenuProps) => {
 			alwaysAllowModeSwitch,
 			alwaysAllowSubtasks,
 			alwaysApproveResubmit,
+			alwaysAllowDebug,
 		],
 	)
 

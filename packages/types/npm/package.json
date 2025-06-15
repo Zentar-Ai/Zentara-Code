@@ -10,12 +10,12 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/RooCodeInc/Roo-Code.git"
+		"url": "git+https://github.com/Zentar-Ai/roo-code.git"
 	},
 	"bugs": {
-		"url": "https://github.com/RooCodeInc/Roo-Code/issues"
+		"url": "https://github.com/Zentar-Ai/Roo-Code/issues"
 	},
-	"homepage": "https://github.com/RooCodeInc/Roo-Code/tree/main/packages/types",
+	"homepage": "https://github.com/Zentar-Ai/Roo-Codetree/main/packages/types",
 	"keywords": [
 		"roo",
 		"roo-code",

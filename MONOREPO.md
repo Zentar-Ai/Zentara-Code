@@ -1,6 +1,6 @@
 # Monorepo Guide
 
-Roo Code has transitioned to a monorepo powered by [PNPM workspaces](https://pnpm.io/workspaces) and [Turborepo](https://turborepo.com).
+roo Code has transitioned to a monorepo powered by [PNPM workspaces](https://pnpm.io/workspaces) and [Turborepo](https://turborepo.com).
 
 When you first pull down the monorepo changes from git you'll need to re-install all packages using pnpm. You can install pnpm using [these](https://pnpm.io/installation) instructions. If you're on MacOS the easiest option is to use Homebrew:
 
@@ -65,9 +65,9 @@ build:
 - `@roo-code/webview-ui` [input: src, package.json, tsconfig.json, vite.config.ts | output: ../src/webview-ui]
 
 bundle:
+- `roo-code` [input: * | output: dist]
 
-- `roo-cline` [input: * | output: dist]
 
 vsix:
 
-- `roo-cline` [input: dist | output: bin]
+- `roo-code` [input: dist | output: bin]

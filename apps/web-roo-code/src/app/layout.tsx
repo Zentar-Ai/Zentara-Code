@@ -11,11 +11,11 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-	title: "Roo Code – Your AI-Powered Dev Team in VS Code",
+	title: "Roo Code – Runtime debugging Code Agent",
 	description:
-		"Roo Code puts an entire AI dev team right in your editor, outpacing closed tools with deep project-wide context, multi-step agentic coding, and unmatched developer-centric flexibility.",
+		"Roo Code, a runtime debugging agent for most languages. It provides real-time insights into your code execution, helping you debug and optimize your applications efficiently.",
 	alternates: {
-		canonical: "https://roocode.com",
+		canonical: "https://zentar.ai",
 	},
 	icons: {
 		icon: [
@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			</head>
 			<body className={inter.className}>
 				<div itemScope itemType="https://schema.org/WebSite">
-					<link itemProp="url" href="https://roocode.com" />
+					<link itemProp="url" href="https://zentar.ai" />
 					<meta itemProp="name" content="Roo Code" />
 				</div>
 				<Providers>

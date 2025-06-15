@@ -43,4 +43,11 @@ logs
 .idea/
 .qodo/
 .vercel
+# compiled files
+*.pyc
+testdata/*.debug.js
+src/**/*.js
+src/**/*.js.map
+scripts/*.mjs
+scripts/*.mjs.map
 .roo/mcp.json

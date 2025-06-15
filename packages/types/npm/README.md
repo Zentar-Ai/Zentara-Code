@@ -9,8 +9,8 @@ To use this API in your extension:
 
 ```typescript
 import { RooCodeAPI } from "@roo-code/types"
+const extension = vscode.extensions.getExtension<RooCodeAPI>("ZentarAI.roo-code")
 
-const extension = vscode.extensions.getExtension<RooCodeAPI>("RooVeterinaryInc.roo-cline")
 
 if (!extension?.isActive) {
 	throw new Error("Extension is not activated")
@@ -38,10 +38,10 @@ await api.pressPrimaryButton()
 await api.pressSecondaryButton()
 ```
 
-**NOTE:** To ensure that the `RooVeterinaryInc.roo-cline` extension is activated before your extension, add it to the `extensionDependencies` in your `package.json`:
+**NOTE:** To ensure that the `ZentarAI.roo-code` extension is activated before your extension, add it to the `extensionDependencies` in your `package.json`:
 
 ```json
-"extensionDependencies": ["RooVeterinaryInc.roo-cline"]
+"extensionDependencies": ["ZentarAI.roo-code"]
 ```
 
 For detailed information on the available methods and their usage, refer to the `roo-code.d.ts` file.

@@ -28,9 +28,9 @@
 <img src="https://media.githubusercontent.com/media/RooCodeInc/Roo-Code/main/src/assets/docs/demo.gif" width="100%" />
 </p>
 
-<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline" target="_blank"><img src="https://img.shields.io/badge/VS%20Marketplace%20पर%20डाउनलोड%20करें-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="VS Marketplace पर डाउनलोड करें"></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-code" target="_blank"><img src="https://img.shields.io/badge/VS%20Marketplace%20पर%20डाउनलोड%20करें-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="VS Marketplace पर डाउनलोड करें"></a>
 <a href="https://github.com/RooCodeInc/Roo-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop" target="_blank"><img src="https://img.shields.io/badge/फीचर%20अनुरोध-yellow?style=for-the-badge" alt="फीचर अनुरोध"></a>
-<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline&ssr=false#review-details" target="_blank"><img src="https://img.shields.io/badge/रेट%20%26%20समीक्षा-green?style=for-the-badge" alt="रेट & समीक्षा"></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-code&ssr=false#review-details" target="_blank"><img src="https://img.shields.io/badge/रेट%20%26%20समीक्षा-green?style=for-the-badge" alt="रेट & समीक्षा"></a>
 <a href="https://docs.roocode.com" target="_blank"><img src="https://img.shields.io/badge/दस्तावेज़ीकरण-6B46C1?style=for-the-badge&logo=readthedocs&logoColor=white" alt="दस्तावेज़ीकरण"></a>
 
 </div>
@@ -157,7 +157,7 @@ npm run build
 `bin/` डायरेक्टरी में एक `.vsix` फ़ाइल दिखाई देगी जिसे इस कमांड से इंस्टॉल किया जा सकता है:
 
 ```sh
-code --install-extension bin/roo-cline-<version>.vsix
+code --install-extension bin/roo-code-<version>.vsix
 ```
 
 वर्जनिंग और पब्लिशिंग के लिए हम [changesets](https://github.com/changesets/changesets) का उपयोग करते हैं। रिलीज नोट्स के लिए हमारी `CHANGELOG.md` देखें।

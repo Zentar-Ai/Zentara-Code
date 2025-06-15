@@ -413,7 +413,7 @@ export default async function Enterprise() {
 						<div className="mt-8">
 							<Button variant="outline" size="lg">
 								<a
-									href="mailto:enterprise@roocode.com?subject=Enterprise Guide Request"
+									href="mailto:enterprise@zentar.ai?subject=Enterprise Guide Request"
 									className="flex items-center justify-center">
 									Download the Enterprise Guide
 								</a>

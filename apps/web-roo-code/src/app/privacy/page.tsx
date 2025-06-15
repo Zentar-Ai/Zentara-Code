@@ -22,7 +22,7 @@ export default function Privacy() {
 						marketing website. For details on how your data is handled within the Roo Code extension itself,
 						please refer to our separate{" "}
 						<a
-							href="https://github.com/RooCodeInc/Roo-Code/blob/main/PRIVACY.md"
+							href="https://github.com/Zentar-Ai/Roo-Codeblob/main/PRIVACY.md"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="text-primary hover:underline">
@@ -127,8 +127,8 @@ export default function Privacy() {
 						<li>
 							You may request the deletion of any personal data you&apos;ve provided through our marketing
 							forms by reaching out to us at{" "}
-							<a href="mailto:support@roocode.com" className="text-primary hover:underline">
-								support@roocode.com
+							<a href="mailto:support@zentar.ai" className="text-primary hover:underline">
+								support@zentar.ai
 							</a>
 							.
 						</li>
@@ -150,8 +150,8 @@ export default function Privacy() {
 					<p>
 						If you have questions or concerns about this Privacy Policy or wish to make a request regarding
 						your data, please reach out to us at{" "}
-						<a href="mailto:support@roocode.com" className="text-primary hover:underline">
-							support@roocode.com
+						<a href="mailto:support@zentar.ai" className="text-primary hover:underline">
+							support@zentar.ai
 						</a>
 						.
 					</p>
@@ -161,7 +161,7 @@ export default function Privacy() {
 							By using the Roo Code marketing landing page, you agree to this Privacy Policy. If you use
 							the Roo Code extension, please see our separate{" "}
 							<a
-								href="https://github.com/RooCodeInc/Roo-Code/blob/main/PRIVACY.md"
+								href="https://github.com/Zentar-Ai/Roo-Codeblob/main/PRIVACY.md"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="text-primary hover:underline">

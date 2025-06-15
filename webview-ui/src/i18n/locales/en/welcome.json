@@ -1,6 +1,6 @@
 {
 	"greeting": "Hi, I'm Roo!",
-	"introduction": "<strong>Roo Code is the premiere autonomous coding agent.</strong> Get ready to architect, code, debug, and boost your productivity like you've never seen before. To continue, Roo Code requires an API key.",
+	"introduction": "<strong> Roo Code (a fork of Roo Code) is the runtime aware debugging code agent.</strong> Get ready to architect, code, debug, and boost your productivity like you've never seen before. To continue, Roo Code requires an API key.",
 	"notice": "To get started, this extension needs an API provider.",
 	"start": "Let's go!",
 	"chooseProvider": "Choose an API provider to get started:",

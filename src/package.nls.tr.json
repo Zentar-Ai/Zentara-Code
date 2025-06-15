@@ -1,6 +1,6 @@
 {
-	"extension.displayName": "Roo Code (önceden Roo Cline)",
-	"extension.description": "Düzenleyicinde tam bir AI ajanları geliştirme ekibi.",
+	"extension.displayName": "Roo Code",
+	"extension.description": "Dinamik çalışma zamanı hata ayıklama kod aracısı",
 	"command.newTask.title": "Yeni Görev",
 	"command.explainCode.title": "Kodu Açıkla",
 	"command.fixCode.title": "Kodu Düzelt",
@@ -16,7 +16,6 @@
 	"views.activitybar.title": "Roo Code",
 	"views.contextMenu.label": "Roo Code",
 	"views.terminalMenu.label": "Roo Code",
-	"views.sidebar.name": "Roo Code",
 	"command.mcpServers.title": "MCP Sunucuları",
 	"command.prompts.title": "Modlar",
 	"command.history.title": "Geçmiş",

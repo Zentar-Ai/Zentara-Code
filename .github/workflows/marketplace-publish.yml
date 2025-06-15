@@ -39,7 +39,7 @@ jobs:
           pnpm vsix
 
           # Save VSIX contents to a temporary file to avoid broken pipe issues.
-          unzip -l bin/roo-cline-${current_package_version}.vsix > /tmp/roo-code-vsix-contents.txt
+          unzip -l bin/roo-code-${current_package_version}.vsix > /tmp/roo-code-vsix-contents.txt
 
           # Check for required files.
           grep -q "extension/package.json" /tmp/roo-code-vsix-contents.txt || exit 1
@@ -65,7 +65,7 @@ jobs:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
         run: |
           current_package_version=$(node -p "require('./src/package.json').version")
-          pnpm --filter roo-cline publish:marketplace
+          pnpm --filter roo-code publish:marketplace
           echo "Successfully published version $current_package_version to VS Code Marketplace"
       - name: Create GitHub Release
         env:
@@ -90,5 +90,5 @@ jobs:
             --title "Release v${current_package_version}" \
             --notes "$changelog_content" \
             --target ${{ env.GIT_REF }} \
-            bin/roo-cline-${current_package_version}.vsix
+            bin/roo-code-${current_package_version}.vsix
           echo "Successfully created GitHub Release v${current_package_version}"

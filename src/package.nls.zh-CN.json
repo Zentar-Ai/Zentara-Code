@@ -1,6 +1,6 @@
 {
-	"extension.displayName": "Roo Code (原名 Roo Cline)",
-	"extension.description": "在你的编辑器中提供完整的 AI 代理开发团队。",
+	"extension.displayName": "Roo Code",
+	"extension.description": "一个动态运行时调试代码代理",
 	"command.newTask.title": "新建任务",
 	"command.explainCode.title": "解释代码",
 	"command.fixCode.title": "修复代码",
@@ -16,7 +16,6 @@
 	"views.activitybar.title": "Roo Code",
 	"views.contextMenu.label": "Roo Code",
 	"views.terminalMenu.label": "Roo Code",
-	"views.sidebar.name": "Roo Code",
 	"command.mcpServers.title": "MCP 服务器",
 	"command.prompts.title": "模式",
 	"command.history.title": "历史记录",

@@ -81,7 +81,7 @@
 	"scrollToBottom": "Scroll to bottom of chat",
 	"about": "Generate, refactor, and debug code with AI assistance. Check out our <DocsLink>documentation</DocsLink> to learn more.",
 	"onboarding": "Your task list in this workspace is empty.",
-	"rooTips": {
+	"RooTips": {
 		"boomerangTasks": {
 			"title": "Boomerang Tasks",
 			"description": "Split tasks into smaller, manageable parts"
@@ -229,13 +229,13 @@
 	},
 	"announcement": {
 		"title": "🎉 Roo Code {{version}} Released",
-		"description": "Roo Code {{version}} brings major new features and improvements based on your feedback.",
+		"description": "Roo Code {{version}} , the first comprehensive open-source runtime debugging AI coder, is now available! This release introduces several powerful features to enhance your coding experience.",
 		"whatsNew": "What's New",
-		"feature1": "<bold>Experimental Marketplace</bold>: Discover and install modes and MCPs from the new marketplace (enable in <experimentalSettingsLink>Experimental Settings</experimentalSettingsLink>)",
-		"feature2": "<bold>Enhanced File Operations</bold>: Multiple concurrent file writes in experimental settings, and concurrent reads now in <contextSettingsLink>Context Settings</contextSettingsLink>",
-		"feature3": "<bold>MCP Improvements & More</bold>: Enhanced MCP support, Mermaid controls, Amazon Bedrock thinking support, and much more!",
-		"hideButton": "Hide announcement",
-		"detailsDiscussLinks": "Get more details and discuss in <discordLink>Discord</discordLink> and <redditLink>Reddit</redditLink> 🚀"
+		"feature1": "<bold>Runtime Interactive Debugging</bold>: Roo code can interactively debug your code in runtime, allowing you to inspect variables, step through code, and fix issues on the fly.",
+		"feature2": "<bold>Catch Exceptions </bold>: Context condensing is now enabled by default with configurable settings for when automatic condensing happens",
+		"feature3": "<bold>Manual Condensing Button</bold>: New button in the task header allows you to manually trigger context condensing at any time",
+		"feature4": "<bold>Enhanced Condensing Settings</bold>: Fine-tune when and how automatic condensing occurs through the <contextSettingsLink>Context Settings</contextSettingsLink>",
+		"hideButton": "Hide announcement"
 	},
 	"reasoning": {
 		"thinking": "Thinking",
@@ -245,7 +245,7 @@
 		"copyToInput": "Copy to input (same as shift + click)"
 	},
 	"browser": {
-		"rooWantsToUse": "Roo wants to use the browser:",
+		"RooWantsToUse": "Roo wants to use the browser:",
 		"consoleLogs": "Console Logs",
 		"noNewLogs": "(No new logs)",
 		"screenshot": "Browser screenshot",
@@ -287,6 +287,10 @@
 			"title": "Auto-Approved Request Limit Reached",
 			"description": "Roo has reached the auto-approved limit of {{count}} API request(s). Would you like to reset the count and proceed with the task?",
 			"button": "Reset and Continue"
+		},
+		"debug": {
+			"wantsToExecute": "Roo wants to execute debug operation: {{operation}}",
+			"operation": "{{operation}}"
 		}
 	},
 	"indexingStatus": {

@@ -16,7 +16,7 @@ const readFileAsync = promisify(fs.readFile)
 const writeFileAsync = promisify(fs.writeFile)
 
 // GitHub API URL for fetching contributors
-const GITHUB_API_URL = "https://api.github.com/repos/RooCodeInc/Roo-Code/contributors?per_page=100"
+const GITHUB_API_URL = "https://api.github.com/repos/Zentar-Ai/Roo-Codecontributors?per_page=100"
 const README_PATH = path.join(__dirname, "..", "README.md")
 const LOCALES_DIR = path.join(__dirname, "..", "locales")
 
@@ -27,7 +27,7 @@ const END_MARKER = "<!-- END CONTRIBUTORS SECTION -->"
 // HTTP options for GitHub API request
 const options = {
 	headers: {
-		"User-Agent": "Roo-Code-Contributors-Script",
+		"User-Agent": "roo-code-Contributors-Script",
 	},
 }
 

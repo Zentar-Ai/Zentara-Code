@@ -9,7 +9,7 @@ import type { FileMetadataEntry, RecordSource, TaskMetadata } from "./FileContex
 import { ClineProvider } from "../webview/ClineProvider"
 
 // This class is responsible for tracking file operations that may result in stale context.
-// If a user modifies a file outside of Roo, the context may become stale and need to be updated.
+// If a user modifies a file outside of Roo the context may become stale and need to be updated.
 // We do not want Roo to reload the context every time a file is modified, so we use this class merely
 // to inform Roo that the change has occurred, and tell Roo to reload the file before making
 // any changes to it. This fixes an issue with diff editing, where Roo was unable to complete a diff edit.
@@ -18,7 +18,7 @@ import { ClineProvider } from "../webview/ClineProvider"
 //
 // This class is responsible for tracking file operations.
 // If the full contents of a file are passed to Roo via a tool, mention, or edit, the file is marked as active.
-// If a file is modified outside of Roo, we detect and track this change to prevent stale context.
+// If a file is modified outside of Roo we detect and track this change to prevent stale context.
 export class FileContextTracker {
 	readonly taskId: string
 	private providerRef: WeakRef<ClineProvider>
@@ -64,7 +64,7 @@ export class FileContextTracker {
 		// Track file changes
 		watcher.onDidChange(() => {
 			if (this.recentlyEditedByRoo.has(filePath)) {
-				this.recentlyEditedByRoo.delete(filePath) // This was an edit by Roo, no need to inform Roo
+				this.recentlyEditedByRoo.delete(filePath) // This was an edit by Roo no need to inform Roo
 			} else {
 				this.recentlyModifiedFiles.add(filePath) // This was a user edit, we will inform Roo
 				this.trackFileContext(filePath, "user_edited") // Update the task metadata with file tracking

@@ -28,9 +28,9 @@
 <img src="https://media.githubusercontent.com/media/RooCodeInc/Roo-Code/main/src/assets/docs/demo.gif" width="100%" />
 </p>
 
-<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline" target="_blank"><img src="https://img.shields.io/badge/VS%20Marketplace%E3%81%A7%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="VS Marketplaceでダウンロード"></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-code" target="_blank"><img src="https://img.shields.io/badge/VS%20Marketplace%E3%81%A7%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="VS Marketplaceでダウンロード"></a>
 <a href="https://github.com/RooCodeInc/Roo-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop" target="_blank"><img src="https://img.shields.io/badge/%E6%A9%9F%E8%83%BD%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88-yellow?style=for-the-badge" alt="機能リクエスト"></a>
-<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline&ssr=false#review-details" target="_blank"><img src="https://img.shields.io/badge/%E8%A9%95%E4%BE%A1%E3%81%A8%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC-green?style=for-the-badge" alt="評価とレビュー"></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-code&ssr=false#review-details" target="_blank"><img src="https://img.shields.io/badge/%E8%A9%95%E4%BE%A1%E3%81%A8%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC-green?style=for-the-badge" alt="評価とレビュー"></a>
 <a href="https://docs.roocode.com" target="_blank"><img src="https://img.shields.io/badge/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3-6B46C1?style=for-the-badge&logo=readthedocs&logoColor=white" alt="ドキュメンテーション"></a>
 
 </div>
@@ -157,7 +157,7 @@ npm run build
 `bin/`ディレクトリに`.vsix`ファイルが作成され、次のコマンドでインストールできます：
 
 ```sh
-code --install-extension bin/roo-cline-<version>.vsix
+code --install-extension bin/roo-code-<version>.vsix
 ```
 
 バージョン管理と公開には[changesets](https://github.com/changesets/changesets)を使用しています。リリースノートについては`CHANGELOG.md`をご確認ください。

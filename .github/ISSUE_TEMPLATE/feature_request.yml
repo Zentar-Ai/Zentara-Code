@@ -7,17 +7,16 @@ body:
       value: |
         **Thank you for proposing a feature for Roo Code!**
         
-        This template is for specific, actionable proposals following our [Issue-First Approach](https://github.com/RooCodeInc/Roo-Code/blob/main/CONTRIBUTING.md).
+        This template is for specific, actionable proposals following our [Issue-First Approach](https://github.com/Zentar-Ai/Roo-Code/blob/main/CONTRIBUTING.md).
         
         **Quality over speed:** We prefer detailed, clear proposals over quick ones. Vague proposals often get closed or require multiple rounds of clarification, which wastes everyone's time.
         
         **Before submitting:**
-        - Search existing [Issues](https://github.com/RooCodeInc/Roo-Code/issues) and [Discussions](https://github.com/RooCodeInc/Roo-Code/discussions) to avoid duplicates
-        - For general ideas, use [GitHub Discussions](https://github.com/RooCodeInc/Roo-Code/discussions/categories/feature-requests) first, or use the #collaboration-board channel in our [Discord](https://discord.gg/roocode)
-        - Join [Discord](https://discord.gg/roocode) and DM **Hannes Rudolph** (`hrudolph`) for guidance
-        
-        **Review process:** A maintainer (especially @hannesrudolph) will review this proposal. **Do not start implementation until approved and assigned.** We're a small team with limited resources, so every code addition needs careful consideration. We're always happy to receive clear, actionable proposals though!
+        - Search existing [Issues](https://github.com/Zentar-Ai/Roo-Code/issues) and [Discussions](https://github.com/Zentar-Ai/Roo-Code/discussions) to avoid duplicates
+        - For general ideas, use [GitHub Discussions](https://github.com/Zentar-Ai/Roo-Code/discussions/categories/feature-requests) first
 
+        
+       
   - type: markdown
     attributes:
       value: |
@@ -27,8 +26,7 @@ body:
         - **Missing user impact:** "This would be cool" -> Should explain who benefits and how
         - **No acceptance criteria:** How do we know when it's done? What does success look like?
 
-        If you're unsure how a good proposal should look like, you can check out our [Roadmap](https://github.com/orgs/RooCodeInc/projects/1/views/1?query=sort%3Aupdated-desc+is%3Aopen&filterQuery=is%3Aissue%2Copen%2Cclosed+label%3A%22feature+request%22+status%3A%22Issue+%5BUnassigned%5D%22%2C%22Issue+%5BIn+Progress%5D%22) where we have a list of all open feature requests that are ready to be implemented or currently being worked on.
-
+        
   - type: textarea
     id: problem-description
     attributes:

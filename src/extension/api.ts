@@ -98,7 +98,7 @@ export class API extends EventEmitter<RooCodeEvents> implements RooCodeAPI {
 		images,
 		newTab,
 	}: {
-		configuration: RooCodeSettings
+		configuration?: RooCodeSettings // Made configuration optional to match interface
 		text?: string
 		images?: string[]
 		newTab?: boolean

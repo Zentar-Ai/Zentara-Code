@@ -1,138 +1,85 @@
-<div align="center">
-<sub>
-
-<b>English</b> • [Català](locales/ca/CONTRIBUTING.md) • [Deutsch](locales/de/CONTRIBUTING.md) • [Español](locales/es/CONTRIBUTING.md) • [Français](locales/fr/CONTRIBUTING.md) • [हिंदी](locales/hi/CONTRIBUTING.md) • [Bahasa Indonesia](locales/id/CONTRIBUTING.md) • [Italiano](locales/it/CONTRIBUTING.md) • [日本語](locales/ja/CONTRIBUTING.md)
-
-</sub>
-<sub>
-
-[한국어](locales/ko/CONTRIBUTING.md) • [Nederlands](locales/nl/CONTRIBUTING.md) • [Polski](locales/pl/CONTRIBUTING.md) • [Português (BR)](locales/pt-BR/CONTRIBUTING.md) • [Русский](locales/ru/CONTRIBUTING.md) • [Türkçe](locales/tr/CONTRIBUTING.md) • [Tiếng Việt](locales/vi/CONTRIBUTING.md) • [简体中文](locales/zh-CN/CONTRIBUTING.md) • [繁體中文](locales/zh-TW/CONTRIBUTING.md)
-
-</sub>
-</div>
-
 # Contributing to Roo Code
 
-Roo Code is a community-driven project, and we deeply value every contribution. To streamline collaboration, we operate on an [Issue-First](#issue-first-approach) basis, meaning all [Pull Requests (PRs)](#submitting-a-pull-request) must first be linked to a GitHub Issue. Please review this guide carefully.
+First off, thank you for considering contributing to Roo Code! It's people like you that make open source such a great community.
 
-## Table of Contents
+## Where do I go from here?
 
-- [Before You Contribute](#before-you-contribute)
-- [Finding & Planning Your Contribution](#finding--planning-your-contribution)
-- [Development & Submission Process](#development--submission-process)
-- [Legal](#legal)
+If you've noticed a bug or have a feature request, [make one](https://github.com/your-username/roo-code/issues/new/choose)! (Replace `your-username/roo-code` with your actual GitHub repository path). It's generally best if you get confirmation of your bug or approval for your feature request this way before starting to code.
 
-## Before You Contribute
+If you have a general question, you can also open an issue.
 
-### 1. Code of Conduct
+## Fork & create a branch
 
-All contributors must adhere to our [Code of Conduct](./CODE_OF_CONDUCT.md).
+If this is something you think you can fix, then [fork Roo Code](https://github.com/your-username/roo-code/fork) and create a branch with a descriptive name.
 
-### 2. Project Roadmap
+A good branch name would be (where issue #325 is the ticket you're working on):
 
-Our roadmap guides the project's direction. Align your contributions with these key goals:
-
-### Reliability First
-
-- Ensure diff editing and command execution are consistently reliable.
-- Reduce friction points that deter regular usage.
-- Guarantee smooth operation across all locales and platforms.
-- Expand robust support for a wide variety of AI providers and models.
-
-### Enhanced User Experience
-
-- Streamline the UI/UX for clarity and intuitiveness.
-- Continuously improve the workflow to meet the high expectations developers have for daily-use tools.
-
-### Leading on Agent Performance
-
-- Establish comprehensive evaluation benchmarks (evals) to measure real-world productivity.
-- Make it easy for everyone to easily run and interpret these evals.
-- Ship improvements that demonstrate clear increases in eval scores.
-
-Mention alignment with these areas in your PRs.
-
-### 3. Join the Roo Code Community
-
-- **Primary:** Join our [Discord](https://discord.gg/roocode) and DM **Hannes Rudolph (`hrudolph`)**.
-- **Alternative:** Experienced contributors can engage directly via [GitHub Projects](https://github.com/orgs/RooCodeInc/projects/1).
-
-## Finding & Planning Your Contribution
-
-### Types of Contributions
-
-- **Bug Fixes:** Addressing code issues.
-- **New Features:** Adding functionality.
-- **Documentation:** Improving guides and clarity.
-
-### Issue-First Approach
-
-All contributions must begin with a GitHub Issue.
-
-- **Check existing issues**: Search [GitHub Issues](https://github.com/RooCodeInc/Roo-Code/issues).
-- **Create an issue**: Use appropriate templates:
-    - **Bugs:** "Bug Report" template.
-    - **Features:** "Detailed Feature Proposal" template. Approval required before starting.
-- **Claim issues**: Comment and await official assignment.
-
-**PRs without approved issues may be closed.**
-
-### Deciding What to Work On
-
-- Check the [GitHub Project](https://github.com/orgs/RooCodeInc/projects/1) for unassigned "Good First Issues."
-- For docs, visit [Roo Code Docs](https://github.com/RooCodeInc/Roo-Code-Docs).
-
-### Reporting Bugs
-
-- Check for existing reports first.
-- Create new bugs using the ["Bug Report" template](https://github.com/RooCodeInc/Roo-Code/issues/new/choose).
-- **Security issues**: Report privately via [security advisories](https://github.com/RooCodeInc/Roo-Code/security/advisories/new).
-
-## Development & Submission Process
-
-### Development Setup
-
-1. **Fork & Clone:**
-
-```
-git clone https://github.com/YOUR_USERNAME/Roo-Code.git
+```sh
+git checkout -b 325-add-japanese-localization
 ```
 
-2. **Install Dependencies:**
+## Get the test suite running
 
+Ensure you can get the test suite running. We value well-tested code!
+(You'll need to add specific instructions here on how to run your tests, e.g., `npm test` or `python -m unittest discover`)
+
+## Implement your fix or feature
+
+At this point, you're ready to make your changes! Feel free to ask for help; everyone is a beginner at first :smile_cat:
+
+Make sure to:
+*   Follow the coding style of the project.
+*   Run linters and formatters (e.g., Prettier, ESLint). (Add specific commands if available)
+*   Add tests for your changes.
+
+## Make a Pull Request
+
+At this point, you should switch back to your master branch and make sure it's up to date with Roo Code's master branch:
+
+```sh
+git remote add upstream git@github.com:your-username/roo-code.git
+git checkout master
+git pull upstream master
 ```
-pnpm install
+
+Then update your feature branch from your local copy of master, and push it!
+
+```sh
+git checkout 325-add-japanese-localization
+git rebase master
+git push --force-with-lease origin 325-add-japanese-localization
 ```
 
-3. **Debugging:** Open with VS Code (`F5`).
+Finally, go to GitHub and [make a Pull Request](https://github.com/your-username/roo-code/compare) :D
 
-### Writing Code Guidelines
+### Pull Request Template
 
-- One focused PR per feature or fix.
-- Follow ESLint and TypeScript best practices.
-- Write clear, descriptive commits referencing issues (e.g., `Fixes #123`).
-- Provide thorough testing (`npm test`).
-- Rebase onto the latest `main` branch before submission.
+When you open a Pull Request, please use the following template:
 
-### Submitting a Pull Request
+```markdown
+### Linked Issue(s)
 
-- Begin as a **Draft PR** if seeking early feedback.
-- Clearly describe your changes following the Pull Request Template.
-- Provide screenshots/videos for UI changes.
-- Indicate if documentation updates are necessary.
+* Closes # (issue number)
 
-### Pull Request Policy
+### Description
 
-- Must reference pre-approved, assigned issues.
-- PRs without adherence to the policy may be closed.
-- PRs should pass CI tests, align with the roadmap, and have clear documentation.
+(Provide a brief description of the changes in this PR.)
 
-### Review Process
+### Checklist
 
-- **Daily Triage:** Quick checks by maintainers.
-- **Weekly In-depth Review:** Comprehensive assessment.
-- **Iterate promptly** based on feedback.
+- [ ] I have read the [CONTRIBUTING.md](CONTRIBUTING.md) document.
+- [ ] I have added tests to cover my changes.
+- [ ] All new and existing tests passed.
+- [ ] I have updated the documentation accordingly.
+- [ ] I have rebased my branch onto the latest `master` commit.
+- [ ] My code follows the project's coding style.
+- [ ] I have run linters and fixed all issues.
+```
 
-## Legal
+## Code of Conduct
 
-By contributing, you agree your contributions will be licensed under the Apache 2.0 License, consistent with Roo Code's licensing.
+This project and everyone participating in it is governed by the [Roo Code Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [INSERT CONTACT METHOD IN CODE_OF_CONDUCT.MD].
+
+## Licensing
+
+By contributing, you agree that your contributions will be licensed under the Apache License 2.0, as found in the [LICENSE](LICENSE) file.
