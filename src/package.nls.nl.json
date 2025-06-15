@@ -1,10 +1,10 @@
 {
-	"extension.displayName": "Roo Code (voorheen Roo Code)",
+	"extension.displayName": "Zentara Code (voorheen Zentara Code)",
 	"extension.description": "Een compleet ontwikkelteam van AI-agents in je editor.",
-	"views.contextMenu.label": "Roo Code",
-	"views.terminalMenu.label": "Roo Code",
-	"views.activitybar.title": "Roo Code",
-	"views.sidebar.name": "Roo Code",
+	"views.contextMenu.label": "Zentara Code",
+	"views.terminalMenu.label": "Zentara Code",
+	"views.activitybar.title": "Zentara Code",
+	"views.sidebar.name": "Zentara Code",
 	"command.newTask.title": "Nieuwe Taak",
 	"command.mcpServers.title": "MCP Servers",
 	"command.prompts.title": "Modi",
@@ -24,11 +24,11 @@
 	"command.terminal.fixCommand.title": "Repareer Dit Commando",
 	"command.terminal.explainCommand.title": "Leg Dit Commando Uit",
 	"command.acceptInput.title": "Invoer/Suggestie Accepteren",
-	"configuration.title": "Roo Code",
+	"configuration.title": "Zentara Code",
 	"commands.allowedCommands.description": "Commando's die automatisch kunnen worden uitgevoerd wanneer 'Altijd goedkeuren uitvoerbewerkingen' is ingeschakeld",
 	"settings.vsCodeLmModelSelector.description": "Instellingen voor VSCode Language Model API",
 	"settings.vsCodeLmModelSelector.vendor.description": "De leverancier van het taalmodel (bijv. copilot)",
 	"settings.vsCodeLmModelSelector.family.description": "De familie van het taalmodel (bijv. gpt-4)",
-	"settings.customStoragePath.description": "Aangepast opslagpad. Laat leeg om de standaardlocatie te gebruiken. Ondersteunt absolute paden (bijv. 'D:\\RooCodeStorage')",
-	"settings.rooCodeCloudEnabled.description": "Roo Code Cloud inschakelen."
+	"settings.customStoragePath.description": "Aangepast opslagpad. Laat leeg om de standaardlocatie te gebruiken. Ondersteunt absolute paden (bijv. 'D:\\ZentaraCodeStorage')",
+	"settings.zentaraCodeCloudEnabled.description": "Zentara Code Cloud inschakelen."
 }

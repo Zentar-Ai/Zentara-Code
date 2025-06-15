@@ -1,7 +1,7 @@
 import { pgTable, text, timestamp, integer, real, boolean, jsonb, uniqueIndex } from "drizzle-orm/pg-core"
 import { relations } from "drizzle-orm"
 
-import type { RooCodeSettings, ToolName, ToolUsage } from "@roo-code/types"
+import type { ZentaraCodeSettings, ToolName, ToolUsage } from "@zentara-code/types"
 
 import type { ExerciseLanguage } from "../exercises/index.js"
 
@@ -14,7 +14,7 @@ export const runs = pgTable("runs", {
 	taskMetricsId: integer("task_metrics_id").references(() => taskMetrics.id),
 	model: text().notNull(),
 	description: text(),
-	settings: jsonb().$type<RooCodeSettings>(),
+	settings: jsonb().$type<ZentaraCodeSettings>(),
 	pid: integer(),
 	socketPath: text("socket_path").notNull(),
 	concurrency: integer().default(2).notNull(),

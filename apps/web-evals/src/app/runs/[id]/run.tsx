@@ -3,7 +3,7 @@
 import { useMemo } from "react"
 import { LoaderCircle } from "lucide-react"
 
-import type { Run, TaskMetrics as _TaskMetrics } from "@roo-code/evals"
+import type { Run, TaskMetrics as _TaskMetrics } from "@zentara-code/evals"
 
 import { formatCurrency, formatDuration, formatTokens } from "@/lib/formatters"
 import { useRunStatus } from "@/hooks/use-run-status"

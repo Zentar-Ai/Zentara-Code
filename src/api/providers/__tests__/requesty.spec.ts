@@ -59,7 +59,7 @@ describe("RequestyHandler", () => {
 			apiKey: mockOptions.requestyApiKey,
 			defaultHeaders: {
 				"HTTP-Referer": "https://zentar.ai",
-				"X-Title": "Roo Code",
+				"X-Title": "Zentara Code",
 			},
 		})
 	})

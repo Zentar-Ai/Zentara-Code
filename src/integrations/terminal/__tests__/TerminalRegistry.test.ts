@@ -18,7 +18,7 @@ jest.mock("vscode", () => ({
 		createTerminal: (...args: any[]) => {
 			mockCreateTerminal(...args)
 			return {
-				name: "Roo Code",
+				name: "Zentara Code",
 				exitStatus: undefined,
 				dispose: jest.fn(),
 				show: jest.fn(),
@@ -63,7 +63,7 @@ describe("TerminalRegistry", () => {
 
 			expect(mockCreateTerminal).toHaveBeenCalledWith({
 				cwd: "/test/path",
-				name: "Roo Code",
+				name: "Zentara Code",
 				iconPath: expect.any(Object),
 				env: {
 					PAGER,
@@ -83,7 +83,7 @@ describe("TerminalRegistry", () => {
 
 				expect(mockCreateTerminal).toHaveBeenCalledWith({
 					cwd: "/test/path",
-					name: "Roo Code",
+					name: "Zentara Code",
 					iconPath: expect.any(Object),
 					env: {
 						PAGER,
@@ -105,7 +105,7 @@ describe("TerminalRegistry", () => {
 
 				expect(mockCreateTerminal).toHaveBeenCalledWith({
 					cwd: "/test/path",
-					name: "Roo Code",
+					name: "Zentara Code",
 					iconPath: expect.any(Object),
 					env: {
 						PAGER,
@@ -126,7 +126,7 @@ describe("TerminalRegistry", () => {
 
 				expect(mockCreateTerminal).toHaveBeenCalledWith({
 					cwd: "/test/path",
-					name: "Roo Code",
+					name: "Zentara Code",
 					iconPath: expect.any(Object),
 					env: {
 						PAGER,
@@ -146,7 +146,7 @@ describe("TerminalRegistry", () => {
 
 		beforeEach(() => {
 			mockVsTerminal = {
-				name: "Roo Code",
+				name: "Zentara Code",
 				exitStatus: undefined,
 				dispose: jest.fn(),
 				show: jest.fn(),
@@ -156,12 +156,12 @@ describe("TerminalRegistry", () => {
 			mockCreateTerminal.mockReturnValue(mockVsTerminal)
 		})
 
-		// Helper function to get the created Roo terminal and its underlying VSCode terminal
+		// Helper function to get the created Zentara terminal and its underlying VSCode terminal
 		const createTerminalAndGetVsTerminal = (path: string = "/test/path") => {
-			const rooTerminal = TerminalRegistry.createTerminal(path, "vscode")
+			const zentaraTerminal = TerminalRegistry.createTerminal(path, "vscode")
 			// Get the actual VSCode terminal that was created and stored
-			const vsTerminal = (rooTerminal as any).terminal
-			return { rooTerminal, vsTerminal }
+			const vsTerminal = (zentaraTerminal as any).terminal
+			return { zentaraTerminal, vsTerminal }
 		}
 
 		it("should initialize terminal with busy = false", () => {
@@ -174,8 +174,8 @@ describe("TerminalRegistry", () => {
 			TerminalRegistry.initialize()
 
 			// Create a terminal and get the actual VSCode terminal
-			const { rooTerminal, vsTerminal } = createTerminalAndGetVsTerminal()
-			expect(rooTerminal.busy).toBe(false)
+			const { zentaraTerminal, vsTerminal } = createTerminalAndGetVsTerminal()
+			expect(zentaraTerminal.busy).toBe(false)
 
 			// Simulate shell execution start event
 			const execution = {
@@ -190,16 +190,16 @@ describe("TerminalRegistry", () => {
 				})
 			}
 
-			expect(rooTerminal.busy).toBe(true)
+			expect(zentaraTerminal.busy).toBe(true)
 		})
 
-		it("should set busy = false when shell execution ends for Roo terminals", () => {
+		it("should set busy = false when shell execution ends for Zentara terminals", () => {
 			// Initialize the registry to set up event handlers
 			TerminalRegistry.initialize()
 
 			// Create a terminal and get the actual VSCode terminal
-			const { rooTerminal, vsTerminal } = createTerminalAndGetVsTerminal()
-			rooTerminal.busy = true
+			const { zentaraTerminal, vsTerminal } = createTerminalAndGetVsTerminal()
+			zentaraTerminal.busy = true
 
 			// Set up a mock process to simulate running state
 			const mockProcess = {
@@ -207,7 +207,7 @@ describe("TerminalRegistry", () => {
 				isHot: false,
 				hasUnretrievedOutput: () => false,
 			}
-			rooTerminal.process = mockProcess as any
+			zentaraTerminal.process = mockProcess as any
 
 			// Simulate shell execution end event
 			const execution = {
@@ -222,10 +222,10 @@ describe("TerminalRegistry", () => {
 				})
 			}
 
-			expect(rooTerminal.busy).toBe(false)
+			expect(zentaraTerminal.busy).toBe(false)
 		})
 
-		it("should set busy = false when shell execution ends for non-Roo terminals (manual commands)", () => {
+		it("should set busy = false when shell execution ends for non-Zentara terminals (manual commands)", () => {
 			// Initialize the registry to set up event handlers
 			TerminalRegistry.initialize()
 
@@ -255,11 +255,11 @@ describe("TerminalRegistry", () => {
 			TerminalRegistry.initialize()
 
 			// Create a terminal and get the actual VSCode terminal
-			const { rooTerminal, vsTerminal } = createTerminalAndGetVsTerminal()
-			rooTerminal.busy = true
+			const { zentaraTerminal, vsTerminal } = createTerminalAndGetVsTerminal()
+			zentaraTerminal.busy = true
 
 			// Ensure terminal.running returns false (no active process)
-			Object.defineProperty(rooTerminal, "running", {
+			Object.defineProperty(zentaraTerminal, "running", {
 				get: () => false,
 				configurable: true,
 			})
@@ -278,7 +278,7 @@ describe("TerminalRegistry", () => {
 			}
 
 			// Should reset busy flag even when not running
-			expect(rooTerminal.busy).toBe(false)
+			expect(zentaraTerminal.busy).toBe(false)
 		})
 
 		it("should maintain busy state during command execution lifecycle", () => {
@@ -286,8 +286,8 @@ describe("TerminalRegistry", () => {
 			TerminalRegistry.initialize()
 
 			// Create a terminal and get the actual VSCode terminal
-			const { rooTerminal, vsTerminal } = createTerminalAndGetVsTerminal()
-			expect(rooTerminal.busy).toBe(false)
+			const { zentaraTerminal, vsTerminal } = createTerminalAndGetVsTerminal()
+			expect(zentaraTerminal.busy).toBe(false)
 
 			// Start execution
 			const execution = {
@@ -302,7 +302,7 @@ describe("TerminalRegistry", () => {
 				})
 			}
 
-			expect(rooTerminal.busy).toBe(true)
+			expect(zentaraTerminal.busy).toBe(true)
 
 			// Set up mock process for running state
 			const mockProcess = {
@@ -310,7 +310,7 @@ describe("TerminalRegistry", () => {
 				isHot: true,
 				hasUnretrievedOutput: () => true,
 			}
-			rooTerminal.process = mockProcess as any
+			zentaraTerminal.process = mockProcess as any
 
 			// End execution
 			if (mockEndHandler) {
@@ -321,7 +321,7 @@ describe("TerminalRegistry", () => {
 				})
 			}
 
-			expect(rooTerminal.busy).toBe(false)
+			expect(zentaraTerminal.busy).toBe(false)
 		})
 	})
 })

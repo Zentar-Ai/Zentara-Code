@@ -596,7 +596,7 @@ export const globalSettingsSchema = z.object({
 
 	maxOpenTabsContext: z.number().optional(),
 	maxWorkspaceFiles: z.number().optional(),
-	showRooIgnoredFiles: z.boolean().optional(),
+	showZentaraIgnoredFiles: z.boolean().optional(),
 	maxReadFileLine: z.number().optional(),
 
 	terminalOutputLineLimit: z.number().optional(),
@@ -675,7 +675,7 @@ const globalSettingsRecord: GlobalSettingsRecord = {
 
 	maxOpenTabsContext: undefined,
 	maxWorkspaceFiles: undefined,
-	showRooIgnoredFiles: undefined,
+	showZentaraIgnoredFiles: undefined,
 	maxReadFileLine: undefined,
 
 	terminalOutputLineLimit: undefined,
@@ -714,12 +714,12 @@ const globalSettingsRecord: GlobalSettingsRecord = {
 export const GLOBAL_SETTINGS_KEYS = Object.keys(globalSettingsRecord) as Keys<GlobalSettings>[]
 
 /**
- * RooCodeSettings
+ * ZentaraCodeSettings
  */
 
-export const rooCodeSettingsSchema = providerSettingsSchema.merge(globalSettingsSchema)
+export const zentaraCodeSettingsSchema = providerSettingsSchema.merge(globalSettingsSchema)
 
-export type RooCodeSettings = GlobalSettings & ProviderSettings
+export type ZentaraCodeSettings = GlobalSettings & ProviderSettings
 
 /**
  * SecretState
@@ -777,10 +777,10 @@ export const isSecretStateKey = (key: string): key is Keys<SecretState> =>
  * GlobalState
  */
 
-export type GlobalState = Omit<RooCodeSettings, Keys<SecretState>>
+export type GlobalState = Omit<ZentaraCodeSettings, Keys<SecretState>>
 
 export const GLOBAL_STATE_KEYS = [...GLOBAL_SETTINGS_KEYS, ...PROVIDER_SETTINGS_KEYS].filter(
-	(key: Keys<RooCodeSettings>) => !SECRET_STATE_KEYS.includes(key as Keys<SecretState>),
+	(key: Keys<ZentaraCodeSettings>) => !SECRET_STATE_KEYS.includes(key as Keys<SecretState>),
 ) as Keys<GlobalState>[]
 
 export const isGlobalStateKey = (key: string): key is Keys<GlobalState> =>
@@ -830,7 +830,7 @@ export const clineSays = [
 	"mcp_server_response",
 	"subtask_result",
 	"checkpoint_saved",
-	"rooignore_error",
+	"zentaraignore_error",
 	"diff_error",
 ] as const
 
@@ -959,10 +959,10 @@ export const toolUsageSchema = z.record(
 export type ToolUsage = z.infer<typeof toolUsageSchema>
 
 /**
- * RooCodeEvent
+ * ZentaraCodeEvent
  */
 
-export enum RooCodeEventName {
+export enum ZentaraCodeEventName {
 	Message = "message",
 	TaskCreated = "taskCreated",
 	TaskStarted = "taskStarted",
@@ -977,28 +977,28 @@ export enum RooCodeEventName {
 	TaskToolFailed = "taskToolFailed",
 }
 
-export const rooCodeEventsSchema = z.object({
-	[RooCodeEventName.Message]: z.tuple([
+export const zentaraCodeEventsSchema = z.object({
+	[ZentaraCodeEventName.Message]: z.tuple([
 		z.object({
 			taskId: z.string(),
 			action: z.union([z.literal("created"), z.literal("updated")]),
 			message: clineMessageSchema,
 		}),
 	]),
-	[RooCodeEventName.TaskCreated]: z.tuple([z.string()]),
-	[RooCodeEventName.TaskStarted]: z.tuple([z.string()]),
-	[RooCodeEventName.TaskModeSwitched]: z.tuple([z.string(), z.string()]),
-	[RooCodeEventName.TaskPaused]: z.tuple([z.string()]),
-	[RooCodeEventName.TaskUnpaused]: z.tuple([z.string()]),
-	[RooCodeEventName.TaskAskResponded]: z.tuple([z.string()]),
-	[RooCodeEventName.TaskAborted]: z.tuple([z.string()]),
-	[RooCodeEventName.TaskSpawned]: z.tuple([z.string(), z.string()]),
-	[RooCodeEventName.TaskCompleted]: z.tuple([z.string(), tokenUsageSchema, toolUsageSchema]),
-	[RooCodeEventName.TaskTokenUsageUpdated]: z.tuple([z.string(), tokenUsageSchema]),
-	[RooCodeEventName.TaskToolFailed]: z.tuple([z.string(), toolNamesSchema, z.string()]),
+	[ZentaraCodeEventName.TaskCreated]: z.tuple([z.string()]),
+	[ZentaraCodeEventName.TaskStarted]: z.tuple([z.string()]),
+	[ZentaraCodeEventName.TaskModeSwitched]: z.tuple([z.string(), z.string()]),
+	[ZentaraCodeEventName.TaskPaused]: z.tuple([z.string()]),
+	[ZentaraCodeEventName.TaskUnpaused]: z.tuple([z.string()]),
+	[ZentaraCodeEventName.TaskAskResponded]: z.tuple([z.string()]),
+	[ZentaraCodeEventName.TaskAborted]: z.tuple([z.string()]),
+	[ZentaraCodeEventName.TaskSpawned]: z.tuple([z.string(), z.string()]),
+	[ZentaraCodeEventName.TaskCompleted]: z.tuple([z.string(), tokenUsageSchema, toolUsageSchema]),
+	[ZentaraCodeEventName.TaskTokenUsageUpdated]: z.tuple([z.string(), tokenUsageSchema]),
+	[ZentaraCodeEventName.TaskToolFailed]: z.tuple([z.string(), toolNamesSchema, z.string()]),
 })
 
-export type RooCodeEvents = z.infer<typeof rooCodeEventsSchema>
+export type ZentaraCodeEvents = z.infer<typeof zentaraCodeEventsSchema>
 
 /**
  * TypeDefinition
@@ -1014,7 +1014,7 @@ export const typeDefinitions: TypeDefinition[] = [
 	{ schema: globalSettingsSchema, identifier: "GlobalSettings" },
 	{ schema: clineMessageSchema, identifier: "ClineMessage" },
 	{ schema: tokenUsageSchema, identifier: "TokenUsage" },
-	{ schema: rooCodeEventsSchema, identifier: "RooCodeEvents" },
+	{ schema: zentaraCodeEventsSchema, identifier: "ZentaraCodeEvents" },
 ]
 
 // Also export as default for ESM compatibility

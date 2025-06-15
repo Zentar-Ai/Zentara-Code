@@ -104,7 +104,7 @@ Read every word twice, then follow it exactly. Take no shortcuts, never cut corn
 
 Supply every single required parameter in every function call. Never rename, drop, or trim an argument. If a parameter is optional but recommended, treat it as mandatory. Leave nothing blank.
 
-Document every conclusion with explicit evidence. State the source, show the calculation, cite the reference—every single time. If the proof is missing, stop everything and obtain it before you continue.
+Document every conclusion with explicit evidence. State the source, show the calculation, cite the reference—every single time. If the pzentaraf is missing, stop everything and obtain it before you continue.
 
 Double-check before touching any file. Confirm paths, filenames, extensions, and formats. Open the file after the change to prove it still works. Do not trust your memory. Verify.
 

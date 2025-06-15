@@ -17,7 +17,7 @@ import { UrlContentFetcher } from "../../services/browser/UrlContentFetcher"
 
 import { FileContextTracker } from "../context-tracking/FileContextTracker"
 
-import { RooIgnoreController } from "../ignore/RooIgnoreController"
+import { ZentaraIgnoreController } from "../ignore/ZentaraIgnoreController"
 
 export async function openMention(mention?: string): Promise<void> {
 	if (!mention) {
@@ -52,8 +52,8 @@ export async function parseMentions(
 	cwd: string,
 	urlContentFetcher: UrlContentFetcher,
 	fileContextTracker?: FileContextTracker,
-	rooIgnoreController?: RooIgnoreController,
-	showRooIgnoredFiles: boolean = true,
+	zentaraIgnoreController?: ZentaraIgnoreController,
+	showZentaraIgnoredFiles: boolean = true,
 ): Promise<string> {
 	const mentions: Set<string> = new Set()
 	let parsedText = text.replace(mentionRegexGlobal, (match, mention) => {
@@ -106,7 +106,7 @@ export async function parseMentions(
 		} else if (mention.startsWith("/")) {
 			const mentionPath = mention.slice(1)
 			try {
-				const content = await getFileOrFolderContent(mentionPath, cwd, rooIgnoreController, showRooIgnoredFiles)
+				const content = await getFileOrFolderContent(mentionPath, cwd, zentaraIgnoreController, showZentaraIgnoredFiles)
 				if (mention.endsWith("/")) {
 					parsedText += `\n\n<folder_content path="${mentionPath}">\n${content}\n</folder_content>`
 				} else {
@@ -167,8 +167,8 @@ export async function parseMentions(
 async function getFileOrFolderContent(
 	mentionPath: string,
 	cwd: string,
-	rooIgnoreController?: any,
-	showRooIgnoredFiles: boolean = true,
+	zentaraIgnoreController?: any,
+	showZentaraIgnoredFiles: boolean = true,
 ): Promise<string> {
 	const unescapedPath = unescapeSpaces(mentionPath)
 	const absPath = path.resolve(cwd, unescapedPath)
@@ -177,8 +177,8 @@ async function getFileOrFolderContent(
 		const stats = await fs.stat(absPath)
 
 		if (stats.isFile()) {
-			if (rooIgnoreController && !rooIgnoreController.validateAccess(absPath)) {
-				return `(File ${mentionPath} is ignored by .rooignore)`
+			if (zentaraIgnoreController && !zentaraIgnoreController.validateAccess(absPath)) {
+				return `(File ${mentionPath} is ignored by .zentaraignore)`
 			}
 			try {
 				const content = await extractTextFromFile(absPath)
@@ -199,11 +199,11 @@ async function getFileOrFolderContent(
 				const entryPath = path.join(absPath, entry.name)
 
 				let isIgnored = false
-				if (rooIgnoreController) {
-					isIgnored = !rooIgnoreController.validateAccess(entryPath)
+				if (zentaraIgnoreController) {
+					isIgnored = !zentaraIgnoreController.validateAccess(entryPath)
 				}
 
-				if (isIgnored && !showRooIgnoredFiles) {
+				if (isIgnored && !showZentaraIgnoredFiles) {
 					continue
 				}
 

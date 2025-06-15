@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import { debugTool } from "../core/tools/debugTool" // Path relative to this file in Debugging-roo-code
+import { debugTool } from "../core/tools/debugTool" // Path relative to this file in Debugging-zentara-code
 import type { DebugToolUse, AskApproval, HandleError, PushToolResult } from "../shared/tools" // Path relative to this file
 import type { Task } from "../core/task/Task" // Path relative to this file
 import { formatResponse } from "../core/prompts/responses" // Path relative to this file
@@ -23,10 +23,10 @@ const stringifySafe = (obj: any, indent: number = 2) => {
 }
 
 export async function runDirectDebugToolLaunchTest() {
-	const outputChannel = vscode.window.createOutputChannel("Direct DebugTool Launch Test (DRC)") // DRC for Debugging-roo-code
+	const outputChannel = vscode.window.createOutputChannel("Direct DebugTool Launch Test (DRC)") // DRC for Debugging-zentara-code
 	outputChannel.appendLine("================================================================")
 	outputChannel.appendLine("--- Starting Direct DebugTool Launch Test (stopOnEntry:true) ---")
-	outputChannel.appendLine("--- For Debugging-roo-code Project ---")
+	outputChannel.appendLine("--- For Debugging-zentara-code Project ---")
 	outputChannel.appendLine("================================================================")
 	outputChannel.show(true)
 
@@ -71,7 +71,7 @@ export async function runDirectDebugToolLaunchTest() {
 	}
 
 	// 2. Define ToolUse block
-	// Construct paths relative to the Debugging-roo-code workspace root when the extension runs
+	// Construct paths relative to the Debugging-zentara-code workspace root when the extension runs
 	let programPath = ""
 	let programCwd = ""
 
@@ -109,7 +109,7 @@ export async function runDirectDebugToolLaunchTest() {
 
 	outputChannel.appendLine(`Attempting to run debugTool with: ${stringifySafe(launchToolUseBlock)}`)
 
-	// 3. Call debugTool from Debugging-roo-code
+	// 3. Call debugTool from Debugging-zentara-code
 	try {
 		await debugTool(mockTask, launchToolUseBlock, mockAskApproval, mockHandleError, mockPushToolResult)
 		outputChannel.appendLine("debugTool execution finished for LAUNCH.")
@@ -169,15 +169,15 @@ export async function runDirectDebugToolLaunchTest() {
 	}
 }
 
-// To run this test script (within Debugging-roo-code project):
+// To run this test script (within Debugging-zentara-code project):
 // 1. Ensure this file (directDebugToolLaunchTest.ts) is compiled as part of your
-//    Debugging-roo-code extension (e.g., included in your tsconfig.json).
+//    Debugging-zentara-code extension (e.g., included in your tsconfig.json).
 //    The output should typically go to a 'dist' or 'out' folder.
 //
-// 2. In your Debugging-roo-code extension's main activation file (e.g., src/extension.ts),
+// 2. In your Debugging-zentara-code extension's main activation file (e.g., src/extension.ts),
 //    register a VS Code command that will execute this test function.
 //
-//    Example for your Debugging-roo-code/src/extension.ts:
+//    Example for your Debugging-zentara-code/src/extension.ts:
 //    --------------------------------------------------------------------------------
 //    import * as vscode from 'vscode';
 //    import { runDirectDebugToolLaunchTest } from './test-scripts/directDebugToolLaunchTest'; // Adjust path
@@ -185,7 +185,7 @@ export async function runDirectDebugToolLaunchTest() {
 //    export function activate(context: vscode.ExtensionContext) {
 //        // ... your other activation code ...
 //
-//        let disposableTestRunner = vscode.commands.registerCommand('debugging-roo-code.runDirectLaunchTest', () => {
+//        let disposableTestRunner = vscode.commands.registerCommand('debugging-zentara-code.runDirectLaunchTest', () => {
 //            runDirectDebugToolLaunchTest();
 //        });
 //        context.subscriptions.push(disposableTestRunner);
@@ -194,12 +194,12 @@ export async function runDirectDebugToolLaunchTest() {
 //    }
 //    --------------------------------------------------------------------------------
 //
-// 3. Run your Debugging-roo-code extension from VS Code (e.g., by pressing F5,
+// 3. Run your Debugging-zentara-code extension from VS Code (e.g., by pressing F5,
 //    which usually starts an Extension Development Host).
 //
 // 4. In the new VS Code window (the Extension Development Host) that opens:
 //    a. Open the Command Palette (Ctrl+Shift+P or Cmd+Shift+P).
-//    b. Type and run the command you registered (e.g., "Debugging Roo Code: Run Direct Launch Test").
+//    b. Type and run the command you registered (e.g., "Debugging Zentara Code: Run Direct Launch Test").
 //
 // 5. Observe the output in the "Direct DebugTool Launch Test (DRC)" output channel.
 //    This output will show what the debugTool reported via the pushToolResult callback.

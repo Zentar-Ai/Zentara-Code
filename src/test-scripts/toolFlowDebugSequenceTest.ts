@@ -330,7 +330,7 @@ import { runToolFlowDebugSequenceTest } from './test-scripts/toolFlowDebugSequen
 2. In the activate() function, register the command:
 
 let disposableTestRunner = vscode.commands.registerCommand(
-    'debugging-roo-code.runToolFlowSequenceTest', 
+    'debugging-zentara-code.runToolFlowSequenceTest', 
     () => {
         runToolFlowDebugSequenceTest();
     }
@@ -340,6 +340,6 @@ context.subscriptions.push(disposableTestRunner);
 3. To run the test:
    - Start the extension in debug mode (F5)
    - Open Command Palette (Ctrl+Shift+P)
-   - Run "Debugging Roo Code: Run Tool Flow Sequence Test"
+   - Run "Debugging Zentara Code: Run Tool Flow Sequence Test"
    - Check the "Tool Flow Debug Sequence Test" output channel
 */

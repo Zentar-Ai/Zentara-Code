@@ -1,6 +1,6 @@
 export async function getGitHubStars() {
 	try {
-		const res = await fetch("https://api.github.com/repos/Zentar-Ai/roo-code")
+		const res = await fetch("https://api.github.com/repos/Zentar-Ai/zentara-code")
 		const data = await res.json()
 
 		if (typeof data.stargazers_count !== "number") {
@@ -28,7 +28,7 @@ export async function getVSCodeReviews() {
 					criteria: [
 						{
 							filterType: 7,
-							value: "ZentarAI.roo-code",
+							value: "ZentarAI.zentara-code",
 						},
 					],
 				},
@@ -72,7 +72,7 @@ export async function getVSCodeDownloads() {
 					criteria: [
 						{
 							filterType: 7,
-							value: "ZentarAI.roo-code",
+							value: "ZentarAI.zentara-code",
 						},
 					],
 				},

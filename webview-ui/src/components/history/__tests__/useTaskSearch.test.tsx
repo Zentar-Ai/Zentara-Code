@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/react"
 import { useTaskSearch } from "../useTaskSearch"
-import type { HistoryItem } from "@roo-code/types"
+import type { HistoryItem } from "@zentara-code/types"
 
 jest.mock("@/context/ExtensionStateContext", () => ({
 	useExtensionState: jest.fn(),

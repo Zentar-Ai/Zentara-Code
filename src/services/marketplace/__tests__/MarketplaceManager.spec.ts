@@ -108,7 +108,7 @@ describe("MarketplaceManager", () => {
 			mockFs.readFile.mockImplementation((filePath: any) => {
 				// Normalize path separators for cross-platform compatibility
 				const normalizedPath = filePath.replace(/\\/g, "/")
-				if (normalizedPath.includes(".roo/mcp.json")) {
+				if (normalizedPath.includes(".zentara/mcp.json")) {
 					return Promise.resolve(JSON.stringify(mockMcpConfig))
 				}
 				return Promise.reject(new Error("ENOENT"))
@@ -135,7 +135,7 @@ describe("MarketplaceManager", () => {
 			mockFs.readFile.mockImplementation((filePath: any) => {
 				// Normalize path separators for cross-platform compatibility
 				const normalizedPath = filePath.replace(/\\/g, "/")
-				if (normalizedPath.includes(".roomodes")) {
+				if (normalizedPath.includes(".zentaramodes")) {
 					return Promise.resolve("mock-yaml-content")
 				}
 				return Promise.reject(new Error("ENOENT"))
@@ -213,7 +213,7 @@ describe("MarketplaceManager", () => {
 			mockFs.readFile.mockImplementation((filePath: any) => {
 				// Normalize path separators for cross-platform compatibility
 				const normalizedPath = filePath.replace(/\\/g, "/")
-				if (normalizedPath.includes(".roo/mcp.json")) {
+				if (normalizedPath.includes(".zentara/mcp.json")) {
 					return Promise.resolve(JSON.stringify(mockProjectMcp))
 				}
 				if (normalizedPath.includes("custom_modes.yaml")) {

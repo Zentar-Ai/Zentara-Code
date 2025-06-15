@@ -40,10 +40,10 @@
   
   <pull_request_tools>
     <tool name="create_pull_request">
-      <purpose>Create a pull request to RooCodeInc/Roo-Code</purpose>
+      <purpose>Create a pull request to ZentaraCodeInc/Zentara-Code</purpose>
       <when>Use in step 10 after user approval</when>
       <important>
-        - Always target RooCodeInc/Roo-Code repository
+        - Always target ZentaraCodeInc/Zentara-Code repository
         - Use "main" as the base branch unless specified otherwise
         - Include issue number in PR title
         - Set maintainer_can_modify to true
@@ -54,8 +54,8 @@
         <tool_name>create_pull_request</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "title": "fix: Resolve dark theme button visibility (#123)",
           "head": "username:fix/issue-123-dark-theme-button",
           "base": "main",
@@ -77,8 +77,8 @@
         <tool_name>fork_repository</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code"
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code"
         }
         </arguments>
         </use_mcp_tool>

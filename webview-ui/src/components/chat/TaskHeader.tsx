@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next"
 import { VSCodeBadge } from "@vscode/webview-ui-toolkit/react"
 import { CloudUpload, CloudDownload, FoldVertical } from "lucide-react"
 
-import type { ClineMessage } from "@roo-code/types"
+import type { ClineMessage } from "@zentara-code/types"
 
-import { getModelMaxOutputTokens } from "@roo/api"
+import { getModelMaxOutputTokens } from "@zentara/api"
 
 import { formatLargeNumber } from "@src/utils/format"
 import { cn } from "@src/lib/utils"

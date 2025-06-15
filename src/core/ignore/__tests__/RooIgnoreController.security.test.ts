@@ -1,6 +1,6 @@
-// npx jest src/core/ignore/__tests__/RooIgnoreController.security.test.ts
+// npx jest src/core/ignore/__tests__/ZentaraIgnoreController.security.test.ts
 
-import { RooIgnoreController } from "../RooIgnoreController"
+import { ZentaraIgnoreController } from "../ZentaraIgnoreController"
 import * as path from "path"
 import * as fs from "fs/promises"
 import { fileExistsAtPath } from "../../../utils/fs"
@@ -27,9 +27,9 @@ jest.mock("vscode", () => {
 	}
 })
 
-describe("RooIgnoreController Security Tests", () => {
+describe("ZentaraIgnoreController Security Tests", () => {
 	const TEST_CWD = "/test/path"
-	let controller: RooIgnoreController
+	let controller: ZentaraIgnoreController
 	let mockFileExists: jest.MockedFunction<typeof fileExistsAtPath>
 	let mockReadFile: jest.MockedFunction<typeof fs.readFile>
 
@@ -41,12 +41,12 @@ describe("RooIgnoreController Security Tests", () => {
 		mockFileExists = fileExistsAtPath as jest.MockedFunction<typeof fileExistsAtPath>
 		mockReadFile = fs.readFile as jest.MockedFunction<typeof fs.readFile>
 
-		// By default, setup .rooignore to exist with some patterns
+		// By default, setup .zentaraignore to exist with some patterns
 		mockFileExists.mockResolvedValue(true)
 		mockReadFile.mockResolvedValue("node_modules\n.git\nsecrets/**\n*.log\nprivate/")
 
 		// Create and initialize controller
-		controller = new RooIgnoreController(TEST_CWD)
+		controller = new ZentaraIgnoreController(TEST_CWD)
 		await controller.initialize()
 	})
 

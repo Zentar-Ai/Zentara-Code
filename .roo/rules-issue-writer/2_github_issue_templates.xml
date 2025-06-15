@@ -6,7 +6,7 @@
     <fields>
       <field name="version" type="input" required="true">
         <label>App Version</label>
-        <description>What version of Roo Code are you using? (e.g., v3.3.1)</description>
+        <description>What version of Zentara Code are you using? (e.g., v3.3.1)</description>
       </field>
       <field name="provider" type="dropdown" required="true">
         <label>API Provider</label>

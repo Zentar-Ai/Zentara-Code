@@ -1,5 +1,5 @@
 {
-	"extension.displayName": "Roo Code (ehemals Roo Code)",
+	"extension.displayName": "Zentara Code (ehemals Zentara Code)",
 	"extension.description": "Ein komplettes KI-Agenten-Entwicklungsteam in deinem Editor.",
 	"command.newTask.title": "Neue Aufgabe",
 	"command.explainCode.title": "Code Erklären",
@@ -13,10 +13,10 @@
 	"command.terminal.fixCommand.title": "Diesen Befehl Reparieren",
 	"command.terminal.explainCommand.title": "Diesen Befehl Erklären",
 	"command.acceptInput.title": "Eingabe/Vorschlag Akzeptieren",
-	"views.activitybar.title": "Roo Code",
-	"views.contextMenu.label": "Roo Code",
-	"views.terminalMenu.label": "Roo Code",
-	"views.sidebar.name": "Roo Code",
+	"views.activitybar.title": "Zentara Code",
+	"views.contextMenu.label": "Zentara Code",
+	"views.terminalMenu.label": "Zentara Code",
+	"views.sidebar.name": "Zentara Code",
 	"command.mcpServers.title": "MCP Server",
 	"command.prompts.title": "Modi",
 	"command.history.title": "Verlauf",
@@ -24,11 +24,11 @@
 	"command.openInEditor.title": "Im Editor Öffnen",
 	"command.settings.title": "Einstellungen",
 	"command.documentation.title": "Dokumentation",
-	"configuration.title": "Roo Code",
+	"configuration.title": "Zentara Code",
 	"commands.allowedCommands.description": "Befehle, die automatisch ausgeführt werden können, wenn 'Ausführungsoperationen immer genehmigen' aktiviert ist",
 	"settings.vsCodeLmModelSelector.description": "Einstellungen für die VSCode-Sprachmodell-API",
 	"settings.vsCodeLmModelSelector.vendor.description": "Der Anbieter des Sprachmodells (z.B. copilot)",
 	"settings.vsCodeLmModelSelector.family.description": "Die Familie des Sprachmodells (z.B. gpt-4)",
-	"settings.customStoragePath.description": "Benutzerdefinierter Speicherpfad. Leer lassen, um den Standardspeicherort zu verwenden. Unterstützt absolute Pfade (z.B. 'D:\\RooCodeStorage')",
-	"settings.rooCodeCloudEnabled.description": "Aktiviere Roo Code Cloud."
+	"settings.customStoragePath.description": "Benutzerdefinierter Speicherpfad. Leer lassen, um den Standardspeicherort zu verwenden. Unterstützt absolute Pfade (z.B. 'D:\\ZentaraCodeStorage')",
+	"settings.zentaraCodeCloudEnabled.description": "Aktiviere Zentara Code Cloud."
 }

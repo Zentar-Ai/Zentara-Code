@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
-import { mcpParameterSchema } from "@roo-code/types"
-import type { McpParameter } from "@roo-code/types"
+import { mcpParameterSchema } from "@zentara-code/types"
+import type { McpParameter } from "@zentara-code/types"
 
 describe("Optional Parameters", () => {
 	describe("McpParameter Schema", () => {

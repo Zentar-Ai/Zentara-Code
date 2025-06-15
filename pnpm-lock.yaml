@@ -74,10 +74,10 @@ importers:
 
   apps/vscode-e2e:
     devDependencies:
-      '@roo-code/config-eslint':
+      '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../../packages/config-eslint
-      '@roo-code/config-typescript':
+      '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../../packages/config-typescript
       '@types/mocha':
@@ -95,7 +95,7 @@ importers:
       '@vscode/test-electron':
         specifier: ^2.4.0
         version: 2.5.2
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../../packages/types
       glob:
@@ -113,7 +113,7 @@ importers:
 
   apps/vscode-nightly:
     devDependencies:
-      '@roo-code/build':
+      '@zentara-code/build':
         specifier: workspace:^
         version: link:../../packages/build
 
@@ -161,10 +161,10 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.69.0
         version: 5.80.7(react@18.3.1)
-      '@roo-code/evals':
+      '@zentara-code/evals':
         specifier: workspace:^
         version: link:../../packages/evals
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../../packages/types
       class-variance-authority:
@@ -222,10 +222,10 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
+      '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../../packages/config-eslint
-      '@roo-code/config-typescript':
+      '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../../packages/config-typescript
       '@tailwindcss/postcss':
@@ -247,7 +247,7 @@ importers:
         specifier: ^3.2.1
         version: 3.2.3(@types/debug@4.1.12)(@types/node@22.15.31)(jiti@2.4.2)(jsdom@20.0.3)(lightningcss@1.30.1)(tsx@4.20.3)(yaml@2.8.0)
 
-  apps/web-roo-code:
+  apps/web-zentara-code:
     dependencies:
       '@radix-ui/react-dialog':
         specifier: ^1.1.14
@@ -258,7 +258,7 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.79.0
         version: 5.80.7(react@18.3.1)
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../../packages/types
       class-variance-authority:
@@ -313,10 +313,10 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
+      '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../../packages/config-eslint
-      '@roo-code/config-typescript':
+      '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../../packages/config-typescript
       '@tailwindcss/typography':
@@ -347,10 +347,10 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
+      '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../config-eslint
-      '@roo-code/config-typescript':
+      '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../config-typescript
       '@types/node':
@@ -362,10 +362,10 @@ importers:
 
   packages/cloud:
     dependencies:
-      '@roo-code/telemetry':
+      '@zentara-code/telemetry':
         specifier: workspace:^
         version: link:../telemetry
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       axios:
@@ -375,10 +375,10 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
+      '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../config-eslint
-      '@roo-code/config-typescript':
+      '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../config-typescript
       '@types/node':
@@ -428,10 +428,10 @@ importers:
 
   packages/evals:
     dependencies:
-      '@roo-code/ipc':
+      '@zentara-code/ipc':
         specifier: workspace:^
         version: link:../ipc
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       better-sqlite3:
@@ -471,10 +471,10 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
+      '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../config-eslint
-      '@roo-code/config-typescript':
+      '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../config-typescript
       '@types/node':
@@ -498,17 +498,17 @@ importers:
 
   packages/ipc:
     dependencies:
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       node-ipc:
         specifier: ^12.0.0
         version: 12.0.0
     devDependencies:
-      '@roo-code/config-eslint':
+      '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../config-eslint
-      '@roo-code/config-typescript':
+      '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../config-typescript
       '@types/node':
@@ -523,7 +523,7 @@ importers:
 
   packages/telemetry:
     dependencies:
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       posthog-node:
@@ -533,10 +533,10 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
+      '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../config-eslint
-      '@roo-code/config-typescript':
+      '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../config-typescript
       '@types/node':
@@ -555,10 +555,10 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
+      '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../config-eslint
-      '@roo-code/config-typescript':
+      '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../config-typescript
       '@types/node':
@@ -606,16 +606,16 @@ importers:
       '@vscode/codicons':
         specifier: ^0.0.36
         version: 0.0.36
-      '@roo-code/cloud':
+      '@zentara-code/cloud':
         specifier: workspace:^
         version: link:../packages/cloud
-      '@roo-code/ipc':
+      '@zentara-code/ipc':
         specifier: workspace:^
         version: link:../packages/ipc
-      '@roo-code/telemetry':
+      '@zentara-code/telemetry':
         specifier: workspace:^
         version: link:../packages/telemetry
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../packages/types
       async-mutex:
@@ -778,13 +778,13 @@ importers:
       '@jest/globals':
         specifier: ^29.7.0
         version: 29.7.0
-      '@roo-code/build':
+      '@zentara-code/build':
         specifier: workspace:^
         version: link:../packages/build
-      '@roo-code/config-eslint':
+      '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../packages/config-eslint
-      '@roo-code/config-typescript':
+      '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../packages/config-typescript
       '@types/clone-deep':
@@ -943,7 +943,7 @@ importers:
       '@vscode/webview-ui-toolkit':
         specifier: ^1.4.0
         version: 1.4.0(react@18.3.1)
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../packages/types
       axios:
@@ -1067,10 +1067,10 @@ importers:
       '@jest/globals':
         specifier: ^29.7.0
         version: 29.7.0
-      '@roo-code/config-eslint':
+      '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../packages/config-eslint
-      '@roo-code/config-typescript':
+      '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../packages/config-typescript
       '@testing-library/jest-dom':

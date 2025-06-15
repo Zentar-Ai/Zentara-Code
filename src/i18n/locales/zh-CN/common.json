@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Roo Code",
+		"name": "Zentara Code",
 		"description": "您编辑器中的完整AI开发团队。"
 	},
 	"number_format": {
@@ -94,12 +94,12 @@
 	},
 	"storage": {
 		"prompt_custom_path": "输入自定义会话历史存储路径，留空以使用默认位置",
-		"path_placeholder": "D:\\RooCodeStorage",
-		"enter_absolute_path": "请输入绝对路径（例如 D:\\RooCodeStorage 或 /home/user/storage）",
+		"path_placeholder": "D:\\ZentaraCodeStorage",
+		"enter_absolute_path": "请输入绝对路径（例如 D:\\ZentaraCodeStorage 或 /home/user/storage）",
 		"enter_valid_path": "请输入有效的路径"
 	},
 	"input": {
-		"task_prompt": "让Roo做什么？",
+		"task_prompt": "让Zentara做什么？",
 		"task_placeholder": "在这里输入任务"
 	},
 	"settings": {

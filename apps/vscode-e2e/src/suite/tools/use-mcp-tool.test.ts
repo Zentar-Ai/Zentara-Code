@@ -4,11 +4,11 @@ import * as path from "path"
 import * as os from "os"
 import * as vscode from "vscode"
 
-import type { ClineMessage } from "@roo-code/types"
+import type { ClineMessage } from "@zentara-code/types"
 
 import { waitFor, sleep } from "../utils"
 
-suite("Roo Code use_mcp_tool Tool", () => {
+suite("Zentara Code use_mcp_tool Tool", () => {
 	let tempDir: string
 	let testFiles: {
 		simple: string
@@ -18,7 +18,7 @@ suite("Roo Code use_mcp_tool Tool", () => {
 
 	// Create a temporary directory and test files
 	suiteSetup(async () => {
-		tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "roo-test-mcp-"))
+		tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "zentara-test-mcp-"))
 
 		// Create test files in VSCode workspace directory
 		const workspaceDir = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || tempDir
@@ -27,16 +27,16 @@ suite("Roo Code use_mcp_tool Tool", () => {
 		testFiles = {
 			simple: path.join(workspaceDir, `mcp-test-${Date.now()}.txt`),
 			testData: path.join(workspaceDir, `mcp-data-${Date.now()}.json`),
-			mcpConfig: path.join(workspaceDir, ".roo", "mcp.json"),
+			mcpConfig: path.join(workspaceDir, ".zentara", "mcp.json"),
 		}
 
 		// Create initial test files
 		await fs.writeFile(testFiles.simple, "Initial content for MCP test")
 		await fs.writeFile(testFiles.testData, JSON.stringify({ test: "data", value: 42 }, null, 2))
 
-		// Create .roo directory and MCP configuration file
-		const rooDir = path.join(workspaceDir, ".roo")
-		await fs.mkdir(rooDir, { recursive: true })
+		// Create .zentara directory and MCP configuration file
+		const zentaraDir = path.join(workspaceDir, ".zentara")
+		await fs.mkdir(zentaraDir, { recursive: true })
 
 		const mcpConfig = {
 			mcpServers: {
@@ -71,11 +71,11 @@ suite("Roo Code use_mcp_tool Tool", () => {
 			}
 		}
 
-		// Clean up .roo directory
+		// Clean up .zentara directory
 		const workspaceDir = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || tempDir
-		const rooDir = path.join(workspaceDir, ".roo")
+		const zentaraDir = path.join(workspaceDir, ".zentara")
 		try {
-			await fs.rm(rooDir, { recursive: true, force: true })
+			await fs.rm(zentaraDir, { recursive: true, force: true })
 		} catch {
 			// Directory might not exist
 		}
@@ -182,7 +182,7 @@ suite("Roo Code use_mcp_tool Tool", () => {
 			}
 		}
 		api.on("taskCompleted", taskCompletedHandler)
-		await sleep(2000) // Wait for Roo Code to fully initialize
+		await sleep(2000) // Wait for Zentara Code to fully initialize
 
 		// Trigger MCP server detection by opening and modifying the file
 		console.log("Triggering MCP server detection by modifying the config file...")
@@ -191,7 +191,7 @@ suite("Roo Code use_mcp_tool Tool", () => {
 			const document = await vscode.workspace.openTextDocument(mcpConfigUri)
 			const editor = await vscode.window.showTextDocument(document)
 
-			// Make a small modification to trigger the save event, without this Roo Code won't load the MCP server
+			// Make a small modification to trigger the save event, without this Zentara Code won't load the MCP server
 			const edit = new vscode.WorkspaceEdit()
 			const currentContent = document.getText()
 			const modifiedContent = currentContent.replace(
@@ -512,12 +512,12 @@ suite("Roo Code use_mcp_tool Tool", () => {
 				responseText.includes("mcp-test-") || responseText.includes(path.basename(testFiles.simple))
 			const hasDataFile =
 				responseText.includes("mcp-data-") || responseText.includes(path.basename(testFiles.testData))
-			const hasRooDir = responseText.includes(".roo")
+			const hasZentaraDir = responseText.includes(".zentara")
 
-			// At least one of our test files or the .roo directory should be present
+			// At least one of our test files or the .zentara directory should be present
 			assert.ok(
-				hasTestFile || hasDataFile || hasRooDir,
-				`MCP server response should contain our test files or .roo directory. Expected to find: '${path.basename(testFiles.simple)}', '${path.basename(testFiles.testData)}', or '.roo'. Got: ${responseText.substring(0, 200)}...`,
+				hasTestFile || hasDataFile || hasZentaraDir,
+				`MCP server response should contain our test files or .zentara directory. Expected to find: '${path.basename(testFiles.simple)}', '${path.basename(testFiles.testData)}', or '.zentara'. Got: ${responseText.substring(0, 200)}...`,
 			)
 
 			// Check for typical directory listing indicators
@@ -658,7 +658,7 @@ suite("Roo Code use_mcp_tool Tool", () => {
 			const hasTestFiles =
 				responseText.includes("mcp-test-") ||
 				responseText.includes("mcp-data-") ||
-				responseText.includes(".roo") ||
+				responseText.includes(".zentara") ||
 				responseText.includes(".txt") ||
 				responseText.includes(".json") ||
 				responseText.length > 10 // At least some content indicating directory structure

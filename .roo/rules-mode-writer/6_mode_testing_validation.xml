@@ -1,6 +1,6 @@
 <mode_testing_validation>
   <overview>
-    Guidelines for testing and validating newly created modes to ensure they function correctly and integrate well with the Roo Code ecosystem.
+    Guidelines for testing and validating newly created modes to ensure they function correctly and integrate well with the Zentara Code ecosystem.
   </overview>
 
   <validation_checklist>
@@ -14,8 +14,8 @@
         <fields>slug, name, roleDefinition, groups</fields>
       </item>
       <item priority="critical">
-        <check>No customInstructions field in .roomodes</check>
-        <validation>All instructions must be in XML files in .roo/rules-[slug]/</validation>
+        <check>No customInstructions field in .zentaramodes</check>
+        <validation>All instructions must be in XML files in .zentara/rules-[slug]/</validation>
       </item>
       <item priority="high">
         <check>File restrictions use valid regex patterns</check>
@@ -158,7 +158,7 @@
     <issue type="behavior">
       <problem>Mode not following instructions</problem>
       <causes>
-        <cause>Instructions not in .roo/rules-[slug]/ folder</cause>
+        <cause>Instructions not in .zentara/rules-[slug]/ folder</cause>
         <cause>XML parsing errors</cause>
         <cause>Conflicting instructions</cause>
       </causes>
@@ -171,7 +171,7 @@
       <usage>Verify instruction files exist in correct location</usage>
       <command><![CDATA[
 <list_files>
-<path>.roo</path>
+<path>.zentara</path>
 <recursive>true</recursive>
 </list_files>
       ]]></command>
@@ -181,7 +181,7 @@
       <usage>Check mode configuration syntax</usage>
       <command><![CDATA[
 <read_file>
-<path>.roomodes</path>
+<path>.zentaramodes</path>
 </read_file>
       ]]></command>
     </tool>

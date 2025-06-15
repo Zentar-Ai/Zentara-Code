@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Roo Code",
+		"name": "Zentara Code",
 		"description": "에디터 내에서 동작하는 AI 개발팀 전체입니다."
 	},
 	"number_format": {
@@ -89,12 +89,12 @@
 	},
 	"storage": {
 		"prompt_custom_path": "대화 내역을 위한 사용자 지정 저장 경로를 입력하세요. 기본 위치를 사용하려면 비워두세요",
-		"path_placeholder": "D:\\RooCodeStorage",
-		"enter_absolute_path": "절대 경로를 입력하세요 (예: D:\\RooCodeStorage 또는 /home/user/storage)",
+		"path_placeholder": "D:\\ZentaraCodeStorage",
+		"enter_absolute_path": "절대 경로를 입력하세요 (예: D:\\ZentaraCodeStorage 또는 /home/user/storage)",
 		"enter_valid_path": "유효한 경로를 입력하세요"
 	},
 	"input": {
-		"task_prompt": "Roo에게 무엇을 시킬까요?",
+		"task_prompt": "Zentara에게 무엇을 시킬까요?",
 		"task_placeholder": "여기에 작업을 입력하세요"
 	},
 	"settings": {

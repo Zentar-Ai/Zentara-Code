@@ -9,22 +9,22 @@ const tips = [
 	{
 		icon: "codicon-account",
 		href: buildDocLink("basic-usage/using-modes", "tips"),
-		titleKey: "rooTips.customizableModes.title",
-		descriptionKey: "rooTips.customizableModes.description",
+		titleKey: "zentaraTips.customizableModes.title",
+		descriptionKey: "zentaraTips.customizableModes.description",
 	},
 	{
 		icon: "codicon-list-tree",
 		href: buildDocLink("features/boomerang-tasks", "tips"),
-		titleKey: "rooTips.boomerangTasks.title",
-		descriptionKey: "rooTips.boomerangTasks.description",
+		titleKey: "zentaraTips.boomerangTasks.title",
+		descriptionKey: "zentaraTips.boomerangTasks.description",
 	},
 ]
 
-interface RooTipsProps {
+interface ZentaraTipsProps {
 	cycle?: boolean
 }
 
-const RooTips = ({ cycle = false }: RooTipsProps) => {
+const ZentaraTips = ({ cycle = false }: ZentaraTipsProps) => {
 	const { t } = useTranslation("chat")
 	const [currentTipIndex, setCurrentTipIndex] = useState(Math.floor(Math.random() * tips.length))
 	const [isFading, setIsFading] = useState(false)
@@ -94,4 +94,4 @@ const RooTips = ({ cycle = false }: RooTipsProps) => {
 	)
 }
 
-export default RooTips
+export default ZentaraTips

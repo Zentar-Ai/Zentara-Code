@@ -2,7 +2,7 @@ import { useCallback, useState, useRef } from "react"
 import Link from "next/link"
 import { Ellipsis, ClipboardList, Copy, Check, LoaderCircle, Trash } from "lucide-react"
 
-import type { Run as EvalsRun, TaskMetrics as EvalsTaskMetrics } from "@roo-code/evals"
+import type { Run as EvalsRun, TaskMetrics as EvalsTaskMetrics } from "@zentara-code/evals"
 
 import { deleteRun } from "@/actions/runs"
 import { formatCurrency, formatDuration, formatTokens, formatToolUsageSuccessRate } from "@/lib/formatters"

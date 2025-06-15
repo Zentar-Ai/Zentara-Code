@@ -1,15 +1,15 @@
-# Roo Code API
+# Zentara Code API
 
-The Roo Code extension exposes an API that can be used by other extensions.
+The Zentara Code extension exposes an API that can be used by other extensions.
 To use this API in your extension:
 
-1. Install `@roo-code/types` with npm, pnpm, or yarn.
-2. Import the `RooCodeAPI` type.
+1. Install `@zentara-code/types` with npm, pnpm, or yarn.
+2. Import the `ZentaraCodeAPI` type.
 3. Load the extension API.
 
 ```typescript
-import { RooCodeAPI } from "@roo-code/types"
-const extension = vscode.extensions.getExtension<RooCodeAPI>("ZentarAI.roo-code")
+import { ZentaraCodeAPI } from "@zentara-code/types"
+const extension = vscode.extensions.getExtension<ZentaraCodeAPI>("ZentarAI.zentara-code")
 
 
 if (!extension?.isActive) {
@@ -23,7 +23,7 @@ if (!api) {
 }
 
 // Start a new task with an initial message.
-await api.startNewTask("Hello, Roo Code API! Let's make a new project...")
+await api.startNewTask("Hello, Zentara Code API! Let's make a new project...")
 
 // Start a new task with an initial message and images.
 await api.startNewTask("Use this design language", ["data:image/webp;base64,..."])
@@ -38,10 +38,10 @@ await api.pressPrimaryButton()
 await api.pressSecondaryButton()
 ```
 
-**NOTE:** To ensure that the `ZentarAI.roo-code` extension is activated before your extension, add it to the `extensionDependencies` in your `package.json`:
+**NOTE:** To ensure that the `ZentarAI.zentara-code` extension is activated before your extension, add it to the `extensionDependencies` in your `package.json`:
 
 ```json
-"extensionDependencies": ["ZentarAI.roo-code"]
+"extensionDependencies": ["ZentarAI.zentara-code"]
 ```
 
-For detailed information on the available methods and their usage, refer to the `roo-code.d.ts` file.
+For detailed information on the available methods and their usage, refer to the `zentara-code.d.ts` file.

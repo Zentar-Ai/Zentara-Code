@@ -3,7 +3,7 @@ import * as fs from "fs"
 import * as path from "path"
 import { fileURLToPath } from "url"
 
-import { getGitSha, copyPaths, copyLocales, copyWasms, generatePackageJson } from "@roo-code/build"
+import { getGitSha, copyPaths, copyLocales, copyWasms, generatePackageJson } from "@zentara-code/build"
 // import pkg from '../../esbuild.js'; // Removed problematic import
 // const { copyDebugHelperFiles } = pkg; // Removed problematic import
 
@@ -89,9 +89,9 @@ async function main() {
 		platform: "node",
 		absWorkingDir: path.resolve(__dirname, "..", ".."), // Set monorepo root as working directory
 		define: {
-			"process.env.PKG_NAME": '"roo-code-nightly"',
+			"process.env.PKG_NAME": '"zentara-code-nightly"',
 			"process.env.PKG_VERSION": `"${overrideJson.version}"`,
-			"process.env.PKG_OUTPUT_CHANNEL": '"roo-code-Nightly"',
+			"process.env.PKG_OUTPUT_CHANNEL": '"zentara-code-Nightly"',
 			...(gitSha ? { "process.env.PKG_SHA": `"${gitSha}"` } : {}),
 		},
 	}
@@ -144,7 +144,7 @@ async function main() {
 					const generatedPackageJson = generatePackageJson({
 						packageJson,
 						overrideJson,
-						substitution: ["roo-code", "roo-code-nightly"],
+						substitution: ["zentara-code", "zentara-code-nightly"],
 					})
 
 					fs.writeFileSync(path.join(buildDir, "package.json"), JSON.stringify(generatedPackageJson, null, 2))

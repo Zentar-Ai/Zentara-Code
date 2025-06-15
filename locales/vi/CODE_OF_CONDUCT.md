@@ -68,7 +68,7 @@ tại một sự kiện trực tuyến hoặc ngoại tuyến. Đại diện c�
 ## Thực Thi
 
 Các trường hợp hành vi lạm dụng, quấy rối, hoặc không thể chấp nhận khác có thể được
-báo cáo bằng cách liên hệ với nhóm dự án tại support@roocode.com. Tất cả khiếu nại
+báo cáo bằng cách liên hệ với nhóm dự án tại support@zentaracode.com. Tất cả khiếu nại
 sẽ được xem xét và điều tra và sẽ dẫn đến phản hồi được
 cho là cần thiết và phù hợp với hoàn cảnh. Nhóm dự án có
 nghĩa vụ duy trì tính bảo mật đối với người báo cáo về một sự cố.

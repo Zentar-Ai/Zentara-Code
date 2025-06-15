@@ -72,7 +72,7 @@
   </reliability_mistakes>
 
   <workspace_mistakes>
-    - Not understanding that files may be created in /tmp/roo-test-workspace-* directories
+    - Not understanding that files may be created in /tmp/zentara-test-workspace-* directories
     - Assuming the AI can see files in the workspace directory
     - Not checking multiple possible file locations when verifying creation
     - Creating files outside the VSCode workspace during tests

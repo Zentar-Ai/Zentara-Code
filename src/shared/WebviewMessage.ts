@@ -6,8 +6,8 @@ import type {
 	ModeConfig,
 	InstallMarketplaceItemOptions,
 	MarketplaceItem,
-} from "@roo-code/types"
-import { marketplaceItemSchema } from "@roo-code/types"
+} from "@zentara-code/types"
+import { marketplaceItemSchema } from "@zentara-code/types"
 
 import { Mode } from "./modes"
 
@@ -138,7 +138,7 @@ export interface WebviewMessage {
 		| "humanRelayCancel"
 		| "browserToolEnabled"
 		| "telemetrySetting"
-		| "showRooIgnoredFiles"
+		| "showZentaraIgnoredFiles"
 		| "testBrowserConnection"
 		| "browserConnectionResult"
 		| "remoteBrowserEnabled"
@@ -149,8 +149,8 @@ export interface WebviewMessage {
 		| "toggleApiConfigPin"
 		| "setHistoryPreviewCollapsed"
 		| "accountButtonClicked"
-		| "rooCloudSignIn"
-		| "rooCloudSignOut"
+		| "zentaraCloudSignIn"
+		| "zentaraCloudSignOut"
 		| "condenseTaskContextRequest"
 		| "requestIndexingStatus"
 		| "startIndexing"

@@ -1,6 +1,6 @@
 // npx jest src/shared/__tests__/combineApiRequests.test.ts
 
-import type { ClineMessage, ClineSay } from "@roo-code/types"
+import type { ClineMessage, ClineSay } from "@zentara-code/types"
 
 import { combineApiRequests } from "../combineApiRequests"
 

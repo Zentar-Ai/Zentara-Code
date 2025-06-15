@@ -47,10 +47,10 @@ export default async function Home() {
 									size="lg"
 									className="w-full hover:bg-gray-200 dark:bg-white dark:text-black sm:w-auto">
 									<a
-										href="https://marketplace.visualstudio.com/items?itemName=ZentarAI.roo-code"
+										href="https://marketplace.visualstudio.com/items?itemName=ZentarAI.zentara-code"
 										target="_blank"
 										className="flex w-full items-center justify-center">
-										Install Roo Code
+										Install Zentara Code
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											className="ml-2 h-4 w-4"

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import HistoryPreview from "../HistoryPreview"
-import type { HistoryItem } from "@roo-code/types"
+import type { HistoryItem } from "@zentara-code/types"
 
 jest.mock("../useTaskSearch")
 jest.mock("../TaskItem", () => {

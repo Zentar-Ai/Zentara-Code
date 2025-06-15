@@ -15,7 +15,7 @@ jest.mock("../../prompts/responses", () => ({
 jest.mock("../../../i18n", () => ({
 	t: jest.fn((key: string, params?: any) => {
 		if (key === "mcp:errors.invalidJsonArgument" && params?.toolName) {
-			return `Roo tried to use ${params.toolName} with an invalid JSON argument. Retrying...`
+			return `Zentara tried to use ${params.toolName} with an invalid JSON argument. Retrying...`
 		}
 		return key
 	}),

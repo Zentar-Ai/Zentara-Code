@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 // Zod schema for RecordSource
-export const recordSourceSchema = z.enum(["read_tool", "user_edited", "roo_edited", "file_mentioned"])
+export const recordSourceSchema = z.enum(["read_tool", "user_edited", "zentara_edited", "file_mentioned"])
 
 // TypeScript type derived from the Zod schema
 export type RecordSource = z.infer<typeof recordSourceSchema>
@@ -11,8 +11,8 @@ export const fileMetadataEntrySchema = z.object({
 	path: z.string(),
 	record_state: z.enum(["active", "stale"]),
 	record_source: recordSourceSchema,
-	roo_read_date: z.number().nullable(),
-	roo_edit_date: z.number().nullable(),
+	zentara_read_date: z.number().nullable(),
+	zentara_edit_date: z.number().nullable(),
 	user_edit_date: z.number().nullable().optional(),
 })
 

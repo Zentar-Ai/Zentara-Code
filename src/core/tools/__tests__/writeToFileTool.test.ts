@@ -26,7 +26,7 @@ jest.mock("../../../utils/fs", () => ({
 jest.mock("../../prompts/responses", () => ({
 	formatResponse: {
 		toolError: jest.fn((msg) => `Error: ${msg}`),
-		rooIgnoreError: jest.fn((path) => `Access denied: ${path}`),
+		zentaraIgnoreError: jest.fn((path) => `Access denied: ${path}`),
 		lineCountTruncationError: jest.fn(
 			(count, isNew, diffEnabled) => `Line count error: ${count}, new: ${isNew}, diff: ${diffEnabled}`,
 		),
@@ -73,8 +73,8 @@ jest.mock("vscode", () => ({
 	},
 }))
 
-jest.mock("../../ignore/RooIgnoreController", () => ({
-	RooIgnoreController: class {
+jest.mock("../../ignore/ZentaraIgnoreController", () => ({
+	ZentaraIgnoreController: class {
 		initialize() {
 			return Promise.resolve()
 		}
@@ -124,7 +124,7 @@ describe("writeToFileTool", () => {
 		mockCline.consecutiveMistakeCount = 0
 		mockCline.didEditFile = false
 		mockCline.diffStrategy = undefined
-		mockCline.rooIgnoreController = {
+		mockCline.zentaraIgnoreController = {
 			validateAccess: jest.fn().mockReturnValue(true),
 		}
 		mockCline.diffViewProvider = {
@@ -196,7 +196,7 @@ describe("writeToFileTool", () => {
 		const accessAllowed = options.accessAllowed ?? true
 
 		mockedFileExistsAtPath.mockResolvedValue(fileExists)
-		mockCline.rooIgnoreController.validateAccess.mockReturnValue(accessAllowed)
+		mockCline.zentaraIgnoreController.validateAccess.mockReturnValue(accessAllowed)
 
 		// Create a tool use object
 		const toolUse: ToolUse = {
@@ -226,10 +226,10 @@ describe("writeToFileTool", () => {
 	}
 
 	describe("access control", () => {
-		it("validates and allows access when rooIgnoreController permits", async () => {
+		it("validates and allows access when zentaraIgnoreController permits", async () => {
 			await executeWriteFileTool({}, { accessAllowed: true })
 
-			expect(mockCline.rooIgnoreController.validateAccess).toHaveBeenCalledWith(testFilePath)
+			expect(mockCline.zentaraIgnoreController.validateAccess).toHaveBeenCalledWith(testFilePath)
 			expect(mockCline.diffViewProvider.open).toHaveBeenCalledWith(testFilePath)
 		})
 	})
@@ -309,7 +309,7 @@ describe("writeToFileTool", () => {
 			expect(mockCline.diffViewProvider.update).toHaveBeenCalledWith(testContent, true)
 			expect(mockAskApproval).toHaveBeenCalled()
 			expect(mockCline.diffViewProvider.saveChanges).toHaveBeenCalled()
-			expect(mockCline.fileContextTracker.trackFileContext).toHaveBeenCalledWith(testFilePath, "roo_edited")
+			expect(mockCline.fileContextTracker.trackFileContext).toHaveBeenCalledWith(testFilePath, "zentara_edited")
 			expect(mockCline.didEditFile).toBe(true)
 		})
 

@@ -27,7 +27,7 @@ export class QdrantVectorStore implements IVectorStore {
 			url: url ?? this.QDRANT_URL,
 			apiKey,
 			headers: {
-				"User-Agent": "roo-code",
+				"User-Agent": "zentara-code",
 			},
 		})
 

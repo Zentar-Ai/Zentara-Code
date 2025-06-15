@@ -163,7 +163,7 @@ type GlobalSettings = {
     soundVolume?: number | undefined;
     maxOpenTabsContext?: number | undefined;
     maxWorkspaceFiles?: number | undefined;
-    showRooIgnoredFiles?: boolean | undefined;
+    showZentaraIgnoredFiles?: boolean | undefined;
     maxReadFileLine?: number | undefined;
     terminalOutputLineLimit?: number | undefined;
     terminalShellIntegrationTimeout?: number | undefined;
@@ -222,7 +222,7 @@ type ClineMessage = {
     ts: number;
     type: "ask" | "say";
     ask?: ("followup" | "command" | "command_output" | "completion_result" | "tool" | "api_req_failed" | "resume_task" | "resume_completed_task" | "mistake_limit_reached" | "browser_action_launch" | "use_mcp_server") | undefined;
-    say?: ("error" | "api_req_started" | "api_req_finished" | "api_req_retried" | "api_req_retry_delayed" | "api_req_deleted" | "text" | "reasoning" | "completion_result" | "user_feedback" | "user_feedback_diff" | "command_output" | "shell_integration_warning" | "browser_action" | "browser_action_result" | "mcp_server_request_started" | "mcp_server_response" | "subtask_result" | "checkpoint_saved" | "rooignore_error" | "diff_error") | undefined;
+    say?: ("error" | "api_req_started" | "api_req_finished" | "api_req_retried" | "api_req_retry_delayed" | "api_req_deleted" | "text" | "reasoning" | "completion_result" | "user_feedback" | "user_feedback_diff" | "command_output" | "shell_integration_warning" | "browser_action" | "browser_action_result" | "mcp_server_request_started" | "mcp_server_response" | "subtask_result" | "checkpoint_saved" | "zentaraignore_error" | "diff_error") | undefined;
     text?: string | undefined;
     images?: string[] | undefined;
     partial?: boolean | undefined;
@@ -250,7 +250,7 @@ type TokenUsage = {
 
 export type { TokenUsage }
 
-type RooCodeEvents = {
+type ZentaraCodeEvents = {
     message: [
         {
             taskId: string;
@@ -259,7 +259,7 @@ type RooCodeEvents = {
                 ts: number;
                 type: "ask" | "say";
                 ask?: ("followup" | "command" | "command_output" | "completion_result" | "tool" | "api_req_failed" | "resume_task" | "resume_completed_task" | "mistake_limit_reached" | "browser_action_launch" | "use_mcp_server") | undefined;
-                say?: ("error" | "api_req_started" | "api_req_finished" | "api_req_retried" | "api_req_retry_delayed" | "api_req_deleted" | "text" | "reasoning" | "completion_result" | "user_feedback" | "user_feedback_diff" | "command_output" | "shell_integration_warning" | "browser_action" | "browser_action_result" | "mcp_server_request_started" | "mcp_server_response" | "subtask_result" | "checkpoint_saved" | "rooignore_error" | "diff_error") | undefined;
+                say?: ("error" | "api_req_started" | "api_req_finished" | "api_req_retried" | "api_req_retry_delayed" | "api_req_deleted" | "text" | "reasoning" | "completion_result" | "user_feedback" | "user_feedback_diff" | "command_output" | "shell_integration_warning" | "browser_action" | "browser_action_result" | "mcp_server_request_started" | "mcp_server_response" | "subtask_result" | "checkpoint_saved" | "zentaraignore_error" | "diff_error") | undefined;
                 text?: string | undefined;
                 images?: string[] | undefined;
                 partial?: boolean | undefined;
@@ -336,4 +336,4 @@ type RooCodeEvents = {
     ];
 };
 
-export type { RooCodeEvents }
+export type { ZentaraCodeEvents }

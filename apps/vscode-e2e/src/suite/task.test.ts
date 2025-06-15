@@ -1,10 +1,10 @@
 import * as assert from "assert"
 
-import type { ClineMessage } from "@roo-code/types"
+import type { ClineMessage } from "@zentara-code/types"
 
 import { waitUntilCompleted } from "./utils"
 
-suite("Roo Code Task", () => {
+suite("Zentara Code Task", () => {
 	test("Should handle prompt and response correctly", async () => {
 		const api = globalThis.api
 
@@ -25,9 +25,9 @@ suite("Roo Code Task", () => {
 
 		assert.ok(
 			!!messages.find(
-				({ say, text }) => (say === "completion_result" || say === "text") && text?.includes("My name is Roo"),
+				({ say, text }) => (say === "completion_result" || say === "text") && text?.includes("My name is Zentara"),
 			),
-			`Completion should include "My name is Roo"`,
+			`Completion should include "My name is Zentara"`,
 		)
 	})
 })

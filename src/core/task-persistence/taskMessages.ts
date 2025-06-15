@@ -1,7 +1,7 @@
 import * as path from "path"
 import * as fs from "fs/promises"
 
-import type { ClineMessage } from "@roo-code/types"
+import type { ClineMessage } from "@zentara-code/types"
 
 import { fileExistsAtPath } from "../../utils/fs"
 

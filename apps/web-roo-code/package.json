@@ -1,5 +1,5 @@
 {
-	"name": "@roo-code/web-roo-code",
+	"name": "@zentara-code/web-zentara-code",
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
@@ -12,7 +12,7 @@
 	"dependencies": {
 		"@radix-ui/react-dialog": "^1.1.14",
 		"@radix-ui/react-slot": "^1.2.3",
-		"@roo-code/types": "workspace:^",
+		"@zentara-code/types": "workspace:^",
 		"@tanstack/react-query": "^5.79.0",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
@@ -33,8 +33,8 @@
 		"zod": "^3.25.61"
 	},
 	"devDependencies": {
-		"@roo-code/config-eslint": "workspace:^",
-		"@roo-code/config-typescript": "workspace:^",
+		"@zentara-code/config-eslint": "workspace:^",
+		"@zentara-code/config-typescript": "workspace:^",
 		"@tailwindcss/typography": "^0.5.16",
 		"@types/node": "20.x",
 		"@types/react": "^18.3.23",

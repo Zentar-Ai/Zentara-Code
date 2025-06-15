@@ -1,6 +1,6 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 
-import { TelemetryService } from "@roo-code/telemetry"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { ApiHandler } from "../../api"
 import { summarizeConversation, SummarizeResponse } from "../condense"

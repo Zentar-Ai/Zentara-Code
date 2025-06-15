@@ -97,7 +97,7 @@
   <workspace_management>
     <workspace_creation>
       <description>Test workspaces are created by runTest.ts</description>
-      <location>/tmp/roo-test-workspace-*</location>
+      <location>/tmp/zentara-test-workspace-*</location>
       <access>vscode.workspace.workspaceFolders![0].uri.fsPath</access>
     </workspace_creation>
     

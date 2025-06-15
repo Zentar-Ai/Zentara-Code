@@ -11,9 +11,9 @@
 </sub>
 </div>
 
-# Contribuer à Roo Code
+# Contribuer à Zentara Code
 
-Roo Code est un projet porté par la communauté, et chaque contribution compte beaucoup pour nous. Pour fluidifier la collaboration, nous fonctionnons selon une [approche Issue-First](#approche-issue-first), ce qui signifie que toutes les [Pull Requests (PRs)](#soumettre-une-pull-request) doivent d'abord être liées à un ticket GitHub. Lis attentivement ce guide.
+Zentara Code est un projet porté par la communauté, et chaque contribution compte beaucoup pour nous. Pour fluidifier la collaboration, nous fonctionnons selon une [approche Issue-First](#approche-issue-first), ce qui signifie que toutes les [Pull Requests (PRs)](#soumettre-une-pull-request) doivent d'abord être liées à un ticket GitHub. Lis attentivement ce guide.
 
 ## Table des matières
 
@@ -52,10 +52,10 @@ Notre feuille de route guide la direction du projet. Aligne tes contributions av
 
 Mentionne l'alignement avec ces domaines dans tes PRs.
 
-### 3. Rejoindre la communauté Roo Code
+### 3. Rejoindre la communauté Zentara Code
 
-- **Principal :** Rejoins notre [Discord](https://discord.gg/roocode) et envoie un DM à **Hannes Rudolph (`hrudolph`)**.
-- **Alternative :** Les contributeurs expérimentés peuvent participer directement via [GitHub Projects](https://github.com/orgs/RooCodeInc/projects/1).
+- **Principal :** Rejoins notre [Discord](https://discord.gg/zentaracode) et envoie un DM à **Hannes Rudolph (`hrudolph`)**.
+- **Alternative :** Les contributeurs expérimentés peuvent participer directement via [GitHub Projects](https://github.com/orgs/ZentaraCodeInc/projects/1).
 
 ## Trouver et planifier ta contribution
 
@@ -69,7 +69,7 @@ Mentionne l'alignement avec ces domaines dans tes PRs.
 
 Toutes les contributions doivent commencer par un ticket GitHub.
 
-- **Vérifier les tickets existants :** Cherche dans les [Issues GitHub](https://github.com/RooCodeInc/Roo-Code/issues).
+- **Vérifier les tickets existants :** Cherche dans les [Issues GitHub](https://github.com/ZentaraCodeInc/Zentara-Code/issues).
 - **Créer un ticket :** Utilise les modèles appropriés :
     - **Bugs :** Modèle "Bug Report".
     - **Fonctionnalités :** Modèle "Detailed Feature Proposal". Approbation requise avant de commencer.
@@ -79,14 +79,14 @@ Toutes les contributions doivent commencer par un ticket GitHub.
 
 ### Décider sur quoi travailler
 
-- Consulte le [Projet GitHub](https://github.com/orgs/RooCodeInc/projects/1) pour les "Good First Issues" non assignés.
-- Pour la documentation, visite [Roo Code Docs](https://github.com/RooCodeInc/Roo-Code-Docs).
+- Consulte le [Projet GitHub](https://github.com/orgs/ZentaraCodeInc/projects/1) pour les "Good First Issues" non assignés.
+- Pour la documentation, visite [Zentara Code Docs](https://github.com/ZentaraCodeInc/Zentara-Code-Docs).
 
 ### Signaler des bugs
 
 - Vérifie d'abord les rapports existants.
-- Crée de nouveaux rapports de bugs avec le [modèle "Bug Report"](https://github.com/RooCodeInc/Roo-Code/issues/new/choose).
-- **Failles de sécurité :** Signale-les en privé via [security advisories](https://github.com/RooCodeInc/Roo-Code/security/advisories/new).
+- Crée de nouveaux rapports de bugs avec le [modèle "Bug Report"](https://github.com/ZentaraCodeInc/Zentara-Code/issues/new/choose).
+- **Failles de sécurité :** Signale-les en privé via [security advisories](https://github.com/ZentaraCodeInc/Zentara-Code/security/advisories/new).
 
 ## Processus de développement et de soumission
 
@@ -95,7 +95,7 @@ Toutes les contributions doivent commencer par un ticket GitHub.
 1. **Fork & Clone :**
 
 ```
-git clone https://github.com/TON_UTILISATEUR/Roo-Code.git
+git clone https://github.com/TON_UTILISATEUR/Zentara-Code.git
 ```
 
 2. **Installer les dépendances :**
@@ -135,4 +135,4 @@ npm run install:all
 
 ## Légal
 
-En contribuant, tu acceptes que tes contributions soient sous licence Apache 2.0, conformément à la licence de Roo Code.
+En contribuant, tu acceptes que tes contributions soient sous licence Apache 2.0, conformément à la licence de Zentara Code.

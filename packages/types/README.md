@@ -1,4 +1,4 @@
-# @roo-code/types
+# @zentara-code/types
 
 ### Publish to NPM
 
@@ -17,7 +17,7 @@ cd packages/types/npm && npm version minor && cd -
 Finally, publish to NPM:
 
 ```sh
-pnpm --filter @roo-code/types npm:publish
+pnpm --filter @zentara-code/types npm:publish
 ```
 
 Note that you'll be asked for an MFA code to complete the publish.

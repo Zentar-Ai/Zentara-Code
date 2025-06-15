@@ -75,9 +75,9 @@ export const workspace = {
 	getConfiguration: jest.fn().mockReturnValue({
 		get: jest.fn((key: string) => {
 			// Provide default mock values for common configurations
-			if (key === "roo.telemetryLevel") return "all"
-			if (key === "roo.logLevel") return "info"
-			if (key === "roo.codeLens.enabled") return true
+			if (key === "zentara.telemetryLevel") return "all"
+			if (key === "zentara.logLevel") return "info"
+			if (key === "zentara.codeLens.enabled") return true
 			if (key === "editor.tabSize") return 4
 			if (key === "files.eol") return "\n"
 			return undefined
@@ -287,14 +287,14 @@ export const debug = {
 
 export const extensions = {
 	getExtension: jest.fn((extensionId: string) => {
-		if (extensionId === "rooi.roo-code") {
+		if (extensionId === "zentarai.zentara-code") {
 			return {
-				id: "rooi.roo-code",
-				extensionUri: Uri.file("/mock/extensions/rooi.roo-code"),
-				extensionPath: "/mock/extensions/rooi.roo-code",
+				id: "zentarai.zentara-code",
+				extensionUri: Uri.file("/mock/extensions/zentarai.zentara-code"),
+				extensionPath: "/mock/extensions/zentarai.zentara-code",
 				isActive: true,
 				packageJSON: {
-					name: "roo-code",
+					name: "zentara-code",
 					version: "0.1.0",
 					// ... other package.json properties
 				},

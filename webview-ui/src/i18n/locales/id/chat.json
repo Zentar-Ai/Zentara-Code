@@ -1,5 +1,5 @@
 {
-	"greeting": "Selamat datang di Roo Code",
+	"greeting": "Selamat datang di Zentara Code",
 	"task": {
 		"title": "Tugas",
 		"seeMore": "Lihat lebih banyak",
@@ -87,7 +87,7 @@
 	"scrollToBottom": "Gulir ke bawah chat",
 	"about": "Buat, refaktor, dan debug kode dengan bantuan AI.<br />Lihat <DocsLink>dokumentasi</DocsLink> kami untuk mempelajari lebih lanjut.",
 	"onboarding": "Daftar tugas di workspace ini kosong.",
-	"rooTips": {
+	"zentaraTips": {
 		"boomerangTasks": {
 			"title": "Tugas Boomerang",
 			"description": "Bagi tugas menjadi bagian-bagian kecil yang dapat dikelola"
@@ -152,64 +152,64 @@
 		"tokens": "token"
 	},
 	"instructions": {
-		"wantsToFetch": "Roo ingin mengambil instruksi detail untuk membantu tugas saat ini"
+		"wantsToFetch": "Zentara ingin mengambil instruksi detail untuk membantu tugas saat ini"
 	},
 	"fileOperations": {
-		"wantsToRead": "Roo ingin membaca file ini:",
-		"wantsToReadMultiple": "Roo ingin membaca beberapa file:",
-		"wantsToReadAndXMore": "Roo ingin membaca file ini dan {{count}} lainnya:",
-		"wantsToReadOutsideWorkspace": "Roo ingin membaca file ini di luar workspace:",
-		"didRead": "Roo membaca file ini:",
-		"wantsToEdit": "Roo ingin mengedit file ini:",
-		"wantsToEditOutsideWorkspace": "Roo ingin mengedit file ini di luar workspace:",
-		"wantsToEditProtected": "Roo ingin mengedit file konfigurasi yang dilindungi:",
-		"wantsToApplyBatchChanges": "Roo ingin menerapkan perubahan ke beberapa file:",
-		"wantsToCreate": "Roo ingin membuat file baru:",
-		"wantsToSearchReplace": "Roo ingin mencari dan mengganti di file ini:",
-		"didSearchReplace": "Roo melakukan pencarian dan penggantian pada file ini:",
-		"wantsToInsert": "Roo ingin menyisipkan konten ke file ini:",
-		"wantsToInsertWithLineNumber": "Roo ingin menyisipkan konten ke file ini di baris {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Roo ingin menambahkan konten ke akhir file ini:"
+		"wantsToRead": "Zentara ingin membaca file ini:",
+		"wantsToReadMultiple": "Zentara ingin membaca beberapa file:",
+		"wantsToReadAndXMore": "Zentara ingin membaca file ini dan {{count}} lainnya:",
+		"wantsToReadOutsideWorkspace": "Zentara ingin membaca file ini di luar workspace:",
+		"didRead": "Zentara membaca file ini:",
+		"wantsToEdit": "Zentara ingin mengedit file ini:",
+		"wantsToEditOutsideWorkspace": "Zentara ingin mengedit file ini di luar workspace:",
+		"wantsToEditProtected": "Zentara ingin mengedit file konfigurasi yang dilindungi:",
+		"wantsToApplyBatchChanges": "Zentara ingin menerapkan perubahan ke beberapa file:",
+		"wantsToCreate": "Zentara ingin membuat file baru:",
+		"wantsToSearchReplace": "Zentara ingin mencari dan mengganti di file ini:",
+		"didSearchReplace": "Zentara melakukan pencarian dan penggantian pada file ini:",
+		"wantsToInsert": "Zentara ingin menyisipkan konten ke file ini:",
+		"wantsToInsertWithLineNumber": "Zentara ingin menyisipkan konten ke file ini di baris {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Zentara ingin menambahkan konten ke akhir file ini:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Roo ingin melihat file tingkat atas di direktori ini:",
-		"didViewTopLevel": "Roo melihat file tingkat atas di direktori ini:",
-		"wantsToViewRecursive": "Roo ingin melihat semua file secara rekursif di direktori ini:",
-		"didViewRecursive": "Roo melihat semua file secara rekursif di direktori ini:",
-		"wantsToViewDefinitions": "Roo ingin melihat nama definisi source code yang digunakan di direktori ini:",
-		"didViewDefinitions": "Roo melihat nama definisi source code yang digunakan di direktori ini:",
-		"wantsToSearch": "Roo ingin mencari direktori ini untuk <code>{{regex}}</code>:",
-		"didSearch": "Roo mencari direktori ini untuk <code>{{regex}}</code>:",
-		"wantsToSearchOutsideWorkspace": "Roo ingin mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>:",
-		"didSearchOutsideWorkspace": "Roo mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>:",
-		"wantsToViewTopLevelOutsideWorkspace": "Roo ingin melihat file tingkat atas di direktori ini (di luar workspace):",
-		"didViewTopLevelOutsideWorkspace": "Roo melihat file tingkat atas di direktori ini (di luar workspace):",
-		"wantsToViewRecursiveOutsideWorkspace": "Roo ingin melihat semua file secara rekursif di direktori ini (di luar workspace):",
-		"didViewRecursiveOutsideWorkspace": "Roo melihat semua file secara rekursif di direktori ini (di luar workspace):",
-		"wantsToViewDefinitionsOutsideWorkspace": "Roo ingin melihat nama definisi source code yang digunakan di direktori ini (di luar workspace):",
-		"didViewDefinitionsOutsideWorkspace": "Roo melihat nama definisi source code yang digunakan di direktori ini (di luar workspace):"
+		"wantsToViewTopLevel": "Zentara ingin melihat file tingkat atas di direktori ini:",
+		"didViewTopLevel": "Zentara melihat file tingkat atas di direktori ini:",
+		"wantsToViewRecursive": "Zentara ingin melihat semua file secara rekursif di direktori ini:",
+		"didViewRecursive": "Zentara melihat semua file secara rekursif di direktori ini:",
+		"wantsToViewDefinitions": "Zentara ingin melihat nama definisi source code yang digunakan di direktori ini:",
+		"didViewDefinitions": "Zentara melihat nama definisi source code yang digunakan di direktori ini:",
+		"wantsToSearch": "Zentara ingin mencari direktori ini untuk <code>{{regex}}</code>:",
+		"didSearch": "Zentara mencari direktori ini untuk <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Zentara ingin mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Zentara mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>:",
+		"wantsToViewTopLevelOutsideWorkspace": "Zentara ingin melihat file tingkat atas di direktori ini (di luar workspace):",
+		"didViewTopLevelOutsideWorkspace": "Zentara melihat file tingkat atas di direktori ini (di luar workspace):",
+		"wantsToViewRecursiveOutsideWorkspace": "Zentara ingin melihat semua file secara rekursif di direktori ini (di luar workspace):",
+		"didViewRecursiveOutsideWorkspace": "Zentara melihat semua file secara rekursif di direktori ini (di luar workspace):",
+		"wantsToViewDefinitionsOutsideWorkspace": "Zentara ingin melihat nama definisi source code yang digunakan di direktori ini (di luar workspace):",
+		"didViewDefinitionsOutsideWorkspace": "Zentara melihat nama definisi source code yang digunakan di direktori ini (di luar workspace):"
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Roo ingin mencari codebase untuk <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Roo ingin mencari codebase untuk <code>{{query}}</code> di <code>{{path}}</code>:",
+		"wantsToSearch": "Zentara ingin mencari codebase untuk <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Zentara ingin mencari codebase untuk <code>{{query}}</code> di <code>{{path}}</code>:",
 		"didSearch": "Ditemukan {{count}} hasil untuk <code>{{query}}</code>:"
 	},
 	"commandOutput": "Output Perintah",
 	"response": "Respons",
 	"arguments": "Argumen",
 	"mcp": {
-		"wantsToUseTool": "Roo ingin menggunakan tool di server MCP {{serverName}}:",
-		"wantsToAccessResource": "Roo ingin mengakses resource di server MCP {{serverName}}:"
+		"wantsToUseTool": "Zentara ingin menggunakan tool di server MCP {{serverName}}:",
+		"wantsToAccessResource": "Zentara ingin mengakses resource di server MCP {{serverName}}:"
 	},
 	"modes": {
-		"wantsToSwitch": "Roo ingin beralih ke mode {{mode}}",
-		"wantsToSwitchWithReason": "Roo ingin beralih ke mode {{mode}} karena: {{reason}}",
-		"didSwitch": "Roo beralih ke mode {{mode}}",
-		"didSwitchWithReason": "Roo beralih ke mode {{mode}} karena: {{reason}}"
+		"wantsToSwitch": "Zentara ingin beralih ke mode {{mode}}",
+		"wantsToSwitchWithReason": "Zentara ingin beralih ke mode {{mode}} karena: {{reason}}",
+		"didSwitch": "Zentara beralih ke mode {{mode}}",
+		"didSwitchWithReason": "Zentara beralih ke mode {{mode}} karena: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Roo ingin membuat subtugas baru dalam mode {{mode}}:",
-		"wantsToFinish": "Roo ingin menyelesaikan subtugas ini",
+		"wantsToCreate": "Zentara ingin membuat subtugas baru dalam mode {{mode}}:",
+		"wantsToFinish": "Zentara ingin menyelesaikan subtugas ini",
 		"newTaskContent": "Instruksi Subtugas",
 		"completionContent": "Subtugas Selesai",
 		"resultContent": "Hasil Subtugas",
@@ -217,25 +217,25 @@
 		"completionInstructions": "Subtugas selesai! Kamu bisa meninjau hasilnya dan menyarankan koreksi atau langkah selanjutnya. Jika semuanya terlihat baik, konfirmasi untuk mengembalikan hasil ke tugas induk."
 	},
 	"questions": {
-		"hasQuestion": "Roo punya pertanyaan:"
+		"hasQuestion": "Zentara punya pertanyaan:"
 	},
 	"taskCompleted": "Tugas Selesai",
 	"error": "Error",
 	"diffError": {
 		"title": "Edit Tidak Berhasil"
 	},
-	"troubleMessage": "Roo mengalami masalah...",
+	"troubleMessage": "Zentara mengalami masalah...",
 	"powershell": {
 		"issues": "Sepertinya kamu mengalami masalah Windows PowerShell, silakan lihat ini"
 	},
 	"autoApprove": {
 		"title": "Auto-approve:",
 		"none": "Tidak Ada",
-		"description": "Auto-approve memungkinkan Roo Code melakukan aksi tanpa meminta izin. Hanya aktifkan untuk aksi yang benar-benar kamu percayai. Konfigurasi lebih detail tersedia di <settingsLink>Pengaturan</settingsLink>."
+		"description": "Auto-approve memungkinkan Zentara Code melakukan aksi tanpa meminta izin. Hanya aktifkan untuk aksi yang benar-benar kamu percayai. Konfigurasi lebih detail tersedia di <settingsLink>Pengaturan</settingsLink>."
 	},
 	"announcement": {
-		"title": "🎉 Roo Code {{version}} Dirilis",
-		"description": "Roo Code {{version}} menghadirkan fitur baru yang powerful dan perbaikan berdasarkan feedback kamu.",
+		"title": "🎉 Zentara Code {{version}} Dirilis",
+		"description": "Zentara Code {{version}} menghadirkan fitur baru yang powerful dan perbaikan berdasarkan feedback kamu.",
 		"whatsNew": "Apa yang Baru",
 		"feature1": "<bold>Model Pratinjau Gemini 2.5 Flash</bold>: Akses model Gemini Flash terbaru untuk respons yang lebih cepat dan efisien",
 		"feature2": "<bold>Kondensasi Konteks Cerdas</bold>: Tombol baru di header tugas memungkinkan kamu mengondensasi konten secara cerdas dengan umpan balik visual",
@@ -251,7 +251,7 @@
 		"copyToInput": "Salin ke input (sama dengan shift + klik)"
 	},
 	"browser": {
-		"rooWantsToUse": "Roo ingin menggunakan browser:",
+		"zentaraWantsToUse": "Zentara ingin menggunakan browser:",
 		"consoleLogs": "Log Konsol",
 		"noNewLogs": "(Tidak ada log baru)",
 		"screenshot": "Screenshot browser",
@@ -285,13 +285,13 @@
 	"profileViolationWarning": "Profil saat ini melanggar pengaturan organisasi kamu",
 	"shellIntegration": {
 		"title": "Peringatan Eksekusi Perintah",
-		"description": "Perintah kamu dijalankan tanpa integrasi shell terminal VSCode. Untuk menekan peringatan ini kamu bisa menonaktifkan integrasi shell di bagian <strong>Terminal</strong> dari <settingsLink>pengaturan Roo Code</settingsLink> atau troubleshoot integrasi terminal VSCode menggunakan link di bawah.",
+		"description": "Perintah kamu dijalankan tanpa integrasi shell terminal VSCode. Untuk menekan peringatan ini kamu bisa menonaktifkan integrasi shell di bagian <strong>Terminal</strong> dari <settingsLink>pengaturan Zentara Code</settingsLink> atau troubleshoot integrasi terminal VSCode menggunakan link di bawah.",
 		"troubleshooting": "Klik di sini untuk dokumentasi integrasi shell."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Batas Permintaan yang Disetujui Otomatis Tercapai",
-			"description": "Roo telah mencapai batas {{count}} permintaan API yang disetujui otomatis. Apakah kamu ingin mengatur ulang hitungan dan melanjutkan tugas?",
+			"description": "Zentara telah mencapai batas {{count}} permintaan API yang disetujui otomatis. Apakah kamu ingin mengatur ulang hitungan dan melanjutkan tugas?",
 			"button": "Atur Ulang dan Lanjutkan"
 		}
 	},

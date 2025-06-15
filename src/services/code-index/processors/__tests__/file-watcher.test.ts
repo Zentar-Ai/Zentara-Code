@@ -77,8 +77,8 @@ jest.mock("uuid", () => ({
 	...jest.requireActual("uuid"),
 	v5: jest.fn().mockReturnValue("mocked-uuid-v5-for-testing"),
 }))
-jest.mock("../../../../core/ignore/RooIgnoreController", () => ({
-	RooIgnoreController: jest.fn().mockImplementation(() => ({
+jest.mock("../../../../core/ignore/ZentaraIgnoreController", () => ({
+	ZentaraIgnoreController: jest.fn().mockImplementation(() => ({
 		validateAccess: jest.fn(),
 	})),
 	mockValidateAccess: jest.fn(),
@@ -92,7 +92,7 @@ describe("FileWatcher", () => {
 	let mockVectorStore: IVectorStore
 	let mockCacheManager: any
 	let mockContext: any
-	let mockRooIgnoreController: any
+	let mockZentaraIgnoreController: any
 
 	beforeEach(() => {
 		mockEmbedder = {
@@ -118,9 +118,9 @@ describe("FileWatcher", () => {
 			subscriptions: [],
 		}
 
-		const { RooIgnoreController, mockValidateAccess } = require("../../../../core/ignore/RooIgnoreController")
-		mockRooIgnoreController = new RooIgnoreController()
-		mockRooIgnoreController.validateAccess = mockValidateAccess.mockReturnValue(true)
+		const { ZentaraIgnoreController, mockValidateAccess } = require("../../../../core/ignore/ZentaraIgnoreController")
+		mockZentaraIgnoreController = new ZentaraIgnoreController()
+		mockZentaraIgnoreController.validateAccess = mockValidateAccess.mockReturnValue(true)
 
 		fileWatcher = new FileWatcher(
 			"/mock/workspace",
@@ -129,7 +129,7 @@ describe("FileWatcher", () => {
 			mockEmbedder,
 			mockVectorStore,
 			undefined,
-			mockRooIgnoreController,
+			mockZentaraIgnoreController,
 		)
 	})
 
@@ -342,7 +342,7 @@ describe("FileWatcher", () => {
 
 	describe("processFile", () => {
 		it("should skip ignored files", async () => {
-			mockRooIgnoreController.validateAccess.mockImplementation((path: string) => {
+			mockZentaraIgnoreController.validateAccess.mockImplementation((path: string) => {
 				if (path === "/mock/workspace/ignored.js") return false
 				return true
 			})
@@ -351,7 +351,7 @@ describe("FileWatcher", () => {
 			const result = await fileWatcher.processFile(filePath)
 
 			expect(result.status).toBe("skipped")
-			expect(result.reason).toBe("File is ignored by .rooignore or .gitignore")
+			expect(result.reason).toBe("File is ignored by .zentaraignore or .gitignore")
 			expect(mockCacheManager.updateHash).not.toHaveBeenCalled()
 			expect(vscode.workspace.fs.stat).not.toHaveBeenCalled()
 			expect(vscode.workspace.fs.readFile).not.toHaveBeenCalled()
@@ -360,7 +360,7 @@ describe("FileWatcher", () => {
 		it("should skip files larger than MAX_FILE_SIZE_BYTES", async () => {
 			vscode.workspace.fs.stat.mockResolvedValue({ size: 2 * 1024 * 1024 })
 			vscode.workspace.fs.readFile.mockResolvedValue(Buffer.from("large file content"))
-			mockRooIgnoreController.validateAccess.mockReturnValue(true)
+			mockZentaraIgnoreController.validateAccess.mockReturnValue(true)
 			const result = await fileWatcher.processFile("/mock/workspace/large.js")
 			expect(vscode.Uri.file).toHaveBeenCalledWith("/mock/workspace/large.js")
 
@@ -373,7 +373,7 @@ describe("FileWatcher", () => {
 			vscode.workspace.fs.stat.mockResolvedValue({ size: 1024, mtime: Date.now() })
 			vscode.workspace.fs.readFile.mockResolvedValue(Buffer.from("test content"))
 			mockCacheManager.getHash.mockReturnValue("hash")
-			mockRooIgnoreController.validateAccess.mockReturnValue(true)
+			mockZentaraIgnoreController.validateAccess.mockReturnValue(true)
 			;(createHash as jest.Mock).mockReturnValue({
 				update: jest.fn().mockReturnThis(),
 				digest: jest.fn().mockReturnValue("hash"),
@@ -391,7 +391,7 @@ describe("FileWatcher", () => {
 			vscode.workspace.fs.stat.mockResolvedValue({ size: 1024, mtime: Date.now() })
 			vscode.workspace.fs.readFile.mockResolvedValue(Buffer.from("test content"))
 			mockCacheManager.getHash.mockReturnValue("old-hash")
-			mockRooIgnoreController.validateAccess.mockReturnValue(true)
+			mockZentaraIgnoreController.validateAccess.mockReturnValue(true)
 			;(createHash as jest.Mock).mockReturnValue({
 				update: jest.fn().mockReturnThis(),
 				digest: jest.fn().mockReturnValue("new-hash"),
@@ -476,7 +476,7 @@ describe("FileWatcher", () => {
 			mockUri = { fsPath: "/mock/workspace/test-race.js" }
 
 			// Ensure file access is allowed
-			mockRooIgnoreController.validateAccess.mockReturnValue(true)
+			mockZentaraIgnoreController.validateAccess.mockReturnValue(true)
 		})
 
 		afterEach(() => {
@@ -575,7 +575,7 @@ describe("FileWatcher", () => {
 			;(mockVectorStore.deletePointsByMultipleFilePaths as jest.Mock).mockClear()
 
 			// Ensure file access is allowed
-			mockRooIgnoreController.validateAccess.mockReturnValue(true)
+			mockZentaraIgnoreController.validateAccess.mockReturnValue(true)
 		})
 
 		afterEach(() => {
@@ -805,7 +805,7 @@ describe("FileWatcher", () => {
 			changeUri = { fsPath: "/mock/workspace/to-be-changed.js" }
 
 			// Ensure file access is allowed
-			mockRooIgnoreController.validateAccess.mockReturnValue(true)
+			mockZentaraIgnoreController.validateAccess.mockReturnValue(true)
 		})
 
 		afterEach(() => {

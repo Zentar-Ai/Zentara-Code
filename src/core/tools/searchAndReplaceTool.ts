@@ -115,16 +115,16 @@ export async function searchAndReplaceTool(
 			endLine: endLine,
 		}
 
-		const accessAllowed = cline.rooIgnoreController?.validateAccess(validRelPath)
+		const accessAllowed = cline.zentaraIgnoreController?.validateAccess(validRelPath)
 
 		if (!accessAllowed) {
-			await cline.say("rooignore_error", validRelPath)
-			pushToolResult(formatResponse.toolError(formatResponse.rooIgnoreError(validRelPath)))
+			await cline.say("zentaraignore_error", validRelPath)
+			pushToolResult(formatResponse.toolError(formatResponse.zentaraIgnoreError(validRelPath)))
 			return
 		}
 
 		// Check if file is write-protected
-		const isWriteProtected = cline.rooProtectedController?.isWriteProtected(validRelPath) || false
+		const isWriteProtected = cline.zentaraProtectedController?.isWriteProtected(validRelPath) || false
 
 		const absolutePath = path.resolve(cline.cwd, validRelPath)
 		const fileExists = await fileExistsAtPath(absolutePath)
@@ -231,7 +231,7 @@ export async function searchAndReplaceTool(
 
 		// Track file edit operation
 		if (relPath) {
-			await cline.fileContextTracker.trackFileContext(relPath, "roo_edited" as RecordSource)
+			await cline.fileContextTracker.trackFileContext(relPath, "zentara_edited" as RecordSource)
 		}
 
 		cline.didEditFile = true

@@ -5,15 +5,15 @@ body:
   - type: markdown
     attributes:
       value: |
-        **Thank you for proposing a feature for Roo Code!**
+        **Thank you for proposing a feature for Zentara Code!**
         
-        This template is for specific, actionable proposals following our [Issue-First Approach](https://github.com/Zentar-Ai/Roo-Code/blob/main/CONTRIBUTING.md).
+        This template is for specific, actionable proposals following our [Issue-First Approach](https://github.com/Zentar-Ai/Zentara-Code/blob/main/CONTRIBUTING.md).
         
         **Quality over speed:** We prefer detailed, clear proposals over quick ones. Vague proposals often get closed or require multiple rounds of clarification, which wastes everyone's time.
         
         **Before submitting:**
-        - Search existing [Issues](https://github.com/Zentar-Ai/Roo-Code/issues) and [Discussions](https://github.com/Zentar-Ai/Roo-Code/discussions) to avoid duplicates
-        - For general ideas, use [GitHub Discussions](https://github.com/Zentar-Ai/Roo-Code/discussions/categories/feature-requests) first
+        - Search existing [Issues](https://github.com/Zentar-Ai/Zentara-Code/issues) and [Discussions](https://github.com/Zentar-Ai/Zentara-Code/discussions) to avoid duplicates
+        - For general ideas, use [GitHub Discussions](https://github.com/Zentar-Ai/Zentara-Code/discussions/categories/feature-requests) first
 
         
        

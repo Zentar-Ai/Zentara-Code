@@ -3,7 +3,7 @@ import { Server, ChevronDown } from "lucide-react"
 import { useEvent } from "react-use"
 import { useTranslation } from "react-i18next"
 
-import { McpExecutionStatus, mcpExecutionStatusSchema } from "@roo-code/types"
+import { McpExecutionStatus, mcpExecutionStatusSchema } from "@zentara-code/types"
 import { ExtensionMessage, ClineAskUseMcpServer } from "../../../../src/shared/ExtensionMessage"
 import { safeJsonParse } from "../../../../src/shared/safeJsonParse"
 import { cn } from "@src/lib/utils"

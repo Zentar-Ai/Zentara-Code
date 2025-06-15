@@ -1,5 +1,5 @@
 {
-	"name": "roo-code",
+	"name": "zentara-code",
 	"displayName": "%extension.displayName%",
 	"description": "%extension.description%",
 	"publisher": "ZentarAI",
@@ -14,11 +14,11 @@
 		"node": "20.19.2"
 	},
 	"author": {
-		"name": "Roo Code"
+		"name": "Zentara Code"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Zentar-Ai/roo-code"
+		"url": "https://github.com/Zentar-Ai/zentara-code"
 	},
 	"homepage": "https://zentar.ai",
 	"categories": [
@@ -42,9 +42,9 @@
 		"sonnet",
 		"ai",
 		"llama",
-	"roocode",
-	"roo-code",
-		"roo",
+	"zentaracode",
+	"zentara-code",
+		"zentara",
 		"code",
 		"cloud"
 		
@@ -58,120 +58,120 @@
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "roo-code-ActivityBar",
+					"id": "zentara-code-ActivityBar",
 					"title": "%views.activitybar.title%",
 					"icon": "assets/icons/icon.svg"
 				}
 			]
 		},
 		"views": {
-			"roo-code-ActivityBar": [
+			"zentara-code-ActivityBar": [
 				{
 					"type": "webview",
-					"id": "roo-code.SidebarProvider",
+					"id": "zentara-code.SidebarProvider",
 					"name": "%views.sidebar.name%"
 				}
 			]
 		},
 		"commands": [
 			{
-				"command": "roo-code.plusButtonClicked",
+				"command": "zentara-code.plusButtonClicked",
 				"title": "%command.newTask.title%",
 				"icon": "$(add)"
 			},
 			{
-				"command": "roo-code.mcpButtonClicked",
+				"command": "zentara-code.mcpButtonClicked",
 				"title": "%command.mcpServers.title%",
 				"icon": "$(server)"
 			},
 			{
-				"command": "roo-code.promptsButtonClicked",
+				"command": "zentara-code.promptsButtonClicked",
 				"title": "%command.prompts.title%",
 				"icon": "$(organization)"
 			},
 			{
-				"command": "roo-code.historyButtonClicked",
+				"command": "zentara-code.historyButtonClicked",
 				"title": "%command.history.title%",
 				"icon": "$(history)"
 			},
 			{
-				"command": "roo-code.marketplaceButtonClicked",
+				"command": "zentara-code.marketplaceButtonClicked",
 				"title": "%command.marketplace.title%",
 				"icon": "$(extensions)"
 			},
 			{
-				"command": "roo-code.popoutButtonClicked",
+				"command": "zentara-code.popoutButtonClicked",
 				"title": "%command.openInEditor.title%",
 				"icon": "$(link-external)"
 			},
 			{
-				"command": "roo-code.accountButtonClicked",
+				"command": "zentara-code.accountButtonClicked",
 				"title": "Account",
 				"icon": "$(account)",
-				"when": "config.roo-code.rooCodeCloudEnabled"
+				"when": "config.zentara-code.zentaraCodeCloudEnabled"
 			},
 			{
-				"command": "roo-code.settingsButtonClicked",
+				"command": "zentara-code.settingsButtonClicked",
 				"title": "%command.settings.title%",
 				"icon": "$(settings-gear)"
 			},
 			{
-				"command": "roo-code.openInNewTab",
+				"command": "zentara-code.openInNewTab",
 				"title": "%command.openInNewTab.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-code.explainCode",
+				"command": "zentara-code.explainCode",
 				"title": "%command.explainCode.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-code.fixCode",
+				"command": "zentara-code.fixCode",
 				"title": "%command.fixCode.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-code.improveCode",
+				"command": "zentara-code.improveCode",
 				"title": "%command.improveCode.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-code.addToContext",
+				"command": "zentara-code.addToContext",
 				"title": "%command.addToContext.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-code.newTask",
+				"command": "zentara-code.newTask",
 				"title": "%command.newTask.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-code.terminalAddToContext",
+				"command": "zentara-code.terminalAddToContext",
 				"title": "%command.terminal.addToContext.title%",
 				"category": "Terminal"
 			},
 			{
-				"command": "roo-code.terminalFixCommand",
+				"command": "zentara-code.terminalFixCommand",
 				"title": "%command.terminal.fixCommand.title%",
 				"category": "Terminal"
 			},
 			{
-				"command": "roo-code.terminalExplainCommand",
+				"command": "zentara-code.terminalExplainCommand",
 				"title": "%command.terminal.explainCommand.title%",
 				"category": "Terminal"
 			},
 			{
-				"command": "roo-code.setCustomStoragePath",
+				"command": "zentara-code.setCustomStoragePath",
 				"title": "%command.setCustomStoragePath.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-code.focusInput",
+				"command": "zentara-code.focusInput",
 				"title": "%command.focusInput.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "roo-code.acceptInput",
+				"command": "zentara-code.acceptInput",
 				"title": "%command.acceptInput.title%",
 				"category": "%configuration.title%"
 			}
@@ -179,138 +179,138 @@
 		"menus": {
 			"editor/context": [
 				{
-					"submenu": "roo-code.contextMenu",
+					"submenu": "zentara-code.contextMenu",
 					"group": "1"
 				}
 			],
-			"roo-code.contextMenu": [
+			"zentara-code.contextMenu": [
 				{
-					"command": "roo-code.addToContext",
+					"command": "zentara-code.addToContext",
 					"group": "1_actions@1"
 				},
 				{
-					"command": "roo-code.explainCode",
+					"command": "zentara-code.explainCode",
 					"group": "1_actions@2"
 				},
 				{
-					"command": "roo-code.improveCode",
+					"command": "zentara-code.improveCode",
 					"group": "1_actions@3"
 				}
 			],
 			"terminal/context": [
 				{
-					"submenu": "roo-code.terminalMenu",
+					"submenu": "zentara-code.terminalMenu",
 					"group": "2"
 				}
 			],
-			"roo-code.terminalMenu": [
+			"zentara-code.terminalMenu": [
 				{
-					"command": "roo-code.terminalAddToContext",
+					"command": "zentara-code.terminalAddToContext",
 					"group": "1_actions@1"
 				},
 				{
-					"command": "roo-code.terminalFixCommand",
+					"command": "zentara-code.terminalFixCommand",
 					"group": "1_actions@2"
 				},
 				{
-					"command": "roo-code.terminalExplainCommand",
+					"command": "zentara-code.terminalExplainCommand",
 					"group": "1_actions@3"
 				}
 			],
 			"view/title": [
 				{
-					"command": "roo-code.plusButtonClicked",
+					"command": "zentara-code.plusButtonClicked",
 					"group": "navigation@1",
-					"when": "view == roo-code.SidebarProvider"
+					"when": "view == zentara-code.SidebarProvider"
 				},
 				{
-					"command": "roo-code.promptsButtonClicked",
+					"command": "zentara-code.promptsButtonClicked",
 					"group": "navigation@2",
-					"when": "view == roo-code.SidebarProvider"
+					"when": "view == zentara-code.SidebarProvider"
 				},
 				{
-					"command": "roo-code.mcpButtonClicked",
+					"command": "zentara-code.mcpButtonClicked",
 					"group": "navigation@3",
-					"when": "view == roo-code.SidebarProvider"
+					"when": "view == zentara-code.SidebarProvider"
 				},
 				{
-					"command": "roo-code.marketplaceButtonClicked",
+					"command": "zentara-code.marketplaceButtonClicked",
 					"group": "navigation@4",
-					"when": "view == roo-code.SidebarProvider && roo-code.marketplaceEnabled"
+					"when": "view == zentara-code.SidebarProvider && zentara-code.marketplaceEnabled"
 				},
 				{
-					"command": "roo-code.historyButtonClicked",
+					"command": "zentara-code.historyButtonClicked",
 					"group": "navigation@5",
-					"when": "view == roo-code.SidebarProvider"
+					"when": "view == zentara-code.SidebarProvider"
 				},
 				{
-					"command": "roo-code.popoutButtonClicked",
+					"command": "zentara-code.popoutButtonClicked",
 					"group": "navigation@6",
-					"when": "view == roo-code.SidebarProvider"
+					"when": "view == zentara-code.SidebarProvider"
 				},
 				{
-					"command": "roo-code.accountButtonClicked",
+					"command": "zentara-code.accountButtonClicked",
 					"group": "navigation@7",
-					"when": "view == roo-code.SidebarProvider && config.roo-code.rooCodeCloudEnabled"
+					"when": "view == zentara-code.SidebarProvider && config.zentara-code.zentaraCodeCloudEnabled"
 				},
 				{
-					"command": "roo-code.settingsButtonClicked",
+					"command": "zentara-code.settingsButtonClicked",
 					"group": "navigation@8",
-					"when": "view == roo-code.SidebarProvider"
+					"when": "view == zentara-code.SidebarProvider"
 				}
 			],
 			"editor/title": [
 				{
-					"command": "roo-code.plusButtonClicked",
+					"command": "zentara-code.plusButtonClicked",
 					"group": "navigation@1",
-					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
+					"when": "activeWebviewPanelId == zentara-code.TabPanelProvider"
 				},
 				{
-					"command": "roo-code.promptsButtonClicked",
+					"command": "zentara-code.promptsButtonClicked",
 					"group": "navigation@2",
-					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
+					"when": "activeWebviewPanelId == zentara-code.TabPanelProvider"
 				},
 				{
-					"command": "roo-code.mcpButtonClicked",
+					"command": "zentara-code.mcpButtonClicked",
 					"group": "navigation@3",
-					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
+					"when": "activeWebviewPanelId == zentara-code.TabPanelProvider"
 				},
 				{
-					"command": "roo-code.marketplaceButtonClicked",
+					"command": "zentara-code.marketplaceButtonClicked",
 					"group": "navigation@4",
-					"when": "activeWebviewPanelId == roo-code.TabPanelProvider && roo-code.marketplaceEnabled"
+					"when": "activeWebviewPanelId == zentara-code.TabPanelProvider && zentara-code.marketplaceEnabled"
 				},
 				{
-					"command": "roo-code.historyButtonClicked",
+					"command": "zentara-code.historyButtonClicked",
 					"group": "navigation@5",
-					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
+					"when": "activeWebviewPanelId == zentara-code.TabPanelProvider"
 				},
 				{
-					"command": "roo-code.accountButtonClicked",
+					"command": "zentara-code.accountButtonClicked",
 					"group": "navigation@6",
-					"when": "activeWebviewPanelId == roo-code.TabPanelProvider && config.roo-code.rooCodeCloudEnabled"
+					"when": "activeWebviewPanelId == zentara-code.TabPanelProvider && config.zentara-code.zentaraCodeCloudEnabled"
 				},
 				{
-					"command": "roo-code.settingsButtonClicked",
+					"command": "zentara-code.settingsButtonClicked",
 					"group": "navigation@7",
-					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
+					"when": "activeWebviewPanelId == zentara-code.TabPanelProvider"
 				}
 			]
 		},
 		"submenus": [
 			{
-				"id": "roo-code.contextMenu",
+				"id": "zentara-code.contextMenu",
 				"label": "%views.contextMenu.label%"
 			},
 			{
-				"id": "roo-code.terminalMenu",
+				"id": "zentara-code.terminalMenu",
 				"label": "%views.terminalMenu.label%"
 			}
 		],
 		"configuration": {
 			"title": "%configuration.title%",
 			"properties": {
-				"roo-code.allowedCommands": {
+				"zentara-code.allowedCommands": {
 					"type": "array",
 					"items": {
 						"type": "string"
@@ -325,7 +325,7 @@
 					],
 					"description": "%commands.allowedCommands.description%"
 				},
-				"roo-code.vsCodeLmModelSelector": {
+				"zentara-code.vsCodeLmModelSelector": {
 					"type": "object",
 					"properties": {
 						"vendor": {
@@ -339,15 +339,15 @@
 					},
 					"description": "%settings.vsCodeLmModelSelector.description%"
 				},
-				"roo-code.customStoragePath": {
+				"zentara-code.customStoragePath": {
 					"type": "string",
 					"default": "",
 					"description": "%settings.customStoragePath.description%"
 				},
-				"roo-code.rooCodeCloudEnabled": {
+				"zentara-code.zentaraCodeCloudEnabled": {
 					"type": "boolean",
 					"default": false,
-					"description": "%settings.rooCodeCloudEnabled.description%"
+					"description": "%settings.zentaraCodeCloudEnabled.description%"
 				}
 			}
 		}
@@ -376,10 +376,10 @@
 		"@mistralai/mistralai": "^1.3.6",
 		"@modelcontextprotocol/sdk": "^1.12.1",
 		"@qdrant/js-client-rest": "^1.14.0",
-		"@roo-code/cloud": "workspace:^",
-		"@roo-code/ipc": "workspace:^",
-		"@roo-code/telemetry": "workspace:^",
-		"@roo-code/types": "workspace:^",
+		"@zentara-code/cloud": "workspace:^",
+		"@zentara-code/ipc": "workspace:^",
+		"@zentara-code/telemetry": "workspace:^",
+		"@zentara-code/types": "workspace:^",
 		"@types/lodash.debounce": "^4.0.9",
 		"@vscode/codicons": "^0.0.36",
 		"async-mutex": "^0.5.0",
@@ -437,9 +437,9 @@
 	},
 	"devDependencies": {
 		"@jest/globals": "^29.7.0",
-		"@roo-code/build": "workspace:^",
-		"@roo-code/config-eslint": "workspace:^",
-		"@roo-code/config-typescript": "workspace:^",
+		"@zentara-code/build": "workspace:^",
+		"@zentara-code/config-eslint": "workspace:^",
+		"@zentara-code/config-typescript": "workspace:^",
 		"@types/clone-deep": "^4.0.4",
 		"@types/debug": "^4.1.12",
 		"@types/diff": "^5.2.1",

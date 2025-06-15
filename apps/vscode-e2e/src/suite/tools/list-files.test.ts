@@ -3,11 +3,11 @@ import * as fs from "fs/promises"
 import * as path from "path"
 import * as vscode from "vscode"
 
-import type { ClineMessage } from "@roo-code/types"
+import type { ClineMessage } from "@zentara-code/types"
 
 import { waitFor, sleep } from "../utils"
 
-suite("Roo Code list_files Tool", () => {
+suite("Zentara Code list_files Tool", () => {
 	let workspaceDir: string
 	let testFiles: {
 		rootFile1: string

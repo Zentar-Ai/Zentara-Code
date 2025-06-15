@@ -1,5 +1,5 @@
 export const EXTERNAL_LINKS = {
-	GITHUB: "https://github.com/Zentar-Ai/roo-code",
+	GITHUB: "https://github.com/Zentar-Ai/zentara-code",
 	DISCORD: "https://discord.gg/your-discord-invite",
 	REDDIT: "https://www.reddit.com/r/your-subreddit",
 	X: "https://x.com/your-profile",
@@ -9,14 +9,14 @@ export const EXTERNAL_LINKS = {
 
 	DOCUMENTATION: "https://docs.zentar.ai",
 	CAREERS: "https://careers.zentar.ai",
-	ISSUES: "https://github.com/Zentar-Ai/Roo-Code/issues",
-	FEATURE_REQUESTS: "https://github.com/Zentar-Ai/Roo-Code/discussions/categories/feature-requests",
-	COMMUNITY: "https://github.com/Zentar-Ai/Roo-Code/discussions",
-	CHANGELOG: "https://github.com/Zentar-Ai/Roo-Code/blob/main/CHANGELOG.md",
-	PRIVACY_POLICY_EXTENSION: "https://github.com/Zentar-Ai/Roo-Code/blob/main/PRIVACY.md",
+	ISSUES: "https://github.com/Zentar-Ai/Zentara-Code/issues",
+	FEATURE_REQUESTS: "https://github.com/Zentar-Ai/Zentara-Code/discussions/categories/feature-requests",
+	COMMUNITY: "https://github.com/Zentar-Ai/Zentara-Code/discussions",
+	CHANGELOG: "https://github.com/Zentar-Ai/Zentara-Code/blob/main/CHANGELOG.md",
+	PRIVACY_POLICY_EXTENSION: "https://github.com/Zentar-Ai/Zentara-Code/blob/main/PRIVACY.md",
 	INTEGRATIONS: "https://docs.zentar.ai/community",
 	TUTORIALS: "https://docs.zentar.ai/tutorial-videos",
-	MARKETPLACE: "https://marketplace.visualstudio.com/items?itemName=ZentarAI.roo-code",
+	MARKETPLACE: "https://marketplace.visualstudio.com/items?itemName=ZentarAI.zentara-code",
 }
 
 export const INTERNAL_LINKS = {

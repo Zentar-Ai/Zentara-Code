@@ -1,4 +1,4 @@
-import { type ToolName, toolNames } from "@roo-code/types"
+import { type ToolName, toolNames } from "@zentara-code/types"
 
 import { TextContent, ToolUse, ToolParamName, toolParamNames } from "../../shared/tools"
 

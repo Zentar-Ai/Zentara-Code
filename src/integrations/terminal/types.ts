@@ -1,34 +1,34 @@
 import EventEmitter from "events"
 
-export type RooTerminalProvider = "vscode" | "execa"
+export type ZentaraTerminalProvider = "vscode" | "execa"
 
-export interface RooTerminal {
-	provider: RooTerminalProvider
+export interface ZentaraTerminal {
+	provider: ZentaraTerminalProvider
 	id: number
 	busy: boolean
 	running: boolean
 	taskId?: string
-	process?: RooTerminalProcess
+	process?: ZentaraTerminalProcess
 	getCurrentWorkingDirectory(): string
 	isClosed: () => boolean
-	runCommand: (command: string, callbacks: RooTerminalCallbacks) => RooTerminalProcessResultPromise
+	runCommand: (command: string, callbacks: ZentaraTerminalCallbacks) => ZentaraTerminalProcessResultPromise
 	setActiveStream(stream: AsyncIterable<string> | undefined, pid?: number): void
 	shellExecutionComplete(exitDetails: ExitCodeDetails): void
-	getProcessesWithOutput(): RooTerminalProcess[]
+	getProcessesWithOutput(): ZentaraTerminalProcess[]
 	getUnretrievedOutput(): string
 	getLastCommand(): string
 	cleanCompletedProcessQueue(): void
 }
 
-export interface RooTerminalCallbacks {
-	onLine: (line: string, process: RooTerminalProcess) => void
-	onCompleted: (output: string | undefined, process: RooTerminalProcess) => void
-	onShellExecutionStarted: (pid: number | undefined, process: RooTerminalProcess) => void
-	onShellExecutionComplete: (details: ExitCodeDetails, process: RooTerminalProcess) => void
-	onNoShellIntegration?: (message: string, process: RooTerminalProcess) => void
+export interface ZentaraTerminalCallbacks {
+	onLine: (line: string, process: ZentaraTerminalProcess) => void
+	onCompleted: (output: string | undefined, process: ZentaraTerminalProcess) => void
+	onShellExecutionStarted: (pid: number | undefined, process: ZentaraTerminalProcess) => void
+	onShellExecutionComplete: (details: ExitCodeDetails, process: ZentaraTerminalProcess) => void
+	onNoShellIntegration?: (message: string, process: ZentaraTerminalProcess) => void
 }
 
-export interface RooTerminalProcess extends EventEmitter<RooTerminalProcessEvents> {
+export interface ZentaraTerminalProcess extends EventEmitter<ZentaraTerminalProcessEvents> {
 	command: string
 	isHot: boolean
 	run: (command: string) => Promise<void>
@@ -38,9 +38,9 @@ export interface RooTerminalProcess extends EventEmitter<RooTerminalProcessEvent
 	getUnretrievedOutput: () => string
 }
 
-export type RooTerminalProcessResultPromise = RooTerminalProcess & Promise<void>
+export type ZentaraTerminalProcessResultPromise = ZentaraTerminalProcess & Promise<void>
 
-export interface RooTerminalProcessEvents {
+export interface ZentaraTerminalProcessEvents {
 	line: [line: string]
 	continue: []
 	completed: [output?: string]

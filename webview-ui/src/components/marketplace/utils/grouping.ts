@@ -1,4 +1,4 @@
-import { MarketplaceItem } from "@roo-code/types"
+import { MarketplaceItem } from "@zentara-code/types"
 
 export interface GroupedItems {
 	[type: string]: {

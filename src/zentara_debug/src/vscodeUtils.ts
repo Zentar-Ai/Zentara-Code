@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 // Create a real VS Code Output Channel for this module
 export const outputChannel: vscode.OutputChannel =
 	typeof vscode.window.createOutputChannel === "function"
-		? vscode.window.createOutputChannel("Roo Debug")
+		? vscode.window.createOutputChannel("Zentara Debug")
 		: ({
 				append: () => {},
 				appendLine: () => {},
