@@ -11,6 +11,7 @@
 		"contextWindow": "Context Length:",
 		"closeAndStart": "Close task and start a new one",
 		"export": "Export task history",
+		"share": "Share task",
 		"delete": "Delete Task (Shift + Click to skip confirmation)"
 	},
 	"unpin": "Unpin",
@@ -148,29 +149,39 @@
 		"wantsToFetch": "Zentara wants to fetch detailed instructions to assist with the current task"
 	},
 	"fileOperations": {
-		"wantsToRead": "Zentara wants to read this file:",
-		"wantsToReadMultiple": "Zentara wants to read multiple files:",
-		"wantsToReadAndXMore": "Zentara wants to read this file and {{count}} more:",
-		"wantsToReadOutsideWorkspace": "Zentara wants to read this file outside of the workspace:",
-		"didRead": "Zentara read this file:",
-		"wantsToEdit": "Zentara wants to edit this file:",
-		"wantsToEditOutsideWorkspace": "Zentara wants to edit this file outside of the workspace:",
-		"wantsToCreate": "Zentara wants to create a new file:",
-		"wantsToSearchReplace": "Zentara wants to search and replace in this file:",
-		"didSearchReplace": "Zentara performed search and replace on this file:",
-		"wantsToInsert": "Zentara wants to insert content into this file:",
-		"wantsToInsertWithLineNumber": "Zentara wants to insert content into this file at line {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Zentara wants to append content to the end of this file:"
+		"wantsToRead": "Roo wants to read this file:",
+		"wantsToReadMultiple": "Roo wants to read multiple files:",
+		"wantsToReadAndXMore": "Roo wants to read this file and {{count}} more:",
+		"wantsToReadOutsideWorkspace": "Roo wants to read this file outside of the workspace:",
+		"didRead": "Roo read this file:",
+		"wantsToEdit": "Roo wants to edit this file:",
+		"wantsToEditOutsideWorkspace": "Roo wants to edit this file outside of the workspace:",
+		"wantsToEditProtected": "Roo wants to edit a protected configuration file:",
+		"wantsToApplyBatchChanges": "Roo wants to apply changes to multiple files:",
+		"wantsToCreate": "Roo wants to create a new file:",
+		"wantsToSearchReplace": "Roo wants to search and replace in this file:",
+		"didSearchReplace": "Roo performed search and replace on this file:",
+		"wantsToInsert": "Roo wants to insert content into this file:",
+		"wantsToInsertWithLineNumber": "Roo wants to insert content into this file at line {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Roo wants to append content to the end of this file:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Zentara wants to view the top level files in this directory:",
-		"didViewTopLevel": "Zentara viewed the top level files in this directory:",
-		"wantsToViewRecursive": "Zentara wants to recursively view all files in this directory:",
-		"didViewRecursive": "Zentara recursively viewed all files in this directory:",
-		"wantsToViewDefinitions": "Zentara wants to view source code definition names used in this directory:",
-		"didViewDefinitions": "Zentara viewed source code definition names used in this directory:",
-		"wantsToSearch": "Zentara wants to search this directory for <code>{{regex}}</code>:",
-		"didSearch": "Zentara searched this directory for <code>{{regex}}</code>:"
+		"wantsToViewTopLevel": "Roo wants to view the top level files in this directory:",
+		"didViewTopLevel": "Roo viewed the top level files in this directory:",
+		"wantsToViewTopLevelOutsideWorkspace": "Roo wants to view the top level files in this directory (outside workspace):",
+		"didViewTopLevelOutsideWorkspace": "Roo viewed the top level files in this directory (outside workspace):",
+		"wantsToViewRecursive": "Roo wants to recursively view all files in this directory:",
+		"didViewRecursive": "Roo recursively viewed all files in this directory:",
+		"wantsToViewRecursiveOutsideWorkspace": "Roo wants to recursively view all files in this directory (outside workspace):",
+		"didViewRecursiveOutsideWorkspace": "Roo recursively viewed all files in this directory (outside workspace):",
+		"wantsToViewDefinitions": "Roo wants to view source code definition names used in this directory:",
+		"didViewDefinitions": "Roo viewed source code definition names used in this directory:",
+		"wantsToViewDefinitionsOutsideWorkspace": "Roo wants to view source code definition names used in this directory (outside workspace):",
+		"didViewDefinitionsOutsideWorkspace": "Roo viewed source code definition names used in this directory (outside workspace):",
+		"wantsToSearch": "Roo wants to search this directory for <code>{{regex}}</code>:",
+		"didSearch": "Roo searched this directory for <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Roo wants to search this directory (outside workspace) for <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Roo searched this directory (outside workspace) for <code>{{regex}}</code>:"
 	},
 	"codebaseSearch": {
 		"wantsToSearch": "Zentara wants to search the codebase for <code>{{query}}</code>:",
@@ -217,14 +228,14 @@
 		"description": "Auto-approve allows Zentara Code to perform actions without asking for permission. Only enable for actions you fully trust. More detailed configuration available in <settingsLink>Settings</settingsLink>."
 	},
 	"announcement": {
-		"title": "🎉 Zentara Code {{version}} Released",
-		"description": "Zentara Code {{version}} , the first comprehensive open-source runtime debugging AI coder, is now available! This release introduces several powerful features to enhance your coding experience.",
+		"title": "🎉 Roo Code {{version}} Released",
+		"description": "Roo Code {{version}} brings major new features and improvements based on your feedback.",
 		"whatsNew": "What's New",
-		"feature1": "<bold>Runtime Interactive Debugging</bold>: Zentara code can interactively debug your code in runtime, allowing you to inspect variables, step through code, and fix issues on the fly.",
-		"feature2": "<bold>Catch Exceptions </bold>: Context condensing is now enabled by default with configurable settings for when automatic condensing happens",
-		"feature3": "<bold>Manual Condensing Button</bold>: New button in the task header allows you to manually trigger context condensing at any time",
-		"feature4": "<bold>Enhanced Condensing Settings</bold>: Fine-tune when and how automatic condensing occurs through the <contextSettingsLink>Context Settings</contextSettingsLink>",
-		"hideButton": "Hide announcement"
+		"feature1": "<bold>Experimental Marketplace</bold>: Discover and install modes and MCPs from the new marketplace (enable in <experimentalSettingsLink>Experimental Settings</experimentalSettingsLink>)",
+		"feature2": "<bold>Enhanced File Operations</bold>: Multiple concurrent file writes in experimental settings, and concurrent reads now in <contextSettingsLink>Context Settings</contextSettingsLink>",
+		"feature3": "<bold>MCP Improvements & More</bold>: Enhanced MCP support, Mermaid controls, Amazon Bedrock thinking support, and much more!",
+		"hideButton": "Hide announcement",
+		"detailsDiscussLinks": "Get more details and discuss in <discordLink>Discord</discordLink> and <redditLink>Reddit</redditLink> 🚀"
 	},
 	"reasoning": {
 		"thinking": "Thinking",
@@ -281,5 +292,12 @@
 			"wantsToExecute": "Zentara wants to execute debug operation: {{operation}}",
 			"operation": "{{operation}}"
 		}
+	},
+	"indexingStatus": {
+		"ready": "Index ready",
+		"indexing": "Indexing {{percentage}}%",
+		"indexed": "Indexed",
+		"error": "Index error",
+		"status": "Index status"
 	}
 }

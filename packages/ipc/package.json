@@ -14,9 +14,9 @@
 		"node-ipc": "^12.0.0"
 	},
 	"devDependencies": {
-		"@zentara-code/config-eslint": "workspace:^",
-		"@zentara-code/config-typescript": "workspace:^",
-		"@types/node": "^22.15.20",
+		"@roo-code/config-eslint": "workspace:^",
+		"@roo-code/config-typescript": "workspace:^",
+		"@types/node": "20.x",
 		"@types/node-ipc": "^9.2.3",
 		"vitest": "^3.1.3"
 	}

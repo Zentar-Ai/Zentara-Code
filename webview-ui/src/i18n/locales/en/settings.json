@@ -82,7 +82,11 @@
 			"delayLabel": "Delay after writes to allow diagnostics to detect potential problems",
 			"outsideWorkspace": {
 				"label": "Include files outside workspace",
-				"description": "Allow Zentara to create and edit files outside the current workspace without requiring approval."
+				"description": "Allow Roo to create and edit files outside the current workspace without requiring approval."
+			},
+			"protected": {
+				"label": "Include protected files",
+				"description": "Allow Roo to create and edit protected files (like .rooignore and .roo/ configuration files) without requiring approval."
 			}
 		},
 		"browser": {
@@ -491,11 +495,23 @@
 		},
 		"CONCURRENT_FILE_READS": {
 			"name": "Enable concurrent file reads",
-			"description": "When enabled, Zentara can read multiple files in a single request (up to 15 files). When disabled, Zentara must read files one at a time. Disabling this can help when working with less capable models or when you want more control over file access."
+			"description": "When enabled, Roo can read multiple files in a single request. When disabled, Roo must read files one at a time. Disabling this can help when working with less capable models or when you want more control over file access."
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
 			"name": "Use experimental multi block diff tool",
-			"description": "When enabled, Zentara will use multi block diff tool. This will try to update multiple code blocks in the file in one request."
+			"description": "When enabled, Roo will use multi block diff tool. This will try to update multiple code blocks in the file in one request."
+		},
+		"MARKETPLACE": {
+			"name": "Enable Marketplace",
+			"description": "When enabled, you can install MCPs and custom modes from the Marketplace."
+		},
+		"DISABLE_COMPLETION_COMMAND": {
+			"name": "Disable command execution in attempt_completion",
+			"description": "When enabled, the attempt_completion tool will not execute commands. This is an experimental feature to prepare for deprecating command execution in task completion."
+		},
+		"MULTI_FILE_APPLY_DIFF": {
+			"name": "Enable concurrent file edits",
+			"description": "When enabled, Roo can edit multiple files in a single request. When disabled, Roo must edit files one at a time. Disabling this can help when working with less capable models or when you want more control over file modifications."
 		}
 	},
 	"promptCaching": {
@@ -601,5 +617,7 @@
 	"labels": {
 		"customArn": "Custom ARN",
 		"useCustomArn": "Use custom ARN..."
-	}
+	},
+	"includeMaxOutputTokens": "Include max output tokens",
+	"includeMaxOutputTokensDescription": "Send max output tokens parameter in API requests. Some providers may not support this."
 }
