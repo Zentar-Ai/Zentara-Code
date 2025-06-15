@@ -95,12 +95,12 @@
 				"icon": "$(history)"
 			},
 			{
-				"command": "roo-cline.marketplaceButtonClicked",
+				"command": "roo-code.marketplaceButtonClicked",
 				"title": "%command.marketplace.title%",
 				"icon": "$(extensions)"
 			},
 			{
-				"command": "roo-cline.popoutButtonClicked",
+				"command": "roo-code.popoutButtonClicked",
 				"title": "%command.openInEditor.title%",
 				"icon": "$(link-external)"
 			},
@@ -179,7 +179,7 @@
 		"menus": {
 			"editor/context": [
 				{
-					"submenu": "roo-cline.contextMenu",
+					"submenu": "roo-code.contextMenu",
 					"group": "1"
 				}
 			],
@@ -199,7 +199,7 @@
 			],
 			"terminal/context": [
 				{
-					"submenu": "roo-cline.terminalMenu",
+					"submenu": "roo-code.terminalMenu",
 					"group": "2"
 				}
 			],
@@ -234,29 +234,29 @@
 					"when": "view == roo-code.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.marketplaceButtonClicked",
+					"command": "roo-code.marketplaceButtonClicked",
 					"group": "navigation@4",
-					"when": "view == roo-cline.SidebarProvider && roo-cline.marketplaceEnabled"
+					"when": "view == roo-code.SidebarProvider && roo-code.marketplaceEnabled"
 				},
 				{
-					"command": "roo-cline.historyButtonClicked",
+					"command": "roo-code.historyButtonClicked",
 					"group": "navigation@5",
 					"when": "view == roo-code.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.popoutButtonClicked",
+					"command": "roo-code.popoutButtonClicked",
 					"group": "navigation@6",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == roo-code.SidebarProvider"
 				},
 				{
-					"command": "roo-cline.accountButtonClicked",
+					"command": "roo-code.accountButtonClicked",
 					"group": "navigation@7",
-					"when": "view == roo-cline.SidebarProvider && config.roo-cline.rooCodeCloudEnabled"
+					"when": "view == roo-code.SidebarProvider && config.roo-code.rooCodeCloudEnabled"
 				},
 				{
-					"command": "roo-cline.settingsButtonClicked",
+					"command": "roo-code.settingsButtonClicked",
 					"group": "navigation@8",
-					"when": "view == roo-cline.SidebarProvider"
+					"when": "view == roo-code.SidebarProvider"
 				}
 			],
 			"editor/title": [
@@ -276,12 +276,12 @@
 					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
 				},
 				{
-					"command": "roo-cline.marketplaceButtonClicked",
+					"command": "roo-code.marketplaceButtonClicked",
 					"group": "navigation@4",
-					"when": "activeWebviewPanelId == roo-cline.TabPanelProvider && roo-cline.marketplaceEnabled"
+					"when": "activeWebviewPanelId == roo-code.TabPanelProvider && roo-code.marketplaceEnabled"
 				},
 				{
-					"command": "roo-cline.historyButtonClicked",
+					"command": "roo-code.historyButtonClicked",
 					"group": "navigation@5",
 					"when": "activeWebviewPanelId == roo-code.TabPanelProvider"
 				},
