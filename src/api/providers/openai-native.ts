@@ -7,7 +7,7 @@ import {
 	OpenAiNativeModelId,
 	openAiNativeModels,
 	OPENAI_NATIVE_DEFAULT_TEMPERATURE,
-} from "@roo-code/types"
+} from "@zentara-code/types"
 
 import type { ApiHandlerOptions } from "../../shared/api"
 

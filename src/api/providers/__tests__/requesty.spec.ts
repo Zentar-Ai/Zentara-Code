@@ -58,8 +58,8 @@ describe("RequestyHandler", () => {
 			baseURL: "https://router.requesty.ai/v1",
 			apiKey: mockOptions.requestyApiKey,
 			defaultHeaders: {
-				"HTTP-Referer": "https://github.com/RooVetGit/Roo-Cline",
-				"X-Title": "Roo Code",
+				"HTTP-Referer": "https://zentar.ai",
+				"X-Title": "Zentara Code",
 			},
 		})
 	})

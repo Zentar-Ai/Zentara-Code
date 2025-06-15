@@ -112,13 +112,17 @@ export function copyPaths(copyPaths: [string, string, CopyPathOptions?][], srcDi
 }
 
 export function copyWasms(srcDir: string, distDir: string): void {
-	const nodeModulesDir = path.join(srcDir, "node_modules")
+	// Resolve node_modules from the monorepo root, not relative to srcDir
+	// __dirname here is packages/build/src
+	const monorepoRootNodeModules = path.resolve(__dirname, "..", "..", "..", "node_modules");
 
 	fs.mkdirSync(distDir, { recursive: true })
 
 	// Tiktoken WASM file.
+	const tiktokenWasmSrc = path.join(monorepoRootNodeModules, "tiktoken", "lite", "tiktoken_bg.wasm");
+	if (!fs.existsSync(tiktokenWasmSrc)) throw new Error(`tiktoken WASM not found at ${tiktokenWasmSrc}`);
 	fs.copyFileSync(
-		path.join(nodeModulesDir, "tiktoken", "lite", "tiktoken_bg.wasm"),
+		tiktokenWasmSrc,
 		path.join(distDir, "tiktoken_bg.wasm"),
 	)
 
@@ -129,22 +133,24 @@ export function copyWasms(srcDir: string, distDir: string): void {
 	fs.mkdirSync(workersDir, { recursive: true })
 
 	fs.copyFileSync(
-		path.join(nodeModulesDir, "tiktoken", "lite", "tiktoken_bg.wasm"),
+		tiktokenWasmSrc, // Use the resolved source path
 		path.join(workersDir, "tiktoken_bg.wasm"),
 	)
 
 	console.log(`[copyWasms] Copied tiktoken WASMs to ${workersDir}`)
 
 	// Main tree-sitter WASM file.
+	const treeSitterWasmSrc = path.join(monorepoRootNodeModules, "web-tree-sitter", "tree-sitter.wasm");
+	if (!fs.existsSync(treeSitterWasmSrc)) throw new Error(`tree-sitter WASM not found at ${treeSitterWasmSrc}`);
 	fs.copyFileSync(
-		path.join(nodeModulesDir, "web-tree-sitter", "tree-sitter.wasm"),
+		treeSitterWasmSrc,
 		path.join(distDir, "tree-sitter.wasm"),
 	)
 
 	console.log(`[copyWasms] Copied tree-sitter.wasm to ${distDir}`)
 
 	// Copy language-specific WASM files.
-	const languageWasmDir = path.join(nodeModulesDir, "tree-sitter-wasms", "out")
+	const languageWasmDir = path.join(monorepoRootNodeModules, "tree-sitter-wasms", "out")
 
 	if (!fs.existsSync(languageWasmDir)) {
 		throw new Error(`Directory does not exist: ${languageWasmDir}`)

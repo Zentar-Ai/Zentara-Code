@@ -4,7 +4,7 @@ import * as fs from "fs/promises"
 
 import * as yaml from "yaml"
 
-import { type ModeConfig, customModesSettingsSchema } from "@roo-code/types"
+import { type ModeConfig, customModesSettingsSchema } from "@zentara-code/types"
 
 import { fileExistsAtPath } from "../../utils/fs"
 import { arePathsEqual, getWorkspacePath } from "../../utils/path"

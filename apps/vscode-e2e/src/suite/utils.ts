@@ -1,4 +1,4 @@
-import type { RooCodeAPI } from "@roo-code/types"
+import type { RooCodeAPI } from "@zentara-code/types"
 
 type WaitForOptions = {
 	timeout?: number

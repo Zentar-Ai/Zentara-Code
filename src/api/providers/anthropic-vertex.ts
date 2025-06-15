@@ -8,7 +8,7 @@ import {
 	vertexDefaultModelId,
 	vertexModels,
 	ANTHROPIC_DEFAULT_MAX_TOKENS,
-} from "@roo-code/types"
+} from "@zentara-code/types"
 
 import { ApiHandlerOptions } from "../../shared/api"
 import { safeJsonParse } from "../../shared/safeJsonParse"

@@ -1,9 +1,13 @@
 import { HTMLAttributes } from "react"
 import { FlaskConical } from "lucide-react"
 
+<<<<<<< HEAD
 import type { Experiments, CodebaseIndexConfig, CodebaseIndexModels, ProviderSettings } from "@roo-code/types"
+=======
+import type { ExperimentId, CodebaseIndexConfig, CodebaseIndexModels, ProviderSettings } from "@zentara-code/types"
+>>>>>>> 1c20118a073ee36824b1141e183247378af1f568
 
-import { EXPERIMENT_IDS, experimentConfigsMap } from "@roo/experiments"
+import { EXPERIMENT_IDS, experimentConfigsMap } from "@zentara/experiments"
 
 import { ExtensionStateContextType } from "@src/context/ExtensionStateContext"
 import { useAppTranslation } from "@src/i18n/TranslationContext"

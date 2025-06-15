@@ -1,11 +1,11 @@
-name: Deploy roocode.com
+name: Deploy zentar.ai
 
 on:
     push:
         branches:
             - main
         paths:
-            - 'apps/web-roo-code/**'
+            - 'apps/web-zentara-code/**'
     workflow_dispatch:
 
 env:

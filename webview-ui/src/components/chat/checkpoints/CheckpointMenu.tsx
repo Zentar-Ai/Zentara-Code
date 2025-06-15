@@ -19,7 +19,7 @@ export const CheckpointMenu = ({ ts, commitHash, currentHash, checkpoint }: Chec
 	const { t } = useTranslation()
 	const [isOpen, setIsOpen] = useState(false)
 	const [isConfirming, setIsConfirming] = useState(false)
-	const portalContainer = useRooPortal("roo-portal")
+	const portalContainer = useRooPortal("zentara-portal")
 
 	const isCurrent = currentHash === commitHash
 	const isFirst = checkpoint.isFirst

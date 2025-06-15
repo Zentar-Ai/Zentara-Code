@@ -1,5 +1,8 @@
 import nock from "nock"
 
+// Explicitly tell Jest to use our manual mock for the 'vscode' module
+jest.mock("vscode")
+
 nock.disableNetConnect()
 
 export function allowNetConnect(host?: string | RegExp) {

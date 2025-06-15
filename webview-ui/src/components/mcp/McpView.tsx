@@ -9,7 +9,7 @@ import {
 	VSCodePanelView,
 } from "@vscode/webview-ui-toolkit/react"
 
-import { McpServer } from "@roo/mcp"
+import { McpServer } from "@zentara/mcp"
 
 import { vscode } from "@src/utils/vscode"
 import { useExtensionState } from "@src/context/ExtensionStateContext"
@@ -64,7 +64,7 @@ const McpView = ({ onDone }: McpViewProps) => {
 					}}>
 					<Trans i18nKey="mcp:description">
 						<VSCodeLink
-							href={buildDocLink("features/mcp/using-mcp-in-roo", "mcp_settings")}
+							href={buildDocLink("features/mcp/using-mcp-in-zentara", "mcp_settings")}
 							style={{ display: "inline" }}>
 							Learn More
 						</VSCodeLink>
@@ -93,7 +93,7 @@ const McpView = ({ onDone }: McpViewProps) => {
 								<Trans i18nKey="mcp:enableServerCreation.description">
 									<VSCodeLink
 										href={buildDocLink(
-											"features/mcp/using-mcp-in-roo#how-to-use-roo-to-create-an-mcp-server",
+											"features/mcp/using-mcp-in-zentara#how-to-use-zentara-to-create-an-mcp-server",
 											"mcp_server_creation",
 										)}
 										style={{ display: "inline" }}>
@@ -163,7 +163,7 @@ const McpView = ({ onDone }: McpViewProps) => {
 							}}>
 							<VSCodeLink
 								href={buildDocLink(
-									"features/mcp/using-mcp-in-roo#editing-mcp-settings-files",
+									"features/mcp/using-mcp-in-zentara#editing-mcp-settings-files",
 									"mcp_edit_settings",
 								)}
 								style={{ display: "inline" }}>

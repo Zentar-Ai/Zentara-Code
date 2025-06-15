@@ -3,10 +3,65 @@ import * as fs from "fs"
 import * as path from "path"
 import { fileURLToPath } from "url"
 
-import { getGitSha, copyPaths, copyLocales, copyWasms, generatePackageJson } from "@roo-code/build"
+import { getGitSha, copyPaths, copyLocales, copyWasms, generatePackageJson } from "@zentara-code/build"
+// import pkg from '../../esbuild.js'; // Removed problematic import
+// const { copyDebugHelperFiles } = pkg; // Removed problematic import
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+
+function copyDebugHelperFiles(baseBuildDir, monorepoSrcDir) {
+	const helperSourceDir = path.resolve(monorepoSrcDir, "zentara_debug", "src", "debug_helper");
+	// Destination relative to the nightly build's output structure
+	const helperDistDestDir = path.resolve(baseBuildDir, "dist", "debug_helper");
+	const helperOutDestDir = path.resolve(baseBuildDir, "out", "debug_helper"); // As seen in logs
+
+	if (!fs.existsSync(helperSourceDir)) {
+		console.warn(`[copyDebugHelperFiles] Source directory does not exist: ${helperSourceDir}`);
+		return;
+	}
+
+	const filesToCopy = fs.readdirSync(helperSourceDir).filter(file => file.endsWith(".py"));
+	let copiedToDist = 0;
+	let copiedToOut = 0;
+
+	// Copy to dist/debug_helper
+	if (!fs.existsSync(helperDistDestDir)) {
+		fs.mkdirSync(helperDistDestDir, { recursive: true });
+	}
+	filesToCopy.forEach(file => {
+		fs.copyFileSync(path.join(helperSourceDir, file), path.join(helperDistDestDir, file));
+		copiedToDist++;
+	});
+	if (copiedToDist > 0) {
+		console.log(`[copyDebugHelperFiles] Copied ${copiedToDist} debug helper files to ${helperDistDestDir}`);
+	}
+
+	// Copy to out/debug_helper
+	if (!fs.existsSync(helperOutDestDir)) {
+		fs.mkdirSync(helperOutDestDir, { recursive: true });
+	}
+	filesToCopy.forEach(file => {
+		fs.copyFileSync(path.join(helperSourceDir, file), path.join(helperOutDestDir, file));
+		copiedToOut++;
+	});
+	if (copiedToOut > 0) {
+		console.log(`[copyDebugHelperFiles] Copied ${copiedToOut} debug helper files to ${helperOutDestDir}`);
+	}
+
+    // Create __init__.py in out/debug_helper if it doesn't exist (based on logs)
+    const initPyPath = path.join(helperOutDestDir, "__init__.py");
+    if (!fs.existsSync(initPyPath) && copiedToOut > 0) { // Only if python files were copied
+        fs.writeFileSync(initPyPath, "# This file makes Python treat the directory as a package.\n");
+        console.log(`[copyDebugHelperFiles] Created ${initPyPath}`);
+    }
+     // Create __init__.py in dist/debug_helper
+    const initPyDistPath = path.join(helperDistDestDir, "__init__.py");
+    if (!fs.existsSync(initPyDistPath) && copiedToDist > 0) {
+        fs.writeFileSync(initPyDistPath, "# This file makes Python treat the directory as a package.\n");
+        console.log(`[copyDebugHelperFiles] Created ${initPyDistPath}`);
+    }
+}
 
 async function main() {
 	const name = "extension-nightly"
@@ -32,10 +87,11 @@ async function main() {
 		format: "cjs",
 		sourcesContent: false,
 		platform: "node",
+		absWorkingDir: path.resolve(__dirname, "..", ".."), // Set monorepo root as working directory
 		define: {
-			"process.env.PKG_NAME": '"roo-code-nightly"',
+			"process.env.PKG_NAME": '"zentara-code-nightly"',
 			"process.env.PKG_VERSION": `"${overrideJson.version}"`,
-			"process.env.PKG_OUTPUT_CHANNEL": '"Roo-Code-Nightly"',
+			"process.env.PKG_OUTPUT_CHANNEL": '"zentara-code-Nightly"',
 			...(gitSha ? { "process.env.PKG_SHA": `"${gitSha}"` } : {}),
 		},
 	}
@@ -88,7 +144,7 @@ async function main() {
 					const generatedPackageJson = generatePackageJson({
 						packageJson,
 						overrideJson,
-						substitution: ["roo-cline", "roo-code-nightly"],
+						substitution: ["zentara-code", "zentara-code-nightly"],
 					})
 
 					fs.writeFileSync(path.join(buildDir, "package.json"), JSON.stringify(generatedPackageJson, null, 2))
@@ -140,17 +196,17 @@ async function main() {
 	const extensionBuildOptions = {
 		...buildOptions,
 		plugins,
-		entryPoints: [path.join(srcDir, "extension.ts")],
+		entryPoints: [path.resolve(buildOptions.absWorkingDir, "src/extension.ts")],
 		outfile: path.join(distDir, "extension.js"),
 		external: ["vscode"],
 	}
 
 	/**
-	 * @type {import('esbuild').BuildOptions}
-	 */
+		* @type {import('esbuild').BuildOptions}
+		*/
 	const workerBuildOptions = {
 		...buildOptions,
-		entryPoints: [path.join(srcDir, "workers", "countTokens.ts")],
+		entryPoints: [path.resolve(buildOptions.absWorkingDir, "src/workers/countTokens.ts")],
 		outdir: path.join(distDir, "workers"),
 	}
 
@@ -166,6 +222,7 @@ async function main() {
 		workerBuildContext.rebuild(),
 		workerBuildContext.dispose(),
 	])
+	copyDebugHelperFiles(buildDir, srcDir) // Pass correct base directories
 }
 
 main().catch((e) => {

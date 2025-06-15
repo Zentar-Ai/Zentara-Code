@@ -1,6 +1,6 @@
 // npx jest src/shared/__tests__/experiments.test.ts
 
-import type { ExperimentId } from "@roo-code/types"
+import type { ExperimentId } from "@zentara-code/types"
 
 import { EXPERIMENT_IDS, experimentConfigsMap, experiments as Experiments } from "../experiments"
 

@@ -1,5 +1,11 @@
 import React from "react"
+<<<<<<< HEAD
 import type { HistoryItem } from "@roo-code/types"
+=======
+import type { HistoryItem } from "@zentara-code/types"
+import prettyBytes from "pretty-bytes"
+import { vscode } from "@/utils/vscode"
+>>>>>>> 1c20118a073ee36824b1141e183247378af1f568
 import { formatDate } from "@/utils/format"
 import { DeleteButton } from "./DeleteButton"
 import { cn } from "@/lib/utils"

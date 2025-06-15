@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 import { Checkbox } from "vscrui"
 
-import { type ProviderSettings, type ModelInfo, type ReasoningEffort, reasoningEfforts } from "@roo-code/types"
+import { type ProviderSettings, type ModelInfo, type ReasoningEffort, reasoningEfforts } from "@zentara-code/types"
 
-import { DEFAULT_HYBRID_REASONING_MODEL_MAX_TOKENS, DEFAULT_HYBRID_REASONING_MODEL_THINKING_TOKENS } from "@roo/api"
+import { DEFAULT_HYBRID_REASONING_MODEL_MAX_TOKENS, DEFAULT_HYBRID_REASONING_MODEL_THINKING_TOKENS } from "@zentara/api"
 
 import { useAppTranslation } from "@src/i18n/TranslationContext"
 import { Slider, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@src/components/ui"

@@ -12,8 +12,8 @@ try {
 	console.warn("Failed to load environment variables:", e)
 }
 
-import { CloudService } from "@roo-code/cloud"
-import { TelemetryService, PostHogTelemetryClient } from "@roo-code/telemetry"
+import { CloudService } from "@zentara-code/cloud"
+import { TelemetryService, PostHogTelemetryClient } from "@zentara-code/telemetry"
 
 import "./utils/path" // Necessary to have access to String.prototype.toPosix.
 import { createOutputChannelLogger, createDualLogger } from "./utils/outputChannelLogger"
@@ -29,6 +29,9 @@ import { CodeIndexManager } from "./services/code-index/manager"
 import { migrateSettings } from "./utils/migrateSettings"
 import { API } from "./extension/api"
 
+import { DapStopTrackerFactory } from "./zentara_debug/src/debug/DapStopTracker"
+
+
 import {
 	handleUri,
 	registerCommands,
@@ -37,6 +40,9 @@ import {
 	CodeActionProvider,
 } from "./activate"
 import { initializeI18n } from "./i18n"
+import { runDirectDebugToolLaunchTest } from "./test-scripts/directDebugToolLaunchTest" // Added for direct test
+import { runToolFlowDebugLaunchTest } from "./test-scripts/toolFlowDebugLaunchTest" // Added for tool flow test
+import { runToolFlowDebugSequenceTest } from "./test-scripts/toolFlowDebugSequenceTest" // Added for sequence test
 
 /**
  * Built using https://github.com/microsoft/vscode-webview-ui-toolkit
@@ -72,7 +78,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	// Create logger for cloud services
 	const cloudLogger = createDualLogger(createOutputChannelLogger(outputChannel))
 
-	// Initialize Roo Code Cloud service.
+	// Initialize Zentara Code Cloud service.
 	await CloudService.createInstance(context, {
 		stateChanged: () => ClineProvider.getVisibleInstance()?.postStateToWebview(),
 		log: cloudLogger,
@@ -156,7 +162,33 @@ export async function activate(context: vscode.ExtensionContext) {
 	registerCodeActions(context)
 	registerTerminalActions(context)
 
-	// Allows other extensions to activate once Roo is ready.
+	// Register debug adapter tracker to monitor DAP messages
+	context.subscriptions.push(vscode.debug.registerDebugAdapterTrackerFactory("*", new DapStopTrackerFactory()))
+	outputChannel.appendLine("Registered DAP message tracker")
+
+	// Register commands for debug tool launch tests
+	let disposableDirectTestRunner = vscode.commands.registerCommand("debugging-zentara-code.runDirectLaunchTest", () => {
+		runDirectDebugToolLaunchTest()
+	})
+	context.subscriptions.push(disposableDirectTestRunner)
+
+	let disposableToolFlowTestRunner = vscode.commands.registerCommand(
+		"debugging-zentara-code.runToolFlowLaunchTest",
+		() => {
+			runToolFlowDebugLaunchTest()
+		},
+	)
+	context.subscriptions.push(disposableToolFlowTestRunner)
+
+	let disposableSequenceTestRunner = vscode.commands.registerCommand(
+		"debugging-zentara-code.runToolFlowSequenceTest",
+		() => {
+			runToolFlowDebugSequenceTest()
+		},
+	)
+	context.subscriptions.push(disposableSequenceTestRunner)
+
+	// Allows other extensions to activate once Zentara is ready.
 	vscode.commands.executeCommand(`${Package.name}.activationCompleted`)
 
 	// Implements the `RooCodeAPI` interface.

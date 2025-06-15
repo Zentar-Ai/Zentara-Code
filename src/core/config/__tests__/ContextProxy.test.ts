@@ -2,7 +2,7 @@
 
 import * as vscode from "vscode"
 
-import { GLOBAL_STATE_KEYS, SECRET_STATE_KEYS } from "@roo-code/types"
+import { GLOBAL_STATE_KEYS, SECRET_STATE_KEYS } from "@zentara-code/types"
 
 import { ContextProxy } from "../ContextProxy"
 

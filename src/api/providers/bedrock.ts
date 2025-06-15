@@ -21,7 +21,7 @@ import {
 	BEDROCK_MAX_TOKENS,
 	BEDROCK_DEFAULT_CONTEXT,
 	BEDROCK_REGION_INFO,
-} from "@roo-code/types"
+} from "@zentara-code/types"
 
 import { ApiStream } from "../transform/stream"
 import { BaseProvider } from "./base-provider"
@@ -728,7 +728,7 @@ export class AwsBedrockHandler extends BaseProvider implements SingleCompletionH
 
 	private parseArn(arn: string, region?: string) {
 		/*
-		 * VIA Roo analysis: platform-independent Regex. It's designed to parse Amazon Bedrock ARNs and doesn't rely on any platform-specific features
+		 * VIA Zentara analysis: platform-independent Regex. It's designed to parse Amazon Bedrock ARNs and doesn't rely on any platform-specific features
 		 * like file path separators, line endings, or case sensitivity behaviors. The forward slashes in the regex are properly escaped and
 		 * represent literal characters in the AWS ARN format, not filesystem paths. This regex will function consistently across Windows,
 		 * macOS, Linux, and any other operating system where JavaScript runs.

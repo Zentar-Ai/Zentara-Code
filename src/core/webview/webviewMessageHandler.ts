@@ -3,9 +3,9 @@ import fs from "fs/promises"
 import pWaitFor from "p-wait-for"
 import * as vscode from "vscode"
 
-import { type Language, type ProviderSettings, type GlobalState, TelemetryEventName } from "@roo-code/types"
-import { CloudService } from "@roo-code/cloud"
-import { TelemetryService } from "@roo-code/telemetry"
+import { type Language, type ProviderSettings, type GlobalState, TelemetryEventName } from "@zentara-code/types"
+import { CloudService } from "@zentara-code/cloud"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { ClineProvider } from "./ClineProvider"
 import { changeLanguage, t } from "../../i18n"
@@ -181,6 +181,10 @@ export const webviewMessageHandler = async (
 			break
 		case "alwaysAllowSubtasks":
 			await updateGlobalState("alwaysAllowSubtasks", message.bool)
+			await provider.postStateToWebview()
+			break
+		case "alwaysAllowDebug":
+			await updateGlobalState("alwaysAllowDebug", message.bool)
 			await provider.postStateToWebview()
 			break
 		case "askResponse":
@@ -510,7 +514,7 @@ export const webviewMessageHandler = async (
 			}
 
 			const workspaceFolder = vscode.workspace.workspaceFolders[0]
-			const rooDir = path.join(workspaceFolder.uri.fsPath, ".roo")
+			const rooDir = path.join(workspaceFolder.uri.fsPath, ".zentara")
 			const mcpPath = path.join(rooDir, "mcp.json")
 
 			try {
@@ -1575,5 +1579,17 @@ export const webviewMessageHandler = async (
 			}
 			break
 		}
+		case "logToDebugConsole":
+			if (vscode.debug.activeDebugConsole) {
+				const { logLevel, logMessage, logData } = message;
+				const prefix = `[WEBVIEW ${logLevel?.toUpperCase() || 'LOG'}]`;
+				let fullMessage = `${prefix} ${logMessage}`;
+				if (logData) {
+					// logData is already a JSON string
+					fullMessage += `\nData: ${logData}`;
+				}
+				vscode.debug.activeDebugConsole.appendLine(fullMessage);
+			}
+			break
 	}
 }

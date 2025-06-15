@@ -4,10 +4,10 @@ import { Trans } from "react-i18next"
 import { Checkbox } from "vscrui"
 import { VSCodeLink, VSCodeRadio, VSCodeRadioGroup, VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
 
-import type { ProviderSettings } from "@roo-code/types"
+import type { ProviderSettings } from "@zentara-code/types"
 
 import { useAppTranslation } from "@src/i18n/TranslationContext"
-import { ExtensionMessage } from "@roo/ExtensionMessage"
+import { ExtensionMessage } from "@zentara/ExtensionMessage"
 
 import { inputEventTransform } from "../transforms"
 

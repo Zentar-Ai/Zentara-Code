@@ -7,7 +7,7 @@ import type { ClineMessage, TokenUsage } from "./message.js"
 import type { ToolUsage, ToolName } from "./tool.js"
 import type { IpcMessage, IpcServerEvents } from "./ipc.js"
 
-// TODO: Make sure this matches `RooCodeEvents` from `@roo-code/types`.
+// TODO: Make sure this matches `RooCodeEvents` from `@zentara-code/types`.
 export interface RooCodeAPIEvents {
 	message: [data: { taskId: string; action: "created" | "updated"; message: ClineMessage }]
 	taskCreated: [taskId: string]

@@ -1,6 +1,6 @@
 import { Fragment, HTMLAttributes } from "react"
 
-import { type Keys, type RooCodeSettings, GLOBAL_SETTINGS_KEYS, PROVIDER_SETTINGS_KEYS } from "@roo-code/types"
+import { type Keys, type RooCodeSettings, GLOBAL_SETTINGS_KEYS, PROVIDER_SETTINGS_KEYS } from "@zentara-code/types"
 
 import { cn } from "@/lib/utils"
 

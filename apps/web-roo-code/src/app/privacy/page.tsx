@@ -1,9 +1,9 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-	title: "Privacy Policy - Roo Code Marketing Website",
+	title: "Privacy Policy - Zentara Code Marketing Website",
 	description:
-		"Privacy policy for the Roo Code marketing website. Learn how we handle your data and protect your privacy.",
+		"Privacy policy for the Zentara Code marketing website. Learn how we handle your data and protect your privacy.",
 }
 
 export default function Privacy() {
@@ -12,21 +12,21 @@ export default function Privacy() {
 			<div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
 				<div className="prose prose-lg mx-auto max-w-3xl dark:prose-invert">
 					<h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-						Roo Code Marketing Landing Page Privacy Policy
+						Zentara Code Marketing Landing Page Privacy Policy
 					</h1>
 					<p className="text-muted-foreground">Last Updated: March 7th, 2025</p>
 
 					<p className="lead">
-						Roo Code respects your privacy and is committed to being transparent about how data is collected
-						and used on our marketing landing page. This policy focuses on data handling for the Roo Code
-						marketing website. For details on how your data is handled within the Roo Code extension itself,
+						Zentara Code respects your privacy and is committed to being transparent about how data is collected
+						and used on our marketing landing page. This policy focuses on data handling for the Zentara Code
+						marketing website. For details on how your data is handled within the Zentara Code extension itself,
 						please refer to our separate{" "}
 						<a
-							href="https://github.com/RooCodeInc/Roo-Code/blob/main/PRIVACY.md"
+							href="https://github.com/Zentar-Ai/Zentara-Codeblob/main/PRIVACY.md"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="text-primary hover:underline">
-							Roo Code Extension Privacy Policy
+							Zentara Code Extension Privacy Policy
 						</a>
 						.
 					</p>
@@ -67,7 +67,7 @@ export default function Privacy() {
 						</li>
 						<li>
 							We do not share or sell this data to third parties for their own marketing purposes. It is
-							used only to communicate with you about Roo Code, respond to inquiries, or send updates
+							used only to communicate with you about Zentara Code, respond to inquiries, or send updates
 							you&apos;ve requested.
 						</li>
 					</ul>
@@ -91,7 +91,7 @@ export default function Privacy() {
 						</li>
 						<li>
 							If you sign up for newsletters or updates, we use your email or other contact information
-							only to send you relevant Roo Code communications.
+							only to send you relevant Zentara Code communications.
 						</li>
 					</ul>
 
@@ -127,8 +127,8 @@ export default function Privacy() {
 						<li>
 							You may request the deletion of any personal data you&apos;ve provided through our marketing
 							forms by reaching out to us at{" "}
-							<a href="mailto:support@roocode.com" className="text-primary hover:underline">
-								support@roocode.com
+							<a href="mailto:support@zentar.ai" className="text-primary hover:underline">
+								support@zentar.ai
 							</a>
 							.
 						</li>
@@ -150,22 +150,22 @@ export default function Privacy() {
 					<p>
 						If you have questions or concerns about this Privacy Policy or wish to make a request regarding
 						your data, please reach out to us at{" "}
-						<a href="mailto:support@roocode.com" className="text-primary hover:underline">
-							support@roocode.com
+						<a href="mailto:support@zentar.ai" className="text-primary hover:underline">
+							support@zentar.ai
 						</a>
 						.
 					</p>
 
 					<div className="mt-8 border-t border-border pt-6">
 						<p className="text-muted-foreground">
-							By using the Roo Code marketing landing page, you agree to this Privacy Policy. If you use
-							the Roo Code extension, please see our separate{" "}
+							By using the Zentara Code marketing landing page, you agree to this Privacy Policy. If you use
+							the Zentara Code extension, please see our separate{" "}
 							<a
-								href="https://github.com/RooCodeInc/Roo-Code/blob/main/PRIVACY.md"
+								href="https://github.com/Zentar-Ai/Zentara-Codeblob/main/PRIVACY.md"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="text-primary hover:underline">
-								Roo Code Extension Privacy Policy
+								Zentara Code Extension Privacy Policy
 							</a>{" "}
 							for details on data handling in the extension.
 						</p>

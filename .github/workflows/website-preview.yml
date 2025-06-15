@@ -1,11 +1,11 @@
-name: Preview roocode.com
+name: Preview zentar.ai
 
 on:
     push:
         branches-ignore:
             - main
         paths:
-            - 'apps/web-roo-code/**'
+            - 'apps/web-zentara-code/**'
     workflow_dispatch:
 
 env:

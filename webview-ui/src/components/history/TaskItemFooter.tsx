@@ -1,7 +1,12 @@
 import React from "react"
+<<<<<<< HEAD
 import type { HistoryItem } from "@roo-code/types"
 import { Coins, FileIcon } from "lucide-react"
 import prettyBytes from "pretty-bytes"
+=======
+import type { HistoryItem } from "@zentara-code/types"
+import { Coins } from "lucide-react"
+>>>>>>> 1c20118a073ee36824b1141e183247378af1f568
 import { formatLargeNumber } from "@/utils/format"
 import { CopyButton } from "./CopyButton"
 import { ExportButton } from "./ExportButton"

@@ -9,7 +9,7 @@ import type {
 	ClineMessage,
 	OrganizationAllowList,
 	CloudUserInfo,
-} from "@roo-code/types"
+} from "@zentara-code/types"
 
 import { GitCommit } from "../utils/git"
 
@@ -160,6 +160,7 @@ export type ExtensionState = Pick<
 	| "alwaysAllowModeSwitch"
 	| "alwaysAllowSubtasks"
 	| "alwaysAllowExecute"
+	| "alwaysAllowDebug"
 	| "allowedCommands"
 	| "allowedMaxRequests"
 	| "browserToolEnabled"
@@ -269,6 +270,7 @@ export interface ClineSayTool {
 		| "finishTask"
 		| "searchAndReplace"
 		| "insertContent"
+		| "debug"
 	path?: string
 	diff?: string
 	content?: string
@@ -305,6 +307,7 @@ export interface ClineSayTool {
 		}>
 	}>
 	question?: string
+	operation?: string
 }
 
 // Must keep in sync with system prompt.
