@@ -8,17 +8,17 @@ import {
 	type ExperimentId,
 	type OrganizationAllowList,
 	ORGANIZATION_ALLOW_ALL,
-} from "@zentara-code/types"
+} from "@roo-code/types"
 
-import { ExtensionMessage, ExtensionState } from "@zentara/ExtensionMessage"
-import { findLastIndex } from "@zentara/array"
-import { McpServer } from "@zentara/mcp"
-import { checkExistKey } from "@zentara/checkExistApiConfig"
-import { Mode, defaultModeSlug, defaultPrompts } from "@zentara/modes"
-import { CustomSupportPrompts } from "@zentara/support-prompt"
-import { experimentDefault } from "@zentara/experiments"
-import { TelemetrySetting } from "@zentara/TelemetrySetting"
-import { RouterModels } from "@zentara/api"
+import { ExtensionMessage, ExtensionState } from "@roo/ExtensionMessage"
+import { findLastIndex } from "@roo/array"
+import { McpServer } from "@roo/mcp"
+import { checkExistKey } from "@roo/checkExistApiConfig"
+import { Mode, defaultModeSlug, defaultPrompts } from "@roo/modes"
+import { CustomSupportPrompts } from "@roo/support-prompt"
+import { experimentDefault } from "@roo/experiments"
+import { TelemetrySetting } from "@roo/TelemetrySetting"
+import { RouterModels } from "@roo/api"
 
 import { vscode } from "@src/utils/vscode"
 import { convertTextMateToHljs } from "@src/utils/textMateToHljs"

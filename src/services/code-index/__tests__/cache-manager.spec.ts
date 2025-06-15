@@ -52,7 +52,7 @@ describe("CacheManager", () => {
 
 			expect(vscode.Uri.joinPath).toHaveBeenCalledWith(
 				mockContext.globalStorageUri,
-				`zentara-index-cache-${expectedHash}.json`,
+				`roo-index-cache-${expectedHash}.json`,
 			)
 		})
 

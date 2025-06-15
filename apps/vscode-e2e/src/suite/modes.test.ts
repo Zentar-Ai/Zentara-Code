@@ -2,7 +2,7 @@ import * as assert from "assert"
 
 import { waitUntilCompleted } from "./utils"
 
-suite("Zentara Code Modes", () => {
+suite("Roo Code Modes", () => {
 	test("Should handle switching modes correctly", async () => {
 		const modes: string[] = []
 

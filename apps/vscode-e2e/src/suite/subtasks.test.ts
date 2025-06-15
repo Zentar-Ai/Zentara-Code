@@ -1,10 +1,10 @@
 import * as assert from "assert"
 
-import type { ClineMessage } from "@zentara-code/types"
+import type { ClineMessage } from "@roo-code/types"
 
 import { sleep, waitFor, waitUntilCompleted } from "./utils"
 
-suite.skip("Zentara Code Subtasks", () => {
+suite.skip("Roo Code Subtasks", () => {
 	test("Should handle subtask cancellation and resumption correctly", async () => {
 		const api = globalThis.api
 

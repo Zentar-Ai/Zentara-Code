@@ -4,21 +4,21 @@
 	"description": "TypeScript type definitions for Roo Code.",
 	"publishConfig": {
 		"access": "public",
-		"name": "@zentara-code/types"
+		"name": "@roo-code/types"
 	},
-	"author": "Zentara Code Team",
+	"author": "Roo Code Team",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Zentar-Ai/zentara-code.git"
+		"url": "git+https://github.com/Zentar-Ai/roo-code.git"
 	},
 	"bugs": {
-		"url": "https://github.com/Zentar-Ai/Zentara-Code/issues"
+		"url": "https://github.com/Zentar-Ai/Roo-Code/issues"
 	},
-	"homepage": "https://github.com/Zentar-Ai/Zentara-Codetree/main/packages/types",
+	"homepage": "https://github.com/Zentar-Ai/Roo-Codetree/main/packages/types",
 	"keywords": [
-		"zentara",
-		"zentara-code",
+		"roo",
+		"roo-code",
 		"ai"
 	],
 	"main": "./dist/index.cjs",

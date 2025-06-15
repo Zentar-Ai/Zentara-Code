@@ -11,7 +11,7 @@ vitest.mock("../../../i18n", () => ({
 	t: vitest.fn((key, options) => {
 		// For toolRepetitionLimitReached key, return a message with the tool name.
 		if (key === "tools:toolRepetitionLimitReached" && options?.toolName) {
-			return `Zentara appears to be stuck in a loop, attempting the same action (${options.toolName}) repeatedly. This might indicate a problem with its current strategy.`
+			return `Roo appears to be stuck in a loop, attempting the same action (${options.toolName}) repeatedly. This might indicate a problem with its current strategy.`
 		}
 		return key
 	}),

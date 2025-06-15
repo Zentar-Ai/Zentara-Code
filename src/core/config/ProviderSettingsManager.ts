@@ -5,8 +5,8 @@ import {
 	type ProviderSettingsEntry,
 	providerSettingsSchema,
 	providerSettingsSchemaDiscriminated,
-} from "@zentara-code/types"
-import { TelemetryService } from "@zentara-code/telemetry"
+} from "@roo-code/types"
+import { TelemetryService } from "@roo-code/telemetry"
 
 import { Mode, modes } from "../../shared/modes"
 

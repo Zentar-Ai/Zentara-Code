@@ -8,17 +8,17 @@ import { VSCodeButton } from "@vscode/webview-ui-toolkit/react"
 import useSound from "use-sound"
 import { LRUCache } from "lru-cache"
 
-import type { ClineAsk, ClineMessage } from "@zentara-code/types"
+import type { ClineAsk, ClineMessage } from "@roo-code/types"
 
-import { ClineSayBrowserAction, ClineSayTool, ExtensionMessage } from "@zentara/ExtensionMessage"
-import { McpServer, McpTool } from "@zentara/mcp"
-import { findLast } from "@zentara/array"
-import { combineApiRequests } from "@zentara/combineApiRequests"
-import { combineCommandSequences } from "@zentara/combineCommandSequences"
-import { getApiMetrics } from "@zentara/getApiMetrics"
-import { AudioType } from "@zentara/WebviewMessage"
-import { getAllModes } from "@zentara/modes"
-import { ProfileValidator } from "@zentara/ProfileValidator"
+import { ClineSayBrowserAction, ClineSayTool, ExtensionMessage } from "@roo/ExtensionMessage"
+import { McpServer, McpTool } from "@roo/mcp"
+import { findLast } from "@roo/array"
+import { combineApiRequests } from "@roo/combineApiRequests"
+import { combineCommandSequences } from "@roo/combineCommandSequences"
+import { getApiMetrics } from "@roo/getApiMetrics"
+import { AudioType } from "@roo/WebviewMessage"
+import { getAllModes } from "@roo/modes"
+import { ProfileValidator } from "@roo/ProfileValidator"
 
 import { vscode } from "@src/utils/vscode"
 import { validateCommand } from "@src/utils/command-validation"
@@ -1584,7 +1584,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 				</div>
 			)}
 
-			<div id="zentara-portal" />
+			<div id="roo-portal" />
 		</div>
 	)
 }

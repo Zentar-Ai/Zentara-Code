@@ -4,7 +4,7 @@
 		"lint": {},
 		"check-types": {},
 		"test": {
-			"dependsOn": ["@zentara-code/types#build"]
+			"dependsOn": ["@roo-code/types#build"]
 		},
 		"format": {},
 		"clean": {

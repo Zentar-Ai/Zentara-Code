@@ -15,8 +15,8 @@ import {
 	IpcMessageType,
 	TaskCommandName,
 	TaskEvent,
-} from "@zentara-code/types"
-import { IpcServer } from "@zentara-code/ipc"
+} from "@roo-code/types"
+import { IpcServer } from "@roo-code/ipc"
 
 import { Package } from "../shared/package"
 import { getWorkspacePath } from "../utils/path"
@@ -50,7 +50,7 @@ export class API extends EventEmitter<RooCodeEvents> implements RooCodeAPI {
 				console.log(args)
 			}
 
-			this.logfile = path.join(getWorkspacePath(), "zentara-code-messages.log")
+			this.logfile = path.join(getWorkspacePath(), "roo-code-messages.log")
 		} else {
 			this.log = () => {}
 		}

@@ -2,9 +2,9 @@
 
 import { render, screen, act } from "@testing-library/react"
 
-import { ProviderSettings, ExperimentId } from "@zentara-code/types"
+import { ProviderSettings, ExperimentId } from "@roo-code/types"
 
-import { ExtensionState } from "@zentara/ExtensionMessage"
+import { ExtensionState } from "@roo/ExtensionMessage"
 
 import { ExtensionStateContextProvider, useExtensionState, mergeExtensionState } from "../ExtensionStateContext"
 

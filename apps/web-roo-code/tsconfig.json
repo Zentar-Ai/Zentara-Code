@@ -1,5 +1,5 @@
 {
-	"extends": "@zentara-code/config-typescript/nextjs.json",
+	"extends": "@roo-code/config-typescript/nextjs.json",
 	"compilerOptions": {
 		"paths": { "@/*": ["./src/*"] }
 	},

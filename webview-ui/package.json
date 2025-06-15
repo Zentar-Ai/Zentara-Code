@@ -1,5 +1,5 @@
 {
-	"name": "@zentara-code/vscode-webview",
+	"name": "@roo-code/vscode-webview",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -29,7 +29,7 @@
 		"@radix-ui/react-slider": "^1.2.3",
 		"@radix-ui/react-slot": "^1.1.2",
 		"@radix-ui/react-tooltip": "^1.1.8",
-		"@zentara-code/types": "workspace:^",
+		"@roo-code/types": "workspace:^",
 		"@tailwindcss/vite": "^4.0.0",
 		"@tanstack/react-query": "^5.68.0",
 		"@vscode/codicons": "^0.0.36",

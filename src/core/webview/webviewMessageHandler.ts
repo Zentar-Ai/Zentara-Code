@@ -3,9 +3,9 @@ import fs from "fs/promises"
 import pWaitFor from "p-wait-for"
 import * as vscode from "vscode"
 
-import { type Language, type ProviderSettings, type GlobalState, TelemetryEventName } from "@zentara-code/types"
-import { CloudService } from "@zentara-code/cloud"
-import { TelemetryService } from "@zentara-code/telemetry"
+import { type Language, type ProviderSettings, type GlobalState, TelemetryEventName } from "@roo-code/types"
+import { CloudService } from "@roo-code/cloud"
+import { TelemetryService } from "@roo-code/telemetry"
 
 import { ClineProvider } from "./ClineProvider"
 import { changeLanguage, t } from "../../i18n"
@@ -514,7 +514,7 @@ export const webviewMessageHandler = async (
 			}
 
 			const workspaceFolder = vscode.workspace.workspaceFolders[0]
-			const rooDir = path.join(workspaceFolder.uri.fsPath, ".zentara")
+			const rooDir = path.join(workspaceFolder.uri.fsPath, ".roo")
 			const mcpPath = path.join(rooDir, "mcp.json")
 
 			try {

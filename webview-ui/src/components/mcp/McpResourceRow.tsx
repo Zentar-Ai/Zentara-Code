@@ -1,4 +1,4 @@
-import { McpResource, McpResourceTemplate } from "@zentara/mcp"
+import { McpResource, McpResourceTemplate } from "@roo/mcp"
 
 type McpResourceRowProps = {
 	item: McpResource | McpResourceTemplate

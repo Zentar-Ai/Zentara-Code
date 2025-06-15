@@ -1,8 +1,4 @@
 import { render, screen, fireEvent } from "@testing-library/react"
-<<<<<<< HEAD
-=======
-import type { HistoryItem } from "@zentara-code/types"
->>>>>>> 1c20118a073ee36824b1141e183247378af1f568
 import TaskItem from "../TaskItem"
 
 jest.mock("@src/utils/vscode")

@@ -5,7 +5,7 @@ import * as vscode from "vscode"
 import { CloudService } from "../CloudService"
 import { AuthService } from "../AuthService"
 import { SettingsService } from "../SettingsService"
-import { TelemetryService } from "@zentara-code/telemetry"
+import { TelemetryService } from "@roo-code/telemetry"
 import { CloudServiceCallbacks } from "../types"
 
 vi.mock("vscode", () => ({
@@ -22,7 +22,7 @@ vi.mock("vscode", () => ({
 	},
 }))
 
-vi.mock("@zentara-code/telemetry")
+vi.mock("@roo-code/telemetry")
 
 vi.mock("../AuthService")
 

@@ -9,7 +9,7 @@ import type {
 	ClineMessage,
 	OrganizationAllowList,
 	CloudUserInfo,
-} from "@zentara-code/types"
+} from "@roo-code/types"
 
 import { GitCommit } from "../utils/git"
 

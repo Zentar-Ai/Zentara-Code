@@ -63,7 +63,7 @@ describe("OpenRouterHandler", () => {
 			apiKey: mockOptions.openRouterApiKey,
 			defaultHeaders: {
 				"HTTP-Referer": "https://zentar.ai",
-				"X-Title": "Zentara Code",
+				"X-Title": "Roo Code",
 			},
 		})
 	})

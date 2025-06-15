@@ -542,7 +542,7 @@ export class McpHub {
 		}
 
 		const workspaceFolder = vscode.workspace.workspaceFolders[0]
-		const projectMcpDir = path.join(workspaceFolder.uri.fsPath, ".zentara")
+		const projectMcpDir = path.join(workspaceFolder.uri.fsPath, ".roo")
 		const projectMcpPath = path.join(projectMcpDir, "mcp.json")
 
 		try {
@@ -569,7 +569,7 @@ export class McpHub {
 		try {
 			const client = new Client(
 				{
-					name: "Zentara Code",
+					name: "Roo Code",
 					version: this.providerRef.deref()?.context.extension?.packageJSON?.version ?? "1.0.0",
 				},
 				{

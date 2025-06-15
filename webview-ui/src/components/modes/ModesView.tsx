@@ -9,7 +9,7 @@ import {
 import { Trans } from "react-i18next"
 import { ChevronsUpDown, X } from "lucide-react"
 
-import { ModeConfig, GroupEntry, PromptComponent, ToolGroup, modeConfigSchema } from "@zentara-code/types"
+import { ModeConfig, GroupEntry, PromptComponent, ToolGroup, modeConfigSchema } from "@roo-code/types"
 
 import {
 	Mode,
@@ -18,8 +18,8 @@ import {
 	getCustomInstructions,
 	getAllModes,
 	findModeBySlug as findCustomModeBySlug,
-} from "@zentara/modes"
-import { TOOL_GROUPS } from "@zentara/tools"
+} from "@roo/modes"
+import { TOOL_GROUPS } from "@roo/tools"
 
 import { vscode } from "@src/utils/vscode"
 import { buildDocLink } from "@src/utils/docLinks"
@@ -934,7 +934,7 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 												// Open or create an empty file
 												vscode.postMessage({
 													type: "openFile",
-													text: `./.zentara/rules-${currentMode.slug}/rules.md`,
+													text: `./.roo/rules-${currentMode.slug}/rules.md`,
 													values: {
 														create: true,
 														content: "",
@@ -1011,7 +1011,7 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 
 													vscode.postMessage({
 														type: "openFile",
-														text: `./.zentara/system-prompt-${currentMode.slug}`,
+														text: `./.roo/system-prompt-${currentMode.slug}`,
 														values: {
 															create: true,
 															content: "",
@@ -1076,7 +1076,7 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 										onClick={() =>
 											vscode.postMessage({
 												type: "openFile",
-												text: "./.zentara/rules/rules.md",
+												text: "./.roo/rules/rules.md",
 												values: {
 													create: true,
 													content: "",

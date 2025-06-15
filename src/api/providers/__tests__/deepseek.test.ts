@@ -1,7 +1,7 @@
 import OpenAI from "openai"
 import { Anthropic } from "@anthropic-ai/sdk"
 
-import { deepSeekDefaultModelId } from "@zentara-code/types"
+import { deepSeekDefaultModelId } from "@roo-code/types"
 
 import type { ApiHandlerOptions } from "../../../shared/api"
 

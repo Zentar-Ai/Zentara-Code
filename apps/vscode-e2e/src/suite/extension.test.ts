@@ -1,7 +1,7 @@
 import * as assert from "assert"
 import * as vscode from "vscode"
 
-suite("Zentara Code Extension", () => {
+suite("Roo Code Extension", () => {
 	test("Commands should be registered", async () => {
 		const expectedCommands = [
 			"SidebarProvider.open",
@@ -34,10 +34,10 @@ suite("Zentara Code Extension", () => {
 			"terminalExplainCommand",
 		]
 
-		const commands = new Set((await vscode.commands.getCommands(true)).filter((cmd) => cmd.startsWith("zentara-code")))
+		const commands = new Set((await vscode.commands.getCommands(true)).filter((cmd) => cmd.startsWith("roo-code")))
 
 		for (const command of expectedCommands) {
-			assert.ok(commands.has(`zentara-code.${command}`), `Command ${command} should be registered`)
+			assert.ok(commands.has(`roo-code.${command}`), `Command ${command} should be registered`)
 		}
 	})
 })

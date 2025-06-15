@@ -5,7 +5,7 @@ import {
 	OrganizationAllowList,
 	OrganizationSettings,
 	organizationSettingsSchema,
-} from "@zentara-code/types"
+} from "@roo-code/types"
 
 import { getRooCodeApiUrl } from "./Config"
 import { AuthService } from "./AuthService"

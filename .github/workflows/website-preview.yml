@@ -5,7 +5,7 @@ on:
         branches-ignore:
             - main
         paths:
-            - 'apps/web-zentara-code/**'
+            - 'apps/web-roo-code/**'
     workflow_dispatch:
 
 env:

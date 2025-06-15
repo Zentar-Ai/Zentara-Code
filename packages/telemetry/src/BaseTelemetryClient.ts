@@ -4,7 +4,7 @@ import {
 	TelemetryClient,
 	TelemetryPropertiesProvider,
 	TelemetryEventSubscription,
-} from "@zentara-code/types"
+} from "@roo-code/types"
 
 export abstract class BaseTelemetryClient implements TelemetryClient {
 	protected providerRef: WeakRef<TelemetryPropertiesProvider> | null = null

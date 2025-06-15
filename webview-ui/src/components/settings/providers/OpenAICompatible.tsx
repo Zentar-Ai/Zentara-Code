@@ -10,9 +10,9 @@ import {
 	type OrganizationAllowList,
 	azureOpenAiDefaultApiVersion,
 	openAiModelInfoSaneDefaults,
-} from "@zentara-code/types"
+} from "@roo-code/types"
 
-import { ExtensionMessage } from "@zentara/ExtensionMessage"
+import { ExtensionMessage } from "@roo/ExtensionMessage"
 
 import { useAppTranslation } from "@src/i18n/TranslationContext"
 import { Button } from "@src/components/ui"

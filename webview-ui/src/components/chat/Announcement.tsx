@@ -2,7 +2,7 @@ import { useState, memo } from "react"
 import { Trans } from "react-i18next"
 import { VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 
-import { Package } from "@zentara/package"
+import { Package } from "@roo/package"
 
 import { useAppTranslation } from "@src/i18n/TranslationContext"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@src/components/ui"
@@ -116,11 +116,11 @@ const Announcement = ({ hideAnnouncement }: AnnouncementProps) => {
 
 const DiscordLink = () => (
 	<VSCodeLink
-		href="https://discord.gg/ZentaraCode"
+		href="https://discord.gg/RooCode"
 		onClick={(e) => {
 			e.preventDefault()
 			window.postMessage(
-				{ type: "action", action: "openExternal", data: { url: "https://discord.gg/ZentaraCode" } },
+				{ type: "action", action: "openExternal", data: { url: "https://discord.gg/RooCode" } },
 				"*",
 			)
 		}}>
@@ -130,11 +130,11 @@ const DiscordLink = () => (
 
 const RedditLink = () => (
 	<VSCodeLink
-		href="https://reddit.com/r/ZentaraCode"
+		href="https://reddit.com/r/RooCode"
 		onClick={(e) => {
 			e.preventDefault()
 			window.postMessage(
-				{ type: "action", action: "openExternal", data: { url: "https://reddit.com/r/ZentaraCode" } },
+				{ type: "action", action: "openExternal", data: { url: "https://reddit.com/r/RooCode" } },
 				"*",
 			)
 		}}>

@@ -1,6 +1,6 @@
 {
-	"name": "@zentara-code/telemetry",
-	"description": "Zentara Code telemetry service and clients.",
+	"name": "@roo-code/telemetry",
+	"description": "Roo Code telemetry service and clients.",
 	"version": "0.0.0",
 	"type": "module",
 	"exports": "./src/index.ts",
@@ -11,7 +11,7 @@
 		"clean": "rimraf dist .turbo"
 	},
 	"dependencies": {
-		"@zentara-code/types": "workspace:^",
+		"@roo-code/types": "workspace:^",
 		"posthog-node": "^4.7.0",
 		"zod": "^3.25.61"
 	},

@@ -1,6 +1,6 @@
 {
-	"name": "@zentara-code/build",
-	"description": "ESBuild utilities for Zentara Code.",
+	"name": "@roo-code/build",
+	"description": "ESBuild utilities for Roo Code.",
 	"private": true,
 	"type": "module",
 	"main": "./dist/index.js",

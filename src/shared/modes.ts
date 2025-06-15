@@ -8,7 +8,7 @@ import type {
 	ExperimentId,
 	ToolGroup,
 	PromptComponent,
-} from "@zentara-code/types"
+} from "@roo-code/types"
 
 import { addCustomInstructions } from "../core/prompts/sections/custom-instructions"
 

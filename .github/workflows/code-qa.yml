@@ -1,4 +1,4 @@
-name: Code QA Zentara Code
+name: Code QA Roo Code
 
 on:
     workflow_dispatch:

@@ -11,7 +11,7 @@ import {
 	glamaDefaultModelId,
 	unboundDefaultModelId,
 	litellmDefaultModelId,
-} from "@zentara-code/types"
+} from "@roo-code/types"
 
 import { vscode } from "@src/utils/vscode"
 import { validateApiConfiguration } from "@src/utils/validate"

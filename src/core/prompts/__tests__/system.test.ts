@@ -2,7 +2,7 @@
 
 import * as vscode from "vscode"
 
-import { ModeConfig } from "@zentara-code/types"
+import { ModeConfig } from "@roo-code/types"
 
 import { SYSTEM_PROMPT } from "../system"
 import { McpHub } from "../../../services/mcp/McpHub"

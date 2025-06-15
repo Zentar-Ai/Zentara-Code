@@ -1,6 +1,11 @@
 import * as fs from "fs"
 import * as path from "path"
+import { fileURLToPath } from "url" // Added
 import { execSync } from "child_process"
+
+// Added for ES module __dirname compatibility
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 import { ViewsContainer, Views, Menus, Configuration, contributesSchema } from "./types.js"
 

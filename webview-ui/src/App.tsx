@@ -2,12 +2,7 @@ import { useCallback, useEffect, useRef, useState, useMemo } from "react"
 import { useEvent } from "react-use"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
-<<<<<<< HEAD
 import { ExtensionMessage } from "@roo/ExtensionMessage"
-=======
-import { ExtensionMessage } from "@zentara/ExtensionMessage"
-
->>>>>>> 1c20118a073ee36824b1141e183247378af1f568
 import TranslationProvider from "./i18n/TranslationContext"
 import { MarketplaceViewStateManager } from "./components/marketplace/MarketplaceViewStateManager"
 

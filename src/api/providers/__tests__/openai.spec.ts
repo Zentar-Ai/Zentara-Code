@@ -104,7 +104,7 @@ describe("OpenAiHandler", () => {
 				apiKey: expect.any(String),
 				defaultHeaders: {
 					"HTTP-Referer": "https://zentar.ai",
-					"X-Title": "Zentara Code",
+					"X-Title": "Roo Code",
 				},
 			})
 		})

@@ -2,7 +2,7 @@
 
 import { describe, expect, it, vitest, beforeEach } from "vitest"
 
-import type { ToolUsage } from "@zentara-code/types"
+import type { ToolUsage } from "@roo-code/types"
 
 import { Task } from "../../task/Task"
 import { formatResponse } from "../../prompts/responses"

@@ -8,12 +8,12 @@ export const revalidate = 300
 export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
-	title: "Zentara Code Evals",
+	title: "Roo Code Evals",
 	openGraph: {
-		title: "Zentara Code Evals",
+		title: "Roo Code Evals",
 		description: "Quantitative evals of LLM coding skills.",
 		url: "https://zentar.ai/evals",
-		siteName: "Zentara Code",
+		siteName: "Roo Code",
 		images: {
 			url: "https://i.imgur.com/ijP7aZm.png",
 			width: 1954,
