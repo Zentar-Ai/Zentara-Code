@@ -54,12 +54,12 @@ export class DirectoryScanner implements IDirectoryScanner {
 		// Filter out directories (marked with trailing '/')
 		const filePaths = allPaths.filter((p) => !p.endsWith("/"))
 
-		// Initialize RooIgnoreController if not provided
-		const ignoreController = new RooIgnoreController(directoryPath)
+		// Initialize ZentaraIgnoreController if not provided
+		const ignoreController = new ZentaraIgnoreController(directoryPath)
 
 		await ignoreController.initialize()
 
-		// Filter paths using .rooignore
+		// Filter paths using .zentaraignore
 		const allowedPaths = ignoreController.filterPaths(filePaths)
 
 		// Filter by supported extensions, ignore patterns, and excluded directories
