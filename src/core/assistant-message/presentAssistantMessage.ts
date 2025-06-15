@@ -79,11 +79,9 @@ export async function presentAssistantMessage(cline: Task) {
 	}
 
 	const block = cloneDeep(cline.assistantMessageContent[cline.currentStreamingContentIndex]) // need to create copy bc while stream is updating the array, it could be updating the reference block properties too
-	//outputChannel.appendLine(`[presentAssistantMessage] Processing block: ${JSON.stringify(block, null, 2)}`)
 
 	switch (block.type) {
 		case "text": {
-			//outputChannel.appendLine(`[presentAssistantMessage] Processing text block type`)
 			if (cline.didRejectTool || cline.didAlreadyUseTool) {
 				break
 			}
@@ -225,12 +223,9 @@ export async function presentAssistantMessage(cline: Task) {
 						return `[${block.name}]`
 				}
 			}
-			//outputChannel.appendLine(`[Debug] Raw tool use block: ${JSON.stringify(block, null, 2)}`)
-			// toolDescription function removed from here, will use getToolDescriptionString(block) helper
 
 			if (cline.didRejectTool) {
 				// Ignore any tool content after user has rejected tool once.
-				// Pass undefined for customModes here as it's not yet available and getToolDescriptionString can handle it.
 				if (!block.partial) {
 					cline.userMessageContent.push({
 						type: "text",
@@ -289,58 +284,25 @@ export async function presentAssistantMessage(cline: Task) {
 					isProtected || false,
 				)
 
-				try {
-					//outputChannel.appendLine(`[askApproval] About to call cline.ask with type: ${type}`)
-					const { response, text, images } = await cline.ask(type, partialMessage, false, progressStatus)
-					// outputChannel.appendLine(
-					// 	`[askApproval] cline.ask returned response: ${response}, text: ${text ? "present" : "absent"}`,
-					// )
-
-					if (response !== "yesButtonClicked") {
-						//outputChannel.appendLine(`[askApproval] Response is NOT yesButtonClicked, it's: ${response}`)
-						// Handle both messageResponse and noButtonClicked with text.
-						if (text) {
-							//outputChannel.appendLine(`[askApproval] User provided feedback text with denial: ${text}`)
-							await cline.say("user_feedback", text, images)
-							pushToolResult(
-								formatResponse.toolResult(formatResponse.toolDeniedWithFeedback(text), images),
-							)
-						} else {
-							//outputChannel.appendLine(`[askApproval] User denied without feedback text`)
-							pushToolResult(formatResponse.toolDenied())
-						}
-						cline.didRejectTool = true
-						//outputChannel.appendLine(`[askApproval] Returning false (denied)`)
-						return false
-					}
-
-					//outputChannel.appendLine(`[askApproval] Response is yesButtonClicked - APPROVED`)
-					// Handle yesButtonClicked with text.
+				if (response !== "yesButtonClicked") {
+					// Handle both messageResponse and noButtonClicked with text.
 					if (text) {
-						outputChannel.appendLine(`[askApproval] User provided feedback text with approval: ${text}`)
 						await cline.say("user_feedback", text, images)
-						pushToolResult(formatResponse.toolResult(formatResponse.toolApprovedWithFeedback(text), images))
+						pushToolResult(formatResponse.toolResult(formatResponse.toolDeniedWithFeedback(text), images))
+					} else {
+						pushToolResult(formatResponse.toolDenied())
 					}
-					//outputChannel.appendLine(`[askApproval] Returning true (approved)`)
-					return true
-				} catch (askError: any) {
-					outputChannel.appendLine(
-						`[ERROR][askApproval IN CATCH BLOCK] Error during cline.ask: ${askError.message}. Stack: ${askError.stack}`,
-					)
-					try {
-						await handleError(`asking approval via cline.ask for type '${type}'`, askError)
-						//outputChannel.appendLine(`[askApproval IN CATCH BLOCK] handleError completed.`)
-						pushToolResult(formatResponse.toolError(`Error during approval process: ${askError.message}`))
-						//outputChannel.appendLine(`[askApproval IN CATCH BLOCK] pushToolResult completed.`)
-					} catch (handlerError: any) {
-						outputChannel.appendLine(
-							`[ERROR][askApproval IN CATCH BLOCK] Error within error handler: ${handlerError.message}. Stack: ${handlerError.stack}`,
-						)
-					}
-					cline.didRejectTool = true // Treat as a rejection to prevent further tool execution
-					//outputChannel.appendLine(`[askApproval IN CATCH BLOCK] Returning false.`)
-					return false // Indicate approval failed
+					cline.didRejectTool = true
+					return false
 				}
+
+				// Handle yesButtonClicked with text.
+				if (text) {
+					await cline.say("user_feedback", text, images)
+					pushToolResult(formatResponse.toolResult(formatResponse.toolApprovedWithFeedback(text), images))
+				}
+
+				return true
 			}
 
 			const askFinishSubTaskApproval = async () => {
@@ -390,16 +352,8 @@ export async function presentAssistantMessage(cline: Task) {
 				return text.replace(tagRegex, "")
 			}
 
-			//outputChannel.appendLine(`[presentAssistantMessage] Tool use: ${block.name}. Checking browser session.`)
 			if (block.name !== "browser_action") {
-				try {
-					await cline.browserSession.closeBrowser()
-					//outputChannel.appendLine(`[presentAssistantMessage] Browser session closed (if active).`)
-				} catch (browserError: any) {
-					outputChannel.appendLine(
-						`[ERROR][presentAssistantMessage] Error closing browser session: ${browserError.message}`,
-					)
-				}
+				await cline.browserSession.closeBrowser()
 			}
 
 			if (!block.partial) {
@@ -421,19 +375,7 @@ export async function presentAssistantMessage(cline: Task) {
 			}
 
 			// Validate tool use before execution.
-			//outputChannel.appendLine(`[presentAssistantMessage] Getting provider state for tool validation.`)
-			const providerState = await cline.providerRef.deref()?.getState()
-			if (!providerState) {
-				outputChannel.appendLine(
-					`[ERROR][presentAssistantMessage] Provider reference is null before tool validation.`,
-				)
-				pushToolResult(formatResponse.toolError("Internal error: Provider not available for tool validation."))
-				break
-			}
-			const { mode, customModes } = providerState // customModes is needed by getToolDescriptionString
-			//outputChannel.appendLine(
-			//	`[presentAssistantMessage] Provider state obtained. Mode: ${mode}, CustomModes present: ${!!customModes}. About to call validateToolUse.`,
-			//)
+			const { mode, customModes } = (await cline.providerRef.deref()?.getState()) ?? {}
 
 
 			try {
@@ -454,27 +396,38 @@ export async function presentAssistantMessage(cline: Task) {
 				break
 			}
 
-			//outputChannel.appendLine(
-			//	`[presentAssistantMessage] validateToolUse completed for non-debug_ tools if applicable.`,
-			//)
 			// Check for identical consecutive tool calls.
 			if (!block.partial) {
+				// Use the detector to check for repetition, passing the ToolUse
+				// block directly.
 				const repetitionCheck = cline.toolRepetitionDetector.check(block)
+
+				// If execution is not allowed, notify user and break.
 				if (!repetitionCheck.allowExecution && repetitionCheck.askUser) {
+					// Handle repetition similar to mistake_limit_reached pattern.
 					const { response, text, images } = await cline.ask(
 						repetitionCheck.askUser.messageKey as ClineAsk,
 						repetitionCheck.askUser.messageDetail.replace("{toolName}", block.name),
 					)
+
 					if (response === "messageResponse") {
+						// Add user feedback to userContent.
 						cline.userMessageContent.push(
-							{ type: "text" as const, text: `Tool repetition limit reached. User feedback: ${text}` },
+							{
+								type: "text" as const,
+								text: `Tool repetition limit reached. User feedback: ${text}`,
+							},
 							...formatResponse.imageBlocks(images),
 						)
+
+						// Add user feedback to chat.
 						await cline.say("user_feedback", text, images)
 
 						// Track tool repetition in telemetry.
 						TelemetryService.instance.captureConsecutiveMistakeError(cline.taskId)
 					}
+
+					// Return tool result message about the repetition
 					pushToolResult(
 						formatResponse.toolError(
 							`Tool call repetition limit reached for ${block.name}. Please try a different approach.`,
@@ -604,8 +557,7 @@ export async function presentAssistantMessage(cline: Task) {
 						break
 			}
 			break
-			
-	} // Correctly closes switch (block.type)
+	}
 
 	const recentlyModifiedFiles = cline.fileContextTracker.getAndClearCheckpointPossibleFile()
 
@@ -662,130 +614,6 @@ export async function presentAssistantMessage(cline: Task) {
 	if (cline.presentAssistantMessageHasPendingUpdates) {
 		presentAssistantMessage(cline)
 	}
-} // Correctly closes presentAssistantMessage
-
-/**
- * Generates a descriptive string for a given tool use block.
- * This function is defined outside `presentAssistantMessage` to keep it clean.
- * @param block The tool use content block.
- * @param customModes Optional custom modes, needed for describing the "new_task" tool.
- * @returns A string describing the tool and its main parameters.
- */
-function getToolDescriptionString(block: ToolUse, customModes?: ModeConfig[]): string {
-	// Changed ToolUseBlock to ToolUse
-	if (block.name.startsWith("debug_")) {
-		const operationName = block.name.substring("debug_".length)
-		let paramsString = ""
-		if (block.params && Object.keys(block.params).length > 0) {
-			try {
-				paramsString = JSON.stringify(block.params)
-				if (paramsString.length > 100) {
-					// Truncate for very long params
-					paramsString = paramsString.substring(0, 97) + "..."
-				}
-			} catch (e) {
-				paramsString = "[error stringifying params]"
-			}
-		} else {
-			paramsString = "{}"
-		}
-		return `[${block.name} (operation: '${operationName}') arguments: ${paramsString}]`
-	}
-
-	switch (block.name) {
-		case "execute_command":
-			return `[${block.name} for '${block.params.command}']`
-		case "read_file":
-			return `[${block.name} for '${block.params.path}']`
-		case "fetch_instructions":
-			return `[${block.name} for '${block.params.task}']`
-		case "write_to_file":
-			return `[${block.name} for '${block.params.path}']`
-		case "apply_diff":
-			return `[${block.name} for '${block.params.path}']`
-		case "search_files":
-			return `[${block.name} for '${block.params.regex}'${
-				block.params.file_pattern ? ` in '${block.params.file_pattern}'` : ""
-			}]`
-		case "insert_content":
-			return `[${block.name} for '${block.params.path}']`
-		case "search_and_replace":
-			return `[${block.name} for '${block.params.path}']`
-		case "list_files":
-			return `[${block.name} for '${block.params.path}']`
-		case "list_code_definition_names":
-			return `[${block.name} for '${block.params.path}']`
-		case "browser_action":
-			return `[${block.name} for '${block.params.action}']`
-		case "use_mcp_tool":
-			return `[${block.name} for '${block.params.server_name}']`
-		case "access_mcp_resource":
-			return `[${block.name} for '${block.params.server_name}']`
-		case "ask_followup_question":
-			return `[${block.name} for '${block.params.question}']`
-		case "attempt_completion":
-			return `[${block.name}]`
-		case "switch_mode":
-			return `[${block.name} to '${block.params.mode_slug}'${block.params.reason ? ` because: ${block.params.reason}` : ""}]`
-		case "new_task": {
-			const modeSlug = block.params.mode ?? defaultModeSlug
-			const message = block.params.message ?? "(no message)"
-			// Ensure customModes is an array before calling getModeBySlug
-			const modeName = getModeBySlug(modeSlug, customModes ?? [])?.name ?? modeSlug
-			return `[${block.name} in ${modeName} mode: '${message}']`
-		}
-		case "debug": // Original meta-tool
-			outputChannel.appendLine(
-				`[Debug] Inside getToolDescriptionString for "debug" meta-tool, block params: ${JSON.stringify(block.params, null, 2)}`,
-			)
-			return `[${block.name} operation: '${block.params.debug_operation}' arguments: ${block.params.arguments ?? "{}"}]`
-		default:
-			// Fallback for any unhandled tool names
-			return `[${String(block.name)}]`
-	}
-}
-
-/**
- * Helper function to handle the invocation of individual debug operation tools.
- * It reconstructs the tool call to be compatible with the existing `debugTool` (meta-tool)
- * and then calls `debugTool`.
- */
-async function handleIndividualDebugTool(
-	cline: Task,
-	block: ToolUse, // Changed ToolUseBlock to ToolUse
-	askApproval: (type: ClineAsk, partialMessage?: string, progressStatus?: ToolProgressStatus) => Promise<boolean>,
-	handleError: (action: string, error: Error) => Promise<void>,
-	pushToolResult: (content: ToolResponse) => void,
-	// removeClosingTag is not needed here as debugTool handles its own presentation
-) {
-	outputChannel.appendLine(`[handleIndividualDebugTool] Entry. Received block.name: ${block.name}, block.params: ${JSON.stringify(block.params, null, 2)}, block: ${JSON.stringify(block, null, 2)}`);
-	const operationName = block.name.substring("debug_".length)
-	// Wait if block until block is full
-	if (block.partial)
-		{
-			return
-		}
-
-	// Reconstruct the block for the original debugTool
-	// The 'name' becomes "debug" (the meta-tool name)
-	// 'params' will include 'debug_operation' and all original flat params from the specific tool
-	const reconstructedBlock: DebugToolUse = {
-		type: "tool_use", // type must be "tool_use"
-		name: "debug", // name is "debug" for the meta-tool
-		// tool_input: block.tool_input, // Removed: tool_input is not part of DebugToolUse or ToolUse type
-		params: {
-			...block.params, // Spread all params from the specific tool (e.g., program, path, line)
-			debug_operation: operationName, // Add the debug_operation
-		},
-		partial: block.partial, // Pass through partial status
-	}
-
-	//outputChannel.appendLine(
-	//	`[handleIndividualDebugTool] Bridging tool: ${block.name} to "debug" meta-tool. Operation: ${operationName}. Reconstructed Params: ${JSON.stringify(reconstructedBlock.params, null, 2)}`
-	//)
-
-	// Call the original debugTool with the reconstructed block
-	await debugTool(cline, reconstructedBlock, askApproval, handleError, pushToolResult)
 }
 
 /**
