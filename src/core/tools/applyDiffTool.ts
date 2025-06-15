@@ -66,11 +66,11 @@ export async function applyDiffToolLegacy(
 				return
 			}
 
-			const accessAllowed = cline.rooIgnoreController?.validateAccess(relPath)
+			const accessAllowed = cline.zentaraIgnoreController?.validateAccess(relPath)
 
 			if (!accessAllowed) {
-				await cline.say("rooignore_error", relPath)
-				pushToolResult(formatResponse.toolError(formatResponse.rooIgnoreError(relPath)))
+				await cline.say("zentaraignore_error", relPath)
+				pushToolResult(formatResponse.toolError(formatResponse.zentaraIgnoreError(relPath)))
 				return
 			}
 
@@ -170,7 +170,7 @@ export async function applyDiffToolLegacy(
 
 			// Track file edit operation
 			if (relPath) {
-				await cline.fileContextTracker.trackFileContext(relPath, "roo_edited" as RecordSource)
+				await cline.fileContextTracker.trackFileContext(relPath, "zentara_edited" as RecordSource)
 			}
 
 			// Used to determine if we should wait for busy terminal to update before sending api request

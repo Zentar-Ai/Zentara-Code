@@ -40,7 +40,7 @@ interface CodeIndexSettingsProps {
 	areSettingsCommitted: boolean
 }
 
-import type { IndexingStatusUpdateMessage } from "@roo/ExtensionMessage"
+import type { IndexingStatusUpdateMessage } from "@zentara/ExtensionMessage"
 
 export const CodeIndexSettings: React.FC<CodeIndexSettingsProps> = ({
 	codebaseIndexModels,

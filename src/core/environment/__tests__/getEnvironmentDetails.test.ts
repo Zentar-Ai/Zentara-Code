@@ -14,7 +14,7 @@ import { arePathsEqual } from "../../../utils/path"
 import { FileContextTracker } from "../../context-tracking/FileContextTracker"
 import { ApiHandler } from "../../../api/index"
 import { ClineProvider } from "../../webview/ClineProvider"
-import { RooIgnoreController } from "../../ignore/RooIgnoreController"
+import { ZentaraIgnoreController } from "../../ignore/ZentaraIgnoreController"
 import { formatResponse } from "../../prompts/responses"
 import { Task } from "../../task/Task"
 
@@ -72,7 +72,7 @@ describe("getEnvironmentDetails", () => {
 			experiments: {},
 			customInstructions: "test instructions",
 			language: "en",
-			showRooIgnoredFiles: true,
+			showZentaraIgnoredFiles: true,
 		}
 
 		mockProvider = {
@@ -86,19 +86,19 @@ describe("getEnvironmentDetails", () => {
 			fileContextTracker: {
 				getAndClearRecentlyModifiedFiles: jest.fn().mockReturnValue([]),
 			} as unknown as FileContextTracker,
-			rooIgnoreController: {
+			zentaraIgnoreController: {
 				filterPaths: jest.fn((paths: string[]) => paths.join("\n")),
 				cwd: mockCwd,
 				ignoreInstance: {},
 				disposables: [],
-				rooIgnoreContent: "",
+				zentaraIgnoreContent: "",
 				isPathIgnored: jest.fn(),
 				getIgnoreContent: jest.fn(),
 				updateIgnoreContent: jest.fn(),
 				addToIgnore: jest.fn(),
 				removeFromIgnore: jest.fn(),
 				dispose: jest.fn(),
-			} as unknown as RooIgnoreController,
+			} as unknown as ZentaraIgnoreController,
 			clineMessages: [],
 			api: {
 				getModel: jest.fn().mockReturnValue({ id: "test-model", info: { contextWindow: 100000 } }),
@@ -167,7 +167,7 @@ describe("getEnvironmentDetails", () => {
 			mockCwd,
 			["file1.ts", "file2.ts"],
 			false,
-			mockCline.rooIgnoreController,
+			mockCline.zentaraIgnoreController,
 			true,
 		)
 	})

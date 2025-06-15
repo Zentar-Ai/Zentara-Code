@@ -13,7 +13,7 @@ import {
 	type GlobalState,
 	type ProviderName,
 	type ProviderSettings,
-	type RooCodeSettings,
+	type ZentaraCodeSettings,
 	type ProviderSettingsEntry,
 	type TelemetryProperties,
 	type TelemetryPropertiesProvider,
@@ -1326,7 +1326,7 @@ export class ClineProvider
 			maxWorkspaceFiles,
 			browserToolEnabled,
 			telemetrySetting,
-			showRooIgnoredFiles,
+			showZentaraIgnoredFiles,
 			language,
 			maxReadFileLine,
 			terminalCompressProgressBar,
@@ -1434,7 +1434,7 @@ export class ClineProvider
 			telemetrySetting,
 			telemetryKey,
 			machineId,
-			showRooIgnoredFiles: showRooIgnoredFiles ?? true,
+			showZentaraIgnoredFiles: showZentaraIgnoredFiles ?? true,
 			language: language ?? formatLanguage(vscode.env.language),
 			renderContext: this.renderContext,
 			maxReadFileLine: maxReadFileLine ?? -1,
@@ -1587,7 +1587,7 @@ export class ClineProvider
 			openRouterUseMiddleOutTransform: stateValues.openRouterUseMiddleOutTransform ?? true,
 			browserToolEnabled: stateValues.browserToolEnabled ?? true,
 			telemetrySetting: stateValues.telemetrySetting || "unset",
-			showRooIgnoredFiles: stateValues.showRooIgnoredFiles ?? true,
+			showZentaraIgnoredFiles: stateValues.showZentaraIgnoredFiles ?? true,
 			maxReadFileLine: stateValues.maxReadFileLine ?? -1,
 			maxConcurrentFileReads: stateValues.maxConcurrentFileReads ?? 5,
 			historyPreviewCollapsed: stateValues.historyPreviewCollapsed ?? false,
@@ -1635,11 +1635,11 @@ export class ClineProvider
 		return this.contextProxy.getValue(key)
 	}
 
-	public async setValue<K extends keyof RooCodeSettings>(key: K, value: RooCodeSettings[K]) {
+	public async setValue<K extends keyof ZentaraCodeSettings>(key: K, value: ZentaraCodeSettings[K]) {
 		await this.contextProxy.setValue(key, value)
 	}
 
-	public getValue<K extends keyof RooCodeSettings>(key: K) {
+	public getValue<K extends keyof ZentaraCodeSettings>(key: K) {
 		return this.contextProxy.getValue(key)
 	}
 
@@ -1647,7 +1647,7 @@ export class ClineProvider
 		return this.contextProxy.getValues()
 	}
 
-	public async setValues(values: RooCodeSettings) {
+	public async setValues(values: ZentaraCodeSettings) {
 		await this.contextProxy.setValues(values)
 	}
 

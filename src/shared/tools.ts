@@ -63,7 +63,26 @@ export const toolParamNames = [
 	"start_line",
 	"end_line",
 	"query",
+	"_text", // Added for XML parser text content
+	"debug_operation",
+	// Debug tool specific parameters
+	"program",
+	"arg",
 	"args",
+	"env",
+	"stopOnEntry",
+	"column",
+	"condition",
+	"hitCondition",
+	"logMessage",
+	"enable",
+	"ignoreCount",
+	"frameId",
+	"linesAround",
+	"expression",
+	"statement",
+	"context",
+	"scopeFilter",
 ] as const
 
 export type ToolParamName = (typeof toolParamNames)[number]

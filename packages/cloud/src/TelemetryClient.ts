@@ -1,7 +1,7 @@
-import { TelemetryEventName, type TelemetryEvent, rooCodeTelemetryEventSchema } from "@zentara-code/types"
+import { TelemetryEventName, type TelemetryEvent, zentaraCodeTelemetryEventSchema } from "@zentara-code/types"
 import { BaseTelemetryClient } from "@zentara-code/telemetry"
 
-import { getRooCodeApiUrl } from "./Config"
+import { getZentaraCodeApiUrl } from "./Config"
 import { AuthService } from "./AuthService"
 import { SettingsService } from "./SettingsService"
 
@@ -32,7 +32,7 @@ export class TelemetryClient extends BaseTelemetryClient {
 			return
 		}
 
-		const response = await fetch(`${getRooCodeApiUrl()}/api/${path}`, {
+		const response = await fetch(`${getZentaraCodeApiUrl()}/api/${path}`, {
 			...options,
 			headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
 		})
@@ -62,7 +62,7 @@ export class TelemetryClient extends BaseTelemetryClient {
 			console.info(`[TelemetryClient#capture] ${JSON.stringify(payload)}`)
 		}
 
-		const result = rooCodeTelemetryEventSchema.safeParse(payload)
+		const result = zentaraCodeTelemetryEventSchema.safeParse(payload)
 
 		if (!result.success) {
 			console.error(

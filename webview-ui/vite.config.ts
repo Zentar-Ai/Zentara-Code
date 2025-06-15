@@ -84,11 +84,13 @@ export default defineConfig(({ mode }) => {
 	return {
 		plugins,
 		resolve: {
-			alias: {
-				"@": resolve(__dirname, "./src"),
-				"@src": resolve(__dirname, "./src"),
-				"@zentara": resolve(__dirname, "../src/shared"),
-			},
+			alias: [
+				{ find: "@", replacement: resolve(__dirname, "./src") },
+				{ find: "@src", replacement: resolve(__dirname, "./src") },
+				{ find: "@zentara", replacement: resolve(__dirname, "../src/shared") },
+				{ find: "@zentara-code/types", replacement: resolve(__dirname, "../packages/types/src/index.ts") },
+				{ find: /^@zentara-code\/(.+)$/, replacement: path.resolve(__dirname, '../packages') + '/$1/src' }
+			],
 		},
 		build: {
 			outDir,

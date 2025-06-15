@@ -21,7 +21,9 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"@src/*": ["./src/*"],
-			"@zentara/*": ["../src/shared/*"]
+			"@zentara/*": ["../src/shared/*"],
+			"@zentara-code/types": ["../packages/types/src/index.ts"],
+			"@zentara-code/*": ["../packages/*/src"]
 		}
 	},
 	"include": ["src", "../src/shared"]

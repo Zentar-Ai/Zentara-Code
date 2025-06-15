@@ -3,12 +3,12 @@ import Mocha from "mocha"
 import { glob } from "glob"
 import * as vscode from "vscode"
 
-import type { RooCodeAPI } from "@zentara-code/types"
+import type { ZentaraCodeAPI } from "@zentara-code/types"
 
 import { waitFor } from "./utils"
 
 export async function run() {
-	const extension = vscode.extensions.getExtension<RooCodeAPI>("ZentarAI.zentara-code")
+	const extension = vscode.extensions.getExtension<ZentaraCodeAPI>("ZentarAI.zentara-code")
 
 	if (!extension) {
 		throw new Error("Extension not found")

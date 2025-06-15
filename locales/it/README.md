@@ -12,30 +12,30 @@
 </div>
 <br>
 <div align="center">
-  <h2>Unisciti alla Community di Roo Code</h2>
+  <h2>Unisciti alla Community di Zentara Code</h2>
   <p>Connettiti con gli sviluppatori, contribuisci con le tue idee e rimani aggiornato con gli ultimi strumenti di codifica basati sull'IA.</p>
   
-  <a href="https://discord.gg/roocode" target="_blank"><img src="https://img.shields.io/badge/Unisciti%20a%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Unisciti a Discord"></a>
-  <a href="https://www.reddit.com/r/RooCode/" target="_blank"><img src="https://img.shields.io/badge/Unisciti%20a%20Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white" alt="Unisciti a Reddit"></a>
+  <a href="https://discord.gg/zentaracode" target="_blank"><img src="https://img.shields.io/badge/Unisciti%20a%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Unisciti a Discord"></a>
+  <a href="https://www.reddit.com/r/ZentaraCode/" target="_blank"><img src="https://img.shields.io/badge/Unisciti%20a%20Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white" alt="Unisciti a Reddit"></a>
   
 </div>
 <br>
 <br>
 
 <div align="center">
-<h1>Roo Code (precedentemente Roo Cline)</h1>
+<h1>Zentara Code (precedentemente Zentara Cline)</h1>
 <p align="center">
-<img src="https://media.githubusercontent.com/media/RooCodeInc/Roo-Code/main/src/assets/docs/demo.gif" width="100%" />
+<img src="https://media.githubusercontent.com/media/ZentaraCodeInc/Zentara-Code/main/src/assets/docs/demo.gif" width="100%" />
 </p>
 
-<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline" target="_blank"><img src="https://img.shields.io/badge/Scarica%20su%20VS%20Marketplace-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="Scarica su VS Marketplace"></a>
-<a href="https://github.com/RooCodeInc/Roo-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop" target="_blank"><img src="https://img.shields.io/badge/Richieste%20di%20Funzionalità-yellow?style=for-the-badge" alt="Richieste di Funzionalità"></a>
-<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline&ssr=false#review-details" target="_blank"><img src="https://img.shields.io/badge/Valuta%20%26%20Recensisci-green?style=for-the-badge" alt="Valuta & Recensisci"></a>
-<a href="https://docs.roocode.com" target="_blank"><img src="https://img.shields.io/badge/Documentazione-6B46C1?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentazione"></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=ZentaraVeterinaryInc.zentara-code" target="_blank"><img src="https://img.shields.io/badge/Scarica%20su%20VS%20Marketplace-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="Scarica su VS Marketplace"></a>
+<a href="https://github.com/ZentaraCodeInc/Zentara-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop" target="_blank"><img src="https://img.shields.io/badge/Richieste%20di%20Funzionalità-yellow?style=for-the-badge" alt="Richieste di Funzionalità"></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=ZentaraVeterinaryInc.zentara-code&ssr=false#review-details" target="_blank"><img src="https://img.shields.io/badge/Valuta%20%26%20Recensisci-green?style=for-the-badge" alt="Valuta & Recensisci"></a>
+<a href="https://docs.zentaracode.com" target="_blank"><img src="https://img.shields.io/badge/Documentazione-6B46C1?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentazione"></a>
 
 </div>
 
-**Roo Code** è un **agente di codifica autonomo** basato sull'IA che vive nel tuo editor. Può:
+**Zentara Code** è un **agente di codifica autonomo** basato sull'IA che vive nel tuo editor. Può:
 
 - Comunicare in linguaggio naturale
 - Leggere e scrivere file direttamente nel tuo workspace
@@ -44,15 +44,15 @@
 - Integrarsi con qualsiasi API/modello compatibile con OpenAI o personalizzato
 - Adattare la sua "personalità" e capacità attraverso **Modalità Personalizzate**
 
-Che tu stia cercando un partner di codifica flessibile, un architetto di sistema o ruoli specializzati come un ingegnere QA o un product manager, Roo Code può aiutarti a costruire software in modo più efficiente.
+Che tu stia cercando un partner di codifica flessibile, un architetto di sistema o ruoli specializzati come un ingegnere QA o un product manager, Zentara Code può aiutarti a costruire software in modo più efficiente.
 
 Consulta il [CHANGELOG](../../CHANGELOG.md) per aggiornamenti dettagliati e correzioni.
 
 ---
 
-## 🎉 Roo Code 3.20 Rilasciato
+## 🎉 Zentara Code 3.20 Rilasciato
 
-Roo Code 3.20 porta nuove funzionalità principali e miglioramenti basati sui vostri feedback!
+Zentara Code 3.20 porta nuove funzionalità principali e miglioramenti basati sui vostri feedback!
 
 - **Marketplace Sperimentale** - Scopri e installa mode e MCP dal nuovo marketplace (abilita nelle Impostazioni Sperimentali).
 - **Operazioni su File Migliorate** - Scritture multiple simultanee di file ora disponibili nelle Impostazioni Sperimentali, e letture multiple simultanee sono uscite dalla fase sperimentale e ora vivono nelle Impostazioni Contesto.
@@ -60,7 +60,7 @@ Roo Code 3.20 porta nuove funzionalità principali e miglioramenti basati sui vo
 
 ---
 
-## Cosa Può Fare Roo Code?
+## Cosa Può Fare Zentara Code?
 
 - 🚀 **Generare Codice** da descrizioni in linguaggio naturale
 - 🔧 **Refactoring e Debug** del codice esistente
@@ -71,55 +71,55 @@ Roo Code 3.20 porta nuove funzionalità principali e miglioramenti basati sui vo
 
 ## Avvio Rapido
 
-1. [Installa Roo Code](https://docs.roocode.com/getting-started/installing)
-2. [Connetti il tuo Provider IA](https://docs.roocode.com/getting-started/connecting-api-provider)
-3. [Prova la tua Prima Attività](https://docs.roocode.com/getting-started/your-first-task)
+1. [Installa Zentara Code](https://docs.zentaracode.com/getting-started/installing)
+2. [Connetti il tuo Provider IA](https://docs.zentaracode.com/getting-started/connecting-api-provider)
+3. [Prova la tua Prima Attività](https://docs.zentaracode.com/getting-started/your-first-task)
 
 ## Funzionalità Principali
 
 ### Modalità Multiple
 
-Roo Code si adatta alle tue esigenze con [modalità](https://docs.roocode.com/basic-usage/using-modes) specializzate:
+Zentara Code si adatta alle tue esigenze con [modalità](https://docs.zentaracode.com/basic-usage/using-modes) specializzate:
 
 - **Modalità Codice:** Per attività di codifica generale
 - **Modalità Architetto:** Per pianificazione e leadership tecnica
 - **Modalità Domanda:** Per rispondere a domande e fornire informazioni
 - **Modalità Debug:** Per diagnosi sistematica dei problemi
-- **[Modalità Personalizzate](https://docs.roocode.com/advanced-usage/custom-modes):** Crea personaggi specializzati illimitati per audit di sicurezza, ottimizzazione delle prestazioni, documentazione o qualsiasi altra attività
+- **[Modalità Personalizzate](https://docs.zentaracode.com/advanced-usage/custom-modes):** Crea personaggi specializzati illimitati per audit di sicurezza, ottimizzazione delle prestazioni, documentazione o qualsiasi altra attività
 
 ### Strumenti Intelligenti
 
-Roo Code viene fornito con potenti [strumenti](https://docs.roocode.com/basic-usage/how-tools-work) che possono:
+Zentara Code viene fornito con potenti [strumenti](https://docs.zentaracode.com/basic-usage/how-tools-work) che possono:
 
 - Leggere e scrivere file nel tuo progetto
 - Eseguire comandi nel tuo terminale VS Code
 - Controllare un browser web
-- Utilizzare strumenti esterni tramite [MCP (Model Context Protocol)](https://docs.roocode.com/advanced-usage/mcp)
+- Utilizzare strumenti esterni tramite [MCP (Model Context Protocol)](https://docs.zentaracode.com/advanced-usage/mcp)
 
-MCP estende le capacità di Roo Code permettendoti di aggiungere strumenti personalizzati illimitati. Integra con API esterne, connettiti a database o crea strumenti di sviluppo specializzati - MCP fornisce il framework per espandere la funzionalità di Roo Code per soddisfare le tue esigenze specifiche.
+MCP estende le capacità di Zentara Code permettendoti di aggiungere strumenti personalizzati illimitati. Integra con API esterne, connettiti a database o crea strumenti di sviluppo specializzati - MCP fornisce il framework per espandere la funzionalità di Zentara Code per soddisfare le tue esigenze specifiche.
 
 ### Personalizzazione
 
-Fai funzionare Roo Code a modo tuo con:
+Fai funzionare Zentara Code a modo tuo con:
 
-- [Istruzioni Personalizzate](https://docs.roocode.com/advanced-usage/custom-instructions) per comportamenti personalizzati
-- [Modalità Personalizzate](https://docs.roocode.com/advanced-usage/custom-modes) per attività specializzate
-- [Modelli Locali](https://docs.roocode.com/advanced-usage/local-models) per uso offline
-- [Impostazioni di Auto-Approvazione](https://docs.roocode.com/advanced-usage/auto-approving-actions) per flussi di lavoro più veloci
+- [Istruzioni Personalizzate](https://docs.zentaracode.com/advanced-usage/custom-instructions) per comportamenti personalizzati
+- [Modalità Personalizzate](https://docs.zentaracode.com/advanced-usage/custom-modes) per attività specializzate
+- [Modelli Locali](https://docs.zentaracode.com/advanced-usage/local-models) per uso offline
+- [Impostazioni di Auto-Approvazione](https://docs.zentaracode.com/advanced-usage/auto-approving-actions) per flussi di lavoro più veloci
 
 ## Risorse
 
 ### Documentazione
 
-- [Guida all'Uso di Base](https://docs.roocode.com/basic-usage/the-chat-interface)
-- [Funzionalità Avanzate](https://docs.roocode.com/advanced-usage/auto-approving-actions)
-- [Domande Frequenti](https://docs.roocode.com/faq)
+- [Guida all'Uso di Base](https://docs.zentaracode.com/basic-usage/the-chat-interface)
+- [Funzionalità Avanzate](https://docs.zentaracode.com/advanced-usage/auto-approving-actions)
+- [Domande Frequenti](https://docs.zentaracode.com/faq)
 
 ### Comunità
 
-- **Discord:** [Unisciti al nostro server Discord](https://discord.gg/roocode) per aiuto in tempo reale e discussioni
-- **Reddit:** [Visita il nostro subreddit](https://www.reddit.com/r/RooCode) per condividere esperienze e consigli
-- **GitHub:** [Segnala problemi](https://github.com/RooCodeInc/Roo-Code/issues) o [richiedi funzionalità](https://github.com/RooCodeInc/Roo-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop)
+- **Discord:** [Unisciti al nostro server Discord](https://discord.gg/zentaracode) per aiuto in tempo reale e discussioni
+- **Reddit:** [Visita il nostro subreddit](https://www.reddit.com/r/ZentaraCode) per condividere esperienze e consigli
+- **GitHub:** [Segnala problemi](https://github.com/ZentaraCodeInc/Zentara-Code/issues) o [richiedi funzionalità](https://github.com/ZentaraCodeInc/Zentara-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop)
 
 ---
 
@@ -128,7 +128,7 @@ Fai funzionare Roo Code a modo tuo con:
 1. **Clona** il repository:
 
 ```sh
-git clone https://github.com/RooCodeInc/Roo-Code.git
+git clone https://github.com/ZentaraCodeInc/Zentara-Code.git
 ```
 
 2. **Installa le dipendenze**:
@@ -144,7 +144,7 @@ npm run dev
 ```
 
 4. **Debug**:
-   Premi `F5` (o **Run** → **Start Debugging**) in VSCode per aprire una nuova sessione con Roo Code caricato.
+   Premi `F5` (o **Run** → **Start Debugging**) in VSCode per aprire una nuova sessione con Zentara Code caricato.
 
 Le modifiche alla webview appariranno immediatamente. Le modifiche all'estensione principale richiederanno un riavvio dell'host dell'estensione.
 
@@ -157,7 +157,7 @@ npm run build
 Un file `.vsix` apparirà nella directory `bin/` che può essere installato con:
 
 ```sh
-code --install-extension bin/roo-cline-<version>.vsix
+code --install-extension bin/zentara-code-<version>.vsix
 ```
 
 Utilizziamo [changesets](https://github.com/changesets/changesets) per la gestione delle versioni e la pubblicazione. Controlla il nostro `CHANGELOG.md` per le note di rilascio.
@@ -166,7 +166,7 @@ Utilizziamo [changesets](https://github.com/changesets/changesets) per la gestio
 
 ## Disclaimer
 
-**Si prega di notare** che Roo Code, Inc **non** fa alcuna dichiarazione o garanzia riguardo a qualsiasi codice, modello o altro strumento fornito o reso disponibile in relazione a Roo Code, qualsiasi strumento di terze parti associato o qualsiasi output risultante. Ti assumi **tutti i rischi** associati all'uso di tali strumenti o output; tali strumenti sono forniti su base **"COSÌ COM'È"** e **"COME DISPONIBILE"**. Tali rischi possono includere, senza limitazione, violazione della proprietà intellettuale, vulnerabilità o attacchi informatici, pregiudizi, imprecisioni, errori, difetti, virus, tempi di inattività, perdita o danneggiamento della proprietà e/o lesioni personali. Sei l'unico responsabile del tuo utilizzo di tali strumenti o output (inclusi, senza limitazione, la legalità, l'appropriatezza e i risultati degli stessi).
+**Si prega di notare** che Zentara Code, Inc **non** fa alcuna dichiarazione o garanzia riguardo a qualsiasi codice, modello o altro strumento fornito o reso disponibile in relazione a Zentara Code, qualsiasi strumento di terze parti associato o qualsiasi output risultante. Ti assumi **tutti i rischi** associati all'uso di tali strumenti o output; tali strumenti sono forniti su base **"COSÌ COM'È"** e **"COME DISPONIBILE"**. Tali rischi possono includere, senza limitazione, violazione della proprietà intellettuale, vulnerabilità o attacchi informatici, pregiudizi, imprecisioni, errori, difetti, virus, tempi di inattività, perdita o danneggiamento della proprietà e/o lesioni personali. Sei l'unico responsabile del tuo utilizzo di tali strumenti o output (inclusi, senza limitazione, la legalità, l'appropriatezza e i risultati degli stessi).
 
 ---
 
@@ -178,7 +178,7 @@ Amiamo i contributi della community! Inizia leggendo il nostro [CONTRIBUTING.md]
 
 ## Contributori
 
-Grazie a tutti i nostri contributori che hanno aiutato a migliorare Roo Code!
+Grazie a tutti i nostri contributori che hanno aiutato a migliorare Zentara Code!
 
 <!-- START CONTRIBUTORS SECTION - AUTO-GENERATED, DO NOT EDIT MANUALLY -->
 |<a href="https://github.com/mrubens"><img src="https://avatars.githubusercontent.com/u/2600?v=4" width="100" height="100" alt="mrubens"/><br /><sub><b>mrubens</b></sub></a>|<a href="https://github.com/saoudrizwan"><img src="https://avatars.githubusercontent.com/u/7799382?v=4" width="100" height="100" alt="saoudrizwan"/><br /><sub><b>saoudrizwan</b></sub></a>|<a href="https://github.com/cte"><img src="https://avatars.githubusercontent.com/u/16332?v=4" width="100" height="100" alt="cte"/><br /><sub><b>cte</b></sub></a>|<a href="https://github.com/samhvw8"><img src="https://avatars.githubusercontent.com/u/12538214?v=4" width="100" height="100" alt="samhvw8"/><br /><sub><b>samhvw8</b></sub></a>|<a href="https://github.com/daniel-lxs"><img src="https://avatars.githubusercontent.com/u/57051444?v=4" width="100" height="100" alt="daniel-lxs"/><br /><sub><b>daniel-lxs</b></sub></a>|<a href="https://github.com/hannesrudolph"><img src="https://avatars.githubusercontent.com/u/49103247?v=4" width="100" height="100" alt="hannesrudolph"/><br /><sub><b>hannesrudolph</b></sub></a>|
@@ -217,8 +217,8 @@ Grazie a tutti i nostri contributori che hanno aiutato a migliorare Roo Code!
 
 ## Licenza
 
-[Apache 2.0 © 2025 Roo Code, Inc.](../LICENSE)
+[Apache 2.0 © 2025 Zentara Code, Inc.](../LICENSE)
 
 ---
 
-**Goditi Roo Code!** Che tu lo tenga al guinzaglio corto o lo lasci vagare autonomamente, non vediamo l'ora di vedere cosa costruirai. Se hai domande o idee per funzionalità, passa dalla nostra [community di Reddit](https://www.reddit.com/r/RooCode/) o [Discord](https://discord.gg/roocode). Buona programmazione!
+**Goditi Zentara Code!** Che tu lo tenga al guinzaglio corto o lo lasci vagare autonomamente, non vediamo l'ora di vedere cosa costruirai. Se hai domande o idee per funzionalità, passa dalla nostra [community di Reddit](https://www.reddit.com/r/ZentaraCode/) o [Discord](https://discord.gg/zentaracode). Buona programmazione!

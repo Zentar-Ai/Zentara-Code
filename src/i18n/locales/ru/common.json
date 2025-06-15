@@ -89,8 +89,8 @@
 	},
 	"storage": {
 		"prompt_custom_path": "Введите пользовательский путь хранения истории разговоров, оставьте пустым для использования расположения по умолчанию",
-		"path_placeholder": "D:\\RooCodeStorage",
-		"enter_absolute_path": "Пожалуйста, введите абсолютный путь (например, D:\\RooCodeStorage или /home/user/storage)",
+		"path_placeholder": "D:\\ZentaraCodeStorage",
+		"enter_absolute_path": "Пожалуйста, введите абсолютный путь (например, D:\\ZentaraCodeStorage или /home/user/storage)",
 		"enter_valid_path": "Пожалуйста, введите корректный путь"
 	},
 	"input": {

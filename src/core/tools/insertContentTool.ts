@@ -58,16 +58,16 @@ export async function insertContentTool(
 			return
 		}
 
-		const accessAllowed = cline.rooIgnoreController?.validateAccess(relPath)
+		const accessAllowed = cline.zentaraIgnoreController?.validateAccess(relPath)
 
 		if (!accessAllowed) {
-			await cline.say("rooignore_error", relPath)
-			pushToolResult(formatResponse.toolError(formatResponse.rooIgnoreError(relPath)))
+			await cline.say("zentaraignore_error", relPath)
+			pushToolResult(formatResponse.toolError(formatResponse.zentaraIgnoreError(relPath)))
 			return
 		}
 
 		// Check if file is write-protected
-		const isWriteProtected = cline.rooProtectedController?.isWriteProtected(relPath) || false
+		const isWriteProtected = cline.zentaraProtectedController?.isWriteProtected(relPath) || false
 
 		const absolutePath = path.resolve(cline.cwd, relPath)
 		const fileExists = await fileExistsAtPath(absolutePath)
@@ -145,7 +145,7 @@ export async function insertContentTool(
 
 		// Track file edit operation
 		if (relPath) {
-			await cline.fileContextTracker.trackFileContext(relPath, "roo_edited" as RecordSource)
+			await cline.fileContextTracker.trackFileContext(relPath, "zentara_edited" as RecordSource)
 		}
 
 		cline.didEditFile = true

@@ -11,9 +11,9 @@
 </sub>
 </div>
 
-# Đóng góp cho Roo Code
+# Đóng góp cho Zentara Code
 
-Roo Code là một dự án do cộng đồng dẫn dắt và chúng mình rất trân trọng mọi đóng góp. Để đơn giản hóa quy trình hợp tác, chúng mình áp dụng cách tiếp cận [Issue-First](#cách-tiếp-cận-issue-first), nghĩa là tất cả [Pull Request (PR)](#gửi-pull-request) phải được liên kết với một GitHub Issue trước. Vui lòng đọc kỹ hướng dẫn này.
+Zentara Code là một dự án do cộng đồng dẫn dắt và chúng mình rất trân trọng mọi đóng góp. Để đơn giản hóa quy trình hợp tác, chúng mình áp dụng cách tiếp cận [Issue-First](#cách-tiếp-cận-issue-first), nghĩa là tất cả [Pull Request (PR)](#gửi-pull-request) phải được liên kết với một GitHub Issue trước. Vui lòng đọc kỹ hướng dẫn này.
 
 ## Mục lục
 
@@ -52,10 +52,10 @@ Lộ trình của chúng mình định hướng dự án. Hãy điều chỉnh �
 
 Đề cập đến sự liên quan với các lĩnh vực này trong PR của bạn.
 
-### 3. Tham gia cộng đồng Roo Code
+### 3. Tham gia cộng đồng Zentara Code
 
-- **Cách chính:** Tham gia [Discord](https://discord.gg/roocode) của chúng mình và nhắn tin trực tiếp cho **Hannes Rudolph (`hrudolph`)**.
-- **Cách thay thế:** Cộng tác viên có kinh nghiệm có thể tham gia trực tiếp qua [GitHub Projects](https://github.com/orgs/RooCodeInc/projects/1).
+- **Cách chính:** Tham gia [Discord](https://discord.gg/zentaracode) của chúng mình và nhắn tin trực tiếp cho **Hannes Rudolph (`hrudolph`)**.
+- **Cách thay thế:** Cộng tác viên có kinh nghiệm có thể tham gia trực tiếp qua [GitHub Projects](https://github.com/orgs/ZentaraCodeInc/projects/1).
 
 ## Tìm kiếm & lên kế hoạch đóng góp
 
@@ -69,7 +69,7 @@ Lộ trình của chúng mình định hướng dự án. Hãy điều chỉnh �
 
 Mọi đóng góp đều phải bắt đầu bằng một GitHub Issue.
 
-- **Kiểm tra issue hiện có:** Tìm kiếm trong [GitHub Issues](https://github.com/RooCodeInc/Roo-Code/issues).
+- **Kiểm tra issue hiện có:** Tìm kiếm trong [GitHub Issues](https://github.com/ZentaraCodeInc/Zentara-Code/issues).
 - **Tạo issue mới:** Sử dụng mẫu phù hợp:
     - **Lỗi:** Mẫu "Bug Report".
     - **Tính năng:** Mẫu "Detailed Feature Proposal". Cần được phê duyệt trước khi bắt đầu.
@@ -79,14 +79,14 @@ Mọi đóng góp đều phải bắt đầu bằng một GitHub Issue.
 
 ### Quyết định việc cần làm
 
-- Xem [Dự án GitHub](https://github.com/orgs/RooCodeInc/projects/1) để tìm "Good First Issues" chưa được gán.
-- Về tài liệu, hãy xem [Roo Code Docs](https://github.com/RooCodeInc/Roo-Code-Docs).
+- Xem [Dự án GitHub](https://github.com/orgs/ZentaraCodeInc/projects/1) để tìm "Good First Issues" chưa được gán.
+- Về tài liệu, hãy xem [Zentara Code Docs](https://github.com/ZentaraCodeInc/Zentara-Code-Docs).
 
 ### Báo cáo lỗi
 
 - Kiểm tra báo cáo hiện có trước.
-- Tạo báo cáo lỗi mới bằng [mẫu "Bug Report"](https://github.com/RooCodeInc/Roo-Code/issues/new/choose).
-- **Lỗ hổng bảo mật:** Báo cáo riêng qua [security advisories](https://github.com/RooCodeInc/Roo-Code/security/advisories/new).
+- Tạo báo cáo lỗi mới bằng [mẫu "Bug Report"](https://github.com/ZentaraCodeInc/Zentara-Code/issues/new/choose).
+- **Lỗ hổng bảo mật:** Báo cáo riêng qua [security advisories](https://github.com/ZentaraCodeInc/Zentara-Code/security/advisories/new).
 
 ## Quy trình phát triển & gửi bài
 
@@ -95,7 +95,7 @@ Mọi đóng góp đều phải bắt đầu bằng một GitHub Issue.
 1. **Fork & Clone:**
 
 ```
-git clone https://github.com/TEN_TAI_KHOAN/Roo-Code.git
+git clone https://github.com/TEN_TAI_KHOAN/Zentara-Code.git
 ```
 
 2. **Cài đặt phụ thuộc:**
@@ -135,4 +135,4 @@ npm run install:all
 
 ## Pháp lý
 
-Khi gửi pull request, bạn đồng ý rằng đóng góp của mình sẽ được cấp phép theo Giấy phép Apache 2.0, phù hợp với giấy phép của Roo Code.
+Khi gửi pull request, bạn đồng ý rằng đóng góp của mình sẽ được cấp phép theo Giấy phép Apache 2.0, phù hợp với giấy phép của Zentara Code.

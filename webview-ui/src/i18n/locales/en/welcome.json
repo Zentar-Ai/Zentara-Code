@@ -1,6 +1,6 @@
 {
 	"greeting": "Hi, I'm Zentara!",
-	"introduction": "<strong> Zentara Code (a fork of Roo Code) is the runtime aware debugging code agent.</strong> Get ready to architect, code, debug, and boost your productivity like you've never seen before. To continue, Zentara Code requires an API key.",
+	"introduction": "<strong> Zentara Code (a fork of Zentara Code) is the runtime aware debugging code agent.</strong> Get ready to architect, code, debug, and boost your productivity like you've never seen before. To continue, Zentara Code requires an API key.",
 	"notice": "To get started, this extension needs an API provider.",
 	"start": "Let's go!",
 	"chooseProvider": "Choose an API provider to get started:",

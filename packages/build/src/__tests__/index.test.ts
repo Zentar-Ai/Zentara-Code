@@ -9,7 +9,7 @@ describe("generatePackageJson", () => {
 				name: "zentara-code",
 				displayName: "%extension.displayName%",
 				description: "%extension.description%",
-				publisher: "RooVeterinaryInc",
+				publisher: "ZentaraVeterinaryInc",
 				version: "3.17.2",
 				icon: "assets/icons/icon.png",
 				contributes: {
@@ -70,7 +70,7 @@ describe("generatePackageJson", () => {
 							{
 								command: "zentara-code.accountButtonClicked",
 								group: "navigation@6",
-								when: "activeWebviewPanelId == zentara-code.TabPanelProvider && config.zentara-code.rooCodeCloudEnabled",
+								when: "activeWebviewPanelId == zentara-code.TabPanelProvider && config.zentara-code.zentaraCodeCloudEnabled",
 							},
 						],
 					},
@@ -110,7 +110,7 @@ describe("generatePackageJson", () => {
 			overrideJson: {
 				name: "zentara-code-nightly",
 				displayName: "Zentara Code Nightly",
-				publisher: "RooVeterinaryInc",
+				publisher: "ZentaraVeterinaryInc",
 				version: "0.0.1",
 				icon: "assets/icons/icon-nightly.png",
 				scripts: {},
@@ -122,7 +122,7 @@ describe("generatePackageJson", () => {
 			name: "zentara-code-nightly",
 			displayName: "Zentara Code Nightly",
 			description: "%extension.description%",
-			publisher: "RooVeterinaryInc",
+			publisher: "ZentaraVeterinaryInc",
 			version: "0.0.1",
 			icon: "assets/icons/icon-nightly.png",
 			contributes: {
@@ -183,7 +183,7 @@ describe("generatePackageJson", () => {
 						{
 							command: "zentara-code-nightly.accountButtonClicked",
 							group: "navigation@6",
-							when: "activeWebviewPanelId == zentara-code-nightly.TabPanelProvider && config.zentara-code-nightly.rooCodeCloudEnabled",
+							when: "activeWebviewPanelId == zentara-code-nightly.TabPanelProvider && config.zentara-code-nightly.zentaraCodeCloudEnabled",
 						},
 					],
 				},

@@ -82,11 +82,11 @@
 			"delayLabel": "Delay after writes to allow diagnostics to detect potential problems",
 			"outsideWorkspace": {
 				"label": "Include files outside workspace",
-				"description": "Allow Roo to create and edit files outside the current workspace without requiring approval."
+				"description": "Allow Zentara to create and edit files outside the current workspace without requiring approval."
 			},
 			"protected": {
 				"label": "Include protected files",
-				"description": "Allow Roo to create and edit protected files (like .rooignore and .roo/ configuration files) without requiring approval."
+				"description": "Allow Zentara to create and edit protected files (like .zentaraignore and .zentara/ configuration files) without requiring approval."
 			}
 		},
 		"browser": {
@@ -384,9 +384,9 @@
 			"label": "Workspace files context limit",
 			"description": "Maximum number of files to include in current working directory details. Higher values provide more context but increase token usage."
 		},
-		"rooignore": {
-			"label": "Show .rooignore'd files in lists and searches",
-			"description": "When enabled, files matching patterns in .rooignore will be shown in lists with a lock symbol. When disabled, these files will be completely hidden from file lists and searches."
+		"zentaraignore": {
+			"label": "Show .zentaraignore'd files in lists and searches",
+			"description": "When enabled, files matching patterns in .zentaraignore will be shown in lists with a lock symbol. When disabled, these files will be completely hidden from file lists and searches."
 		},
 		"maxConcurrentFileReads": {
 			"label": "Concurrent file reads limit",
@@ -495,11 +495,11 @@
 		},
 		"CONCURRENT_FILE_READS": {
 			"name": "Enable concurrent file reads",
-			"description": "When enabled, Roo can read multiple files in a single request. When disabled, Roo must read files one at a time. Disabling this can help when working with less capable models or when you want more control over file access."
+			"description": "When enabled, Zentara can read multiple files in a single request. When disabled, Zentara must read files one at a time. Disabling this can help when working with less capable models or when you want more control over file access."
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
 			"name": "Use experimental multi block diff tool",
-			"description": "When enabled, Roo will use multi block diff tool. This will try to update multiple code blocks in the file in one request."
+			"description": "When enabled, Zentara will use multi block diff tool. This will try to update multiple code blocks in the file in one request."
 		},
 		"MARKETPLACE": {
 			"name": "Enable Marketplace",
@@ -511,7 +511,7 @@
 		},
 		"MULTI_FILE_APPLY_DIFF": {
 			"name": "Enable concurrent file edits",
-			"description": "When enabled, Roo can edit multiple files in a single request. When disabled, Roo must edit files one at a time. Disabling this can help when working with less capable models or when you want more control over file modifications."
+			"description": "When enabled, Zentara can edit multiple files in a single request. When disabled, Zentara must edit files one at a time. Disabling this can help when working with less capable models or when you want more control over file modifications."
 		}
 	},
 	"promptCaching": {
@@ -554,7 +554,7 @@
 		"useCustomModel": "Use custom: {{modelId}}"
 	},
 	"footer": {
-		"feedback": "If you have any questions or feedback, feel free to open an issue at <githubLink>github.com/RooCodeInc/Roo-Code</githubLink> or join <redditLink>reddit.com/r/RooCode</redditLink> or <discordLink>discord.gg/roocode</discordLink>",
+		"feedback": "If you have any questions or feedback, feel free to open an issue at <githubLink>github.com/ZentaraCodeInc/Zentara-Code</githubLink> or join <redditLink>reddit.com/r/ZentaraCode</redditLink> or <discordLink>discord.gg/zentaracode</discordLink>",
 		"telemetry": {
 			"label": "Allow anonymous error and usage reporting",
 			"description": "Help improve Zentara Code by sending anonymous usage data and error reports. No code, prompts, or personal information is ever sent. See our privacy policy for more details."

@@ -4,11 +4,11 @@ import * as path from "path"
 import * as yaml from "yaml"
 import { RemoteConfigLoader } from "./RemoteConfigLoader"
 import { SimpleInstaller } from "./SimpleInstaller"
-import type { MarketplaceItem, MarketplaceItemType } from "@roo-code/types"
+import type { MarketplaceItem, MarketplaceItemType } from "@zentara-code/types"
 import { GlobalFileNames } from "../../shared/globalFileNames"
 import { ensureSettingsDirectoryExists } from "../../utils/globalContext"
 import { t } from "../../i18n"
-import { TelemetryService } from "@roo-code/telemetry"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 export class MarketplaceManager {
 	private configLoader: RemoteConfigLoader
@@ -197,8 +197,8 @@ export class MarketplaceManager {
 				return // No workspace, no project installations
 			}
 
-			// Check modes in .roomodes
-			const projectModesPath = path.join(workspaceFolder.uri.fsPath, ".roomodes")
+			// Check modes in .zentaramodes
+			const projectModesPath = path.join(workspaceFolder.uri.fsPath, ".zentaramodes")
 			try {
 				const content = await fs.readFile(projectModesPath, "utf-8")
 				const data = yaml.parse(content)
@@ -215,8 +215,8 @@ export class MarketplaceManager {
 				// File doesn't exist or can't be read, skip
 			}
 
-			// Check MCPs in .roo/mcp.json
-			const projectMcpPath = path.join(workspaceFolder.uri.fsPath, ".roo", "mcp.json")
+			// Check MCPs in .zentara/mcp.json
+			const projectMcpPath = path.join(workspaceFolder.uri.fsPath, ".zentara", "mcp.json")
 			try {
 				const content = await fs.readFile(projectMcpPath, "utf-8")
 				const data = JSON.parse(content)

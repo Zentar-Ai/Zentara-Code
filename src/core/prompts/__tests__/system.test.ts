@@ -216,7 +216,7 @@ describe("SYSTEM_PROMPT", () => {
 			experiments,
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -239,7 +239,7 @@ describe("SYSTEM_PROMPT", () => {
 			experiments,
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -264,7 +264,7 @@ describe("SYSTEM_PROMPT", () => {
 			experiments,
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -287,7 +287,7 @@ describe("SYSTEM_PROMPT", () => {
 			experiments,
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -310,7 +310,7 @@ describe("SYSTEM_PROMPT", () => {
 			experiments,
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -333,7 +333,7 @@ describe("SYSTEM_PROMPT", () => {
 			experiments,
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -357,7 +357,7 @@ describe("SYSTEM_PROMPT", () => {
 			experiments,
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -381,7 +381,7 @@ describe("SYSTEM_PROMPT", () => {
 			experiments,
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -432,7 +432,7 @@ describe("SYSTEM_PROMPT", () => {
 			undefined, // experiments
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -493,7 +493,7 @@ describe("SYSTEM_PROMPT", () => {
 			experiments,
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -531,7 +531,7 @@ describe("SYSTEM_PROMPT", () => {
 			undefined, // experiments
 			false, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -564,7 +564,7 @@ describe("SYSTEM_PROMPT", () => {
 			undefined, // experiments
 			false, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -611,7 +611,7 @@ describe("addCustomInstructions", () => {
 			undefined, // experiments
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -634,7 +634,7 @@ describe("addCustomInstructions", () => {
 			undefined, // experiments
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -659,7 +659,7 @@ describe("addCustomInstructions", () => {
 			undefined, // experiments
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -685,7 +685,7 @@ describe("addCustomInstructions", () => {
 			undefined, // experiments
 			false, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -709,7 +709,7 @@ describe("addCustomInstructions", () => {
 			undefined, // experiments
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			true, // partialReadsEnabled
 		)
 

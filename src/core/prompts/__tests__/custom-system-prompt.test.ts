@@ -77,7 +77,7 @@ describe("File-Based Custom System Prompt", () => {
 			undefined, // experiments
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -114,7 +114,7 @@ describe("File-Based Custom System Prompt", () => {
 			undefined, // experiments
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 
@@ -160,7 +160,7 @@ describe("File-Based Custom System Prompt", () => {
 			undefined, // experiments
 			true, // enableMcpServerCreation
 			undefined, // language
-			undefined, // rooIgnoreInstructions
+			undefined, // zentaraIgnoreInstructions
 			undefined, // partialReadsEnabled
 		)
 

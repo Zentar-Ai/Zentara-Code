@@ -93,8 +93,8 @@
 	},
 	"storage": {
 		"prompt_custom_path": "Digite o caminho de armazenamento personalizado para o histórico de conversas, deixe em branco para usar o local padrão",
-		"path_placeholder": "D:\\RooCodeStorage",
-		"enter_absolute_path": "Por favor, digite um caminho absoluto (ex: D:\\RooCodeStorage ou /home/user/storage)",
+		"path_placeholder": "D:\\ZentaraCodeStorage",
+		"enter_absolute_path": "Por favor, digite um caminho absoluto (ex: D:\\ZentaraCodeStorage ou /home/user/storage)",
 		"enter_valid_path": "Por favor, digite um caminho válido"
 	},
 	"settings": {

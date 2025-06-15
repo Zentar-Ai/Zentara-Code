@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="24" height="24" viewBox="0 0 24 24">
+
+  <!-- overall icon: 60 % scale, centred (4.8 px margin) -->
+  <g transform="translate(4.8 4.8) scale(0.6)"
+     stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+     fill="none">
+
+    <!-- magnifier loop -->
+    <circle cx="12" cy="6" r="5"/>
+
+    <!-- magnifier handle -->
+    <line x1="15.5" y1="9.5" x2="20" y2="14"/>
+
+    <!-- central dot – moved down from cy="16" to cy="18" -->
+    <circle cx="12" cy="18" r="1.8" fill="#ffffff" stroke="none"/>
+
+    <!-- curly-brace group: first 12 px down, then compressed to 60 % height -->
+    <g transform="translate(0 12)">
+      <g transform="translate(0 4) scale(1 0.6)">
+
+        <!-- left curly brace -->
+        <path d="M9 0
+                 C7 0 7 2 7 2
+                 V5
+                 C7 7 5 7 5 7
+                 C7 7 7 9 7 9
+                 V12
+                 C7 14 9 14 9 14"/>
+
+        <!-- right curly brace (mirror) -->
+        <path d="M15 0
+                 C17 0 17 2 17 2
+                 V5
+                 C17 7 19 7 19 7
+                 C17 7 17 9 17 9
+                 V12
+                 C17 14 15 14 15 14"/>
+      </g>
+    </g>
+
+  </g>
+</svg>

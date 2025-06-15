@@ -1,7 +1,7 @@
 {
-	"name": "@roo-code/types",
+	"name": "@zentara-code/types",
 	"version": "1.26.0",
-	"description": "TypeScript type definitions for Roo Code.",
+	"description": "TypeScript type definitions for Zentara Code.",
 	"publishConfig": {
 		"access": "public",
 		"name": "@zentara-code/types"

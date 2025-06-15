@@ -458,8 +458,8 @@ describe.each([[RepoPerTaskCheckpointService, "RepoPerTaskCheckpointService"]])(
 				await fs.mkdir(workspaceDir, { recursive: true })
 				const mainGit = simpleGit(workspaceDir)
 				await mainGit.init()
-				await mainGit.addConfig("user.name", "Roo Code")
-				await mainGit.addConfig("user.email", "support@roocode.com")
+				await mainGit.addConfig("user.name", "Zentara Code")
+				await mainGit.addConfig("user.email", "support@zentaracode.com")
 
 				// Create a test file in the main workspace.
 				const mainFile = path.join(workspaceDir, "main-file.txt")

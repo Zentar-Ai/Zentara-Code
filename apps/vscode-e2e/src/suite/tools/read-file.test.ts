@@ -4,11 +4,11 @@ import * as path from "path"
 import * as os from "os"
 import * as vscode from "vscode"
 
-import type { ClineMessage } from "@roo-code/types"
+import type { ClineMessage } from "@zentara-code/types"
 
 import { waitFor, sleep } from "../utils"
 
-suite("Roo Code read_file Tool", () => {
+suite("Zentara Code read_file Tool", () => {
 	let tempDir: string
 	let testFiles: {
 		simple: string
@@ -21,7 +21,7 @@ suite("Roo Code read_file Tool", () => {
 
 	// Create a temporary directory and test files
 	suiteSetup(async () => {
-		tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "roo-test-read-"))
+		tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "zentara-test-read-"))
 
 		// Create test files in VSCode workspace directory
 		const workspaceDir = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || tempDir

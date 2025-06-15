@@ -7,7 +7,7 @@ import { z } from "zod"
 
 import type { CloudUserInfo } from "@zentara-code/types"
 
-import { getClerkBaseUrl, getRooCodeApiUrl } from "./Config"
+import { getClerkBaseUrl, getZentaraCodeApiUrl } from "./Config"
 import { RefreshTimer } from "./RefreshTimer"
 import { getUserAgent } from "./utils"
 
@@ -176,7 +176,7 @@ export class AuthService extends EventEmitter<AuthServiceEvents> {
 				state,
 				auth_redirect: `${vscode.env.uriScheme}://${publisher}.${name}`,
 			})
-			const url = `${getRooCodeApiUrl()}/extension/sign-in?${params.toString()}`
+			const url = `${getZentaraCodeApiUrl()}/extension/sign-in?${params.toString()}`
 			await vscode.env.openExternal(vscode.Uri.parse(url))
 		} catch (error) {
 			this.log(`[auth] Error initiating Zentara Code Cloud auth: ${error}`)

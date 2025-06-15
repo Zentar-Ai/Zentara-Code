@@ -130,7 +130,7 @@ jest.mock("../../environment/getEnvironmentDetails", () => ({
 	getEnvironmentDetails: jest.fn().mockResolvedValue(""),
 }))
 
-jest.mock("../../ignore/RooIgnoreController")
+jest.mock("../../ignore/ZentaraIgnoreController")
 
 // Mock storagePathManager to prevent dynamic import issues.
 jest.mock("../../../utils/storage", () => ({

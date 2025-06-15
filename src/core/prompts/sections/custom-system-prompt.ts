@@ -66,17 +66,17 @@ export async function loadSystemPromptFile(cwd: string, mode: Mode, variables: P
 /**
  * Ensures the .zentara directory exists, creating it if necessary
  */
-export async function ensureRooDirectory(cwd: string): Promise<void> {
-	const rooDir = path.join(cwd, ".zentara")
+export async function ensureZentaraDirectory(cwd: string): Promise<void> {
+	const zentaraDir = path.join(cwd, ".zentara")
 
 	// Check if directory already exists
-	if (await fileExistsAtPath(rooDir)) {
+	if (await fileExistsAtPath(zentaraDir)) {
 		return
 	}
 
 	// Create the directory
 	try {
-		await fs.mkdir(rooDir, { recursive: true })
+		await fs.mkdir(zentaraDir, { recursive: true })
 	} catch (err) {
 		// If directory already exists (race condition), ignore the error
 		const errorCode = (err as NodeJS.ErrnoException).code

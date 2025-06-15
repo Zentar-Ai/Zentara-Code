@@ -3,11 +3,11 @@ import * as fs from "fs/promises"
 import * as path from "path"
 import * as vscode from "vscode"
 
-import type { ClineMessage } from "@roo-code/types"
+import type { ClineMessage } from "@zentara-code/types"
 
 import { waitFor, sleep } from "../utils"
 
-suite("Roo Code insert_content Tool", () => {
+suite("Zentara Code insert_content Tool", () => {
 	let workspaceDir: string
 
 	// Pre-created test files that will be used across tests

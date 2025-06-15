@@ -1,8 +1,7 @@
 import cloneDeep from "clone-deep"
 import { serializeError } from "serialize-error"
 import { outputChannel } from "../../zentara_debug/src/vscodeUtils"
-
-import type { ToolName, ClineAsk, ToolProgressStatus, ModeConfig } from "@zentara-code/types"
+import type { ToolName, ClineAsk, ToolProgressStatus } from "@zentara-code/types"
 import { TelemetryService } from "@zentara-code/telemetry"
 
 import { defaultModeSlug, getModeBySlug } from "../../shared/modes"
@@ -259,7 +258,6 @@ export async function presentAssistantMessage(cline: Task) {
 			}
 
 			const pushToolResult = (content: ToolResponse) => {
-				// Use the helper function to get the description string
 				cline.userMessageContent.push({
 					type: "text",
 					text: `${getToolDescriptionString(block as ToolUse, customModes)} Result:`,
@@ -407,7 +405,7 @@ export async function presentAssistantMessage(cline: Task) {
 			if (!block.partial) {
 				cline.recordToolUsage(block.name)
 				TelemetryService.instance.captureToolUsage(cline.taskId, block.name)
-				let nameForTelemetry = block.name
+								let nameForTelemetry = block.name
 				// If the tool is a specific debug operation (e.g., "debug_launch"),
 				// map it to the generic "debug" tool name for telemetry purposes.
 				// This assumes "debug" is a recognized ToolName and that the ToolName
@@ -436,6 +434,7 @@ export async function presentAssistantMessage(cline: Task) {
 			//outputChannel.appendLine(
 			//	`[presentAssistantMessage] Provider state obtained. Mode: ${mode}, CustomModes present: ${!!customModes}. About to call validateToolUse.`,
 			//)
+
 
 			try {
 				// For new debug_ tools, validation is handled by debugToolValidation.ts (called by debugTool.ts).
@@ -525,94 +524,85 @@ export async function presentAssistantMessage(cline: Task) {
 				case "read_file":
 					await readFileTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
 
-				switch (block.name) {
-					case "write_to_file":
-						await writeToFileTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+					break
+				case "fetch_instructions":
+					await fetchInstructionsTool(cline, block, askApproval, handleError, pushToolResult)
+					break
+				case "list_files":
+					await listFilesTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+					break
+				case "codebase_search":
+					await codebaseSearchTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+					break
+				case "list_code_definition_names":
+					await listCodeDefinitionNamesTool(
+						cline,
+						block,
+						askApproval,
+						handleError,
+						pushToolResult,
+						removeClosingTag,
+					)
+					break
+				case "search_files":
+					await searchFilesTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+					break
+				case "browser_action":
+					await browserActionTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+					break
+				case "execute_command":
+					await executeCommandTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+					break
+				case "use_mcp_tool":
+					await useMcpToolTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+					break
+				case "access_mcp_resource":
+					await accessMcpResourceTool(
+						cline,
+						block,
+						askApproval,
+						handleError,
+						pushToolResult,
+						removeClosingTag,
+					)
+					break
+				case "ask_followup_question":
+					await askFollowupQuestionTool(
+						cline,
+						block,
+						askApproval,
+						handleError,
+						pushToolResult,
+						removeClosingTag,
+					)
+					break
+				case "switch_mode":
+					await switchModeTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+					break
+				case "new_task":
+					await newTaskTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
+					break
+				case "attempt_completion":
+					await attemptCompletionTool(
+						cline,
+						block,
+						askApproval,
+						handleError,
+						pushToolResult,
+						removeClosingTag,
+						toolDescription,
+						askFinishSubTaskApproval,
+					)
+					break
+					default:
+						// Dispatch to the appropriate handler
+						if (block.name.startsWith("debug_")) {
+							// Delegate to the new helper function for individual debug tools
+							outputChannel.appendLine(`[presentAssistantMessage] calling Handling individual debug tool with block: ${JSON.stringify(block, null, 2)}`);
+							await handleIndividualDebugTool(cline, block as ToolUse, askApproval, handleError, pushToolResult)
+						}
 						break
-					case "apply_diff":
-						await applyDiffTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-						break
-					case "insert_content":
-						await insertContentTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-						break
-					case "search_and_replace":
-						await searchAndReplaceTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-						break
-					case "read_file":
-						await readFileTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-
-						break
-					case "fetch_instructions":
-						await fetchInstructionsTool(cline, block, askApproval, handleError, pushToolResult)
-						break
-					case "list_files":
-						await listFilesTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-						break
-					case "codebase_search":
-						await codebaseSearchTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-						break
-					case "list_code_definition_names":
-						await listCodeDefinitionNamesTool(
-							cline,
-							block,
-							askApproval,
-							handleError,
-							pushToolResult,
-							removeClosingTag,
-						)
-						break
-					case "search_files":
-						await searchFilesTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-						break
-					case "browser_action":
-						await browserActionTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-						break
-					case "execute_command":
-						await executeCommandTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-						break
-					case "use_mcp_tool":
-						await useMcpToolTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-						break
-					case "access_mcp_resource":
-						await accessMcpResourceTool(
-							cline,
-							block,
-							askApproval,
-							handleError,
-							pushToolResult,
-							removeClosingTag,
-						)
-						break
-					case "ask_followup_question":
-						await askFollowupQuestionTool(
-							cline,
-							block,
-							askApproval,
-							handleError,
-							pushToolResult,
-							removeClosingTag,
-						)
-						break
-					case "switch_mode":
-						await switchModeTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-						break
-					case "new_task":
-						await newTaskTool(cline, block, askApproval, handleError, pushToolResult, removeClosingTag)
-						break
-					case "attempt_completion":
-						await attemptCompletionTool(
-							cline,
-							block,
-							askApproval,
-							handleError,
-							pushToolResult,
-							removeClosingTag,
-							toolDescription,
-							askFinishSubTaskApproval,
-						)
-						break
-					}
-				}
+			}
 			break
 			
 	} // Correctly closes switch (block.type)
@@ -673,6 +663,130 @@ export async function presentAssistantMessage(cline: Task) {
 		presentAssistantMessage(cline)
 	}
 } // Correctly closes presentAssistantMessage
+
+/**
+ * Generates a descriptive string for a given tool use block.
+ * This function is defined outside `presentAssistantMessage` to keep it clean.
+ * @param block The tool use content block.
+ * @param customModes Optional custom modes, needed for describing the "new_task" tool.
+ * @returns A string describing the tool and its main parameters.
+ */
+function getToolDescriptionString(block: ToolUse, customModes?: ModeConfig[]): string {
+	// Changed ToolUseBlock to ToolUse
+	if (block.name.startsWith("debug_")) {
+		const operationName = block.name.substring("debug_".length)
+		let paramsString = ""
+		if (block.params && Object.keys(block.params).length > 0) {
+			try {
+				paramsString = JSON.stringify(block.params)
+				if (paramsString.length > 100) {
+					// Truncate for very long params
+					paramsString = paramsString.substring(0, 97) + "..."
+				}
+			} catch (e) {
+				paramsString = "[error stringifying params]"
+			}
+		} else {
+			paramsString = "{}"
+		}
+		return `[${block.name} (operation: '${operationName}') arguments: ${paramsString}]`
+	}
+
+	switch (block.name) {
+		case "execute_command":
+			return `[${block.name} for '${block.params.command}']`
+		case "read_file":
+			return `[${block.name} for '${block.params.path}']`
+		case "fetch_instructions":
+			return `[${block.name} for '${block.params.task}']`
+		case "write_to_file":
+			return `[${block.name} for '${block.params.path}']`
+		case "apply_diff":
+			return `[${block.name} for '${block.params.path}']`
+		case "search_files":
+			return `[${block.name} for '${block.params.regex}'${
+				block.params.file_pattern ? ` in '${block.params.file_pattern}'` : ""
+			}]`
+		case "insert_content":
+			return `[${block.name} for '${block.params.path}']`
+		case "search_and_replace":
+			return `[${block.name} for '${block.params.path}']`
+		case "list_files":
+			return `[${block.name} for '${block.params.path}']`
+		case "list_code_definition_names":
+			return `[${block.name} for '${block.params.path}']`
+		case "browser_action":
+			return `[${block.name} for '${block.params.action}']`
+		case "use_mcp_tool":
+			return `[${block.name} for '${block.params.server_name}']`
+		case "access_mcp_resource":
+			return `[${block.name} for '${block.params.server_name}']`
+		case "ask_followup_question":
+			return `[${block.name} for '${block.params.question}']`
+		case "attempt_completion":
+			return `[${block.name}]`
+		case "switch_mode":
+			return `[${block.name} to '${block.params.mode_slug}'${block.params.reason ? ` because: ${block.params.reason}` : ""}]`
+		case "new_task": {
+			const modeSlug = block.params.mode ?? defaultModeSlug
+			const message = block.params.message ?? "(no message)"
+			// Ensure customModes is an array before calling getModeBySlug
+			const modeName = getModeBySlug(modeSlug, customModes ?? [])?.name ?? modeSlug
+			return `[${block.name} in ${modeName} mode: '${message}']`
+		}
+		case "debug": // Original meta-tool
+			outputChannel.appendLine(
+				`[Debug] Inside getToolDescriptionString for "debug" meta-tool, block params: ${JSON.stringify(block.params, null, 2)}`,
+			)
+			return `[${block.name} operation: '${block.params.debug_operation}' arguments: ${block.params.arguments ?? "{}"}]`
+		default:
+			// Fallback for any unhandled tool names
+			return `[${String(block.name)}]`
+	}
+}
+
+/**
+ * Helper function to handle the invocation of individual debug operation tools.
+ * It reconstructs the tool call to be compatible with the existing `debugTool` (meta-tool)
+ * and then calls `debugTool`.
+ */
+async function handleIndividualDebugTool(
+	cline: Task,
+	block: ToolUse, // Changed ToolUseBlock to ToolUse
+	askApproval: (type: ClineAsk, partialMessage?: string, progressStatus?: ToolProgressStatus) => Promise<boolean>,
+	handleError: (action: string, error: Error) => Promise<void>,
+	pushToolResult: (content: ToolResponse) => void,
+	// removeClosingTag is not needed here as debugTool handles its own presentation
+) {
+	outputChannel.appendLine(`[handleIndividualDebugTool] Entry. Received block.name: ${block.name}, block.params: ${JSON.stringify(block.params, null, 2)}, block: ${JSON.stringify(block, null, 2)}`);
+	const operationName = block.name.substring("debug_".length)
+	// Wait if block until block is full
+	if (block.partial)
+		{
+			return
+		}
+
+	// Reconstruct the block for the original debugTool
+	// The 'name' becomes "debug" (the meta-tool name)
+	// 'params' will include 'debug_operation' and all original flat params from the specific tool
+	const reconstructedBlock: DebugToolUse = {
+		type: "tool_use", // type must be "tool_use"
+		name: "debug", // name is "debug" for the meta-tool
+		// tool_input: block.tool_input, // Removed: tool_input is not part of DebugToolUse or ToolUse type
+		params: {
+			...block.params, // Spread all params from the specific tool (e.g., program, path, line)
+			debug_operation: operationName, // Add the debug_operation
+		},
+		partial: block.partial, // Pass through partial status
+	}
+
+	//outputChannel.appendLine(
+	//	`[handleIndividualDebugTool] Bridging tool: ${block.name} to "debug" meta-tool. Operation: ${operationName}. Reconstructed Params: ${JSON.stringify(reconstructedBlock.params, null, 2)}`
+	//)
+
+	// Call the original debugTool with the reconstructed block
+	await debugTool(cline, reconstructedBlock, askApproval, handleError, pushToolResult)
+}
 
 /**
  * Generates a descriptive string for a given tool use block.

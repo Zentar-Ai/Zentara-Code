@@ -1,12 +1,12 @@
 import { MarketplaceManager } from "../MarketplaceManager"
-import type { MarketplaceItem } from "@roo-code/types"
+import type { MarketplaceItem } from "@zentara-code/types"
 
 // Mock axios
 jest.mock("axios")
 
 // Mock the cloud config
-jest.mock("@roo-code/cloud", () => ({
-	getRooCodeApiUrl: () => "https://test.api.com",
+jest.mock("@zentara-code/cloud", () => ({
+	getZentaraCodeApiUrl: () => "https://test.api.com",
 }))
 
 // Mock TelemetryService
@@ -189,14 +189,14 @@ describe("MarketplaceManager", () => {
 
 			// Mock the installer
 			jest.spyOn(manager["installer"], "installItem").mockResolvedValue({
-				filePath: "/test/path/.roomodes",
+				filePath: "/test/path/.zentaramodes",
 				line: 5,
 			})
 
 			const result = await manager.installMarketplaceItem(item)
 
 			expect(manager["installer"].installItem).toHaveBeenCalledWith(item, { target: "project" })
-			expect(result).toBe("/test/path/.roomodes")
+			expect(result).toBe("/test/path/.zentaramodes")
 		})
 
 		it("should install an MCP item", async () => {
@@ -211,14 +211,14 @@ describe("MarketplaceManager", () => {
 
 			// Mock the installer
 			jest.spyOn(manager["installer"], "installItem").mockResolvedValue({
-				filePath: "/test/path/.roo/mcp.json",
+				filePath: "/test/path/.zentara/mcp.json",
 				line: 3,
 			})
 
 			const result = await manager.installMarketplaceItem(item)
 
 			expect(manager["installer"].installItem).toHaveBeenCalledWith(item, { target: "project" })
-			expect(result).toBe("/test/path/.roo/mcp.json")
+			expect(result).toBe("/test/path/.zentara/mcp.json")
 		})
 	})
 

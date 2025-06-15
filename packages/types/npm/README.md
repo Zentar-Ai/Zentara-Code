@@ -4,12 +4,12 @@ The Zentara Code extension exposes an API that can be used by other extensions.
 To use this API in your extension:
 
 1. Install `@zentara-code/types` with npm, pnpm, or yarn.
-2. Import the `RooCodeAPI` type.
+2. Import the `ZentaraCodeAPI` type.
 3. Load the extension API.
 
 ```typescript
-import { RooCodeAPI } from "@zentara-code/types"
-const extension = vscode.extensions.getExtension<RooCodeAPI>("ZentarAI.zentara-code")
+import { ZentaraCodeAPI } from "@zentara-code/types"
+const extension = vscode.extensions.getExtension<ZentaraCodeAPI>("ZentarAI.zentara-code")
 
 
 if (!extension?.isActive) {

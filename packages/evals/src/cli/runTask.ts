@@ -8,7 +8,7 @@ import { execa } from "execa"
 import {
 	type TaskEvent,
 	TaskCommandName,
-	RooCodeEventName,
+	ZentaraCodeEventName,
 	IpcMessageType,
 	EVALS_SETTINGS,
 	EVALS_TIMEOUT,
@@ -68,7 +68,7 @@ export const processTask = async ({ taskId, logger }: { taskId: number; logger?:
 		await updateTask(task.id, { passed })
 
 		await publish({
-			eventName: passed ? RooCodeEventName.EvalPass : RooCodeEventName.EvalFail,
+			eventName: passed ? ZentaraCodeEventName.EvalPass : ZentaraCodeEventName.EvalFail,
 			taskId: task.id,
 		})
 	} finally {
@@ -93,7 +93,7 @@ export const processTaskInContainer = async ({
 		"-e HOST_EXECUTION_METHOD=docker",
 	]
 
-	const command = `pnpm --filter @roo-code/evals cli --taskId ${taskId}`
+	const command = `pnpm --filter @zentara-code/evals cli --taskId ${taskId}`
 	logger.info(command)
 
 	for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -200,12 +200,12 @@ export const runTask = async ({ run, task, publish, logger }: RunTaskOptions) =>
 	let taskAbortedAt: number | undefined
 	let taskTimedOut: boolean = false
 	let taskMetricsId: number | undefined
-	let rooTaskId: string | undefined
+	let zentaraTaskId: string | undefined
 	let isClientDisconnected = false
 
-	const ignoreEvents: Record<"broadcast" | "log", RooCodeEventName[]> = {
-		broadcast: [RooCodeEventName.Message],
-		log: [RooCodeEventName.TaskTokenUsageUpdated, RooCodeEventName.TaskAskResponded],
+	const ignoreEvents: Record<"broadcast" | "log", ZentaraCodeEventName[]> = {
+		broadcast: [ZentaraCodeEventName.Message],
+		log: [ZentaraCodeEventName.TaskTokenUsageUpdated, ZentaraCodeEventName.TaskAskResponded],
 	}
 
 	client.on(IpcMessageType.TaskEvent, async (taskEvent) => {
@@ -220,12 +220,12 @@ export const runTask = async ({ run, task, publish, logger }: RunTaskOptions) =>
 		// For message events we only log non-partial messages.
 		if (
 			!ignoreEvents.log.includes(eventName) &&
-			(eventName !== RooCodeEventName.Message || payload[0].message.partial !== true)
+			(eventName !== ZentaraCodeEventName.Message || payload[0].message.partial !== true)
 		) {
 			logger.info(`${eventName} ->`, payload)
 		}
 
-		if (eventName === RooCodeEventName.TaskStarted) {
+		if (eventName === ZentaraCodeEventName.TaskStarted) {
 			taskStartedAt = Date.now()
 
 			const taskMetrics = await createTaskMetrics({
@@ -242,16 +242,16 @@ export const runTask = async ({ run, task, publish, logger }: RunTaskOptions) =>
 
 			taskStartedAt = Date.now()
 			taskMetricsId = taskMetrics.id
-			rooTaskId = payload[0]
+			zentaraTaskId = payload[0]
 		}
 
-		if (eventName === RooCodeEventName.TaskToolFailed) {
+		if (eventName === ZentaraCodeEventName.TaskToolFailed) {
 			const [_taskId, toolName, error] = payload
 			await createToolError({ taskId: task.id, toolName, error })
 		}
 
 		if (
-			(eventName === RooCodeEventName.TaskTokenUsageUpdated || eventName === RooCodeEventName.TaskCompleted) &&
+			(eventName === ZentaraCodeEventName.TaskTokenUsageUpdated || eventName === ZentaraCodeEventName.TaskCompleted) &&
 			taskMetricsId
 		) {
 			const duration = Date.now() - taskStartedAt
@@ -270,16 +270,16 @@ export const runTask = async ({ run, task, publish, logger }: RunTaskOptions) =>
 			})
 		}
 
-		if (eventName === RooCodeEventName.TaskCompleted && taskMetricsId) {
+		if (eventName === ZentaraCodeEventName.TaskCompleted && taskMetricsId) {
 			const toolUsage = payload[2]
 			await updateTaskMetrics(taskMetricsId, { toolUsage })
 		}
 
-		if (eventName === RooCodeEventName.TaskAborted) {
+		if (eventName === ZentaraCodeEventName.TaskAborted) {
 			taskAbortedAt = Date.now()
 		}
 
-		if (eventName === RooCodeEventName.TaskCompleted) {
+		if (eventName === ZentaraCodeEventName.TaskCompleted) {
 			taskFinishedAt = Date.now()
 		}
 	})
@@ -311,9 +311,9 @@ export const runTask = async ({ run, task, publish, logger }: RunTaskOptions) =>
 		taskTimedOut = true
 		logger.error("time limit reached")
 
-		if (rooTaskId && !isClientDisconnected) {
+		if (zentaraTaskId && !isClientDisconnected) {
 			logger.info("cancelling task")
-			client.sendCommand({ commandName: TaskCommandName.CancelTask, data: rooTaskId })
+			client.sendCommand({ commandName: TaskCommandName.CancelTask, data: zentaraTaskId })
 			await new Promise((resolve) => setTimeout(resolve, 5_000)) // Allow some time for the task to cancel.
 		}
 
@@ -330,9 +330,9 @@ export const runTask = async ({ run, task, publish, logger }: RunTaskOptions) =>
 	logger.info("setting task finished at")
 	await updateTask(task.id, { finishedAt: new Date() })
 
-	if (rooTaskId && !isClientDisconnected) {
+	if (zentaraTaskId && !isClientDisconnected) {
 		logger.info("closing task")
-		client.sendCommand({ commandName: TaskCommandName.CloseTask, data: rooTaskId })
+		client.sendCommand({ commandName: TaskCommandName.CloseTask, data: zentaraTaskId })
 		await new Promise((resolve) => setTimeout(resolve, 2_000)) // Allow some time for the window to close.
 	}
 

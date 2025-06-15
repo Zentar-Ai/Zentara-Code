@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react"
 import { FlaskConical } from "lucide-react"
 
-import type { Experiments, CodebaseIndexConfig, CodebaseIndexModels, ProviderSettings } from "@roo-code/types"
+import type { Experiments, CodebaseIndexConfig, CodebaseIndexModels, ProviderSettings } from "@zentara-code/types"
 
 import { EXPERIMENT_IDS, experimentConfigsMap } from "@zentara/experiments"
 

@@ -1,6 +1,6 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
-import RooTips from "../RooTips"
+import ZentaraTips from "../ZentaraTips"
 
 // Mock the translation hook
 jest.mock("react-i18next", () => ({
@@ -18,7 +18,7 @@ jest.mock("@vscode/webview-ui-toolkit/react", () => ({
 // Mock clsx if complex class logic needs specific testing (optional)
 // jest.mock('clsx');
 
-describe("RooTips Component", () => {
+describe("ZentaraTips Component", () => {
 	beforeEach(() => {
 		jest.useFakeTimers()
 		// Reset Math.random mock for consistent starting points if needed
@@ -34,7 +34,7 @@ describe("RooTips Component", () => {
 
 	describe("when cycle is false (default)", () => {
 		beforeEach(() => {
-			render(<RooTips cycle={false} />)
+			render(<ZentaraTips cycle={false} />)
 		})
 
 		test("renders only the top two tips", () => {

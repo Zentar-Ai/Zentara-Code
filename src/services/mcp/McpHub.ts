@@ -333,7 +333,7 @@ export class McpHub {
 		}
 
 		const workspaceFolder = vscode.workspace.workspaceFolders[0]
-		const projectMcpPattern = new vscode.RelativePattern(workspaceFolder, ".roo/mcp.json")
+		const projectMcpPattern = new vscode.RelativePattern(workspaceFolder, ".zentara/mcp.json")
 
 		// Create a file system watcher for the project MCP file pattern
 		this.projectMcpWatcher = vscode.workspace.createFileSystemWatcher(projectMcpPattern)

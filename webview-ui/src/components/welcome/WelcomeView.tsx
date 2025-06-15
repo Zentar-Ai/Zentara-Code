@@ -14,7 +14,7 @@ import { getRequestyAuthUrl, getOpenRouterAuthUrl } from "@src/oauth/urls"
 import ApiOptions from "../settings/ApiOptions"
 import { Tab, TabContent } from "../common/Tab"
 
-import RooHero from "./RooHero"
+import ZentaraHero from "./ZentaraHero"
 
 const WelcomeView = () => {
 	const { apiConfiguration, currentApiConfigName, setApiConfiguration, uriScheme, machineId } = useExtensionState()
@@ -52,7 +52,7 @@ const WelcomeView = () => {
 	return (
 		<Tab>
 			<TabContent className="flex flex-col gap-5">
-				<RooHero />
+				<ZentaraHero />
 				<h2 className="mx-auto">{t("chat:greeting")}</h2>
 
 				<div className="outline rounded p-4">

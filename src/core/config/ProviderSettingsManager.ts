@@ -33,7 +33,7 @@ export const providerProfilesSchema = z.object({
 export type ProviderProfiles = z.infer<typeof providerProfilesSchema>
 
 export class ProviderSettingsManager {
-	private static readonly SCOPE_PREFIX = "roo_cline_config_"
+	private static readonly SCOPE_PREFIX = "zentara_cline_config_"
 	private readonly defaultConfigId = this.generateId()
 
 	private readonly defaultModeApiConfigs: Record<string, string> = Object.fromEntries(

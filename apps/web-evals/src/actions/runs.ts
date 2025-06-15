@@ -15,7 +15,7 @@ import {
 	deleteRun as _deleteRun,
 	createTask,
 	getExercisesForLanguage,
-} from "@roo-code/evals"
+} from "@zentara-code/evals"
 
 import { CreateRun } from "@/lib/schemas"
 

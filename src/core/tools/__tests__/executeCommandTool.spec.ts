@@ -41,15 +41,15 @@ beforeEach(() => {
 			return
 		}
 
-		const ignoredFileAttemptedToAccess = cline.rooIgnoreController?.validateCommand(block.params.command)
+		const ignoredFileAttemptedToAccess = cline.zentaraIgnoreController?.validateCommand(block.params.command)
 		if (ignoredFileAttemptedToAccess) {
-			await cline.say("rooignore_error", ignoredFileAttemptedToAccess)
+			await cline.say("zentaraignore_error", ignoredFileAttemptedToAccess)
 			// Call the mocked formatResponse functions with the correct arguments
-			const mockRooIgnoreError = "RooIgnore error"
-			;(formatResponse.rooIgnoreError as any).mockReturnValue(mockRooIgnoreError)
+			const mockZentaraIgnoreError = "ZentaraIgnore error"
+			;(formatResponse.zentaraIgnoreError as any).mockReturnValue(mockZentaraIgnoreError)
 			;(formatResponse.toolError as any).mockReturnValue("Tool error")
-			formatResponse.rooIgnoreError(ignoredFileAttemptedToAccess)
-			formatResponse.toolError(mockRooIgnoreError)
+			formatResponse.zentaraIgnoreError(ignoredFileAttemptedToAccess)
+			formatResponse.toolError(mockZentaraIgnoreError)
 			pushToolResult("Tool error")
 			return
 		}
@@ -92,7 +92,7 @@ describe("executeCommandTool", () => {
 			sayAndCreateMissingParamError: vitest.fn().mockResolvedValue("Missing parameter error"),
 			consecutiveMistakeCount: 0,
 			didRejectTool: false,
-			rooIgnoreController: {
+			zentaraIgnoreController: {
 				validateCommand: vitest.fn().mockReturnValue(null),
 			},
 			recordToolUsage: vitest.fn().mockReturnValue({} as ToolUsage),
@@ -235,17 +235,17 @@ describe("executeCommandTool", () => {
 			expect(mockPushToolResult).not.toHaveBeenCalled()
 		})
 
-		it("should handle rooignore validation failures", async () => {
+		it("should handle zentaraignore validation failures", async () => {
 			// Setup
 			mockToolUse.params.command = "cat .env"
 			// Override the validateCommand mock to return a filename
 			const validateCommandMock = vitest.fn().mockReturnValue(".env")
-			mockCline.rooIgnoreController = {
+			mockCline.zentaraIgnoreController = {
 				validateCommand: validateCommandMock,
 			}
 
-			const mockRooIgnoreError = "RooIgnore error"
-			;(formatResponse.rooIgnoreError as any).mockReturnValue(mockRooIgnoreError)
+			const mockZentaraIgnoreError = "ZentaraIgnore error"
+			;(formatResponse.zentaraIgnoreError as any).mockReturnValue(mockZentaraIgnoreError)
 			;(formatResponse.toolError as any).mockReturnValue("Tool error")
 
 			// Execute
@@ -260,9 +260,9 @@ describe("executeCommandTool", () => {
 
 			// Verify
 			expect(validateCommandMock).toHaveBeenCalledWith("cat .env")
-			expect(mockCline.say).toHaveBeenCalledWith("rooignore_error", ".env")
-			expect(formatResponse.rooIgnoreError).toHaveBeenCalledWith(".env")
-			expect(formatResponse.toolError).toHaveBeenCalledWith(mockRooIgnoreError)
+			expect(mockCline.say).toHaveBeenCalledWith("zentaraignore_error", ".env")
+			expect(formatResponse.zentaraIgnoreError).toHaveBeenCalledWith(".env")
+			expect(formatResponse.toolError).toHaveBeenCalledWith(mockZentaraIgnoreError)
 			expect(mockPushToolResult).toHaveBeenCalled()
 			expect(mockAskApproval).not.toHaveBeenCalled()
 			expect(mockExecuteCommand).not.toHaveBeenCalled()

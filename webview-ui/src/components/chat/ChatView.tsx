@@ -26,8 +26,8 @@ import { buildDocLink } from "@src/utils/docLinks"
 import { useAppTranslation } from "@src/i18n/TranslationContext"
 import { useExtensionState } from "@src/context/ExtensionStateContext"
 import { useSelectedModel } from "@src/components/ui/hooks/useSelectedModel"
-import RooHero from "@src/components/welcome/RooHero"
-import RooTips from "@src/components/welcome/RooTips"
+import ZentaraHero from "@src/components/welcome/ZentaraHero"
+import ZentaraTips from "@src/components/welcome/ZentaraTips"
 
 import TelemetryBanner from "../common/TelemetryBanner"
 import { useTaskSearch } from "../history/useTaskSearch"
@@ -1414,7 +1414,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 					)}
 					<div
 						className={` w-full flex flex-col gap-4 m-auto ${isExpanded && tasks.length > 0 ? "mt-0" : ""} px-3.5 min-[370px]:px-10 pt-5 transition-all duration-300`}>
-						<RooHero />
+						<ZentaraHero />
 						{telemetrySetting === "unset" && <TelemetryBanner />}
 						{/* Show the task history preview if expanded and tasks exist */}
 						{taskHistory.length > 0 && isExpanded && <HistoryPreview />}
@@ -1430,7 +1430,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 								}}
 							/>
 						</p>
-						<RooTips cycle={false} />
+						<ZentaraTips cycle={false} />
 					</div>
 				</div>
 			)}

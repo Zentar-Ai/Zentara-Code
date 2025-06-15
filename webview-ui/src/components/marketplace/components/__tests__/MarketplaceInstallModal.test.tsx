@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import { MarketplaceInstallModal } from "../MarketplaceInstallModal"
-import { MarketplaceItem } from "@roo-code/types"
+import { MarketplaceItem } from "@zentara-code/types"
 
 // Mock the vscode module before importing the component
 jest.mock("@/utils/vscode", () => ({

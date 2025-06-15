@@ -164,8 +164,8 @@ export class FileContextTracker {
 				path: filePath,
 				record_state: "active",
 				record_source: source,
-				roo_read_date: getLatestDateForField(filePath, "roo_read_date"),
-				roo_edit_date: getLatestDateForField(filePath, "roo_edit_date"),
+				zentara_read_date: getLatestDateForField(filePath, "zentara_read_date"),
+				zentara_edit_date: getLatestDateForField(filePath, "zentara_edit_date"),
 				user_edit_date: getLatestDateForField(filePath, "user_edit_date"),
 			}
 
@@ -176,18 +176,18 @@ export class FileContextTracker {
 					this.recentlyModifiedFiles.add(filePath)
 					break
 
-				// roo_edited: Zentara has edited the file
-				case "roo_edited":
-					newEntry.roo_read_date = now
-					newEntry.roo_edit_date = now
+				// zentara_edited: Zentara has edited the file
+				case "zentara_edited":
+					newEntry.zentara_read_date = now
+					newEntry.zentara_edit_date = now
 					this.checkpointPossibleFiles.add(filePath)
-					this.markFileAsEditedByRoo(filePath)
+					this.markFileAsEditedByZentara(filePath)
 					break
 
 				// read_tool/file_mentioned: Zentara has read the file via a tool or file mention
 				case "read_tool":
 				case "file_mentioned":
-					newEntry.roo_read_date = now
+					newEntry.zentara_read_date = now
 					break
 			}
 
@@ -212,7 +212,7 @@ export class FileContextTracker {
 	}
 
 	// Marks a file as edited by Zentara to prevent false positives in file watchers
-	markFileAsEditedByRoo(filePath: string): void {
+	markFileAsEditedByZentara(filePath: string): void {
 		this.recentlyEditedByZentara.add(filePath)
 	}
 

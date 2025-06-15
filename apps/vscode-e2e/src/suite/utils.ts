@@ -1,4 +1,4 @@
-import type { RooCodeAPI } from "@zentara-code/types"
+import type { ZentaraCodeAPI } from "@zentara-code/types"
 
 type WaitForOptions = {
 	timeout?: number
@@ -40,7 +40,7 @@ export const waitFor = (
 }
 
 type WaitUntilAbortedOptions = WaitForOptions & {
-	api: RooCodeAPI
+	api: ZentaraCodeAPI
 	taskId: string
 }
 
@@ -51,7 +51,7 @@ export const waitUntilAborted = async ({ api, taskId, ...options }: WaitUntilAbo
 }
 
 type WaitUntilCompletedOptions = WaitForOptions & {
-	api: RooCodeAPI
+	api: ZentaraCodeAPI
 	taskId: string
 }
 
