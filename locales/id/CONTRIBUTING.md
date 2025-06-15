@@ -11,9 +11,9 @@
 </sub>
 </div>
 
-# Berkontribusi pada Roo Code
+# Berkontribusi pada Zentara Code
 
-Roo Code adalah proyek yang didorong oleh komunitas, dan kami sangat menghargai setiap kontribusi. Untuk memperlancar kolaborasi, kami beroperasi berdasarkan pendekatan [Issue-First](#issue-first-approach), yang berarti semua [Pull Request (PR)](#submitting-a-pull-request) harus terlebih dahulu ditautkan ke GitHub Issue. Harap tinjau panduan ini dengan cermat.
+Zentara Code adalah proyek yang didorong oleh komunitas, dan kami sangat menghargai setiap kontribusi. Untuk memperlancar kolaborasi, kami beroperasi berdasarkan pendekatan [Issue-First](#issue-first-approach), yang berarti semua [Pull Request (PR)](#submitting-a-pull-request) harus terlebih dahulu ditautkan ke GitHub Issue. Harap tinjau panduan ini dengan cermat.
 
 ## Daftar Isi
 
@@ -52,10 +52,10 @@ Peta jalan kami memandu arah proyek. Selaraskan kontribusi kamu dengan tujuan ut
 
 Sebutkan keselarasan dengan area ini di PR kamu.
 
-### 3. Bergabung dengan Komunitas Roo Code
+### 3. Bergabung dengan Komunitas Zentara Code
 
-- **Utama:** Bergabunglah dengan [Discord](https://discord.gg/roocode) kami dan DM **Hannes Rudolph (`hrudolph`)**.
-- **Alternatif:** Kontributor berpengalaman dapat berinteraksi langsung melalui [GitHub Projects](https://github.com/orgs/RooCodeInc/projects/1).
+- **Utama:** Bergabunglah dengan [Discord](https://discord.gg/zentaracode) kami dan DM **Hannes Rudolph (`hrudolph`)**.
+- **Alternatif:** Kontributor berpengalaman dapat berinteraksi langsung melalui [GitHub Projects](https://github.com/orgs/ZentaraCodeInc/projects/1).
 
 ## Mencari & Merencanakan Kontribusi Kamu
 
@@ -69,7 +69,7 @@ Sebutkan keselarasan dengan area ini di PR kamu.
 
 Semua kontribusi harus dimulai dengan GitHub Issue.
 
-- **Periksa isu yang ada**: Cari di [GitHub Issues](https://github.com/RooCodeInc/Roo-Code/issues).
+- **Periksa isu yang ada**: Cari di [GitHub Issues](https://github.com/ZentaraCodeInc/Zentara-Code/issues).
 - **Buat isu**: Gunakan template yang sesuai:
     - **Bug:** Template "Bug Report".
     - **Fitur:** Template "Detailed Feature Proposal". Persetujuan diperlukan sebelum memulai.
@@ -79,14 +79,14 @@ Semua kontribusi harus dimulai dengan GitHub Issue.
 
 ### Memutuskan Apa yang Akan Dikerjakan
 
-- Periksa [GitHub Project](https://github.com/orgs/RooCodeInc/projects/1) untuk "Good First Issues" yang belum ditugaskan.
-- Untuk dokumen, kunjungi [Roo Code Docs](https://github.com/RooCodeInc/Roo-Code-Docs).
+- Periksa [GitHub Project](https://github.com/orgs/ZentaraCodeInc/projects/1) untuk "Good First Issues" yang belum ditugaskan.
+- Untuk dokumen, kunjungi [Zentara Code Docs](https://github.com/ZentaraCodeInc/Zentara-Code-Docs).
 
 ### Melaporkan Bug
 
 - Periksa laporan yang ada terlebih dahulu.
-- Buat bug baru menggunakan ["Bug Report" template](https://github.com/RooCodeInc/Roo-Code/issues/new/choose).
-- **Masalah keamanan**: Laporkan secara pribadi melalui [security advisories](https://github.com/RooCodeInc/Roo-Code/security/advisories/new).
+- Buat bug baru menggunakan ["Bug Report" template](https://github.com/ZentaraCodeInc/Zentara-Code/issues/new/choose).
+- **Masalah keamanan**: Laporkan secara pribadi melalui [security advisories](https://github.com/ZentaraCodeInc/Zentara-Code/security/advisories/new).
 
 ## Proses Pengembangan & Pengiriman
 
@@ -95,7 +95,7 @@ Semua kontribusi harus dimulai dengan GitHub Issue.
 1. **Fork & Clone:**
 
 ```
-git clone https://github.com/YOUR_USERNAME/Roo-Code.git
+git clone https://github.com/YOUR_USERNAME/Zentara-Code.git
 ```
 
 2. **Install Dependencies:**
@@ -135,4 +135,4 @@ pnpm install
 
 ## Legal
 
-Dengan berkontribusi, kamu setuju kontribusi kamu akan dilisensikan di bawah Lisensi Apache 2.0, konsisten dengan lisensi Roo Code.
+Dengan berkontribusi, kamu setuju kontribusi kamu akan dilisensikan di bawah Lisensi Apache 2.0, konsisten dengan lisensi Zentara Code.

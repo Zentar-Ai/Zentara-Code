@@ -3,15 +3,15 @@ import * as path from "path"
 
 import delay from "delay"
 
-import { CommandExecutionStatus } from "@roo-code/types"
-import { TelemetryService } from "@roo-code/telemetry"
+import { CommandExecutionStatus } from "@zentara-code/types"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { Task } from "../task/Task"
 
 import { ToolUse, AskApproval, HandleError, PushToolResult, RemoveClosingTag, ToolResponse } from "../../shared/tools"
 import { formatResponse } from "../prompts/responses"
 import { unescapeHtmlEntities } from "../../utils/text-normalization"
-import { ExitCodeDetails, RooTerminalCallbacks, RooTerminalProcess } from "../../integrations/terminal/types"
+import { ExitCodeDetails, ZentaraTerminalCallbacks, ZentaraTerminalProcess } from "../../integrations/terminal/types"
 import { TerminalRegistry } from "../../integrations/terminal/TerminalRegistry"
 import { Terminal } from "../../integrations/terminal/Terminal"
 
@@ -40,11 +40,11 @@ export async function executeCommandTool(
 				return
 			}
 
-			const ignoredFileAttemptedToAccess = cline.rooIgnoreController?.validateCommand(command)
+			const ignoredFileAttemptedToAccess = cline.zentaraIgnoreController?.validateCommand(command)
 
 			if (ignoredFileAttemptedToAccess) {
-				await cline.say("rooignore_error", ignoredFileAttemptedToAccess)
-				pushToolResult(formatResponse.toolError(formatResponse.rooIgnoreError(ignoredFileAttemptedToAccess)))
+				await cline.say("zentaraignore_error", ignoredFileAttemptedToAccess)
+				pushToolResult(formatResponse.toolError(formatResponse.zentaraIgnoreError(ignoredFileAttemptedToAccess)))
 				return
 			}
 
@@ -152,8 +152,8 @@ export async function executeCommand(
 	const clineProvider = await cline.providerRef.deref()
 
 	let accumulatedOutput = ""
-	const callbacks: RooTerminalCallbacks = {
-		onLine: async (lines: string, process: RooTerminalProcess) => {
+	const callbacks: ZentaraTerminalCallbacks = {
+		onLine: async (lines: string, process: ZentaraTerminalProcess) => {
 			accumulatedOutput += lines
 			const compressedOutput = Terminal.compressTerminalOutput(accumulatedOutput, terminalOutputLineLimit)
 			const status: CommandExecutionStatus = { executionId, status: "output", output: compressedOutput }

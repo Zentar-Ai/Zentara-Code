@@ -1,6 +1,6 @@
 // npx jest src/shared/__tests__/checkExistApiConfig.test.ts
 
-import type { ProviderSettings } from "@roo-code/types"
+import type { ProviderSettings } from "@zentara-code/types"
 
 import { checkExistKey } from "../checkExistApiConfig"
 

@@ -1,8 +1,8 @@
 import axios from "axios"
 import * as vscode from "vscode"
 
-import { shareResponseSchema } from "@roo-code/types"
-import { getRooCodeApiUrl } from "./Config"
+import { shareResponseSchema } from "@zentara-code/types"
+import { getZentaraCodeApiUrl } from "./Config"
 import type { AuthService } from "./AuthService"
 import type { SettingsService } from "./SettingsService"
 import { getUserAgent } from "./utils"
@@ -30,7 +30,7 @@ export class ShareService {
 			}
 
 			const response = await axios.post(
-				`${getRooCodeApiUrl()}/api/extension/share`,
+				`${getZentaraCodeApiUrl()}/api/extension/share`,
 				{ taskId },
 				{
 					headers: {

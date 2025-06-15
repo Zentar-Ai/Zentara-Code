@@ -36,7 +36,7 @@ describe("ContextManagementSettings", () => {
 		listApiConfigMeta: [],
 		maxOpenTabsContext: 20,
 		maxWorkspaceFiles: 200,
-		showRooIgnoredFiles: false,
+		showZentaraIgnoredFiles: false,
 		setCachedStateField: jest.fn(),
 	}
 
@@ -55,10 +55,10 @@ describe("ContextManagementSettings", () => {
 		const workspaceFilesSlider = screen.getByTestId("workspace-files-limit-slider")
 		expect(workspaceFilesSlider).toBeInTheDocument()
 
-		// Show .rooignore'd files
-		const showRooIgnoredFilesCheckbox = screen.getByTestId("show-rooignored-files-checkbox")
-		expect(showRooIgnoredFilesCheckbox).toBeInTheDocument()
-		expect(screen.getByTestId("show-rooignored-files-checkbox")).not.toBeChecked()
+		// Show .zentaraignore'd files
+		const showZentaraIgnoredFilesCheckbox = screen.getByTestId("show-zentaraignored-files-checkbox")
+		expect(showZentaraIgnoredFilesCheckbox).toBeInTheDocument()
+		expect(screen.getByTestId("show-zentaraignored-files-checkbox")).not.toBeChecked()
 	})
 
 	it("updates open tabs context limit", () => {
@@ -99,13 +99,13 @@ describe("ContextManagementSettings", () => {
 		expect(mockSetCachedStateField).toHaveBeenCalledWith("maxWorkspaceFiles", 201)
 	})
 
-	it("updates show rooignored files setting", () => {
+	it("updates show zentaraignored files setting", () => {
 		render(<ContextManagementSettings {...defaultProps} />)
 
-		const checkbox = screen.getByTestId("show-rooignored-files-checkbox")
+		const checkbox = screen.getByTestId("show-zentaraignored-files-checkbox")
 		fireEvent.click(checkbox)
 
-		expect(defaultProps.setCachedStateField).toHaveBeenCalledWith("showRooIgnoredFiles", true)
+		expect(defaultProps.setCachedStateField).toHaveBeenCalledWith("showZentaraIgnoredFiles", true)
 	})
 
 	it("renders max read file line controls", () => {
@@ -428,7 +428,7 @@ describe("ContextManagementSettings", () => {
 		it("handles undefined optional props gracefully", () => {
 			const propsWithUndefined = {
 				...defaultProps,
-				showRooIgnoredFiles: undefined,
+				showZentaraIgnoredFiles: undefined,
 				maxReadFileLine: undefined,
 				condensingApiConfigId: undefined,
 				customCondensingPrompt: undefined,
@@ -483,12 +483,12 @@ describe("ContextManagementSettings", () => {
 			// Check that labels are present
 			expect(screen.getByText("settings:contextManagement.openTabs.label")).toBeInTheDocument()
 			expect(screen.getByText("settings:contextManagement.workspaceFiles.label")).toBeInTheDocument()
-			expect(screen.getByText("settings:contextManagement.rooignore.label")).toBeInTheDocument()
+			expect(screen.getByText("settings:contextManagement.zentaraignore.label")).toBeInTheDocument()
 
 			// Check that descriptions are present
 			expect(screen.getByText("settings:contextManagement.openTabs.description")).toBeInTheDocument()
 			expect(screen.getByText("settings:contextManagement.workspaceFiles.description")).toBeInTheDocument()
-			expect(screen.getByText("settings:contextManagement.rooignore.description")).toBeInTheDocument()
+			expect(screen.getByText("settings:contextManagement.zentaraignore.description")).toBeInTheDocument()
 		})
 
 		it("has proper test ids for all interactive elements", () => {
@@ -500,7 +500,7 @@ describe("ContextManagementSettings", () => {
 
 			expect(screen.getByTestId("open-tabs-limit-slider")).toBeInTheDocument()
 			expect(screen.getByTestId("workspace-files-limit-slider")).toBeInTheDocument()
-			expect(screen.getByTestId("show-rooignored-files-checkbox")).toBeInTheDocument()
+			expect(screen.getByTestId("show-zentaraignored-files-checkbox")).toBeInTheDocument()
 			expect(screen.getByTestId("max-read-file-line-input")).toBeInTheDocument()
 			expect(screen.getByTestId("max-read-file-always-full-checkbox")).toBeInTheDocument()
 		})
@@ -515,7 +515,7 @@ describe("ContextManagementSettings", () => {
 			expect(screen.getByText("settings:contextManagement.description")).toBeInTheDocument()
 			expect(screen.getByText("settings:contextManagement.openTabs.label")).toBeInTheDocument()
 			expect(screen.getByText("settings:contextManagement.workspaceFiles.label")).toBeInTheDocument()
-			expect(screen.getByText("settings:contextManagement.rooignore.label")).toBeInTheDocument()
+			expect(screen.getByText("settings:contextManagement.zentaraignore.label")).toBeInTheDocument()
 		})
 	})
 })

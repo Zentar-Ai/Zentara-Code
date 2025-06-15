@@ -1,6 +1,6 @@
 // npx jest src/shared/__tests__/getApiMetrics.test.ts
 
-import type { ClineMessage } from "@roo-code/types"
+import type { ClineMessage } from "@zentara-code/types"
 
 import { getApiMetrics } from "../getApiMetrics"
 

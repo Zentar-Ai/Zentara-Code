@@ -2,7 +2,7 @@ import { Task } from "../task/Task"
 import { ToolUse, AskApproval, HandleError, PushToolResult, RemoveClosingTag } from "../../shared/tools"
 import { formatResponse } from "../prompts/responses"
 import { ClineAskUseMcpServer } from "../../shared/ExtensionMessage"
-import { McpExecutionStatus } from "@roo-code/types"
+import { McpExecutionStatus } from "@zentara-code/types"
 import { t } from "../../i18n"
 
 interface McpToolParams {

@@ -61,11 +61,11 @@ export default defineConfig(({ mode }) => {
 		"process.env.VSCODE_TEXTMATE_DEBUG": JSON.stringify(process.env.VSCODE_TEXTMATE_DEBUG),
 		"process.env.PKG_NAME": JSON.stringify(pkg.name),
 		"process.env.PKG_VERSION": JSON.stringify(pkg.version),
-		"process.env.PKG_OUTPUT_CHANNEL": JSON.stringify("roo-code"),
+		"process.env.PKG_OUTPUT_CHANNEL": JSON.stringify("zentara-code"),
 		...(gitSha ? { "process.env.PKG_SHA": JSON.stringify(gitSha) } : {}),
 	}
 
-	// TODO: We can use `@roo-code/build` to generate `define` once the
+	// TODO: We can use `@zentara-code/build` to generate `define` once the
 	// monorepo is deployed.
 	if (mode === "nightly") {
 		outDir = "../apps/vscode-nightly/build/webview-ui/build"
@@ -76,7 +76,7 @@ export default defineConfig(({ mode }) => {
 
 		define["process.env.PKG_NAME"] = JSON.stringify(nightlyPkg.name)
 		define["process.env.PKG_VERSION"] = JSON.stringify(nightlyPkg.version)
-		define["process.env.PKG_OUTPUT_CHANNEL"] = JSON.stringify("roo-code-Nightly")
+		define["process.env.PKG_OUTPUT_CHANNEL"] = JSON.stringify("zentara-code-Nightly")
 	}
 
 	const plugins: PluginOption[] = [react(), tailwindcss(), persistPortPlugin(), wasmPlugin()]
@@ -87,9 +87,9 @@ export default defineConfig(({ mode }) => {
 			alias: [
 				{ find: "@", replacement: resolve(__dirname, "./src") },
 				{ find: "@src", replacement: resolve(__dirname, "./src") },
-				{ find: "@roo", replacement: resolve(__dirname, "../src/shared") },
-				{ find: "@roo-code/types", replacement: resolve(__dirname, "../packages/types/src/index.ts") },
-				{ find: /^@roo-code\/(.+)$/, replacement: path.resolve(__dirname, '../packages') + '/$1/src' }
+				{ find: "@zentara", replacement: resolve(__dirname, "../src/shared") },
+				{ find: "@zentara-code/types", replacement: resolve(__dirname, "../packages/types/src/index.ts") },
+				{ find: /^@zentara-code\/(.+)$/, replacement: path.resolve(__dirname, '../packages') + '/$1/src' }
 			],
 		},
 		build: {

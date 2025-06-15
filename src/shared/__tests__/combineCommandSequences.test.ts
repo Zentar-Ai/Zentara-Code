@@ -1,5 +1,5 @@
 import { combineCommandSequences } from "../combineCommandSequences"
-import { ClineMessage } from "@roo-code/types"
+import { ClineMessage } from "@zentara-code/types"
 
 describe("combineCommandSequences", () => {
 	describe("command sequences", () => {

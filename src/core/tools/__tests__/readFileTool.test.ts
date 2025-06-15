@@ -53,8 +53,8 @@ extractTextModule.extractTextFromFile = extractTextFromFileMock
 extractTextModule.addLineNumbers = addLineNumbersMock
 extractTextModule.getSupportedBinaryFormats = getSupportedBinaryFormatsMock
 
-jest.mock("../../ignore/RooIgnoreController", () => ({
-	RooIgnoreController: class {
+jest.mock("../../ignore/ZentaraIgnoreController", () => ({
+	ZentaraIgnoreController: class {
 		initialize() {
 			return Promise.resolve()
 		}
@@ -120,7 +120,7 @@ describe("read_file tool with maxReadFileLine setting", () => {
 		mockCline.cwd = "/"
 		mockCline.task = "Test"
 		mockCline.providerRef = mockProvider
-		mockCline.rooIgnoreController = {
+		mockCline.zentaraIgnoreController = {
 			validateAccess: jest.fn().mockReturnValue(true),
 		}
 		mockCline.say = jest.fn().mockResolvedValue(undefined)
@@ -429,7 +429,7 @@ describe("read_file tool XML output structure", () => {
 		mockCline.cwd = "/"
 		mockCline.task = "Test"
 		mockCline.providerRef = mockProvider
-		mockCline.rooIgnoreController = {
+		mockCline.zentaraIgnoreController = {
 			validateAccess: jest.fn().mockReturnValue(true),
 		}
 		mockCline.say = jest.fn().mockResolvedValue(undefined)
@@ -475,7 +475,7 @@ describe("read_file tool XML output structure", () => {
 		mockProvider.getState.mockResolvedValue({ maxReadFileLine })
 		mockedCountFileLines.mockResolvedValue(totalLines)
 		mockedIsBinaryFile.mockResolvedValue(isBinary)
-		mockCline.rooIgnoreController.validateAccess = jest.fn().mockReturnValue(validateAccess)
+		mockCline.zentaraIgnoreController.validateAccess = jest.fn().mockReturnValue(validateAccess)
 
 		let argsContent = `<file><path>${options.path || testFilePath}</path>`
 		if (options.start_line && options.end_line) {
@@ -953,13 +953,13 @@ describe("read_file tool XML output structure", () => {
 			)
 		})
 
-		it("should include error tag for RooIgnore error", async () => {
+		it("should include error tag for ZentaraIgnore error", async () => {
 			// Execute - skip addLineNumbers check as it returns early with an error
 			const result = await executeReadFileTool({}, { validateAccess: false })
 
 			// Verify
 			expect(result).toBe(
-				`<files>\n<file><path>${testFilePath}</path><error>Access to ${testFilePath} is blocked by the .rooignore file settings. You must try to continue in the task without using this file, or ask the user to update the .rooignore file.</error></file>\n</files>`,
+				`<files>\n<file><path>${testFilePath}</path><error>Access to ${testFilePath} is blocked by the .zentaraignore file settings. You must try to continue in the task without using this file, or ask the user to update the .zentaraignore file.</error></file>\n</files>`,
 			)
 		})
 
@@ -1030,9 +1030,9 @@ describe("read_file tool XML output structure", () => {
 				return filePath
 			})
 
-			// Mock RooIgnore to block invalid file and track validation order
+			// Mock ZentaraIgnore to block invalid file and track validation order
 			const validationOrder: string[] = []
-			mockCline.rooIgnoreController = {
+			mockCline.zentaraIgnoreController = {
 				validateAccess: jest.fn().mockImplementation((path) => {
 					validationOrder.push(`validate:${path}`)
 					const isValid = path !== invalidPath
@@ -1043,7 +1043,7 @@ describe("read_file tool XML output structure", () => {
 				}),
 			}
 
-			// Mock say to track RooIgnore error
+			// Mock say to track ZentaraIgnore error
 			mockCline.say = jest.fn().mockImplementation((_type, _path) => {
 				// Don't add error to validationOrder here since validateAccess already does it
 				return Promise.resolve()
@@ -1125,7 +1125,7 @@ describe("read_file tool XML output structure", () => {
 
 			// Verify result
 			expect(result).toBe(
-				`<files>\n<file><path>${validPath}</path>\n<content lines="1-1">\n${numberedContent}</content>\n</file>\n<file><path>${invalidPath}</path><error>${formatResponse.rooIgnoreError(invalidPath)}</error></file>\n</files>`,
+				`<files>\n<file><path>${validPath}</path>\n<content lines="1-1">\n${numberedContent}</content>\n</file>\n<file><path>${invalidPath}</path><error>${formatResponse.zentaraIgnoreError(invalidPath)}</error></file>\n</files>`,
 			)
 		})
 

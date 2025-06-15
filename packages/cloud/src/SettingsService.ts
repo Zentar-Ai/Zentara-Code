@@ -5,9 +5,9 @@ import {
 	OrganizationAllowList,
 	OrganizationSettings,
 	organizationSettingsSchema,
-} from "@roo-code/types"
+} from "@zentara-code/types"
 
-import { getRooCodeApiUrl } from "./Config"
+import { getZentaraCodeApiUrl } from "./Config"
 import { AuthService } from "./AuthService"
 import { RefreshTimer } from "./RefreshTimer"
 
@@ -66,7 +66,7 @@ export class SettingsService {
 		}
 
 		try {
-			const response = await fetch(`${getRooCodeApiUrl()}/api/organization-settings`, {
+			const response = await fetch(`${getZentaraCodeApiUrl()}/api/organization-settings`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},

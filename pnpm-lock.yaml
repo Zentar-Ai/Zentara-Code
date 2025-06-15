@@ -74,12 +74,6 @@ importers:
 
   apps/vscode-e2e:
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../../packages/config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../../packages/config-typescript
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -95,7 +89,13 @@ importers:
       '@vscode/test-electron':
         specifier: ^2.4.0
         version: 2.5.2
-      '@roo-code/types':
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../../packages/config-typescript
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../../packages/types
       glob:
@@ -113,7 +113,7 @@ importers:
 
   apps/vscode-nightly:
     devDependencies:
-      '@roo-code/build':
+      '@zentara-code/build':
         specifier: workspace:^
         version: link:../../packages/build
 
@@ -161,10 +161,10 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.69.0
         version: 5.80.7(react@18.3.1)
-      '@roo-code/evals':
+      '@zentara-code/evals':
         specifier: workspace:^
         version: link:../../packages/evals
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../../packages/types
       class-variance-authority:
@@ -222,12 +222,6 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../../packages/config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../../packages/config-typescript
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.1.10
@@ -240,6 +234,12 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.5
         version: 18.3.7(@types/react@18.3.23)
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../../packages/config-typescript
       tailwindcss:
         specifier: ^4
         version: 4.1.10
@@ -247,7 +247,7 @@ importers:
         specifier: ^3.2.1
         version: 3.2.3(@types/debug@4.1.12)(@types/node@22.15.31)(jiti@2.4.2)(jsdom@20.0.3)(lightningcss@1.30.1)(tsx@4.20.3)(yaml@2.8.0)
 
-  apps/web-roo-code:
+  apps/web-zentara-code:
     dependencies:
       '@radix-ui/react-dialog':
         specifier: ^1.1.14
@@ -258,7 +258,7 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.79.0
         version: 5.80.7(react@18.3.1)
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../../packages/types
       class-variance-authority:
@@ -313,12 +313,6 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../../packages/config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../../packages/config-typescript
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@3.4.17)
@@ -331,6 +325,12 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.23)
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../../packages/config-typescript
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.5)
@@ -347,25 +347,25 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: 20.x
         version: 20.19.0
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       vitest:
         specifier: ^3.1.3
         version: 3.2.3(@types/debug@4.1.12)(@types/node@20.19.0)(jiti@2.4.2)(jsdom@20.0.3)(lightningcss@1.30.1)(tsx@4.20.3)(yaml@2.8.0)
 
   packages/cloud:
     dependencies:
-      '@roo-code/telemetry':
+      '@zentara-code/telemetry':
         specifier: workspace:^
         version: link:../telemetry
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       axios:
@@ -375,18 +375,18 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: 20.x
         version: 20.19.0
       '@types/vscode':
         specifier: ^1.84.0
         version: 1.101.0
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       vitest:
         specifier: ^3.1.3
         version: 3.2.3(@types/debug@4.1.12)(@types/node@20.19.0)(jiti@2.4.2)(jsdom@20.0.3)(lightningcss@1.30.1)(tsx@4.20.3)(yaml@2.8.0)
@@ -428,10 +428,10 @@ importers:
 
   packages/evals:
     dependencies:
-      '@roo-code/ipc':
+      '@zentara-code/ipc':
         specifier: workspace:^
         version: link:../ipc
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       better-sqlite3:
@@ -471,12 +471,6 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: ^22.15.20
         version: 22.15.31
@@ -486,6 +480,12 @@ importers:
       '@types/ps-tree':
         specifier: ^1.1.6
         version: 1.1.6
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       drizzle-kit:
         specifier: ^0.31.1
         version: 0.31.1
@@ -498,32 +498,32 @@ importers:
 
   packages/ipc:
     dependencies:
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       node-ipc:
         specifier: ^12.0.0
         version: 12.0.0
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: 20.x
         version: 20.19.0
       '@types/node-ipc':
         specifier: ^9.2.3
         version: 9.2.3
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       vitest:
         specifier: ^3.1.3
         version: 3.2.3(@types/debug@4.1.12)(@types/node@20.19.0)(jiti@2.4.2)(jsdom@20.0.3)(lightningcss@1.30.1)(tsx@4.20.3)(yaml@2.8.0)
 
   packages/telemetry:
     dependencies:
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../types
       posthog-node:
@@ -533,18 +533,18 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: 20.x
         version: 20.19.0
       '@types/vscode':
         specifier: ^1.84.0
         version: 1.101.0
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       vitest:
         specifier: ^3.1.3
         version: 3.2.3(@types/debug@4.1.12)(@types/node@20.19.0)(jiti@2.4.2)(jsdom@20.0.3)(lightningcss@1.30.1)(tsx@4.20.3)(yaml@2.8.0)
@@ -555,15 +555,15 @@ importers:
         specifier: ^3.25.61
         version: 3.25.64
     devDependencies:
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: 20.x
         version: 20.19.0
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       tsup:
         specifier: ^8.3.5
         version: 8.5.0(jiti@2.4.2)(postcss@8.5.5)(tsx@4.20.3)(typescript@5.8.3)(yaml@2.8.0)
@@ -606,16 +606,16 @@ importers:
       '@vscode/codicons':
         specifier: ^0.0.36
         version: 0.0.36
-      '@roo-code/cloud':
+      '@zentara-code/cloud':
         specifier: workspace:^
         version: link:../packages/cloud
-      '@roo-code/ipc':
+      '@zentara-code/ipc':
         specifier: workspace:^
         version: link:../packages/ipc
-      '@roo-code/telemetry':
+      '@zentara-code/telemetry':
         specifier: workspace:^
         version: link:../packages/telemetry
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../packages/types
       async-mutex:
@@ -778,15 +778,6 @@ importers:
       '@jest/globals':
         specifier: ^29.7.0
         version: 29.7.0
-      '@roo-code/build':
-        specifier: workspace:^
-        version: link:../packages/build
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../packages/config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../packages/config-typescript
       '@types/clone-deep':
         specifier: ^4.0.4
         version: 4.0.4
@@ -838,6 +829,15 @@ importers:
       '@vscode/vsce':
         specifier: 3.3.2
         version: 3.3.2
+      '@zentara-code/build':
+        specifier: workspace:^
+        version: link:../packages/build
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../packages/config-typescript
       esbuild:
         specifier: ^0.25.0
         version: 0.25.5
@@ -943,7 +943,7 @@ importers:
       '@vscode/webview-ui-toolkit':
         specifier: ^1.4.0
         version: 1.4.0(react@18.3.1)
-      '@roo-code/types':
+      '@zentara-code/types':
         specifier: workspace:^
         version: link:../packages/types
       axios:
@@ -1067,12 +1067,6 @@ importers:
       '@jest/globals':
         specifier: ^29.7.0
         version: 29.7.0
-      '@roo-code/config-eslint':
-        specifier: workspace:^
-        version: link:../packages/config-eslint
-      '@roo-code/config-typescript':
-        specifier: workspace:^
-        version: link:../packages/config-typescript
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
@@ -1106,6 +1100,12 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.3.4
         version: 4.5.2(vite@6.3.5(@types/node@20.19.0)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3)(yaml@2.8.0))
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../packages/config-typescript
       identity-obj-proxy:
         specifier: ^3.0.0
         version: 3.0.0
@@ -11231,7 +11231,7 @@ snapshots:
   '@jest/console@29.7.0':
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       chalk: 4.1.2
       jest-message-util: 29.7.0
       jest-util: 29.7.0
@@ -11244,14 +11244,14 @@ snapshots:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 3.9.0
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 29.7.0
-      jest-config: 29.7.0(@types/node@20.19.0)
+      jest-config: 29.7.0(@types/node@22.15.31)
       jest-haste-map: 29.7.0
       jest-message-util: 29.7.0
       jest-regex-util: 29.6.3
@@ -11276,7 +11276,7 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       jest-mock: 29.7.0
 
   '@jest/expect-utils@29.7.0':
@@ -11294,7 +11294,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -11316,7 +11316,7 @@ snapshots:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       '@jridgewell/trace-mapping': 0.3.25
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       chalk: 4.1.2
       collect-v8-coverage: 1.0.2
       exit: 0.1.2
@@ -11386,7 +11386,7 @@ snapshots:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       '@types/yargs': 17.0.33
       chalk: 4.1.2
 
@@ -13106,11 +13106,11 @@ snapshots:
   '@types/glob@8.1.0':
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
 
   '@types/graceful-fs@4.1.9':
     dependencies:
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
 
   '@types/hast@3.0.4':
     dependencies:
@@ -13135,7 +13135,7 @@ snapshots:
 
   '@types/jsdom@20.0.1':
     dependencies:
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       '@types/tough-cookie': 4.0.5
       parse5: 7.3.0
 
@@ -13167,7 +13167,7 @@ snapshots:
 
   '@types/node-fetch@2.6.12':
     dependencies:
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       form-data: 4.0.3
 
   '@types/node-ipc@9.2.3':
@@ -13240,7 +13240,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.34.0(@typescript-eslint/parser@8.34.0(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3)':
@@ -16197,7 +16197,7 @@ snapshots:
       '@jest/expect': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.6.0
@@ -16266,6 +16266,36 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
+  jest-config@29.7.0(@types/node@22.15.31):
+    dependencies:
+      '@babel/core': 7.27.4
+      '@jest/test-sequencer': 29.7.0
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.27.4)
+      chalk: 4.1.2
+      ci-info: 3.9.0
+      deepmerge: 4.3.1
+      glob: 7.2.3
+      graceful-fs: 4.2.11
+      jest-circus: 29.7.0
+      jest-environment-node: 29.7.0
+      jest-get-type: 29.6.3
+      jest-regex-util: 29.6.3
+      jest-resolve: 29.7.0
+      jest-runner: 29.7.0
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      micromatch: 4.0.8
+      parse-json: 5.2.0
+      pretty-format: 29.7.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 22.15.31
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
   jest-diff@29.7.0:
     dependencies:
       chalk: 4.1.2
@@ -16291,7 +16321,7 @@ snapshots:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
       '@types/jsdom': 20.0.1
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       jest-mock: 29.7.0
       jest-util: 29.7.0
       jsdom: 20.0.3
@@ -16305,7 +16335,7 @@ snapshots:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
@@ -16315,7 +16345,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.9
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -16354,7 +16384,7 @@ snapshots:
   jest-mock@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       jest-util: 29.7.0
 
   jest-pnp-resolver@1.2.3(jest-resolve@29.7.0):
@@ -16389,7 +16419,7 @@ snapshots:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       chalk: 4.1.2
       emittery: 0.13.1
       graceful-fs: 4.2.11
@@ -16417,7 +16447,7 @@ snapshots:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       chalk: 4.1.2
       cjs-module-lexer: 1.4.3
       collect-v8-coverage: 1.0.2
@@ -16465,7 +16495,7 @@ snapshots:
   jest-util@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -16484,7 +16514,7 @@ snapshots:
     dependencies:
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -16493,7 +16523,7 @@ snapshots:
 
   jest-worker@29.7.0:
     dependencies:
-      '@types/node': 20.19.0
+      '@types/node': 22.15.31
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1

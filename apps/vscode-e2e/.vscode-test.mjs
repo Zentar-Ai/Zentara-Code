@@ -12,5 +12,5 @@ export default defineConfig({
 		ui: "tdd",
 		timeout: 60000,
 	},
-	launchArgs: ["--enable-proposed-api=ZentarAI.roo-code", "--disable-extensions"],
+	launchArgs: ["--enable-proposed-api=ZentarAI.zentara-code", "--disable-extensions"],
 })

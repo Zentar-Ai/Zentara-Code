@@ -3,7 +3,7 @@
 import { vitest, describe, it, expect, beforeEach } from "vitest"
 import { Anthropic } from "@anthropic-ai/sdk"
 
-import { type ModelInfo, geminiDefaultModelId } from "@roo-code/types"
+import { type ModelInfo, geminiDefaultModelId } from "@zentara-code/types"
 
 import { GeminiHandler } from "../gemini"
 

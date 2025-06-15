@@ -471,7 +471,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 		const program = params.program
 		const pfile = program?.split(/[\\\/]/).pop()
 
-		// Roo-Debugger: Custom logic for stopOnEntry
+		// Zentara-Debugger: Custom logic for stopOnEntry
 		// If stopOnEntry is true, set a breakpoint at the program's first line
 		// and then change stopOnEntry to false. This is to avoid stopping
 		// in debugger internals (e.g., pytest plugin) when stopOnEntry is used.
@@ -502,11 +502,11 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				)
 			}
 		}
-		// End Roo-Debugger custom logic
+		// End Zentara-Debugger custom logic
 
 
 		if (params.mode === "pytest") {
-			const extensionId = "ZentarAI.roo-code"
+			const extensionId = "ZentarAI.zentara-code"
 			const extension = vscode.extensions.getExtension(extensionId)
 			if (!extension) {
 				outputChannel.appendLine(`[ERROR] [Session] Could not find extension with ID: ${extensionId}`)

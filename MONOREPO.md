@@ -1,6 +1,6 @@
 # Monorepo Guide
 
-roo Code has transitioned to a monorepo powered by [PNPM workspaces](https://pnpm.io/workspaces) and [Turborepo](https://turborepo.com).
+zentara Code has transitioned to a monorepo powered by [PNPM workspaces](https://pnpm.io/workspaces) and [Turborepo](https://turborepo.com).
 
 When you first pull down the monorepo changes from git you'll need to re-install all packages using pnpm. You can install pnpm using [these](https://pnpm.io/installation) instructions. If you're on MacOS the easiest option is to use Homebrew:
 
@@ -24,8 +24,8 @@ pnpm install
 If things are in good working order then you should be able to build a vsix and install it in VSCode:
 
 ```sh
-pnpm vsix -- --out ../bin/roo-code-main.vsix && \
-  code --install-extension bin/roo-code-main.vsix
+pnpm vsix -- --out ../bin/zentara-code-main.vsix && \
+  code --install-extension bin/zentara-code-main.vsix
 ```
 
 To fully stress the monorepo setup, run the following:
@@ -41,33 +41,33 @@ pnpm clean && pnpm bundle:nightly
 pnpm clean && pnpm npx turbo watch:bundle
 pnpm clean && pnpm npx turbo watch:tsc
 
-pnpm --filter @roo-code/vscode-e2e test:ci
+pnpm --filter @zentara-code/vscode-e2e test:ci
 
 pnpm clean && \
-  pnpm vsix -- --out ../bin/roo-code.vsix && \
-  code --install-extension bin/roo-code.vsix
+  pnpm vsix -- --out ../bin/zentara-code.vsix && \
+  code --install-extension bin/zentara-code.vsix
 
 pnpm clean && \
-  pnpm vsix:nightly -- --out ../../../bin/roo-code-nightly.vsix && \
-  code --install-extension bin/roo-code-nightly.vsix
+  pnpm vsix:nightly -- --out ../../../bin/zentara-code-nightly.vsix && \
+  code --install-extension bin/zentara-code-nightly.vsix
 ```
 
 ### Turborepo
 
-Note that this excludes the `build` task for next.js apps (@roo-code/web-\*).
+Note that this excludes the `build` task for next.js apps (@zentara-code/web-\*).
 
 Tasks: `build` -> `bundle` -> `vsix`
 
 build:
 
-- `@roo-code/build` [input: src, package.json, tsconfig.json | output: dist]
-- `@roo-code/types` [input: src, package.json, tsconfig.json, tsup.config.ts | output: dist]
-- `@roo-code/webview-ui` [input: src, package.json, tsconfig.json, vite.config.ts | output: ../src/webview-ui]
+- `@zentara-code/build` [input: src, package.json, tsconfig.json | output: dist]
+- `@zentara-code/types` [input: src, package.json, tsconfig.json, tsup.config.ts | output: dist]
+- `@zentara-code/webview-ui` [input: src, package.json, tsconfig.json, vite.config.ts | output: ../src/webview-ui]
 
 bundle:
-- `roo-code` [input: * | output: dist]
+- `zentara-code` [input: * | output: dist]
 
 
 vsix:
 
-- `roo-code` [input: dist | output: bin]
+- `zentara-code` [input: dist | output: bin]

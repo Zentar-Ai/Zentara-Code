@@ -12,8 +12,8 @@ try {
 	console.warn("Failed to load environment variables:", e)
 }
 
-import { CloudService } from "@roo-code/cloud"
-import { TelemetryService, PostHogTelemetryClient } from "@roo-code/telemetry"
+import { CloudService } from "@zentara-code/cloud"
+import { TelemetryService, PostHogTelemetryClient } from "@zentara-code/telemetry"
 
 import "./utils/path" // Necessary to have access to String.prototype.toPosix.
 import { createOutputChannelLogger, createDualLogger } from "./utils/outputChannelLogger"
@@ -78,7 +78,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	// Create logger for cloud services
 	const cloudLogger = createDualLogger(createOutputChannelLogger(outputChannel))
 
-	// Initialize Roo Code Cloud service.
+	// Initialize Zentara Code Cloud service.
 	await CloudService.createInstance(context, {
 		stateChanged: () => ClineProvider.getVisibleInstance()?.postStateToWebview(),
 		log: cloudLogger,
@@ -167,13 +167,13 @@ export async function activate(context: vscode.ExtensionContext) {
 	outputChannel.appendLine("Registered DAP message tracker")
 
 	// Register commands for debug tool launch tests
-	let disposableDirectTestRunner = vscode.commands.registerCommand("debugging-roo-code.runDirectLaunchTest", () => {
+	let disposableDirectTestRunner = vscode.commands.registerCommand("debugging-zentara-code.runDirectLaunchTest", () => {
 		runDirectDebugToolLaunchTest()
 	})
 	context.subscriptions.push(disposableDirectTestRunner)
 
 	let disposableToolFlowTestRunner = vscode.commands.registerCommand(
-		"debugging-roo-code.runToolFlowLaunchTest",
+		"debugging-zentara-code.runToolFlowLaunchTest",
 		() => {
 			runToolFlowDebugLaunchTest()
 		},
@@ -181,17 +181,17 @@ export async function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(disposableToolFlowTestRunner)
 
 	let disposableSequenceTestRunner = vscode.commands.registerCommand(
-		"debugging-roo-code.runToolFlowSequenceTest",
+		"debugging-zentara-code.runToolFlowSequenceTest",
 		() => {
 			runToolFlowDebugSequenceTest()
 		},
 	)
 	context.subscriptions.push(disposableSequenceTestRunner)
 
-	// Allows other extensions to activate once Roo is ready.
+	// Allows other extensions to activate once Zentara is ready.
 	vscode.commands.executeCommand(`${Package.name}.activationCompleted`)
 
-	// Implements the `RooCodeAPI` interface.
+	// Implements the `ZentaraCodeAPI` interface.
 	const socketPath = process.env.ROO_CODE_IPC_SOCKET_PATH
 	const enableLogging = typeof socketPath === "string"
 

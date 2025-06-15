@@ -15,7 +15,7 @@ import {
 	deleteRun as _deleteRun,
 	createTask,
 	getExercisesForLanguage,
-} from "@roo-code/evals"
+} from "@zentara-code/evals"
 
 import { CreateRun } from "@/lib/schemas"
 
@@ -62,7 +62,7 @@ export async function createRun({ suite, exercises = [], systemPrompt, ...values
 			"-e HOST_EXECUTION_METHOD=docker",
 		]
 
-		const cliCommand = `pnpm --filter @roo-code/evals cli --runId ${run.id}`
+		const cliCommand = `pnpm --filter @zentara-code/evals cli --runId ${run.id}`
 
 		const command = isRunningInDocker
 			? `docker run ${dockerArgs.join(" ")} evals-runner sh -c "${cliCommand}"`
@@ -75,7 +75,7 @@ export async function createRun({ suite, exercises = [], systemPrompt, ...values
 			stdio: ["ignore", "pipe", "pipe"],
 		})
 
-		const logStream = fs.createWriteStream("/tmp/roo-code-evals.log", { flags: "a" })
+		const logStream = fs.createWriteStream("/tmp/zentara-code-evals.log", { flags: "a" })
 
 		if (childProcess.stdout) {
 			childProcess.stdout.pipe(logStream)

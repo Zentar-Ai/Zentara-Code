@@ -6,39 +6,39 @@ describe("generatePackageJson", () => {
 	it("should be a test", () => {
 		const generatedPackageJson = generatePackageJson({
 			packageJson: {
-				name: "roo-code",
+				name: "zentara-code",
 				displayName: "%extension.displayName%",
 				description: "%extension.description%",
-				publisher: "RooVeterinaryInc",
+				publisher: "ZentaraVeterinaryInc",
 				version: "3.17.2",
 				icon: "assets/icons/icon.png",
 				contributes: {
 					viewsContainers: {
 						activitybar: [
 							{
-								id: "roo-code-ActivityBar",
+								id: "zentara-code-ActivityBar",
 								title: "%views.activitybar.title%",
 								icon: "assets/icons/icon.svg",
 							},
 						],
 					},
 					views: {
-						"roo-code-ActivityBar": [
+						"zentara-code-ActivityBar": [
 							{
 								type: "webview",
-								id: "roo-code.SidebarProvider",
+								id: "zentara-code.SidebarProvider",
 								name: "",
 							},
 						],
 					},
 					commands: [
 						{
-							command: "roo-code.plusButtonClicked",
+							command: "zentara-code.plusButtonClicked",
 							title: "%command.newTask.title%",
 							icon: "$(add)",
 						},
 						{
-							command: "roo-code.openInNewTab",
+							command: "zentara-code.openInNewTab",
 							title: "%command.openInNewTab.title%",
 							category: "%configuration.title%",
 						},
@@ -46,48 +46,48 @@ describe("generatePackageJson", () => {
 					menus: {
 						"editor/context": [
 							{
-								submenu: "roo-code.contextMenu",
+								submenu: "zentara-code.contextMenu",
 								group: "navigation",
 							},
 						],
-						"roo-code.contextMenu": [
+						"zentara-code.contextMenu": [
 							{
-								command: "roo-code.addToContext",
+								command: "zentara-code.addToContext",
 								group: "1_actions@1",
 							},
 						],
 						"editor/title": [
 							{
-								command: "roo-code.plusButtonClicked",
+								command: "zentara-code.plusButtonClicked",
 								group: "navigation@1",
-								when: "activeWebviewPanelId == roo-code.TabPanelProvider",
+								when: "activeWebviewPanelId == zentara-code.TabPanelProvider",
 							},
 							{
-								command: "roo-code.settingsButtonClicked",
+								command: "zentara-code.settingsButtonClicked",
 								group: "navigation@6",
-								when: "activeWebviewPanelId == roo-code.TabPanelProvider",
+								when: "activeWebviewPanelId == zentara-code.TabPanelProvider",
 							},
 							{
-								command: "roo-code.accountButtonClicked",
+								command: "zentara-code.accountButtonClicked",
 								group: "navigation@6",
-								when: "activeWebviewPanelId == roo-code.TabPanelProvider && config.roo-code.rooCodeCloudEnabled",
+								when: "activeWebviewPanelId == zentara-code.TabPanelProvider && config.zentara-code.zentaraCodeCloudEnabled",
 							},
 						],
 					},
 					submenus: [
 						{
-							id: "roo-code.contextMenu",
+							id: "zentara-code.contextMenu",
 							label: "%views.contextMenu.label%",
 						},
 						{
-							id: "roo-code.terminalMenu",
+							id: "zentara-code.terminalMenu",
 							label: "%views.terminalMenu.label%",
 						},
 					],
 					configuration: {
 						title: "%configuration.title%",
 						properties: {
-							"roo-code.allowedCommands": {
+							"zentara-code.allowedCommands": {
 								type: "array",
 								items: {
 									type: "string",
@@ -95,7 +95,7 @@ describe("generatePackageJson", () => {
 								default: ["npm test", "npm install", "tsc", "git log", "git diff", "git show"],
 								description: "%commands.allowedCommands.description%",
 							},
-							"roo-code.customStoragePath": {
+							"zentara-code.customStoragePath": {
 								type: "string",
 								default: "",
 								description: "%settings.customStoragePath.description%",
@@ -108,50 +108,50 @@ describe("generatePackageJson", () => {
 				},
 			},
 			overrideJson: {
-				name: "roo-code-nightly",
-				displayName: "Roo Code Nightly",
-				publisher: "RooVeterinaryInc",
+				name: "zentara-code-nightly",
+				displayName: "Zentara Code Nightly",
+				publisher: "ZentaraVeterinaryInc",
 				version: "0.0.1",
 				icon: "assets/icons/icon-nightly.png",
 				scripts: {},
 			},
-			substitution: ["roo-code", "roo-code-nightly"],
+			substitution: ["zentara-code", "zentara-code-nightly"],
 		})
 
 		expect(generatedPackageJson).toStrictEqual({
-			name: "roo-code-nightly",
-			displayName: "Roo Code Nightly",
+			name: "zentara-code-nightly",
+			displayName: "Zentara Code Nightly",
 			description: "%extension.description%",
-			publisher: "RooVeterinaryInc",
+			publisher: "ZentaraVeterinaryInc",
 			version: "0.0.1",
 			icon: "assets/icons/icon-nightly.png",
 			contributes: {
 				viewsContainers: {
 					activitybar: [
 						{
-							id: "roo-code-nightly-ActivityBar",
+							id: "zentara-code-nightly-ActivityBar",
 							title: "%views.activitybar.title%",
 							icon: "assets/icons/icon.svg",
 						},
 					],
 				},
 				views: {
-					"roo-code-nightly-ActivityBar": [
+					"zentara-code-nightly-ActivityBar": [
 						{
 							type: "webview",
-							id: "roo-code-nightly.SidebarProvider",
+							id: "zentara-code-nightly.SidebarProvider",
 							name: "",
 						},
 					],
 				},
 				commands: [
 					{
-						command: "roo-code-nightly.plusButtonClicked",
+						command: "zentara-code-nightly.plusButtonClicked",
 						title: "%command.newTask.title%",
 						icon: "$(add)",
 					},
 					{
-						command: "roo-code-nightly.openInNewTab",
+						command: "zentara-code-nightly.openInNewTab",
 						title: "%command.openInNewTab.title%",
 						category: "%configuration.title%",
 					},
@@ -159,48 +159,48 @@ describe("generatePackageJson", () => {
 				menus: {
 					"editor/context": [
 						{
-							submenu: "roo-code-nightly.contextMenu",
+							submenu: "zentara-code-nightly.contextMenu",
 							group: "navigation",
 						},
 					],
-					"roo-code-nightly.contextMenu": [
+					"zentara-code-nightly.contextMenu": [
 						{
-							command: "roo-code-nightly.addToContext",
+							command: "zentara-code-nightly.addToContext",
 							group: "1_actions@1",
 						},
 					],
 					"editor/title": [
 						{
-							command: "roo-code-nightly.plusButtonClicked",
+							command: "zentara-code-nightly.plusButtonClicked",
 							group: "navigation@1",
-							when: "activeWebviewPanelId == roo-code-nightly.TabPanelProvider",
+							when: "activeWebviewPanelId == zentara-code-nightly.TabPanelProvider",
 						},
 						{
-							command: "roo-code-nightly.settingsButtonClicked",
+							command: "zentara-code-nightly.settingsButtonClicked",
 							group: "navigation@6",
-							when: "activeWebviewPanelId == roo-code-nightly.TabPanelProvider",
+							when: "activeWebviewPanelId == zentara-code-nightly.TabPanelProvider",
 						},
 						{
-							command: "roo-code-nightly.accountButtonClicked",
+							command: "zentara-code-nightly.accountButtonClicked",
 							group: "navigation@6",
-							when: "activeWebviewPanelId == roo-code-nightly.TabPanelProvider && config.roo-code-nightly.rooCodeCloudEnabled",
+							when: "activeWebviewPanelId == zentara-code-nightly.TabPanelProvider && config.zentara-code-nightly.zentaraCodeCloudEnabled",
 						},
 					],
 				},
 				submenus: [
 					{
-						id: "roo-code-nightly.contextMenu",
+						id: "zentara-code-nightly.contextMenu",
 						label: "%views.contextMenu.label%",
 					},
 					{
-						id: "roo-code-nightly.terminalMenu",
+						id: "zentara-code-nightly.terminalMenu",
 						label: "%views.terminalMenu.label%",
 					},
 				],
 				configuration: {
 					title: "%configuration.title%",
 					properties: {
-						"roo-code-nightly.allowedCommands": {
+						"zentara-code-nightly.allowedCommands": {
 							type: "array",
 							items: {
 								type: "string",
@@ -208,7 +208,7 @@ describe("generatePackageJson", () => {
 							default: ["npm test", "npm install", "tsc", "git log", "git diff", "git show"],
 							description: "%commands.allowedCommands.description%",
 						},
-						"roo-code-nightly.customStoragePath": {
+						"zentara-code-nightly.customStoragePath": {
 							type: "string",
 							default: "",
 							description: "%settings.customStoragePath.description%",

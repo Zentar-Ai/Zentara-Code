@@ -1,4 +1,4 @@
-import type { RooTerminalCallbacks, RooTerminalProcessResultPromise } from "./types"
+import type { ZentaraTerminalCallbacks, ZentaraTerminalProcessResultPromise } from "./types"
 import { BaseTerminal } from "./BaseTerminal"
 import { ExecaTerminalProcess } from "./ExecaTerminalProcess"
 import { mergePromise } from "./mergePromise"
@@ -15,7 +15,7 @@ export class ExecaTerminal extends BaseTerminal {
 		return false
 	}
 
-	public override runCommand(command: string, callbacks: RooTerminalCallbacks): RooTerminalProcessResultPromise {
+	public override runCommand(command: string, callbacks: ZentaraTerminalCallbacks): ZentaraTerminalProcessResultPromise {
 		this.busy = true
 
 		const process = new ExecaTerminalProcess(this)

@@ -1,14 +1,14 @@
 import axios from "axios"
 import { RemoteConfigLoader } from "../RemoteConfigLoader"
-import type { MarketplaceItemType } from "@roo-code/types"
+import type { MarketplaceItemType } from "@zentara-code/types"
 
 // Mock axios
 jest.mock("axios")
 const mockedAxios = axios as jest.Mocked<typeof axios>
 
 // Mock the cloud config
-jest.mock("@roo-code/cloud", () => ({
-	getRooCodeApiUrl: () => "https://test.api.com",
+jest.mock("@zentara-code/cloud", () => ({
+	getZentaraCodeApiUrl: () => "https://test.api.com",
 }))
 
 describe("RemoteConfigLoader", () => {

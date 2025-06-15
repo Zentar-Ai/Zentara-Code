@@ -2,7 +2,7 @@
 
 import { describe, expect, it, jest, beforeEach } from "@jest/globals"
 
-import { TelemetryService } from "@roo-code/telemetry"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { ApiHandler } from "../../../api"
 import { ApiMessage } from "../../task-persistence/apiMessages"
@@ -13,7 +13,7 @@ jest.mock("../../../api/transform/image-cleaning", () => ({
 	maybeRemoveImageBlocks: jest.fn((messages: ApiMessage[], _apiHandler: ApiHandler) => [...messages]),
 }))
 
-jest.mock("@roo-code/telemetry", () => ({
+jest.mock("@zentara-code/telemetry", () => ({
 	TelemetryService: {
 		instance: {
 			captureContextCondensed: jest.fn(),

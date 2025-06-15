@@ -35,8 +35,8 @@ jest.mock(
 		workspace: {
 			getConfiguration: jest.fn(() => ({
 				get: jest.fn((key: string) => {
-					if (key === "rooDebug.pythonPath") return "python" // Provide a default python path
-					if (key === "rooDebug.logLevel") return "info" // Default log level
+					if (key === "zentaraDebug.pythonPath") return "python" // Provide a default python path
+					if (key === "zentaraDebug.logLevel") return "info" // Default log level
 					return undefined
 				}),
 			})),

@@ -1,5 +1,5 @@
 import { groupItemsByType, formatItemText, getTotalItemCount, getUniqueTypes } from "../grouping"
-import { MarketplaceItem } from "@roo-code/types"
+import { MarketplaceItem } from "@zentara-code/types"
 
 describe("grouping utilities", () => {
 	const mockItems: MarketplaceItem[] = [

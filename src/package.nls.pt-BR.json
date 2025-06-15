@@ -1,5 +1,5 @@
 {
-	"extension.displayName": "Roo Code",
+	"extension.displayName": "Zentara Code",
 	"extension.description": "Um agente de código de depuração de tempo de execução dinâmico",
 	"command.newTask.title": "Nova Tarefa",
 	"command.explainCode.title": "Explicar Código",
@@ -13,10 +13,10 @@
 	"command.terminal.fixCommand.title": "Corrigir Este Comando",
 	"command.terminal.explainCommand.title": "Explicar Este Comando",
 	"command.acceptInput.title": "Aceitar Entrada/Sugestão",
-	"views.activitybar.title": "Roo Code",
-	"views.contextMenu.label": "Roo Code",
-	"views.terminalMenu.label": "Roo Code",
-	"views.sidebar.name": "Roo Code",
+	"views.activitybar.title": "Zentara Code",
+	"views.contextMenu.label": "Zentara Code",
+	"views.terminalMenu.label": "Zentara Code",
+	"views.sidebar.name": "Zentara Code",
 	"command.mcpServers.title": "Servidores MCP",
 	"command.prompts.title": "Modos",
 	"command.history.title": "Histórico",
@@ -24,11 +24,11 @@
 	"command.openInEditor.title": "Abrir no Editor",
 	"command.settings.title": "Configurações",
 	"command.documentation.title": "Documentação",
-	"configuration.title": "Roo Code",
+	"configuration.title": "Zentara Code",
 	"commands.allowedCommands.description": "Comandos que podem ser executados automaticamente quando 'Sempre aprovar operações de execução' está ativado",
 	"settings.vsCodeLmModelSelector.description": "Configurações para a API do modelo de linguagem do VSCode",
 	"settings.vsCodeLmModelSelector.vendor.description": "O fornecedor do modelo de linguagem (ex: copilot)",
 	"settings.vsCodeLmModelSelector.family.description": "A família do modelo de linguagem (ex: gpt-4)",
-	"settings.customStoragePath.description": "Caminho de armazenamento personalizado. Deixe vazio para usar o local padrão. Suporta caminhos absolutos (ex: 'D:\\RooCodeStorage')",
-	"settings.rooCodeCloudEnabled.description": "Habilitar Roo Code Cloud."
+	"settings.customStoragePath.description": "Caminho de armazenamento personalizado. Deixe vazio para usar o local padrão. Suporta caminhos absolutos (ex: 'D:\\ZentaraCodeStorage')",
+	"settings.zentaraCodeCloudEnabled.description": "Habilitar Zentara Code Cloud."
 }

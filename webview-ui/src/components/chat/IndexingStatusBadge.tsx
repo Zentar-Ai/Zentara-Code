@@ -3,7 +3,7 @@ import { cn } from "@src/lib/utils"
 import { vscode } from "@src/utils/vscode"
 import { useAppTranslation } from "@/i18n/TranslationContext"
 import { useTooltip } from "@/hooks/useTooltip"
-import type { IndexingStatus, IndexingStatusUpdateMessage } from "@roo/ExtensionMessage"
+import type { IndexingStatus, IndexingStatusUpdateMessage } from "@zentara/ExtensionMessage"
 
 interface IndexingStatusDotProps {
 	className?: string

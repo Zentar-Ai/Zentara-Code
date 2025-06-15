@@ -30,9 +30,9 @@ import {
 	glamaDefaultModelId,
 	unboundDefaultModelId,
 	litellmDefaultModelId,
-} from "@roo-code/types"
+} from "@zentara-code/types"
 
-import type { RouterModels } from "@roo/api"
+import type { RouterModels } from "@zentara/api"
 
 import { useRouterModels } from "./useRouterModels"
 import { useOpenRouterModelProviders } from "./useOpenRouterModelProviders"

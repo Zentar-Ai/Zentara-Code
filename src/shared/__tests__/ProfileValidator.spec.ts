@@ -2,7 +2,7 @@
 
 import { describe, it, expect } from "vitest"
 import { ProfileValidator } from "../ProfileValidator"
-import { OrganizationAllowList, ProviderSettings } from "@roo-code/types"
+import { OrganizationAllowList, ProviderSettings } from "@zentara-code/types"
 
 describe("ProfileValidator", () => {
 	describe("isProfileAllowed", () => {
