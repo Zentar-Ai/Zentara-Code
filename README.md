@@ -1,6 +1,6 @@
 # Zentara Code
 
-**Zentara Code** is an advanced AI-powered coding agent, forked from Zentara-Code, that writes, refactors and debugs code like a professional software engineer—directly inside VS Code.
+**Zentara Code** is your all-in-one AI coding assistant and AI debugger, seamlessly integrated into Visual Studio Code. Whether you're writing new features or fixing bugs, Zentara Code streamlines the process by combining intelligent code generation with powerful runtime AI debugging capabilities.
 
 [More Info](https://zentar.ai)
 
@@ -27,10 +27,10 @@
 Zentara Code goes beyond simple code generation. It's an intelligent agent that can:
 
 - **Write code:** Generate code based on your requirements.
-- **Debug autonomously:** Utilize a full suite of runtime debugging tools to diagnose and fix issues in the code it writes, or in existing codebases.
+- **Use LLM to Debug autonomously:** Utilize a full suite of runtime debugging tools to diagnose and fix issues in the code it writes, or in existing codebases.
 - **Integrate with VS Code:** Seamlessly works within your VS Code environment, using its familiar debugging interfaces.
 
-Zentara Code's powerful debugging operations are primarily utilized when it operates in **Code Mode** (for writing and then debugging code) and **Debug Mode** (for focused debugging tasks). For general information about Zentara Code's broader capabilities as a coding agent (forked from Zentara-Code), please refer to the Zentara-Code documentation at https://github.com/ZentaraCodeInc/Zentara-Code.
+Zentara Code's powerful AI debugging operations are primarily utilized when it operates in **Code Mode** (for writing and then debugging code) and **Debug Mode** (for focused debugging tasks). For general information about Zentara Code's broader capabilities as a coding agent (forked from Zentara-Code), please refer to the Zentara-Code documentation at https://github.com/ZentaraCodeInc/Zentara-Code.
 
 This empowers developers by automating complex coding and debugging tasks, allowing for faster development cycles and more robust software.
 
@@ -38,7 +38,7 @@ This empowers developers by automating complex coding and debugging tasks, allow
 
 - **AI-Powered Code Generation & Modification:**
     - Understands natural language prompts to create and modify code.
-- **Integrated Runtime Debugging:**
+- **Integrated Runtime AI Debugging:**
     - **Full Debug Session Control:** Programmatically launches, and quits debugging sessions.
     - **Precise Execution Control:** Steps through code (over, into, out), sets execution pointers, and runs to specific lines.
     - **Advanced Breakpoint Management:** Sets, removes, and configures conditional, temporary, and standard breakpoints.
@@ -55,13 +55,13 @@ This empowers developers by automating complex coding and debugging tasks, allow
 - **VS Code Native Experience:** Integrates seamlessly with VS Code's debugging infrastructure, providing a familiar and powerful experience.
 
 
-## Detailed Debugging Operations
+## Detailed AI Debugging Operations
 
-Zentara Code provides a rich set of granular debugging operations, allowing for precise control over the debugging process:
+Zentara Code provides a rich set of granular AI debugging operations, allowing for precise control over the debugging process:
 
 ### Session Management
 
-- `debug_launch`: Starts a new debugging session for a specified program or test.
+- `debug_launch`: Starts a new AI debugging session for a specified program or test.
 - `debug_quit`: Terminates the currently running program and exits the debugger.
 
 ### Execution Control
@@ -170,7 +170,7 @@ This tutorial demonstrates debugging a standard Python script. We'll use an exam
 - Ensure `testdata/quicksort_buggy.py` (or your target script) is in your workspace.
 - (Optional) Create a copy to debug, e.g., `testdata/quicksort_buggy.debug.py`.
 
-**b. Initiate Debugging with Zentara Code:**
+**b. Initiate AI Debugging with Zentara Code:**
 Instruct Zentara Code (e.g., in Code Mode or Debug Mode):
 "Zentara, start debugging `testdata/quicksort_buggy.debug.py`"
 _(Zentara Code would use `debug_launch` with `program: "testdata/quicksort_buggy.debug.py"`)_
@@ -204,7 +204,7 @@ _(Zentara Code uses `debug_next` repeatedly, with `debug_evaluate` or `debug_get
 Based on the debugger's output, you might identify the cause.
 "Zentara, it seems the base case for empty lists in `quick_sort` is not handled correctly."
 
-### 2. Debugging Python with Pytest
+### 2. AI Debugging Python with Pytest
 
 This tutorial shows how to debug Python code using `pytest`.
 
@@ -244,7 +244,7 @@ _(Zentara Code uses `debug_next` and variable inspection tools)_
 **f. Diagnose the Bug:**
 By observing the runtime behavior of `testdata/quicksort_buggy.debug.py` as called by the test, you can identify the bug.
 
-### 3. Debugging a JavaScript Script
+### 3. AI Debugging a JavaScript Script
 
 This tutorial covers debugging a typical JavaScript (e.g., Node.js) script. We'll use a buggy Merge Sort example.
 
@@ -279,7 +279,7 @@ _(Zentara Code uses `debug_step_in`, `debug_next` within `merge`, and variable i
 **f. Diagnose the Bug:**
 This detailed inspection, especially of the `merge` function's logic, will help identify the bug.
 
-### 4. Debugging a TypeScript Script
+### 4. AI Debugging a TypeScript Script
 
 This tutorial shows debugging a TypeScript script, which involves a compilation step.
 
