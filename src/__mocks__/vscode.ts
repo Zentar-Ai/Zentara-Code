@@ -176,8 +176,14 @@ export const Position = jest.fn((line, character) => ({
 export const Selection = jest.fn((anchorLine, anchorChar, activeLine, activeChar) => ({
 	anchor: new Position(anchorLine, anchorChar),
 	active: new Position(activeLine, activeChar),
-	start: new Position(Math.min(anchorLine, activeLine), anchorChar < activeChar && anchorLine === activeLine ? anchorChar : Math.min(anchorChar, activeChar)),
-	end: new Position(Math.max(anchorLine, activeLine), anchorChar > activeChar && anchorLine === activeLine ? anchorChar : Math.max(anchorChar, activeChar)),
+	start: new Position(
+		Math.min(anchorLine, activeLine),
+		anchorChar < activeChar && anchorLine === activeLine ? anchorChar : Math.min(anchorChar, activeChar),
+	),
+	end: new Position(
+		Math.max(anchorLine, activeLine),
+		anchorChar > activeChar && anchorLine === activeLine ? anchorChar : Math.max(anchorChar, activeChar),
+	),
 	isReversed: anchorLine > activeLine || (anchorLine === activeLine && anchorChar > activeChar),
 	isEmpty: anchorLine === activeLine && anchorChar === activeChar,
 	isSingleLine: anchorLine === activeLine,
@@ -396,7 +402,7 @@ export class CancellationTokenSource {
 	}
 	cancel() {
 		if (!this._token) {
-			this.token // ensure token is created
+			// this.token // ensure token is created -- Removed as it's redundant and causes lint error
 		}
 		if (!this._token.isCancellationRequested) {
 			this._token.isCancellationRequested = true
@@ -440,4 +446,4 @@ const mockVSCode = {
 
 // Ensure all top-level exports are also part of the default export
 // This can help with how Jest resolves the mock.
-export default mockVSCode;
+export default mockVSCode

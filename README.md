@@ -1,4 +1,5 @@
 # AI Coder and AI debugger two-in-one: Zentara Code
+
 **Zentara Code** is your all-in-one AI coding assistant and AI debugger, seamlessly integrated into Visual Studio Code. Whether you're writing new features or fixing bugs, Zentara Code streamlines the process by combining intelligent code generation with powerful runtime AI debugging capabilities.
 
 [More Info](https://zentar.ai)
@@ -14,10 +15,9 @@
 - [Roadmap & Changelog](#roadmap--changelog)
 - [Contributing](#contributing)
 - [License](#license)
-  </details>
+    </details>
 
 ---
-
 
 [![Watch the Zentara Code Demo Video](assets/images/demo.png)](https://www.youtube.com/watch?v=tzaHKvC98jE)
 
@@ -53,8 +53,15 @@ This empowers developers by automating complex coding and debugging tasks, allow
     - Leverages the Debug Adapter Protocol (DAP) to debug any programming language that has a DAP-compliant debugger available in VS Code. This means Zentara Code is not limited to specific languages but can adapt to your project's needs.
 - **VS Code Native Experience:** Integrates seamlessly with VS Code's debugging infrastructure, providing a familiar and powerful experience.
 
+<<<<<<< HEAD
 
 ## Detailed AI Debugging Operations
+
+=======
+
+## Detailed Debugging Operations
+
+> > > > > > > 4297b4b1 (docs: add Twitter follow link to README)
 
 Zentara Code provides a rich set of granular AI debugging operations, allowing for precise control over the debugging process:
 
@@ -152,7 +159,7 @@ If you want to contribute or run the latest development version:
 
 ## Quick Example
 
-***Important***: This extension has been validated with Google Gemini 2.5 Pro (build 0506). Other models are not fully supported because they cannot invoke the function tool reliably.
+**_Important_**: This extension has been validated with Google Gemini 2.5 Pro (build 0506). Other models are not fully supported because they cannot invoke the function tool reliably.
 
 Here are a few examples of how you can use Zentara Code to debug different types of projects.
 The example scripts (`quicksort_buggy.py`, `test_quicksort_pytest.py`, `merge_sort_buggy.js`, `insertion_sort_buggy.ts`, etc.) mentioned in these tutorials can be found in the `testdata/` directory of this repository.
@@ -356,8 +363,12 @@ We're constantly evolving Zentara Code. Check out our [issue tracker](https://gi
 
 Zentara Code thrives on community involvement! We welcome contributions of all kinds.
 
-- **[Issue Tracker](https://github.com/Zentar-Ai/zentara-code/issues)** 
+- **[Issue Tracker](https://github.com/Zentar-Ai/zentara-code/issues)**
 - **[Code of Conduct](CODE_OF_CONDUCT.md)**
+
+## Follow Us
+
+Follow us on Twitter: [@ZentaraCode](https://twitter.com/ZentaraCode)
 
 ## License
 
