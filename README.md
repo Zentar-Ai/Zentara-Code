@@ -53,16 +53,8 @@ This empowers developers by automating complex coding and debugging tasks, allow
     - Leverages the Debug Adapter Protocol (DAP) to debug any programming language that has a DAP-compliant debugger available in VS Code. This means Zentara Code is not limited to specific languages but can adapt to your project's needs.
 - **VS Code Native Experience:** Integrates seamlessly with VS Code's debugging infrastructure, providing a familiar and powerful experience.
 
-<<<<<<< HEAD
-
-## Detailed AI Debugging Operations
-
-=======
 
 ## Detailed Debugging Operations
-
-> > > > > > > 4297b4b1 (docs: add Twitter follow link to README)
-
 Zentara Code provides a rich set of granular AI debugging operations, allowing for precise control over the debugging process:
 
 ### Session Management
