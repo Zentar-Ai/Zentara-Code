@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useState, useRef } from "react"
 import knuthShuffle from "knuth-shuffle-seeded"
 import { Trans } from "react-i18next"
 import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
@@ -20,6 +20,8 @@ const WelcomeView = () => {
 	const { apiConfiguration, currentApiConfigName, setApiConfiguration, uriScheme, machineId } = useExtensionState()
 	const { t } = useAppTranslation()
 	const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
+	const wasTextSelectedInMouseEvent = useRef(false)
+	const mouseDownPositionRef = useRef<{ x: number; y: number } | null>(null)
 
 	// Memoize the setApiConfigurationField function to pass to ApiOptions
 	const setApiConfigurationFieldForApiOptions = useCallback(
@@ -96,7 +98,39 @@ const WelcomeView = () => {
 									href={provider.authUrl}
 									className="flex-1 border border-vscode-panel-border hover:bg-secondary rounded-lg py-4 px-6 mb-2 flex flex-row gap-4 cursor-pointer transition-all no-underline text-inherit"
 									target="_blank"
-									rel="noopener noreferrer">
+									rel="noopener noreferrer"
+									onMouseDown={(event: React.MouseEvent) => {
+										// Store mouse down position
+										mouseDownPositionRef.current = { x: event.clientX, y: event.clientY }
+										// Reset selection flag on mouse down
+										wasTextSelectedInMouseEvent.current = false
+									}}
+									onMouseUp={(event: React.MouseEvent) => {
+										const DRAG_THRESHOLD = 5 // pixels
+										let dragged = false
+										if (mouseDownPositionRef.current) {
+											const deltaX = Math.abs(event.clientX - mouseDownPositionRef.current.x)
+											const deltaY = Math.abs(event.clientY - mouseDownPositionRef.current.y)
+											if (deltaX > DRAG_THRESHOLD || deltaY > DRAG_THRESHOLD) {
+												dragged = true
+											}
+										}
+
+										// Check if text was selected or if mouse was dragged
+										if (window.getSelection()?.toString().trim() || dragged) {
+											wasTextSelectedInMouseEvent.current = true
+										}
+										mouseDownPositionRef.current = null // Reset for next interaction
+									}}
+									onClick={(event: React.MouseEvent) => {
+										if (wasTextSelectedInMouseEvent.current) {
+											// If text was selected or mouse dragged, prevent navigation.
+											event.preventDefault()
+											// The flag will be reset by the next onMouseDown.
+											return
+										}
+										// Otherwise, allow default link behavior (navigation)
+									}}>
 									<div className="w-10 h-10">
 										<img
 											src={`${imagesBaseUri}/${provider.slug}.png`}

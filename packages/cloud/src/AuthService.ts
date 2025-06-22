@@ -247,8 +247,8 @@ export class AuthService extends EventEmitter<AuthServiceEvents> {
 			const state = crypto.randomBytes(16).toString("hex")
 			await this.context.globalState.update(AUTH_STATE_KEY, state)
 			const packageJSON = this.context.extension?.packageJSON
-			const publisher = packageJSON?.publisher ?? "RooVeterinaryInc"
-			const name = packageJSON?.name ?? "roo-cline"
+			const publisher = packageJSON?.publisher ?? "ZentarAI"
+			const name = packageJSON?.name ?? "roo-code"
 			const params = new URLSearchParams({
 				state,
 				auth_redirect: `${vscode.env.uriScheme}://${publisher}.${name}`,

@@ -233,8 +233,10 @@ export const openClineInNewTab = async ({ context, outputChannel }: Omit<Registe
 	// TODO: Use better svg icon with light and dark variants (see
 	// https://stackoverflow.com/questions/58365687/vscode-extension-iconpath).
 	newPanel.iconPath = {
-		light: vscode.Uri.joinPath(context.extensionUri, "assets", "icons", "panel_light.png"),
-		dark: vscode.Uri.joinPath(context.extensionUri, "assets", "icons", "panel_dark.png"),
+		//light: vscode.Uri.joinPath(context.extensionUri, "assets", "icons", "panel_light.png"),
+		//dark: vscode.Uri.joinPath(context.extensionUri, "assets", "icons", "panel_dark.png"),
+		light: vscode.Uri.joinPath(context.extensionUri, "assets", "icons", "icon.png"),
+		dark: vscode.Uri.joinPath(context.extensionUri, "assets", "icons", "icon.png"),
 	}
 
 	await tabProvider.resolveWebviewView(newPanel)

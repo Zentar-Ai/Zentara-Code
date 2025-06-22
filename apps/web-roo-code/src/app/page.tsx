@@ -47,7 +47,7 @@ export default async function Home() {
 									size="lg"
 									className="w-full hover:bg-gray-200 dark:bg-white dark:text-black sm:w-auto">
 									<a
-										href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline"
+										href="https://marketplace.visualstudio.com/items?itemName=ZentarAI.roo-code"
 										target="_blank"
 										className="flex w-full items-center justify-center">
 										Install Roo Code
@@ -66,7 +66,7 @@ export default async function Home() {
 								</Button>
 								<Button variant="outline" size="lg" className="w-full sm:w-auto">
 									<a
-										href="https://docs.roocode.com"
+										href="https://docs.zentar.ai"
 										target="_blank"
 										className="flex w-full items-center justify-center">
 										View Documentation

@@ -181,6 +181,10 @@ export const webviewMessageHandler = async (
 			await updateGlobalState("alwaysAllowSubtasks", message.bool)
 			await provider.postStateToWebview()
 			break
+		case "alwaysAllowDebug":
+			await updateGlobalState("alwaysAllowDebug", message.bool)
+			await provider.postStateToWebview()
+			break
 		case "askResponse":
 			provider.getCurrentCline()?.handleWebviewAskResponse(message.askResponse!, message.text, message.images)
 			break
@@ -1655,5 +1659,17 @@ export const webviewMessageHandler = async (
 			}
 			break
 		}
+		case "logToDebugConsole":
+			if (vscode.debug.activeDebugConsole) {
+				const { logLevel, logMessage, logData } = message
+				const prefix = `[WEBVIEW ${logLevel?.toUpperCase() || "LOG"}]`
+				let fullMessage = `${prefix} ${logMessage}`
+				if (logData) {
+					// logData is already a JSON string
+					fullMessage += `\nData: ${logData}`
+				}
+				vscode.debug.activeDebugConsole.appendLine(fullMessage)
+			}
+			break
 	}
 }

@@ -74,6 +74,7 @@ export interface WebviewMessage {
 		| "autoCondenseContextPercent"
 		| "condensingApiConfigId"
 		| "updateCondensingPrompt"
+		| "alwaysAllowDebug"
 		| "playSound"
 		| "playTts"
 		| "stopTts"
@@ -171,6 +172,7 @@ export interface WebviewMessage {
 		| "marketplaceInstallResult"
 		| "fetchMarketplaceData"
 		| "switchTab"
+		| "logToDebugConsole" // Added for logging from webview to extension host debug console
 		| "profileThresholds"
 	text?: string
 	tab?: "settings" | "history" | "mcp" | "modes" | "chat" | "marketplace" | "account"
@@ -209,6 +211,10 @@ export interface WebviewMessage {
 	mpItem?: MarketplaceItem
 	mpInstallOptions?: InstallMarketplaceItemOptions
 	config?: Record<string, any> // Add config to the payload
+	// Properties for logToDebugConsole message type
+	logLevel?: "info" | "warn" | "error" | "debug"
+	logMessage?: string
+	logData?: string // JSON stringified data
 	visibility?: "organization" | "public" // For share visibility
 }
 

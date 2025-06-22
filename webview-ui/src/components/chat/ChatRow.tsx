@@ -107,6 +107,23 @@ export const ChatRowContent = ({
 	const [showCopySuccess, setShowCopySuccess] = useState(false)
 	const { copyWithFeedback } = useCopyToClipboard()
 
+	const logToExtensionHost = useCallback(
+		(logLevel: "info" | "warn" | "error" | "debug", message: string, data?: any) => {
+			vscode.postMessage({
+				type: "logToDebugConsole", // Message type for the extension host
+				logLevel: logLevel,
+				logMessage: message, // Corrected property name
+				logData: data ? JSON.stringify(data, null, 2) : undefined, // Corrected property name
+			})
+		},
+		[],
+	)
+
+	useEffect(() => {
+		// Dummy call to satisfy linter for logToExtensionHost
+		logToExtensionHost("debug", "ChatRowContent mounted")
+	}, [logToExtensionHost])
+
 	// Memoized callback to prevent re-renders caused by inline arrow functions
 	const handleToggleExpand = useCallback(() => {
 		onToggleExpand(message.ts)
@@ -283,6 +300,24 @@ export const ChatRowContent = ({
 		}
 		return null
 	}, [message.type, message.ask, message.partial, message.text])
+
+	const displayableArgs = useMemo(() => {
+		// Only attempt to parse for the "debug" tool
+		if (tool?.tool !== "debug" || !tool?.content || tool.content === "(No arguments)") {
+			return null
+		}
+		try {
+			const args = JSON.parse(tool.content)
+			// Ensure it's an object and has keys
+			if (typeof args === "object" && args !== null && Object.keys(args).length > 0) {
+				return args
+			}
+		} catch (e) {
+			// Not a valid JSON string or not an object, so no structured args to display
+			console.error("Error parsing tool content for debug args:", e)
+		}
+		return null // Fallback: no displayable structured arguments
+	}, [tool])
 
 	if (tool) {
 		const toolIcon = (name: string) => (
@@ -760,6 +795,81 @@ export const ChatRowContent = ({
 							<div style={{ padding: "12px 16px", backgroundColor: "var(--vscode-editor-background)" }}>
 								<MarkdownBlock markdown={t("chat:subtasks.completionInstructions")} />
 							</div>
+						</div>
+					</>
+				)
+			case "debug":
+				return (
+					<>
+						{/* Outer header - always shown */}
+						<div style={headerStyle}>
+							{toolIcon("debug")}
+							<span style={{ fontWeight: "bold" }}>
+								{(() => {
+									//logToExtensionHost("info", "ChatRow.tsx - tool object (before operationName in wantsToExecute):", tool);
+									const operationName = tool.operation
+									return t("chat:ask.debug.wantsToExecute", { operation: operationName })
+								})()}
+							</span>
+						</div>
+
+						{/* Inner bordered box - always shown */}
+						<div
+							style={{
+								marginTop: "4px",
+								backgroundColor: "var(--vscode-editor-background)",
+								border: "1px solid var(--vscode-editorGroup-border)",
+								borderRadius: "4px",
+								overflow: "hidden",
+								marginBottom: "8px",
+							}}>
+							{/* "Debug Operation: {{operation}}" title bar - always shown */}
+							<div
+								style={{
+									padding: "9px 10px 9px 14px",
+									backgroundColor: "var(--vscode-textCodeBlock-background)",
+									borderBottom: displayableArgs
+										? "1px solid var(--vscode-editorGroup-border)"
+										: "none",
+									fontWeight: "bold",
+									fontSize: "var(--vscode-font-size)",
+									color: "var(--vscode-editor-foreground)",
+									display: "flex",
+									alignItems: "center",
+									gap: "6px",
+								}}>
+								<span className="codicon codicon-debug-console"></span>
+								{(() => {
+									//logToExtensionHost("info", "ChatRow.tsx - tool object (before operationName in operation title):", tool);
+									const operationName = tool.operation
+									return t("chat:ask.debug.operation", { operation: operationName })
+								})()}
+							</div>
+
+							{/* Conditionally render the arguments content area */}
+							{displayableArgs && (
+								<div
+									style={{
+										padding: "12px 16px",
+										backgroundColor: "var(--vscode-editor-background)",
+									}}>
+									<div style={{ ...pStyle, display: "flex", flexDirection: "column", gap: "2px" }}>
+										{Object.entries(displayableArgs).map(([key, value]) => (
+											<div key={key} style={{ display: "flex" }}>
+												<strong
+													style={{ minWidth: "120px", marginRight: "8px", flexShrink: 0 }}>
+													{key}:
+												</strong>
+												<span>
+													{typeof value === "object" && value !== null
+														? JSON.stringify(value)
+														: String(value)}
+												</span>
+											</div>
+										))}
+									</div>
+								</div>
+							)}
 						</div>
 					</>
 				)

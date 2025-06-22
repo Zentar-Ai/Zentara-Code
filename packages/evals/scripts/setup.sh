@@ -107,7 +107,7 @@ check_docker_services() {
 if [[ "$(uname -s)" != "Darwin" ]]; then
   echo "⚠️ Only macOS is currently supported."
   echo "The Roo Code evals system can also be run with Docker on any platform."
-  echo "See https://github.com/RooCodeInc/Roo-Code/blob/main/packages/evals/README.md for instructions."
+  echo "See https://github.com/Zentar-Ai/Roo-Codeblob/main/packages/evals/README.md for instructions."
   exit 1
 fi
 
@@ -328,15 +328,15 @@ code --install-extension redhat.java &>/dev/null || exit 1
 code --install-extension ms-python.python&>/dev/null || exit 1
 code --install-extension rust-lang.rust-analyzer &>/dev/null || exit 1
 
-if ! code --list-extensions 2>/dev/null | grep -q "RooVeterinaryInc.roo-cline"; then
-  code --install-extension RooVeterinaryInc.roo-cline &>/dev/null || exit 1
+if ! code --list-extensions 2>/dev/null | grep -q "ZentarAI.roo-code"; then
+  code --install-extension ZentarAI.roo-code &>/dev/null || exit 1
 fi
 
 echo "✅ Done"
 
 if [[ ! -d "../../../evals" ]]; then
   echo -n "🔗 Cloning evals repository... "
-  git clone https://github.com/RooCodeInc/Roo-Code-Evals.git ../../../evals || exit 1
+  git clone https://github.com/Zentar-Ai/roo-code-Evals.git ../../../evals || exit 1
   echo "✅ Done"
 else
   echo -n "🔄 Updating evals repository... "

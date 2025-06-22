@@ -1,19 +1,19 @@
 name: Detailed Feature Proposal
-description: Report a specific problem that needs solving in Roo Code
+description: Report a specific problem that needs solving in Zentara
 labels: ["proposal", "enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        **Thank you for submitting a feature request for Roo Code!**
+        **Thank you for submitting a feature request for Zentara!**
         
         This template helps you describe problems that need solving. Focus on the problem - the Roo team will work to design solutions unless you want to contribute the implementation yourself.
         
         **Quality over speed:** We prefer detailed, clear problem descriptions over quick ones. Vague requests often get closed or require multiple rounds of clarification, which wastes everyone's time.
         
         **Before submitting:**
-        - Search existing [Issues](https://github.com/RooCodeInc/Roo-Code/issues) and [Discussions](https://github.com/RooCodeInc/Roo-Code/discussions) to avoid duplicates
-        - For general ideas, use [GitHub Discussions](https://github.com/RooCodeInc/Roo-Code/discussions/categories/feature-requests) instead of this template.
+        - Search existing [Issues](https://github.com/Zentar-Ai/Roo-Code/issues) and [Discussions](https://github.com/Zentar-Ai/Roo-Code/discussions) to avoid duplicates
+        - For general ideas, use [GitHub Discussions](https://github.com/Zentar-Ai/Roo-Code/discussions/categories/feature-requests) instead of this template.
 
   - type: markdown
     attributes:
@@ -83,7 +83,7 @@ body:
         
         **For contributors who continue:**
         - A maintainer (especially @hannesrudolph) will review this proposal. **Do not start implementation until approved and assigned.** We're a small team with limited resources, so every code addition needs careful consideration. We're always happy to receive clear, actionable proposals though!
-        - Join [Discord](https://discord.gg/roocode) and DM **Hannes Rudolph** (`hrudolph`) for guidance on implementation
+        - Join [Discord](https://discord.gg/zentar) and DM **Hannes Rudolph** (`hrudolph`) for guidance on implementation
         - Check our [Roadmap](https://github.com/orgs/RooCodeInc/projects/1/views/1?query=sort%3Aupdated-desc+is%3Aopen&filterQuery=is%3Aissue%2Copen%2Cclosed+label%3A%22feature+request%22+status%3A%22Issue+%5BUnassigned%5D%22%2C%22Issue+%5BIn+Progress%5D%22) to see open feature requests ready to be implemented or currently being worked on
 
   - type: checkboxes

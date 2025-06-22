@@ -10,9 +10,24 @@
 		"clean": {
 			"cache": false
 		},
+		"generate-root-assets": {
+			"outputs": ["dist/**", "out/**"],
+			"inputs": [
+				"esbuild.js",
+				"src/zentara_debug/src/debug_helper/**",
+				"src/i18n/locales/**",
+				"node_modules/tiktoken/tiktoken_bg.wasm",
+				"node_modules/web-tree-sitter/tree-sitter.wasm",
+				"node_modules/tree-sitter-wasms/out/**"
+			]
+		},
 		"build": {
 			"outputs": ["dist/**"],
-			"inputs": ["src/**", "package.json", "tsconfig.json", "tsup.config.ts", "vite.config.ts"]
+			"inputs": ["src/**", "package.json", "tsconfig.json", "tsup.config.ts", "vite.config.ts", "esbuild.mjs"]
+		},
+		"vsix": {
+			"dependsOn": ["^build", "generate-root-assets"],
+			"outputs": ["bin/*.vsix", "../bin/*.vsix"]
 		},
 		"watch:tsc": {
 			"cache": false

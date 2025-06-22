@@ -1,6 +1,6 @@
 {
 	"greeting": "Welcome to Roo Code!",
-	"introduction": "With a range of built-in and extensible Modes, Roo Code lets you plan, architect, code, debug and boost your productivity like never before.",
+	"introduction": "<strong> Roo Code (a fork of [PLCHLD] Code) is the runtime aware debugging code agent.</strong> Get ready to architect, code, debug, and boost your productivity like you've never seen before. To continue, Roo Code requires an API key.",
 	"notice": "To get started, this extension needs an API provider.",
 	"start": "Let's go!",
 	"routers": {

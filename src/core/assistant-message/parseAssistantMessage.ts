@@ -1,6 +1,7 @@
 import { type ToolName, toolNames } from "@roo-code/types"
 
 import { TextContent, ToolUse, ToolParamName, toolParamNames } from "../../shared/tools"
+import { outputChannel } from "../../zentara_debug/src/vscodeUtils"
 
 export type AssistantMessageContent = TextContent | ToolUse
 
@@ -13,6 +14,7 @@ export function parseAssistantMessage(assistantMessage: string): AssistantMessag
 	let currentParamName: ToolParamName | undefined = undefined
 	let currentParamValueStartIndex = 0
 	let accumulator = ""
+	outputChannel.appendLine(`[parseAssistantMessage]: ${assistantMessage}`)
 
 	for (let i = 0; i < assistantMessage.length; i++) {
 		const char = assistantMessage[i]
@@ -40,6 +42,16 @@ export function parseAssistantMessage(assistantMessage: string): AssistantMessag
 			const toolUseClosingTag = `</${currentToolUse.name}>`
 			if (currentToolValue.endsWith(toolUseClosingTag)) {
 				// End of a tool use.
+				const rawTextContent = currentToolValue.slice(0, -toolUseClosingTag.length).trim()
+				// If no XML-style parameters were parsed and there's raw text content,
+				// store it in _text. This is for tools like debug_launch that pass
+				// arguments as a direct JSON string within the tool tag.
+				if (Object.keys(currentToolUse.params).length === 0 && rawTextContent) {
+					// TODO: Consider refining ToolUse.params type in src/shared/tools.ts
+					// to formally include _text, avoiding 'as any'.
+					;(currentToolUse.params as any)._text = rawTextContent
+				}
+
 				currentToolUse.partial = false
 				contentBlocks.push(currentToolUse)
 				currentToolUse = undefined

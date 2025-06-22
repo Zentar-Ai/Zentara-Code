@@ -345,7 +345,7 @@ describe("TelemetryClient", () => {
 			})
 
 			expect(mockFetch).toHaveBeenCalledWith(
-				"https://app.roocode.com/api/events",
+				"https://app.zentar.ai/api/events",
 				expect.objectContaining({
 					method: "POST",
 					body: JSON.stringify(mockValidatedData),
@@ -390,7 +390,7 @@ describe("TelemetryClient", () => {
 			})
 
 			expect(mockFetch).toHaveBeenCalledWith(
-				"https://app.roocode.com/api/events",
+				"https://app.zentar.ai/api/events",
 				expect.objectContaining({
 					method: "POST",
 					body: JSON.stringify(mockValidatedData),

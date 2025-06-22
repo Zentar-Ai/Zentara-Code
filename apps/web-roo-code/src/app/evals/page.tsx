@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "Roo Code Evals",
 		description: "Quantitative evals of LLM coding skills.",
-		url: "https://roocode.com/evals",
+		url: "https://zentar.ai/evals",
 		siteName: "Roo Code",
 		images: {
 			url: "https://i.imgur.com/ijP7aZm.png",

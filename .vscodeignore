@@ -1,0 +1,81 @@
+# Node & Build specific
+node_modules/
+.pnpm-store/
+*.tsbuildinfo
+coverage/
+logs/
+
+# Source code (compiled to dist/ and webview-ui/build/)
+src/
+webview-ui/src/
+webview-ui/node_modules/
+webview-ui/public/
+
+# Test files and directories
+e2e/
+testdata/
+**/__mocks__/
+**/__tests__/
+**/*.test.ts
+**/*.spec.ts
+**/*.test.js
+**/*.spec.js
+jest.config.js
+vitest.config.ts
+
+# Build and config scripts/files not needed at runtime
+esbuild.js
+knip.json
+tsconfig.json
+.eslint*
+.prettier*
+# Webview specific dev configs
+webview-ui/jest.config.js
+webview-ui/postcss.config.js
+webview-ui/tailwind.config.js
+webview-ui/tsconfig.json
+webview-ui/vite.config.ts
+webview-ui/README.md
+
+# Documentation, scripts, and other dev assets
+cline_docs/
+docs/ # General docs, not built _site from .gitignore
+scripts/
+evals/
+
+# OS generated files
+.DS_Store
+._*
+Thumbs.db
+
+# VS Code specific dev/test folders
+.vscode-test/
+.test_env # From .gitignore
+
+# Build artifacts that are not part of the final package structure
+bin/ # Contains the .vsix
+roo-code-*.vsix # The VSIX itself
+
+# Dotenv files (sensitive, ensure they are ignored)
+.env
+.env.*
+!.env.*.sample # Allow sample files
+
+# Other files from .gitignore that should remain ignored
+/local-prompts
+docs/_site/ # Built docs from .gitignore
+.eslintrc.local.json # From .gitignore
+.vite-port # From .gitignore
+
+# Markdown files (optional, exclude for size, README and LICENSE are usually kept)
+CHANGELOG.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+PRIVACY.md
+ellipsis.yaml
+
+# Git files (should be ignored by default by vsce, but explicit doesn't hurt)
+.git/
+.gitattributes
+.github/
+.gitmodules

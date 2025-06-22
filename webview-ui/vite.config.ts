@@ -61,7 +61,7 @@ export default defineConfig(({ mode }) => {
 		"process.env.VSCODE_TEXTMATE_DEBUG": JSON.stringify(process.env.VSCODE_TEXTMATE_DEBUG),
 		"process.env.PKG_NAME": JSON.stringify(pkg.name),
 		"process.env.PKG_VERSION": JSON.stringify(pkg.version),
-		"process.env.PKG_OUTPUT_CHANNEL": JSON.stringify("Roo-Code"),
+		"process.env.PKG_OUTPUT_CHANNEL": JSON.stringify("roo-code"),
 		...(gitSha ? { "process.env.PKG_SHA": JSON.stringify(gitSha) } : {}),
 	}
 
@@ -76,7 +76,7 @@ export default defineConfig(({ mode }) => {
 
 		define["process.env.PKG_NAME"] = JSON.stringify(nightlyPkg.name)
 		define["process.env.PKG_VERSION"] = JSON.stringify(nightlyPkg.version)
-		define["process.env.PKG_OUTPUT_CHANNEL"] = JSON.stringify("Roo-Code-Nightly")
+		define["process.env.PKG_OUTPUT_CHANNEL"] = JSON.stringify("roo-code-Nightly")
 	}
 
 	const plugins: PluginOption[] = [react(), tailwindcss(), persistPortPlugin(), wasmPlugin()]
@@ -84,11 +84,13 @@ export default defineConfig(({ mode }) => {
 	return {
 		plugins,
 		resolve: {
-			alias: {
-				"@": resolve(__dirname, "./src"),
-				"@src": resolve(__dirname, "./src"),
-				"@roo": resolve(__dirname, "../src/shared"),
-			},
+			alias: [
+				{ find: "@", replacement: resolve(__dirname, "./src") },
+				{ find: "@src", replacement: resolve(__dirname, "./src") },
+				{ find: "@roo", replacement: resolve(__dirname, "../src/shared") },
+				{ find: "@roo-code/types", replacement: resolve(__dirname, "../packages/types/src/index.ts") },
+				{ find: /^@roo-code\/(.+)$/, replacement: path.resolve(__dirname, "../packages") + "/$1/src" },
+			],
 		},
 		build: {
 			outDir,

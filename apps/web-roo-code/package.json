@@ -12,7 +12,6 @@
 	"dependencies": {
 		"@radix-ui/react-dialog": "^1.1.14",
 		"@radix-ui/react-slot": "^1.2.3",
-		"@roo-code/evals": "workspace:^",
 		"@roo-code/types": "workspace:^",
 		"@tanstack/react-query": "^5.79.0",
 		"class-variance-authority": "^0.7.1",

@@ -61,7 +61,7 @@ describe("QdrantVectorStore", () => {
 			url: mockQdrantUrl,
 			apiKey: mockApiKey,
 			headers: {
-				"User-Agent": "Roo-Code",
+				"User-Agent": "roo-code",
 			},
 		})
 		expect(createHash).toHaveBeenCalledWith("sha256")
@@ -78,7 +78,7 @@ describe("QdrantVectorStore", () => {
 			url: "http://localhost:6333", // Should use default QDRANT_URL
 			apiKey: undefined,
 			headers: {
-				"User-Agent": "Roo-Code",
+				"User-Agent": "roo-code",
 			},
 		})
 	})
@@ -90,7 +90,7 @@ describe("QdrantVectorStore", () => {
 			url: mockQdrantUrl,
 			apiKey: undefined,
 			headers: {
-				"User-Agent": "Roo-Code",
+				"User-Agent": "roo-code",
 			},
 		})
 	})
