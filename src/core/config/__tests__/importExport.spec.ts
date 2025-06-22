@@ -5,8 +5,8 @@ import * as path from "path"
 
 import * as vscode from "vscode"
 
-import type { ProviderName } from "@roo-code/types"
-import { TelemetryService } from "@roo-code/telemetry"
+import type { ProviderName } from "@zentara-code/types"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { importSettings, exportSettings } from "../importExport"
 import { ProviderSettingsManager } from "../ProviderSettingsManager"
@@ -357,7 +357,7 @@ describe("importExport", () => {
 
 		it("should export settings to the selected file location", async () => {
 			;(vscode.window.showSaveDialog as Mock).mockResolvedValue({
-				fsPath: "/mock/path/roo-code-settings.json",
+				fsPath: "/mock/path/zentara-code-settings.json",
 			})
 
 			const mockProviderProfiles = {
@@ -385,7 +385,7 @@ describe("importExport", () => {
 			expect(fs.mkdir).toHaveBeenCalledWith("/mock/path", { recursive: true })
 
 			expect(fs.writeFile).toHaveBeenCalledWith(
-				"/mock/path/roo-code-settings.json",
+				"/mock/path/zentara-code-settings.json",
 				JSON.stringify({ providerProfiles: mockProviderProfiles, globalSettings: mockGlobalSettings }, null, 2),
 				"utf-8",
 			)
@@ -393,7 +393,7 @@ describe("importExport", () => {
 
 		it("should include globalSettings when allowedMaxRequests is null", async () => {
 			;(vscode.window.showSaveDialog as Mock).mockResolvedValue({
-				fsPath: "/mock/path/roo-code-settings.json",
+				fsPath: "/mock/path/zentara-code-settings.json",
 			})
 
 			const mockProviderProfiles = {
@@ -418,7 +418,7 @@ describe("importExport", () => {
 			})
 
 			expect(fs.writeFile).toHaveBeenCalledWith(
-				"/mock/path/roo-code-settings.json",
+				"/mock/path/zentara-code-settings.json",
 				JSON.stringify({ providerProfiles: mockProviderProfiles, globalSettings: mockGlobalSettings }, null, 2),
 				"utf-8",
 			)
@@ -426,7 +426,7 @@ describe("importExport", () => {
 
 		it("should handle errors during the export process", async () => {
 			;(vscode.window.showSaveDialog as Mock).mockResolvedValue({
-				fsPath: "/mock/path/roo-code-settings.json",
+				fsPath: "/mock/path/zentara-code-settings.json",
 			})
 
 			mockProviderSettingsManager.export.mockResolvedValue({
@@ -453,7 +453,7 @@ describe("importExport", () => {
 
 		it("should handle errors during directory creation", async () => {
 			;(vscode.window.showSaveDialog as Mock).mockResolvedValue({
-				fsPath: "/mock/path/roo-code-settings.json",
+				fsPath: "/mock/path/zentara-code-settings.json",
 			})
 
 			mockProviderSettingsManager.export.mockResolvedValue({
@@ -490,7 +490,7 @@ describe("importExport", () => {
 				defaultUri: expect.anything(),
 			})
 
-			expect(vscode.Uri.file).toHaveBeenCalledWith(path.join("/mock/home", "Documents", "roo-code-settings.json"))
+			expect(vscode.Uri.file).toHaveBeenCalledWith(path.join("/mock/home", "Documents", "zentara-code-settings.json"))
 		})
 	})
 })

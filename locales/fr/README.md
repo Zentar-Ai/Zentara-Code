@@ -12,30 +12,30 @@
 </div>
 <br>
 <div align="center">
-  <h2>Rejoignez la communauté Roo Code</h2>
+  <h2>Rejoignez la communauté Zentara Code</h2>
   <p>Connectez-vous avec des développeurs, contribuez avec vos idées et restez à jour avec les derniers outils de programmation propulsés par l'IA.</p>
   
-  <a href="https://discord.gg/roocode" target="_blank"><img src="https://img.shields.io/badge/Rejoindre%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Rejoindre Discord"></a>
-  <a href="https://www.reddit.com/r/RooCode/" target="_blank"><img src="https://img.shields.io/badge/Rejoindre%20Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white" alt="Rejoindre Reddit"></a>
+  <a href="https://discord.gg/zentaracode" target="_blank"><img src="https://img.shields.io/badge/Rejoindre%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Rejoindre Discord"></a>
+  <a href="https://www.reddit.com/r/ZentaraCode/" target="_blank"><img src="https://img.shields.io/badge/Rejoindre%20Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white" alt="Rejoindre Reddit"></a>
   
 </div>
 <br>
 <br>
 
 <div align="center">
-<h1>Roo Code (anciennement Roo Cline)</h1>
+<h1>Zentara Code (anciennement Zentara Cline)</h1>
 <p align="center">
-<img src="https://media.githubusercontent.com/media/RooCodeInc/Roo-Code/main/src/assets/docs/demo.gif" width="100%" />
+<img src="https://media.githubusercontent.com/media/ZentaraCodeInc/Zentara-Code/main/src/assets/docs/demo.gif" width="100%" />
 </p>
 
-<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-code" target="_blank"><img src="https://img.shields.io/badge/T%C3%A9l%C3%A9charger%20sur%20VS%20Marketplace-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="Télécharger sur VS Marketplace"></a>
-<a href="https://github.com/RooCodeInc/Roo-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop" target="_blank"><img src="https://img.shields.io/badge/Demandes%20de%20fonctionnalit%C3%A9s-yellow?style=for-the-badge" alt="Demandes de fonctionnalités"></a>
-<a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-code&ssr=false#review-details" target="_blank"><img src="https://img.shields.io/badge/%C3%89valuer%20%26%20Commenter-green?style=for-the-badge" alt="Évaluer & Commenter"></a>
-<a href="https://docs.roocode.com" target="_blank"><img src="https://img.shields.io/badge/Documentation-6B46C1?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentation"></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=ZentaraVeterinaryInc.zentara-code" target="_blank"><img src="https://img.shields.io/badge/T%C3%A9l%C3%A9charger%20sur%20VS%20Marketplace-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="Télécharger sur VS Marketplace"></a>
+<a href="https://github.com/ZentaraCodeInc/Zentara-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop" target="_blank"><img src="https://img.shields.io/badge/Demandes%20de%20fonctionnalit%C3%A9s-yellow?style=for-the-badge" alt="Demandes de fonctionnalités"></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=ZentaraVeterinaryInc.zentara-code&ssr=false#review-details" target="_blank"><img src="https://img.shields.io/badge/%C3%89valuer%20%26%20Commenter-green?style=for-the-badge" alt="Évaluer & Commenter"></a>
+<a href="https://docs.zentaracode.com" target="_blank"><img src="https://img.shields.io/badge/Documentation-6B46C1?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentation"></a>
 
 </div>
 
-**Roo Code** est un **agent de programmation autonome** propulsé par l'IA, au cœur de votre éditeur. Il peut :
+**Zentara Code** est un **agent de programmation autonome** propulsé par l'IA, au cœur de votre éditeur. Il peut :
 
 - Communiquer en langage naturel
 - Lire et écrire des fichiers directement dans votre espace de travail
@@ -44,15 +44,15 @@
 - S'intégrer avec n'importe quelle modèle/API compatible OpenAI
 - Adapter sa "personnalité" et ses capacités grâce aux **Modes Personnalisés**
 
-Que vous recherchiez un partenaire de codage flexible, un architecte système, ou des rôles spécialisés comme un ingénieur QA ou un chef de produit, Roo Code peut vous aider à développer des logiciels plus efficacement.
+Que vous recherchiez un partenaire de codage flexible, un architecte système, ou des rôles spécialisés comme un ingénieur QA ou un chef de produit, Zentara Code peut vous aider à développer des logiciels plus efficacement.
 
 Consultez le [CHANGELOG](../../CHANGELOG.md) pour des mises à jour détaillées et des corrections.
 
 ---
 
-## 🎉 Roo Code 3.21 est sorti
+## 🎉 Zentara Code 3.21 est sorti
 
-Roo Code 3.21 apporte de nouvelles fonctionnalités majeures et des améliorations basées sur vos retours !
+Zentara Code 3.21 apporte de nouvelles fonctionnalités majeures et des améliorations basées sur vos retours !
 
 - **Le marketplace est maintenant en ligne ! Le marketplace est maintenant en ligne !** Découvrez et installez des modes et des MCPs plus facilement que jamais.
 - **Ajout du support pour les nouveaux modèles Gemini 2.5 Pro, Flash et Flash Lite.**
@@ -60,7 +60,7 @@ Roo Code 3.21 apporte de nouvelles fonctionnalités majeures et des amélioratio
 
 ---
 
-## Que peut faire Roo Code ?
+## Que peut faire Zentara Code ?
 
 - 🚀 **Générer du code** à partir de descriptions en langage naturel
 - 🔧 **Refactoriser et déboguer** du code
@@ -71,55 +71,55 @@ Roo Code 3.21 apporte de nouvelles fonctionnalités majeures et des amélioratio
 
 ## Démarrage rapide
 
-1. [Installer Roo Code](https://docs.roocode.com/getting-started/installing)
-2. [Connecter votre fournisseur d'IA](https://docs.roocode.com/getting-started/connecting-api-provider)
-3. [Essayer votre première tâche](https://docs.roocode.com/getting-started/your-first-task)
+1. [Installer Zentara Code](https://docs.zentaracode.com/getting-started/installing)
+2. [Connecter votre fournisseur d'IA](https://docs.zentaracode.com/getting-started/connecting-api-provider)
+3. [Essayer votre première tâche](https://docs.zentaracode.com/getting-started/your-first-task)
 
 ## Fonctionnalités clés
 
 ### Modes multiples
 
-Roo Code s'adapte à vos besoins avec des [modes](https://docs.roocode.com/basic-usage/using-modes) spécialisés :
+Zentara Code s'adapte à vos besoins avec des [modes](https://docs.zentaracode.com/basic-usage/using-modes) spécialisés :
 
 - **Mode Code :** Pour les tâches de programmation générales
 - **Mode Architecte :** Pour la planification et le leadership technique
 - **Mode Question :** Pour répondre aux questions et fournir des informations
 - **Mode Débogage :** Pour le diagnostic systématique de problèmes
-- **[Modes personnalisés](https://docs.roocode.com/advanced-usage/custom-modes) :** Créez un nombre illimité de personnalités spécialisées pour l'audit de sécurité, l'optimisation des performances, la documentation ou toute autre tâche
+- **[Modes personnalisés](https://docs.zentaracode.com/advanced-usage/custom-modes) :** Créez un nombre illimité de personnalités spécialisées pour l'audit de sécurité, l'optimisation des performances, la documentation ou toute autre tâche
 
 ### Outils intelligents
 
-Roo Code est livré avec des [outils](https://docs.roocode.com/basic-usage/how-tools-work) puissants qui peuvent :
+Zentara Code est livré avec des [outils](https://docs.zentaracode.com/basic-usage/how-tools-work) puissants qui peuvent :
 
 - Lire et écrire des fichiers dans votre projet
 - Exécuter des commandes dans votre terminal VS Code
 - Contrôler un navigateur web
-- Utiliser des outils externes via [MCP (Model Context Protocol)](https://docs.roocode.com/advanced-usage/mcp)
+- Utiliser des outils externes via [MCP (Model Context Protocol)](https://docs.zentaracode.com/advanced-usage/mcp)
 
-MCP étend les capacités de Roo Code en vous permettant d'ajouter un nombre illimité d'outils personnalisés. Intégrez des API externes, connectez-vous à des bases de données ou créez des outils de développement spécialisés - MCP fournit le cadre pour étendre la fonctionnalité de Roo Code afin de répondre à vos besoins spécifiques.
+MCP étend les capacités de Zentara Code en vous permettant d'ajouter un nombre illimité d'outils personnalisés. Intégrez des API externes, connectez-vous à des bases de données ou créez des outils de développement spécialisés - MCP fournit le cadre pour étendre la fonctionnalité de Zentara Code afin de répondre à vos besoins spécifiques.
 
 ### Personnalisation
 
-Faites fonctionner Roo Code à votre manière avec :
+Faites fonctionner Zentara Code à votre manière avec :
 
-- [Instructions personnalisées](https://docs.roocode.com/advanced-usage/custom-instructions) pour un comportement personnalisé
-- [Modes personnalisés](https://docs.roocode.com/advanced-usage/custom-modes) pour des tâches spécialisées
-- [Modèles locaux](https://docs.roocode.com/advanced-usage/local-models) pour une utilisation hors ligne
-- [Paramètres d'approbation automatique](https://docs.roocode.com/advanced-usage/auto-approving-actions) pour des workflows plus rapides
+- [Instructions personnalisées](https://docs.zentaracode.com/advanced-usage/custom-instructions) pour un comportement personnalisé
+- [Modes personnalisés](https://docs.zentaracode.com/advanced-usage/custom-modes) pour des tâches spécialisées
+- [Modèles locaux](https://docs.zentaracode.com/advanced-usage/local-models) pour une utilisation hors ligne
+- [Paramètres d'approbation automatique](https://docs.zentaracode.com/advanced-usage/auto-approving-actions) pour des workflows plus rapides
 
 ## Ressources
 
 ### Documentation
 
-- [Guide d'utilisation](https://docs.roocode.com/basic-usage/the-chat-interface)
-- [Fonctionnalités avancées](https://docs.roocode.com/advanced-usage/auto-approving-actions)
-- [Foire aux questions](https://docs.roocode.com/faq)
+- [Guide d'utilisation](https://docs.zentaracode.com/basic-usage/the-chat-interface)
+- [Fonctionnalités avancées](https://docs.zentaracode.com/advanced-usage/auto-approving-actions)
+- [Foire aux questions](https://docs.zentaracode.com/faq)
 
 ### Communauté
 
-- **Discord :** [Rejoignez notre serveur Discord](https://discord.gg/roocode) pour une aide en temps réel et des discussions
-- **Reddit :** [Visitez notre subreddit](https://www.reddit.com/r/RooCode) pour partager des expériences et des astuces
-- **GitHub :** Signalez des [problèmes](https://github.com/RooCodeInc/Roo-Code/issues) ou demandez de nouvelles [fonctionnalités](https://github.com/RooCodeInc/Roo-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop)
+- **Discord :** [Rejoignez notre serveur Discord](https://discord.gg/zentaracode) pour une aide en temps réel et des discussions
+- **Reddit :** [Visitez notre subreddit](https://www.reddit.com/r/ZentaraCode) pour partager des expériences et des astuces
+- **GitHub :** Signalez des [problèmes](https://github.com/ZentaraCodeInc/Zentara-Code/issues) ou demandez de nouvelles [fonctionnalités](https://github.com/ZentaraCodeInc/Zentara-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop)
 
 ---
 
@@ -128,7 +128,7 @@ Faites fonctionner Roo Code à votre manière avec :
 1. **Clonez** le dépôt :
 
 ```sh
-git clone https://github.com/RooCodeInc/Roo-Code.git
+git clone https://github.com/ZentaraCodeInc/Zentara-Code.git
 ```
 
 2. **Installez les dépendances** :
@@ -144,7 +144,7 @@ npm run dev
 ```
 
 4. **Débogage** :
-   Appuyez sur `F5` (ou **Exécuter** → **Démarrer le débogage**) dans VSCode pour ouvrir une nouvelle session avec Roo Code chargé.
+   Appuyez sur `F5` (ou **Exécuter** → **Démarrer le débogage**) dans VSCode pour ouvrir une nouvelle session avec Zentara Code chargé.
 
 Les modifications apportées à la vue web apparaîtront immédiatement. Les modifications apportées à l'extension principale nécessiteront un redémarrage de l'hôte d'extension.
 
@@ -157,7 +157,7 @@ npm run build
 Un fichier `.vsix` apparaîtra dans le répertoire `bin/` qui peut être installé avec :
 
 ```sh
-code --install-extension bin/roo-code-<version>.vsix
+code --install-extension bin/zentara-code-<version>.vsix
 ```
 
 Nous utilisons [changesets](https://github.com/changesets/changesets) pour le versionnement et la publication. Consultez notre `CHANGELOG.md` pour les notes de version.
@@ -166,7 +166,7 @@ Nous utilisons [changesets](https://github.com/changesets/changesets) pour le ve
 
 ## Avertissement
 
-**Veuillez noter** que Roo Code, Inc **ne fait** aucune représentation ou garantie concernant tout code, modèle ou autre outil fourni ou mis à disposition en relation avec Roo Code, tout outil tiers associé, ou tout résultat. Vous assumez **tous les risques** associés à l'utilisation de tels outils ou résultats ; ces outils sont fournis **"TELS QUELS"** et **"SELON DISPONIBILITÉ"**. Ces risques peuvent inclure, sans s'y limiter, la violation de propriété intellectuelle, les vulnérabilités ou attaques cyber, les biais, les inexactitudes, les erreurs, les défauts, les virus, les temps d'arrêt, la perte ou les dommages matériels, et/ou les blessures corporelles. Vous êtes seul responsable de votre utilisation de ces outils ou résultats (y compris, mais sans s'y limiter, leur légalité, pertinence et résultats).
+**Veuillez noter** que Zentara Code, Inc **ne fait** aucune représentation ou garantie concernant tout code, modèle ou autre outil fourni ou mis à disposition en relation avec Zentara Code, tout outil tiers associé, ou tout résultat. Vous assumez **tous les risques** associés à l'utilisation de tels outils ou résultats ; ces outils sont fournis **"TELS QUELS"** et **"SELON DISPONIBILITÉ"**. Ces risques peuvent inclure, sans s'y limiter, la violation de propriété intellectuelle, les vulnérabilités ou attaques cyber, les biais, les inexactitudes, les erreurs, les défauts, les virus, les temps d'arrêt, la perte ou les dommages matériels, et/ou les blessures corporelles. Vous êtes seul responsable de votre utilisation de ces outils ou résultats (y compris, mais sans s'y limiter, leur légalité, pertinence et résultats).
 
 ---
 
@@ -178,13 +178,13 @@ Nous adorons les contributions de la communauté ! Commencez par lire notre [CON
 
 ## Contributeurs
 
-Merci à tous nos contributeurs qui ont aidé à améliorer Roo Code !
+Merci à tous nos contributeurs qui ont aidé à améliorer Zentara Code !
 
 <!-- START CONTRIBUTORS SECTION - AUTO-GENERATED, DO NOT EDIT MANUALLY -->
 
 |                 <a href="https://github.com/mrubens"><img src="https://avatars.githubusercontent.com/u/2600?v=4" width="100" height="100" alt="mrubens"/><br /><sub><b>mrubens</b></sub></a>                 |         <a href="https://github.com/saoudrizwan"><img src="https://avatars.githubusercontent.com/u/7799382?v=4" width="100" height="100" alt="saoudrizwan"/><br /><sub><b>saoudrizwan</b></sub></a>         |                            <a href="https://github.com/cte"><img src="https://avatars.githubusercontent.com/u/16332?v=4" width="100" height="100" alt="cte"/><br /><sub><b>cte</b></sub></a>                             |            <a href="https://github.com/samhvw8"><img src="https://avatars.githubusercontent.com/u/12538214?v=4" width="100" height="100" alt="samhvw8"/><br /><sub><b>samhvw8</b></sub></a>            |     <a href="https://github.com/daniel-lxs"><img src="https://avatars.githubusercontent.com/u/57051444?v=4" width="100" height="100" alt="daniel-lxs"/><br /><sub><b>daniel-lxs</b></sub></a>     |          <a href="https://github.com/hannesrudolph"><img src="https://avatars.githubusercontent.com/u/49103247?v=4" width="100" height="100" alt="hannesrudolph"/><br /><sub><b>hannesrudolph</b></sub></a>           |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                <a href="https://github.com/KJ7LNW"><img src="https://avatars.githubusercontent.com/u/93454819?v=4" width="100" height="100" alt="KJ7LNW"/><br /><sub><b>KJ7LNW</b></sub></a>                 |              <a href="https://github.com/a8trejo"><img src="https://avatars.githubusercontent.com/u/62401433?v=4" width="100" height="100" alt="a8trejo"/><br /><sub><b>a8trejo</b></sub></a>               |                <a href="https://github.com/ColemanRoo"><img src="https://avatars.githubusercontent.com/u/117104599?v=4" width="100" height="100" alt="ColemanRoo"/><br /><sub><b>ColemanRoo</b></sub></a>                |      <a href="https://github.com/canrobins13"><img src="https://avatars.githubusercontent.com/u/20544372?v=4" width="100" height="100" alt="canrobins13"/><br /><sub><b>canrobins13</b></sub></a>      |        <a href="https://github.com/stea9499"><img src="https://avatars.githubusercontent.com/u/4163795?v=4" width="100" height="100" alt="stea9499"/><br /><sub><b>stea9499</b></sub></a>         |            <a href="https://github.com/joemanley201"><img src="https://avatars.githubusercontent.com/u/8299960?v=4" width="100" height="100" alt="joemanley201"/><br /><sub><b>joemanley201</b></sub></a>             |
+|                <a href="https://github.com/KJ7LNW"><img src="https://avatars.githubusercontent.com/u/93454819?v=4" width="100" height="100" alt="KJ7LNW"/><br /><sub><b>KJ7LNW</b></sub></a>                 |              <a href="https://github.com/a8trejo"><img src="https://avatars.githubusercontent.com/u/62401433?v=4" width="100" height="100" alt="a8trejo"/><br /><sub><b>a8trejo</b></sub></a>               |                <a href="https://github.com/ColemanZentara"><img src="https://avatars.githubusercontent.com/u/117104599?v=4" width="100" height="100" alt="ColemanZentara"/><br /><sub><b>ColemanZentara</b></sub></a>                |      <a href="https://github.com/canrobins13"><img src="https://avatars.githubusercontent.com/u/20544372?v=4" width="100" height="100" alt="canrobins13"/><br /><sub><b>canrobins13</b></sub></a>      |        <a href="https://github.com/stea9499"><img src="https://avatars.githubusercontent.com/u/4163795?v=4" width="100" height="100" alt="stea9499"/><br /><sub><b>stea9499</b></sub></a>         |            <a href="https://github.com/joemanley201"><img src="https://avatars.githubusercontent.com/u/8299960?v=4" width="100" height="100" alt="joemanley201"/><br /><sub><b>joemanley201</b></sub></a>             |
 |            <a href="https://github.com/System233"><img src="https://avatars.githubusercontent.com/u/20336040?v=4" width="100" height="100" alt="System233"/><br /><sub><b>System233</b></sub></a>            |             <a href="https://github.com/jquanton"><img src="https://avatars.githubusercontent.com/u/88576563?v=4" width="100" height="100" alt="jquanton"/><br /><sub><b>jquanton</b></sub></a>             |                <a href="https://github.com/nissa-seru"><img src="https://avatars.githubusercontent.com/u/119150866?v=4" width="100" height="100" alt="nissa-seru"/><br /><sub><b>nissa-seru</b></sub></a>                |             <a href="https://github.com/NyxJae"><img src="https://avatars.githubusercontent.com/u/52313587?v=4" width="100" height="100" alt="NyxJae"/><br /><sub><b>NyxJae</b></sub></a>              |                   <a href="https://github.com/jr"><img src="https://avatars.githubusercontent.com/u/5629?v=4" width="100" height="100" alt="jr"/><br /><sub><b>jr</b></sub></a>                   |                  <a href="https://github.com/MuriloFP"><img src="https://avatars.githubusercontent.com/u/50873657?v=4" width="100" height="100" alt="MuriloFP"/><br /><sub><b>MuriloFP</b></sub></a>                  |
 |             <a href="https://github.com/elianiva"><img src="https://avatars.githubusercontent.com/u/51877647?v=4" width="100" height="100" alt="elianiva"/><br /><sub><b>elianiva</b></sub></a>              |                  <a href="https://github.com/d-oit"><img src="https://avatars.githubusercontent.com/u/6849456?v=4" width="100" height="100" alt="d-oit"/><br /><sub><b>d-oit</b></sub></a>                  |                   <a href="https://github.com/punkpeye"><img src="https://avatars.githubusercontent.com/u/108313943?v=4" width="100" height="100" alt="punkpeye"/><br /><sub><b>punkpeye</b></sub></a>                   |        <a href="https://github.com/wkordalski"><img src="https://avatars.githubusercontent.com/u/3035587?v=4" width="100" height="100" alt="wkordalski"/><br /><sub><b>wkordalski</b></sub></a>        |     <a href="https://github.com/sachasayan"><img src="https://avatars.githubusercontent.com/u/1666034?v=4" width="100" height="100" alt="sachasayan"/><br /><sub><b>sachasayan</b></sub></a>      | <a href="https://github.com/Smartsheet-JB-Brown"><img src="https://avatars.githubusercontent.com/u/171734120?v=4" width="100" height="100" alt="Smartsheet-JB-Brown"/><br /><sub><b>Smartsheet-JB-Brown</b></sub></a> |
 |        <a href="https://github.com/monotykamary"><img src="https://avatars.githubusercontent.com/u/1130103?v=4" width="100" height="100" alt="monotykamary"/><br /><sub><b>monotykamary</b></sub></a>        |              <a href="https://github.com/cannuri"><img src="https://avatars.githubusercontent.com/u/91494156?v=4" width="100" height="100" alt="cannuri"/><br /><sub><b>cannuri</b></sub></a>               |                   <a href="https://github.com/xyOz-dev"><img src="https://avatars.githubusercontent.com/u/195602624?v=4" width="100" height="100" alt="xyOz-dev"/><br /><sub><b>xyOz-dev</b></sub></a>                   |         <a href="https://github.com/feifei325"><img src="https://avatars.githubusercontent.com/u/46489071?v=4" width="100" height="100" alt="feifei325"/><br /><sub><b>feifei325</b></sub></a>         | <a href="https://github.com/zhangtony239"><img src="https://avatars.githubusercontent.com/u/157202938?v=4" width="100" height="100" alt="zhangtony239"/><br /><sub><b>zhangtony239</b></sub></a>  |                       <a href="https://github.com/qdaxb"><img src="https://avatars.githubusercontent.com/u/4157870?v=4" width="100" height="100" alt="qdaxb"/><br /><sub><b>qdaxb</b></sub></a>                       |
@@ -221,8 +221,8 @@ Merci à tous nos contributeurs qui ont aidé à améliorer Roo Code !
 
 ## Licence
 
-[Apache 2.0 © 2025 Roo Code, Inc.](../LICENSE)
+[Apache 2.0 © 2025 Zentara Code, Inc.](../LICENSE)
 
 ---
 
-**Profitez de Roo Code !** Que vous le gardiez en laisse courte ou que vous le laissiez se déplacer de manière autonome, nous avons hâte de voir ce que vous allez construire. Si vous avez des questions ou des idées de fonctionnalités, passez par notre [communauté Reddit](https://www.reddit.com/r/RooCode/) ou [Discord](https://discord.gg/roocode). Bon codage !
+**Profitez de Zentara Code !** Que vous le gardiez en laisse courte ou que vous le laissiez se déplacer de manière autonome, nous avons hâte de voir ce que vous allez construire. Si vous avez des questions ou des idées de fonctionnalités, passez par notre [communauté Reddit](https://www.reddit.com/r/ZentaraCode/) ou [Discord](https://discord.gg/zentaracode). Bon codage !

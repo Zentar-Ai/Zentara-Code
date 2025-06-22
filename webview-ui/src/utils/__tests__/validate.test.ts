@@ -1,5 +1,5 @@
-import { ProviderSettings, OrganizationAllowList } from "@roo-code/types"
-import { RouterModels } from "@roo/api"
+import { ProviderSettings, OrganizationAllowList } from "@zentara-code/types"
+import { RouterModels } from "@zentara/api"
 
 import { getModelValidationError, validateApiConfigurationExcludingModelErrors } from "../validate"
 

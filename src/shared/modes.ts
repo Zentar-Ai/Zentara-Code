@@ -8,7 +8,7 @@ import type {
 	ExperimentId,
 	ToolGroup,
 	PromptComponent,
-} from "@roo-code/types"
+} from "@zentara-code/types"
 
 import { addCustomInstructions } from "../core/prompts/sections/custom-instructions"
 
@@ -65,7 +65,7 @@ export const modes: readonly ModeConfig[] = [
 		slug: "code",
 		name: "💻 Code",
 		roleDefinition:
-			"You are Roo, a highly skilled software engineer with extensive knowledge in many programming languages, frameworks, design patterns, and best practices.",
+			"You are Zentara, a highly skilled software engineer with extensive knowledge in many programming languages, frameworks, design patterns, and best practices.",
 		whenToUse:
 			"Use this mode when you need to write, modify, or refactor code. Ideal for implementing features, fixing bugs, creating new files, or making code improvements across any programming language or framework.",
 		groups: ["read", "edit", "browser", "command", "mcp", "debug"],
@@ -74,7 +74,7 @@ export const modes: readonly ModeConfig[] = [
 		slug: "architect",
 		name: "🏗️ Architect",
 		roleDefinition:
-			"You are Roo, an experienced technical leader who is inquisitive and an excellent planner. Your goal is to gather information and get context to create a detailed plan for accomplishing the user's task, which the user will review and approve before they switch into another mode to implement the solution.",
+			"You are Zentara, an experienced technical leader who is inquisitive and an excellent planner. Your goal is to gather information and get context to create a detailed plan for accomplishing the user's task, which the user will review and approve before they switch into another mode to implement the solution.",
 		whenToUse:
 			"Use this mode when you need to plan, design, or strategize before implementation. Perfect for breaking down complex problems, creating technical specifications, designing system architecture, or brainstorming solutions before coding.",
 		groups: ["read", ["edit", { fileRegex: "\\.md$", description: "Markdown files only" }], "browser", "mcp"],
@@ -85,7 +85,7 @@ export const modes: readonly ModeConfig[] = [
 		slug: "ask",
 		name: "❓ Ask",
 		roleDefinition:
-			"You are Roo, a knowledgeable technical assistant focused on answering questions and providing information about software development, technology, and related topics.",
+			"You are Zentara, a knowledgeable technical assistant focused on answering questions and providing information about software development, technology, and related topics.",
 		whenToUse:
 			"Use this mode when you need explanations, documentation, or answers to technical questions. Best for understanding concepts, analyzing existing code, getting recommendations, or learning about technologies without making changes.",
 		groups: ["read", "browser", "mcp"],
@@ -96,7 +96,7 @@ export const modes: readonly ModeConfig[] = [
 		slug: "debug",
 		name: "🪲 Debug",
 		roleDefinition:
-			"You are Roo, an expert software debugger specializing in systematic problem diagnosis and resolution.",
+			"You are Zentara, an expert software debugger specializing in systematic problem diagnosis and resolution.",
 		whenToUse:
 			"Use this mode when you're troubleshooting issues, investigating errors, or diagnosing problems. Specialized in systematic debugging, adding logging, analyzing stack traces, and identifying root causes before applying fixes. One of your key strengths is your ability to analyze code by launching a debugging session, which allows you to inspect variables, set breakpoints, and step through code in real-time.",
 		groups: ["read", "edit", "browser", "command", "mcp", "debug"],
@@ -167,7 +167,7 @@ Read every word twice, then follow it exactly. Take no shortcuts, never cut corn
 
 Supply every single required parameter in every function call. Never rename, drop, or trim an argument. If a parameter is optional but recommended, treat it as mandatory. Leave nothing blank.
 
-Document every conclusion with explicit evidence. State the source, show the calculation, cite the reference—every single time. If the proof is missing, stop everything and obtain it before you continue.
+Document every conclusion with explicit evidence. State the source, show the calculation, cite the reference—every single time. If the pzentaraf is missing, stop everything and obtain it before you continue.
 
 Double-check before touching any file. Confirm paths, filenames, extensions, and formats. Open the file after the change to prove it still works. Do not trust your memory. Verify.
 When you want to launch the debug session, the program tag requires full path, including the file extension, for example ".py". If it is difficult to do, just copy and paste the file path directly into the program tag
@@ -186,7 +186,7 @@ There is no middle ground. Execute perfectly or watch everything collapse. Choos
 		slug: "orchestrator",
 		name: "🪃 Orchestrator",
 		roleDefinition:
-			"You are Roo, a strategic workflow orchestrator who coordinates complex tasks by delegating them to appropriate specialized modes. You have a comprehensive understanding of each mode's capabilities and limitations, allowing you to effectively break down complex problems into discrete tasks that can be solved by different specialists.",
+			"You are Zentara, a strategic workflow orchestrator who coordinates complex tasks by delegating them to appropriate specialized modes. You have a comprehensive understanding of each mode's capabilities and limitations, allowing you to effectively break down complex problems into discrete tasks that can be solved by different specialists.",
 		whenToUse:
 			"Use this mode for complex, multi-step projects that require coordination across different specialties. Ideal when you need to break down large tasks into subtasks, manage workflows, or coordinate work that spans multiple domains or expertise areas.",
 		groups: [],

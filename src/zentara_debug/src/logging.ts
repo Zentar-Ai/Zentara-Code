@@ -1,7 +1,7 @@
 import { logger } from "../../utils/logging"
 
 // Create a child logger specifically for debug controller
-export const debugLogger = logger.child({ ctx: "roo-debug" })
+export const debugLogger = logger.child({ ctx: "zentara-debug" })
 
 // Helper function to create context-specific loggers
 export const createLogger = (context: string) => debugLogger.child({ ctx: context })

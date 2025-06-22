@@ -11,15 +11,15 @@ export async function processUserContentMentions({
 	cwd,
 	urlContentFetcher,
 	fileContextTracker,
-	rooIgnoreController,
-	showRooIgnoredFiles = true,
+	zentaraIgnoreController,
+	showZentaraIgnoredFiles = true,
 }: {
 	userContent: Anthropic.Messages.ContentBlockParam[]
 	cwd: string
 	urlContentFetcher: UrlContentFetcher
 	fileContextTracker: FileContextTracker
-	rooIgnoreController?: any
-	showRooIgnoredFiles?: boolean
+	zentaraIgnoreController?: any
+	showZentaraIgnoredFiles?: boolean
 }) {
 	// Process userContent array, which contains various block types:
 	// TextBlockParam, ImageBlockParam, ToolUseBlockParam, and ToolResultBlockParam.
@@ -44,8 +44,8 @@ export async function processUserContentMentions({
 							cwd,
 							urlContentFetcher,
 							fileContextTracker,
-							rooIgnoreController,
-							showRooIgnoredFiles,
+							zentaraIgnoreController,
+							showZentaraIgnoredFiles,
 						),
 					}
 				}
@@ -61,8 +61,8 @@ export async function processUserContentMentions({
 								cwd,
 								urlContentFetcher,
 								fileContextTracker,
-								rooIgnoreController,
-								showRooIgnoredFiles,
+								zentaraIgnoreController,
+								showZentaraIgnoredFiles,
 							),
 						}
 					}
@@ -79,8 +79,8 @@ export async function processUserContentMentions({
 										cwd,
 										urlContentFetcher,
 										fileContextTracker,
-										rooIgnoreController,
-										showRooIgnoredFiles,
+										zentaraIgnoreController,
+										showZentaraIgnoredFiles,
 									),
 								}
 							}

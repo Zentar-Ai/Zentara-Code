@@ -77,16 +77,16 @@ describe("loadRuleFiles", () => {
 	})
 
 	it("should read and trim file content", async () => {
-		// Simulate no .roo/rules directory
+		// Simulate no .zentara/rules directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 		readFileMock.mockResolvedValue("  content with spaces  ")
 		const result = await loadRuleFiles("/fake/path")
 		expect(readFileMock).toHaveBeenCalled()
-		expect(result).toBe("\n# Rules from .roorules:\ncontent with spaces\n")
+		expect(result).toBe("\n# Rules from .zentararules:\ncontent with spaces\n")
 	})
 
 	it("should handle ENOENT error", async () => {
-		// Simulate no .roo/rules directory
+		// Simulate no .zentara/rules directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 		readFileMock.mockRejectedValue({ code: "ENOENT" })
 		const result = await loadRuleFiles("/fake/path")
@@ -94,7 +94,7 @@ describe("loadRuleFiles", () => {
 	})
 
 	it("should handle EISDIR error", async () => {
-		// Simulate no .roo/rules directory
+		// Simulate no .zentara/rules directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 		readFileMock.mockRejectedValue({ code: "EISDIR" })
 		const result = await loadRuleFiles("/fake/path")
@@ -102,7 +102,7 @@ describe("loadRuleFiles", () => {
 	})
 
 	it("should throw on unexpected errors", async () => {
-		// Simulate no .roo/rules directory
+		// Simulate no .zentara/rules directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 		const error = new Error("Permission denied") as NodeJS.ErrnoException
 		error.code = "EPERM"
@@ -114,11 +114,11 @@ describe("loadRuleFiles", () => {
 	})
 
 	it("should not combine content from multiple rule files when they exist", async () => {
-		// Simulate no .roo/rules directory
+		// Simulate no .zentara/rules directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 		readFileMock.mockImplementation((filePath: PathLike) => {
-			if (filePath.toString().endsWith(".roorules")) {
-				return Promise.resolve("roo rules content")
+			if (filePath.toString().endsWith(".zentararules")) {
+				return Promise.resolve("zentara rules content")
 			}
 			if (filePath.toString().endsWith(".clinerules")) {
 				return Promise.resolve("cline rules content")
@@ -127,11 +127,11 @@ describe("loadRuleFiles", () => {
 		})
 
 		const result = await loadRuleFiles("/fake/path")
-		expect(result).toBe("\n# Rules from .roorules:\nroo rules content\n")
+		expect(result).toBe("\n# Rules from .zentararules:\nzentara rules content\n")
 	})
 
 	it("should handle when no rule files exist", async () => {
-		// Simulate no .roo/rules directory
+		// Simulate no .zentara/rules directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 		readFileMock.mockRejectedValue({ code: "ENOENT" })
 
@@ -140,10 +140,10 @@ describe("loadRuleFiles", () => {
 	})
 
 	it("should skip directories with same name as rule files", async () => {
-		// Simulate no .roo/rules directory
+		// Simulate no .zentara/rules directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 		readFileMock.mockImplementation((filePath: PathLike) => {
-			if (filePath.toString().endsWith(".roorules")) {
+			if (filePath.toString().endsWith(".zentararules")) {
 				return Promise.reject({ code: "EISDIR" })
 			}
 			if (filePath.toString().endsWith(".clinerules")) {
@@ -156,24 +156,24 @@ describe("loadRuleFiles", () => {
 		expect(result).toBe("")
 	})
 
-	it("should use .roo/rules/ directory when it exists and has files", async () => {
-		// Simulate .roo/rules directory exists
+	it("should use .zentara/rules/ directory when it exists and has files", async () => {
+		// Simulate .zentara/rules directory exists
 		statMock.mockResolvedValueOnce({
 			isDirectory: vi.fn().mockReturnValue(true),
 		} as any)
 
 		// Simulate listing files
 		readdirMock.mockResolvedValueOnce([
-			{ name: "file1.txt", isFile: () => true, isSymbolicLink: () => false, parentPath: "/fake/path/.roo/rules" },
-			{ name: "file2.txt", isFile: () => true, isSymbolicLink: () => false, parentPath: "/fake/path/.roo/rules" },
+			{ name: "file1.txt", isFile: () => true, isSymbolicLink: () => false, parentPath: "/fake/path/.zentara/rules" },
+			{ name: "file2.txt", isFile: () => true, isSymbolicLink: () => false, parentPath: "/fake/path/.zentara/rules" },
 		] as any)
 
 		statMock.mockImplementation((path) => {
 			// Handle both Unix and Windows path separators
 			const normalizedPath = path.toString().replace(/\\/g, "/")
 			if (
-				normalizedPath.includes("/fake/path/.roo/rules/file1.txt") ||
-				normalizedPath.includes("/fake/path/.roo/rules/file2.txt")
+				normalizedPath.includes("/fake/path/.zentara/rules/file1.txt") ||
+				normalizedPath.includes("/fake/path/.zentara/rules/file2.txt")
 			) {
 				return Promise.resolve({
 					isFile: vi.fn().mockReturnValue(true),
@@ -188,10 +188,10 @@ describe("loadRuleFiles", () => {
 			const pathStr = filePath.toString()
 			// Handle both Unix and Windows path separators
 			const normalizedPath = pathStr.replace(/\\/g, "/")
-			if (normalizedPath === "/fake/path/.roo/rules/file1.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules/file1.txt") {
 				return Promise.resolve("content of file1")
 			}
-			if (normalizedPath === "/fake/path/.roo/rules/file2.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules/file2.txt") {
 				return Promise.resolve("content of file2")
 			}
 			return Promise.reject({ code: "ENOENT" })
@@ -199,20 +199,20 @@ describe("loadRuleFiles", () => {
 
 		const result = await loadRuleFiles("/fake/path")
 		const expectedPath1 =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules\\file1.txt" : "/fake/path/.roo/rules/file1.txt"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules\\file1.txt" : "/fake/path/.zentara/rules/file1.txt"
 		const expectedPath2 =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules\\file2.txt" : "/fake/path/.roo/rules/file2.txt"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules\\file2.txt" : "/fake/path/.zentara/rules/file2.txt"
 		expect(result).toContain(`# Rules from ${expectedPath1}:`)
 		expect(result).toContain("content of file1")
 		expect(result).toContain(`# Rules from ${expectedPath2}:`)
 		expect(result).toContain("content of file2")
 
 		// We expect both checks because our new implementation checks the files again for validation
-		const expectedRulesDir = process.platform === "win32" ? "\\fake\\path\\.roo\\rules" : "/fake/path/.roo/rules"
+		const expectedRulesDir = process.platform === "win32" ? "\\fake\\path\\.zentara\\rules" : "/fake/path/.zentara/rules"
 		const expectedFile1Path =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules\\file1.txt" : "/fake/path/.roo/rules/file1.txt"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules\\file1.txt" : "/fake/path/.zentara/rules/file1.txt"
 		const expectedFile2Path =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules\\file2.txt" : "/fake/path/.roo/rules/file2.txt"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules\\file2.txt" : "/fake/path/.zentara/rules/file2.txt"
 
 		expect(statMock).toHaveBeenCalledWith(expectedRulesDir)
 		expect(statMock).toHaveBeenCalledWith(expectedFile1Path)
@@ -221,8 +221,8 @@ describe("loadRuleFiles", () => {
 		expect(readFileMock).toHaveBeenCalledWith(expectedFile2Path, "utf-8")
 	})
 
-	it("should fall back to .roorules when .roo/rules/ is empty", async () => {
-		// Simulate .roo/rules directory exists
+	it("should fall back to .zentararules when .zentara/rules/ is empty", async () => {
+		// Simulate .zentara/rules directory exists
 		statMock.mockResolvedValueOnce({
 			isDirectory: vi.fn().mockReturnValue(true),
 		} as any)
@@ -230,20 +230,20 @@ describe("loadRuleFiles", () => {
 		// Simulate empty directory
 		readdirMock.mockResolvedValueOnce([])
 
-		// Simulate .roorules exists
+		// Simulate .zentararules exists
 		readFileMock.mockImplementation((filePath: PathLike) => {
-			if (filePath.toString().endsWith(".roorules")) {
-				return Promise.resolve("roo rules content")
+			if (filePath.toString().endsWith(".zentararules")) {
+				return Promise.resolve("zentara rules content")
 			}
 			return Promise.reject({ code: "ENOENT" })
 		})
 
 		const result = await loadRuleFiles("/fake/path")
-		expect(result).toBe("\n# Rules from .roorules:\nroo rules content\n")
+		expect(result).toBe("\n# Rules from .zentararules:\nzentara rules content\n")
 	})
 
 	it("should handle errors when reading directory", async () => {
-		// Simulate .roo/rules directory exists
+		// Simulate .zentara/rules directory exists
 		statMock.mockResolvedValueOnce({
 			isDirectory: vi.fn().mockReturnValue(true),
 		} as any)
@@ -251,20 +251,20 @@ describe("loadRuleFiles", () => {
 		// Simulate error reading directory
 		readdirMock.mockRejectedValueOnce(new Error("Failed to read directory"))
 
-		// Simulate .roorules exists
+		// Simulate .zentararules exists
 		readFileMock.mockImplementation((filePath: PathLike) => {
-			if (filePath.toString().endsWith(".roorules")) {
-				return Promise.resolve("roo rules content")
+			if (filePath.toString().endsWith(".zentararules")) {
+				return Promise.resolve("zentara rules content")
 			}
 			return Promise.reject({ code: "ENOENT" })
 		})
 
 		const result = await loadRuleFiles("/fake/path")
-		expect(result).toBe("\n# Rules from .roorules:\nroo rules content\n")
+		expect(result).toBe("\n# Rules from .zentararules:\nzentara rules content\n")
 	})
 
-	it("should read files from nested subdirectories in .roo/rules/", async () => {
-		// Simulate .roo/rules directory exists
+	it("should read files from nested subdirectories in .zentara/rules/", async () => {
+		// Simulate .zentara/rules directory exists
 		statMock.mockResolvedValueOnce({
 			isDirectory: vi.fn().mockReturnValue(true),
 		} as any)
@@ -276,28 +276,28 @@ describe("loadRuleFiles", () => {
 				isFile: () => false,
 				isSymbolicLink: () => false,
 				isDirectory: () => true,
-				parentPath: "/fake/path/.roo/rules",
+				parentPath: "/fake/path/.zentara/rules",
 			},
 			{
 				name: "root.txt",
 				isFile: () => true,
 				isSymbolicLink: () => false,
 				isDirectory: () => false,
-				parentPath: "/fake/path/.roo/rules",
+				parentPath: "/fake/path/.zentara/rules",
 			},
 			{
 				name: "nested1.txt",
 				isFile: () => true,
 				isSymbolicLink: () => false,
 				isDirectory: () => false,
-				parentPath: "/fake/path/.roo/rules/subdir",
+				parentPath: "/fake/path/.zentara/rules/subdir",
 			},
 			{
 				name: "nested2.txt",
 				isFile: () => true,
 				isSymbolicLink: () => false,
 				isDirectory: () => false,
-				parentPath: "/fake/path/.roo/rules/subdir/subdir2",
+				parentPath: "/fake/path/.zentara/rules/subdir/subdir2",
 			},
 		] as any)
 
@@ -320,13 +320,13 @@ describe("loadRuleFiles", () => {
 			const pathStr = filePath.toString()
 			// Handle both Unix and Windows path separators
 			const normalizedPath = pathStr.replace(/\\/g, "/")
-			if (normalizedPath === "/fake/path/.roo/rules/root.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules/root.txt") {
 				return Promise.resolve("root file content")
 			}
-			if (normalizedPath === "/fake/path/.roo/rules/subdir/nested1.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules/subdir/nested1.txt") {
 				return Promise.resolve("nested file 1 content")
 			}
-			if (normalizedPath === "/fake/path/.roo/rules/subdir/subdir2/nested2.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules/subdir/subdir2/nested2.txt") {
 				return Promise.resolve("nested file 2 content")
 			}
 			return Promise.reject({ code: "ENOENT" })
@@ -336,15 +336,15 @@ describe("loadRuleFiles", () => {
 
 		// Check root file content
 		const expectedRootPath =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules\\root.txt" : "/fake/path/.roo/rules/root.txt"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules\\root.txt" : "/fake/path/.zentara/rules/root.txt"
 		const expectedNested1Path =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\rules\\subdir\\nested1.txt"
-				: "/fake/path/.roo/rules/subdir/nested1.txt"
+				? "\\fake\\path\\.zentara\\rules\\subdir\\nested1.txt"
+				: "/fake/path/.zentara/rules/subdir/nested1.txt"
 		const expectedNested2Path =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\rules\\subdir\\subdir2\\nested2.txt"
-				: "/fake/path/.roo/rules/subdir/subdir2/nested2.txt"
+				? "\\fake\\path\\.zentara\\rules\\subdir\\subdir2\\nested2.txt"
+				: "/fake/path/.zentara/rules/subdir/subdir2/nested2.txt"
 
 		expect(result).toContain(`# Rules from ${expectedRootPath}:`)
 		expect(result).toContain("root file content")
@@ -357,15 +357,15 @@ describe("loadRuleFiles", () => {
 
 		// Verify correct paths were checked
 		const expectedRootPath2 =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules\\root.txt" : "/fake/path/.roo/rules/root.txt"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules\\root.txt" : "/fake/path/.zentara/rules/root.txt"
 		const expectedNested1Path2 =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\rules\\subdir\\nested1.txt"
-				: "/fake/path/.roo/rules/subdir/nested1.txt"
+				? "\\fake\\path\\.zentara\\rules\\subdir\\nested1.txt"
+				: "/fake/path/.zentara/rules/subdir/nested1.txt"
 		const expectedNested2Path2 =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\rules\\subdir\\subdir2\\nested2.txt"
-				: "/fake/path/.roo/rules/subdir/subdir2/nested2.txt"
+				? "\\fake\\path\\.zentara\\rules\\subdir\\subdir2\\nested2.txt"
+				: "/fake/path/.zentara/rules/subdir/subdir2/nested2.txt"
 
 		expect(statMock).toHaveBeenCalledWith(expectedRootPath2)
 		expect(statMock).toHaveBeenCalledWith(expectedNested1Path2)
@@ -384,7 +384,7 @@ describe("addCustomInstructions", () => {
 	})
 
 	it("should combine all instruction types when provided", async () => {
-		// Simulate no .roo/rules-test-mode directory
+		// Simulate no .zentara/rules-test-mode directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 
 		readFileMock.mockResolvedValue("mode specific rules")
@@ -402,11 +402,11 @@ describe("addCustomInstructions", () => {
 		expect(result).toContain("(es)") // Check for language code in parentheses
 		expect(result).toContain("Global Instructions:\nglobal instructions")
 		expect(result).toContain("Mode-specific Instructions:\nmode instructions")
-		expect(result).toContain("Rules from .roorules-test-mode:\nmode specific rules")
+		expect(result).toContain("Rules from .zentararules-test-mode:\nmode specific rules")
 	})
 
 	it("should return empty string when no instructions provided", async () => {
-		// Simulate no .roo/rules directory
+		// Simulate no .zentara/rules directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 
 		readFileMock.mockRejectedValue({ code: "ENOENT" })
@@ -416,7 +416,7 @@ describe("addCustomInstructions", () => {
 	})
 
 	it("should handle missing mode-specific rules file", async () => {
-		// Simulate no .roo/rules-test-mode directory
+		// Simulate no .zentara/rules-test-mode directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 
 		readFileMock.mockRejectedValue({ code: "ENOENT" })
@@ -434,7 +434,7 @@ describe("addCustomInstructions", () => {
 	})
 
 	it("should handle unknown language codes properly", async () => {
-		// Simulate no .roo/rules-test-mode directory
+		// Simulate no .zentara/rules-test-mode directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 
 		readFileMock.mockRejectedValue({ code: "ENOENT" })
@@ -453,7 +453,7 @@ describe("addCustomInstructions", () => {
 	})
 
 	it("should throw on unexpected errors", async () => {
-		// Simulate no .roo/rules-test-mode directory
+		// Simulate no .zentara/rules-test-mode directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 
 		const error = new Error("Permission denied") as NodeJS.ErrnoException
@@ -466,7 +466,7 @@ describe("addCustomInstructions", () => {
 	})
 
 	it("should skip mode-specific rule files that are directories", async () => {
-		// Simulate no .roo/rules-test-mode directory
+		// Simulate no .zentara/rules-test-mode directory
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 
 		readFileMock.mockImplementation((filePath: PathLike) => {
@@ -488,8 +488,8 @@ describe("addCustomInstructions", () => {
 		expect(result).not.toContain("Rules from .clinerules-test-mode")
 	})
 
-	it("should use .roo/rules-test-mode/ directory when it exists and has files", async () => {
-		// Simulate .roo/rules-test-mode directory exists
+	it("should use .zentara/rules-test-mode/ directory when it exists and has files", async () => {
+		// Simulate .zentara/rules-test-mode directory exists
 		statMock.mockResolvedValueOnce({
 			isDirectory: vi.fn().mockReturnValue(true),
 		} as any)
@@ -500,13 +500,13 @@ describe("addCustomInstructions", () => {
 				name: "rule1.txt",
 				isFile: () => true,
 				isSymbolicLink: () => false,
-				parentPath: "/fake/path/.roo/rules-test-mode",
+				parentPath: "/fake/path/.zentara/rules-test-mode",
 			},
 			{
 				name: "rule2.txt",
 				isFile: () => true,
 				isSymbolicLink: () => false,
-				parentPath: "/fake/path/.roo/rules-test-mode",
+				parentPath: "/fake/path/.zentara/rules-test-mode",
 			},
 		] as any)
 
@@ -514,8 +514,8 @@ describe("addCustomInstructions", () => {
 			// Handle both Unix and Windows path separators
 			const normalizedPath = path.toString().replace(/\\/g, "/")
 			if (
-				normalizedPath.includes("/fake/path/.roo/rules-test-mode/rule1.txt") ||
-				normalizedPath.includes("/fake/path/.roo/rules-test-mode/rule2.txt")
+				normalizedPath.includes("/fake/path/.zentara/rules-test-mode/rule1.txt") ||
+				normalizedPath.includes("/fake/path/.zentara/rules-test-mode/rule2.txt")
 			) {
 				return Promise.resolve({
 					isFile: vi.fn().mockReturnValue(true),
@@ -530,10 +530,10 @@ describe("addCustomInstructions", () => {
 			const pathStr = filePath.toString()
 			// Handle both Unix and Windows path separators
 			const normalizedPath = pathStr.replace(/\\/g, "/")
-			if (normalizedPath === "/fake/path/.roo/rules-test-mode/rule1.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules-test-mode/rule1.txt") {
 				return Promise.resolve("mode specific rule 1")
 			}
-			if (normalizedPath === "/fake/path/.roo/rules-test-mode/rule2.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules-test-mode/rule2.txt") {
 				return Promise.resolve("mode specific rule 2")
 			}
 			return Promise.reject({ code: "ENOENT" })
@@ -548,15 +548,15 @@ describe("addCustomInstructions", () => {
 		)
 
 		const expectedTestModeDir =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules-test-mode" : "/fake/path/.roo/rules-test-mode"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules-test-mode" : "/fake/path/.zentara/rules-test-mode"
 		const expectedRule1Path =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\rules-test-mode\\rule1.txt"
-				: "/fake/path/.roo/rules-test-mode/rule1.txt"
+				? "\\fake\\path\\.zentara\\rules-test-mode\\rule1.txt"
+				: "/fake/path/.zentara/rules-test-mode/rule1.txt"
 		const expectedRule2Path =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\rules-test-mode\\rule2.txt"
-				: "/fake/path/.roo/rules-test-mode/rule2.txt"
+				? "\\fake\\path\\.zentara\\rules-test-mode\\rule2.txt"
+				: "/fake/path/.zentara/rules-test-mode/rule2.txt"
 
 		expect(result).toContain(`# Rules from ${expectedTestModeDir}`)
 		expect(result).toContain(`# Rules from ${expectedRule1Path}:`)
@@ -565,15 +565,15 @@ describe("addCustomInstructions", () => {
 		expect(result).toContain("mode specific rule 2")
 
 		const expectedTestModeDir2 =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules-test-mode" : "/fake/path/.roo/rules-test-mode"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules-test-mode" : "/fake/path/.zentara/rules-test-mode"
 		const expectedRule1Path2 =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\rules-test-mode\\rule1.txt"
-				: "/fake/path/.roo/rules-test-mode/rule1.txt"
+				? "\\fake\\path\\.zentara\\rules-test-mode\\rule1.txt"
+				: "/fake/path/.zentara/rules-test-mode/rule1.txt"
 		const expectedRule2Path2 =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\rules-test-mode\\rule2.txt"
-				: "/fake/path/.roo/rules-test-mode/rule2.txt"
+				? "\\fake\\path\\.zentara\\rules-test-mode\\rule2.txt"
+				: "/fake/path/.zentara/rules-test-mode/rule2.txt"
 
 		expect(statMock).toHaveBeenCalledWith(expectedTestModeDir2)
 		expect(statMock).toHaveBeenCalledWith(expectedRule1Path2)
@@ -582,13 +582,13 @@ describe("addCustomInstructions", () => {
 		expect(readFileMock).toHaveBeenCalledWith(expectedRule2Path2, "utf-8")
 	})
 
-	it("should fall back to .roorules-test-mode when .roo/rules-test-mode/ does not exist", async () => {
-		// Simulate .roo/rules-test-mode directory does not exist
+	it("should fall back to .zentararules-test-mode when .zentara/rules-test-mode/ does not exist", async () => {
+		// Simulate .zentara/rules-test-mode directory does not exist
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 
-		// Simulate .roorules-test-mode exists
+		// Simulate .zentararules-test-mode exists
 		readFileMock.mockImplementation((filePath: PathLike) => {
-			if (filePath.toString().includes(".roorules-test-mode")) {
+			if (filePath.toString().includes(".zentararules-test-mode")) {
 				return Promise.resolve("mode specific rules from file")
 			}
 			return Promise.reject({ code: "ENOENT" })
@@ -601,16 +601,16 @@ describe("addCustomInstructions", () => {
 			"test-mode",
 		)
 
-		expect(result).toContain("Rules from .roorules-test-mode:\nmode specific rules from file")
+		expect(result).toContain("Rules from .zentararules-test-mode:\nmode specific rules from file")
 	})
 
-	it("should fall back to .clinerules-test-mode when .roo/rules-test-mode/ and .roorules-test-mode do not exist", async () => {
-		// Simulate .roo/rules-test-mode directory does not exist
+	it("should fall back to .clinerules-test-mode when .zentara/rules-test-mode/ and .zentararules-test-mode do not exist", async () => {
+		// Simulate .zentara/rules-test-mode directory does not exist
 		statMock.mockRejectedValueOnce({ code: "ENOENT" })
 
 		// Simulate file reading
 		readFileMock.mockImplementation((filePath: PathLike) => {
-			if (filePath.toString().includes(".roorules-test-mode")) {
+			if (filePath.toString().includes(".zentararules-test-mode")) {
 				return Promise.reject({ code: "ENOENT" })
 			}
 			if (filePath.toString().includes(".clinerules-test-mode")) {
@@ -629,12 +629,12 @@ describe("addCustomInstructions", () => {
 		expect(result).toContain("Rules from .clinerules-test-mode:\nmode specific rules from cline file")
 	})
 
-	it("should correctly format content from directories when using .roo/rules-test-mode/", async () => {
+	it("should correctly format content from directories when using .zentara/rules-test-mode/", async () => {
 		// Need to reset mockImplementation first to avoid interference from previous tests
 		statMock.mockReset()
 		readFileMock.mockReset()
 
-		// Simulate .roo/rules-test-mode directory exists
+		// Simulate .zentara/rules-test-mode directory exists
 		statMock.mockImplementationOnce(() =>
 			Promise.resolve({
 				isDirectory: vi.fn().mockReturnValue(true),
@@ -643,7 +643,7 @@ describe("addCustomInstructions", () => {
 
 		// Simulate directory has files
 		readdirMock.mockResolvedValueOnce([
-			{ name: "rule1.txt", isFile: () => true, parentPath: "/fake/path/.roo/rules-test-mode" },
+			{ name: "rule1.txt", isFile: () => true, parentPath: "/fake/path/.zentara/rules-test-mode" },
 		] as any)
 		readFileMock.mockReset()
 
@@ -653,7 +653,7 @@ describe("addCustomInstructions", () => {
 			statCallCount++
 			// Handle both Unix and Windows path separators
 			const normalizedPath = filePath.toString().replace(/\\/g, "/")
-			if (normalizedPath === "/fake/path/.roo/rules-test-mode/rule1.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules-test-mode/rule1.txt") {
 				return Promise.resolve({
 					isFile: vi.fn().mockReturnValue(true),
 					isDirectory: vi.fn().mockReturnValue(false),
@@ -669,7 +669,7 @@ describe("addCustomInstructions", () => {
 			const pathStr = filePath.toString()
 			// Handle both Unix and Windows path separators
 			const normalizedPath = pathStr.replace(/\\/g, "/")
-			if (normalizedPath === "/fake/path/.roo/rules-test-mode/rule1.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules-test-mode/rule1.txt") {
 				return Promise.resolve("mode specific rule content")
 			}
 			return Promise.reject({ code: "ENOENT" })
@@ -683,11 +683,11 @@ describe("addCustomInstructions", () => {
 		)
 
 		const expectedTestModeDir =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules-test-mode" : "/fake/path/.roo/rules-test-mode"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules-test-mode" : "/fake/path/.zentara/rules-test-mode"
 		const expectedRule1Path =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\rules-test-mode\\rule1.txt"
-				: "/fake/path/.roo/rules-test-mode/rule1.txt"
+				? "\\fake\\path\\.zentara\\rules-test-mode\\rule1.txt"
+				: "/fake/path/.zentara/rules-test-mode/rule1.txt"
 
 		expect(result).toContain(`# Rules from ${expectedTestModeDir}`)
 		expect(result).toContain(`# Rules from ${expectedRule1Path}:`)
@@ -718,7 +718,7 @@ describe("Directory existence checks", () => {
 		await loadRuleFiles("/fake/path")
 
 		// Verify stat was called to check directory existence
-		const expectedRulesDir = process.platform === "win32" ? "\\fake\\path\\.roo\\rules" : "/fake/path/.roo/rules"
+		const expectedRulesDir = process.platform === "win32" ? "\\fake\\path\\.zentara\\rules" : "/fake/path/.zentara/rules"
 		expect(statMock).toHaveBeenCalledWith(expectedRulesDir)
 	})
 
@@ -732,14 +732,14 @@ describe("Directory existence checks", () => {
 		const result = await loadRuleFiles("/fake/path")
 
 		// Verify it fell back to reading rule files directly
-		expect(result).toBe("\n# Rules from .roorules:\nfallback content\n")
+		expect(result).toBe("\n# Rules from .zentararules:\nfallback content\n")
 	})
 })
 
 // Indirectly test readTextFilesFromDirectory and formatDirectoryContent through loadRuleFiles
 describe("Rules directory reading", () => {
 	it.skipIf(process.platform === "win32")("should follow symbolic links in the rules directory", async () => {
-		// Simulate .roo/rules directory exists
+		// Simulate .zentara/rules directory exists
 		statMock.mockResolvedValueOnce({
 			isDirectory: vi.fn().mockReturnValue(true),
 		} as any)
@@ -751,29 +751,29 @@ describe("Rules directory reading", () => {
 					name: "regular.txt",
 					isFile: () => true,
 					isSymbolicLink: () => false,
-					parentPath: "/fake/path/.roo/rules",
+					parentPath: "/fake/path/.zentara/rules",
 				},
 				{
 					name: "link.txt",
 					isFile: () => false,
 					isSymbolicLink: () => true,
-					parentPath: "/fake/path/.roo/rules",
+					parentPath: "/fake/path/.zentara/rules",
 				},
 				{
 					name: "link_dir",
 					isFile: () => false,
 					isSymbolicLink: () => true,
-					parentPath: "/fake/path/.roo/rules",
+					parentPath: "/fake/path/.zentara/rules",
 				},
 				{
 					name: "nested_link.txt",
 					isFile: () => false,
 					isSymbolicLink: () => true,
-					parentPath: "/fake/path/.roo/rules",
+					parentPath: "/fake/path/.zentara/rules",
 				},
 			] as any)
 			.mockResolvedValueOnce([
-				{ name: "subdir_link.txt", isFile: () => true, parentPath: "/fake/path/.roo/rules/symlink-target-dir" },
+				{ name: "subdir_link.txt", isFile: () => true, parentPath: "/fake/path/.zentara/rules/symlink-target-dir" },
 			] as any)
 
 		// Simulate readlink response
@@ -787,7 +787,7 @@ describe("Rules directory reading", () => {
 		statMock.mockReset()
 		statMock.mockImplementation((path: string) => {
 			// For directory check
-			if (path === "/fake/path/.roo/rules" || path.endsWith("dir")) {
+			if (path === "/fake/path/.zentara/rules" || path.endsWith("dir")) {
 				return Promise.resolve({
 					isDirectory: vi.fn().mockReturnValue(true),
 					isFile: vi.fn().mockReturnValue(false),
@@ -815,16 +815,16 @@ describe("Rules directory reading", () => {
 			const pathStr = filePath.toString()
 			// Handle both Unix and Windows path separators
 			const normalizedPath = pathStr.replace(/\\/g, "/")
-			if (normalizedPath === "/fake/path/.roo/rules/regular.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules/regular.txt") {
 				return Promise.resolve("regular file content")
 			}
-			if (normalizedPath === "/fake/path/.roo/symlink-target.txt") {
+			if (normalizedPath === "/fake/path/.zentara/symlink-target.txt") {
 				return Promise.resolve("symlink target content")
 			}
-			if (normalizedPath === "/fake/path/.roo/rules/symlink-target-dir/subdir_link.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules/symlink-target-dir/subdir_link.txt") {
 				return Promise.resolve("regular file content under symlink target dir")
 			}
-			if (normalizedPath === "/fake/path/.roo/nested-symlink-target.txt") {
+			if (normalizedPath === "/fake/path/.zentara/nested-symlink-target.txt") {
 				return Promise.resolve("nested symlink target content")
 			}
 			return Promise.reject({ code: "ENOENT" })
@@ -835,20 +835,20 @@ describe("Rules directory reading", () => {
 		// Verify both regular file and symlink target content are included
 		const expectedRegularPath =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\rules\\regular.txt"
-				: "/fake/path/.roo/rules/regular.txt"
+				? "\\fake\\path\\.zentara\\rules\\regular.txt"
+				: "/fake/path/.zentara/rules/regular.txt"
 		const expectedSymlinkPath =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\symlink-target.txt"
-				: "/fake/path/.roo/symlink-target.txt"
+				? "\\fake\\path\\.zentara\\symlink-target.txt"
+				: "/fake/path/.zentara/symlink-target.txt"
 		const expectedSubdirPath =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\rules\\symlink-target-dir\\subdir_link.txt"
-				: "/fake/path/.roo/rules/symlink-target-dir/subdir_link.txt"
+				? "\\fake\\path\\.zentara\\rules\\symlink-target-dir\\subdir_link.txt"
+				: "/fake/path/.zentara/rules/symlink-target-dir/subdir_link.txt"
 		const expectedNestedPath =
 			process.platform === "win32"
-				? "\\fake\\path\\.roo\\nested-symlink-target.txt"
-				: "/fake/path/.roo/nested-symlink-target.txt"
+				? "\\fake\\path\\.zentara\\nested-symlink-target.txt"
+				: "/fake/path/.zentara/nested-symlink-target.txt"
 
 		expect(result).toContain(`# Rules from ${expectedRegularPath}:`)
 		expect(result).toContain("regular file content")
@@ -860,39 +860,39 @@ describe("Rules directory reading", () => {
 		expect(result).toContain("nested symlink target content")
 
 		// Verify readlink was called with the symlink path
-		expect(readlinkMock).toHaveBeenCalledWith("/fake/path/.roo/rules/link.txt")
-		expect(readlinkMock).toHaveBeenCalledWith("/fake/path/.roo/rules/link_dir")
+		expect(readlinkMock).toHaveBeenCalledWith("/fake/path/.zentara/rules/link.txt")
+		expect(readlinkMock).toHaveBeenCalledWith("/fake/path/.zentara/rules/link_dir")
 
 		// Verify both files were read
-		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.roo/rules/regular.txt", "utf-8")
-		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.roo/symlink-target.txt", "utf-8")
-		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.roo/rules/symlink-target-dir/subdir_link.txt", "utf-8")
-		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.roo/nested-symlink-target.txt", "utf-8")
+		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.zentara/rules/regular.txt", "utf-8")
+		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.zentara/symlink-target.txt", "utf-8")
+		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.zentara/rules/symlink-target-dir/subdir_link.txt", "utf-8")
+		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.zentara/nested-symlink-target.txt", "utf-8")
 	})
 	beforeEach(() => {
 		vi.clearAllMocks()
 	})
 
 	it.skipIf(process.platform === "win32")("should correctly format multiple files from directory", async () => {
-		// Simulate .roo/rules directory exists
+		// Simulate .zentara/rules directory exists
 		statMock.mockResolvedValueOnce({
 			isDirectory: vi.fn().mockReturnValue(true),
 		} as any)
 
 		// Simulate listing files
 		readdirMock.mockResolvedValueOnce([
-			{ name: "file1.txt", isFile: () => true, parentPath: "/fake/path/.roo/rules" },
-			{ name: "file2.txt", isFile: () => true, parentPath: "/fake/path/.roo/rules" },
-			{ name: "file3.txt", isFile: () => true, parentPath: "/fake/path/.roo/rules" },
+			{ name: "file1.txt", isFile: () => true, parentPath: "/fake/path/.zentara/rules" },
+			{ name: "file2.txt", isFile: () => true, parentPath: "/fake/path/.zentara/rules" },
+			{ name: "file3.txt", isFile: () => true, parentPath: "/fake/path/.zentara/rules" },
 		] as any)
 
 		statMock.mockImplementation((path) => {
 			// Handle both Unix and Windows path separators
 			const normalizedPath = path.toString().replace(/\\/g, "/")
 			expect([
-				"/fake/path/.roo/rules/file1.txt",
-				"/fake/path/.roo/rules/file2.txt",
-				"/fake/path/.roo/rules/file3.txt",
+				"/fake/path/.zentara/rules/file1.txt",
+				"/fake/path/.zentara/rules/file2.txt",
+				"/fake/path/.zentara/rules/file3.txt",
 			]).toContain(normalizedPath)
 
 			return Promise.resolve({
@@ -904,13 +904,13 @@ describe("Rules directory reading", () => {
 			const pathStr = filePath.toString()
 			// Handle both Unix and Windows path separators
 			const normalizedPath = pathStr.replace(/\\/g, "/")
-			if (normalizedPath === "/fake/path/.roo/rules/file1.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules/file1.txt") {
 				return Promise.resolve("content of file1")
 			}
-			if (normalizedPath === "/fake/path/.roo/rules/file2.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules/file2.txt") {
 				return Promise.resolve("content of file2")
 			}
-			if (normalizedPath === "/fake/path/.roo/rules/file3.txt") {
+			if (normalizedPath === "/fake/path/.zentara/rules/file3.txt") {
 				return Promise.resolve("content of file3")
 			}
 			return Promise.reject({ code: "ENOENT" })
@@ -919,11 +919,11 @@ describe("Rules directory reading", () => {
 		const result = await loadRuleFiles("/fake/path")
 
 		const expectedFile1Path =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules\\file1.txt" : "/fake/path/.roo/rules/file1.txt"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules\\file1.txt" : "/fake/path/.zentara/rules/file1.txt"
 		const expectedFile2Path =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules\\file2.txt" : "/fake/path/.roo/rules/file2.txt"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules\\file2.txt" : "/fake/path/.zentara/rules/file2.txt"
 		const expectedFile3Path =
-			process.platform === "win32" ? "\\fake\\path\\.roo\\rules\\file3.txt" : "/fake/path/.roo/rules/file3.txt"
+			process.platform === "win32" ? "\\fake\\path\\.zentara\\rules\\file3.txt" : "/fake/path/.zentara/rules/file3.txt"
 
 		expect(result).toContain(`# Rules from ${expectedFile1Path}:`)
 		expect(result).toContain("content of file1")
@@ -934,7 +934,7 @@ describe("Rules directory reading", () => {
 	})
 
 	it("should handle empty file list gracefully", async () => {
-		// Simulate .roo/rules directory exists
+		// Simulate .zentara/rules directory exists
 		statMock.mockResolvedValueOnce({
 			isDirectory: vi.fn().mockReturnValue(true),
 		} as any)
@@ -945,6 +945,6 @@ describe("Rules directory reading", () => {
 		readFileMock.mockResolvedValueOnce("fallback content")
 
 		const result = await loadRuleFiles("/fake/path")
-		expect(result).toBe("\n# Rules from .roorules:\nfallback content\n")
+		expect(result).toBe("\n# Rules from .zentararules:\nfallback content\n")
 	})
 })

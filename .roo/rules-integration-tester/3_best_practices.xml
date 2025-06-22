@@ -20,7 +20,7 @@
   </api_interactions>
 
   <file_system_handling>
-    - Be aware that files may be created in the workspace directory (/tmp/roo-test-workspace-*) rather than expected locations
+    - Be aware that files may be created in the workspace directory (/tmp/zentara-test-workspace-*) rather than expected locations
     - Always check multiple possible file locations when verifying file creation
     - Use flexible file location checking that searches workspace directories
     - Verify files exist after creation to catch setup issues early

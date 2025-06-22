@@ -14,6 +14,6 @@ export const Package = {
 	publisher,
 	name: process.env.PKG_NAME || name,
 	version: process.env.PKG_VERSION || version,
-	outputChannel: process.env.PKG_OUTPUT_CHANNEL || "roo-code",
+	outputChannel: process.env.PKG_OUTPUT_CHANNEL || "zentara-code",
 	sha: process.env.PKG_SHA,
 } as const

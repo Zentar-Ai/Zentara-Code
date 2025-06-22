@@ -5,7 +5,7 @@
     </scenario>
     
     <user_request>
-      Fix PR #4365 in RooCodeInc/Roo-Code.
+      Fix PR #4365 in ZentaraCodeInc/Zentara-Code.
     </user_request>
 
     <workflow>
@@ -17,8 +17,8 @@
   <tool_name>get_pull_request</tool_name>
   <arguments>
     {
-      "owner": "RooCodeInc",
-      "repo": "Roo-Code",
+      "owner": "ZentaraCodeInc",
+      "repo": "Zentara-Code",
       "pullNumber": 4365
     }
   </arguments>
@@ -28,8 +28,8 @@
   <tool_name>get_pull_request_comments</tool_name>
   <arguments>
     {
-      "owner": "RooCodeInc",
-      "repo": "Roo-Code",
+      "owner": "ZentaraCodeInc",
+      "repo": "Zentara-Code",
       "pullNumber": 4365
     }
   </arguments>

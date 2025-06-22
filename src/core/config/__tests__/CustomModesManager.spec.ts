@@ -8,7 +8,7 @@ import * as fs from "fs/promises"
 import * as yaml from "yaml"
 import * as vscode from "vscode"
 
-import type { ModeConfig } from "@roo-code/types"
+import type { ModeConfig } from "@zentara-code/types"
 
 import { fileExistsAtPath } from "../../../utils/fs"
 import { getWorkspacePath, arePathsEqual } from "../../../utils/path"
@@ -41,7 +41,7 @@ describe("CustomModesManager", () => {
 	// Use path.sep to ensure correct path separators for the current platform
 	const mockStoragePath = `${path.sep}mock${path.sep}settings`
 	const mockSettingsPath = path.join(mockStoragePath, "settings", GlobalFileNames.customModes)
-	const mockRoomodes = `${path.sep}mock${path.sep}workspace${path.sep}.roomodes`
+	const mockZentaramodes = `${path.sep}mock${path.sep}workspace${path.sep}.zentaramodes`
 
 	beforeEach(() => {
 		mockOnUpdate = vi.fn()
@@ -62,7 +62,7 @@ describe("CustomModesManager", () => {
 		;(vscode.workspace.onDidSaveTextDocument as Mock).mockReturnValue({ dispose: vi.fn() })
 		;(getWorkspacePath as Mock).mockReturnValue("/mock/workspace")
 		;(fileExistsAtPath as Mock).mockImplementation(async (path: string) => {
-			return path === mockSettingsPath || path === mockRoomodes
+			return path === mockSettingsPath || path === mockZentaramodes
 		})
 		;(fs.mkdir as Mock).mockResolvedValue(undefined)
 		;(fs.readFile as Mock).mockImplementation(async (path: string) => {
@@ -81,17 +81,17 @@ describe("CustomModesManager", () => {
 	})
 
 	describe("getCustomModes", () => {
-		it("should handle valid YAML in .roomodes file and JSON for global customModes", async () => {
+		it("should handle valid YAML in .zentaramodes file and JSON for global customModes", async () => {
 			const settingsModes = [{ slug: "mode1", name: "Mode 1", roleDefinition: "Role 1", groups: ["read"] }]
 
-			const roomodesModes = [{ slug: "mode2", name: "Mode 2", roleDefinition: "Role 2", groups: ["read"] }]
+			const zentaramodesModes = [{ slug: "mode2", name: "Mode 2", roleDefinition: "Role 2", groups: ["read"] }]
 
 			;(fs.readFile as Mock).mockImplementation(async (path: string) => {
 				if (path === mockSettingsPath) {
 					return yaml.stringify({ customModes: settingsModes })
 				}
-				if (path === mockRoomodes) {
-					return yaml.stringify({ customModes: roomodesModes })
+				if (path === mockZentaramodes) {
+					return yaml.stringify({ customModes: zentaramodesModes })
 				}
 				throw new Error("File not found")
 			})
@@ -101,13 +101,13 @@ describe("CustomModesManager", () => {
 			expect(modes).toHaveLength(2)
 		})
 
-		it("should merge modes with .roomodes taking precedence", async () => {
+		it("should merge modes with .zentaramodes taking precedence", async () => {
 			const settingsModes = [
 				{ slug: "mode1", name: "Mode 1", roleDefinition: "Role 1", groups: ["read"] },
 				{ slug: "mode2", name: "Mode 2", roleDefinition: "Role 2", groups: ["read"] },
 			]
 
-			const roomodesModes = [
+			const zentaramodesModes = [
 				{ slug: "mode2", name: "Mode 2 Override", roleDefinition: "Role 2 Override", groups: ["read"] },
 				{ slug: "mode3", name: "Mode 3", roleDefinition: "Role 3", groups: ["read"] },
 			]
@@ -116,25 +116,25 @@ describe("CustomModesManager", () => {
 				if (path === mockSettingsPath) {
 					return yaml.stringify({ customModes: settingsModes })
 				}
-				if (path === mockRoomodes) {
-					return yaml.stringify({ customModes: roomodesModes })
+				if (path === mockZentaramodes) {
+					return yaml.stringify({ customModes: zentaramodesModes })
 				}
 				throw new Error("File not found")
 			})
 
 			const modes = await manager.getCustomModes()
 
-			// Should contain 3 modes (mode1 from settings, mode2 and mode3 from roomodes)
+			// Should contain 3 modes (mode1 from settings, mode2 and mode3 from zentaramodes)
 			expect(modes).toHaveLength(3)
 			expect(modes.map((m) => m.slug)).toEqual(["mode2", "mode3", "mode1"])
 
-			// mode2 should come from .roomodes since it takes precedence
+			// mode2 should come from .zentaramodes since it takes precedence
 			const mode2 = modes.find((m) => m.slug === "mode2")
 			expect(mode2?.name).toBe("Mode 2 Override")
 			expect(mode2?.roleDefinition).toBe("Role 2 Override")
 		})
 
-		it("should handle missing .roomodes file", async () => {
+		it("should handle missing .zentaramodes file", async () => {
 			const settingsModes = [{ slug: "mode1", name: "Mode 1", roleDefinition: "Role 1", groups: ["read"] }]
 
 			;(fileExistsAtPath as Mock).mockImplementation(async (path: string) => {
@@ -153,14 +153,14 @@ describe("CustomModesManager", () => {
 			expect(modes[0].slug).toBe("mode1")
 		})
 
-		it("should handle invalid YAML in .roomodes", async () => {
+		it("should handle invalid YAML in .zentaramodes", async () => {
 			const settingsModes = [{ slug: "mode1", name: "Mode 1", roleDefinition: "Role 1", groups: ["read"] }]
 
 			;(fs.readFile as Mock).mockImplementation(async (path: string) => {
 				if (path === mockSettingsPath) {
 					return yaml.stringify({ customModes: settingsModes })
 				}
-				if (path === mockRoomodes) {
+				if (path === mockZentaramodes) {
 					return "invalid yaml content"
 				}
 				throw new Error("File not found")
@@ -168,7 +168,7 @@ describe("CustomModesManager", () => {
 
 			const modes = await manager.getCustomModes()
 
-			// Should fall back to settings modes when .roomodes is invalid
+			// Should fall back to settings modes when .zentaramodes is invalid
 			expect(modes).toHaveLength(1)
 			expect(modes[0].slug).toBe("mode1")
 		})
@@ -426,7 +426,7 @@ describe("CustomModesManager", () => {
 	})
 
 	describe("updateCustomMode", () => {
-		it("should update mode in settings file while preserving .roomodes precedence", async () => {
+		it("should update mode in settings file while preserving .zentaramodes precedence", async () => {
 			const newMode: ModeConfig = {
 				slug: "mode1",
 				name: "Updated Mode 1",
@@ -435,10 +435,10 @@ describe("CustomModesManager", () => {
 				source: "global",
 			}
 
-			const roomodesModes = [
+			const zentaramodesModes = [
 				{
 					slug: "mode1",
-					name: "Roomodes Mode 1",
+					name: "Zentaramodes Mode 1",
 					roleDefinition: "Role 1",
 					groups: ["read"],
 					source: "project",
@@ -450,11 +450,11 @@ describe("CustomModesManager", () => {
 			]
 
 			let settingsContent = { customModes: existingModes }
-			let roomodesContent = { customModes: roomodesModes }
+			let zentaramodesContent = { customModes: zentaramodesModes }
 
 			;(fs.readFile as Mock).mockImplementation(async (path: string) => {
-				if (path === mockRoomodes) {
-					return yaml.stringify(roomodesContent)
+				if (path === mockZentaramodes) {
+					return yaml.stringify(zentaramodesContent)
 				}
 				if (path === mockSettingsPath) {
 					return yaml.stringify(settingsContent)
@@ -465,8 +465,8 @@ describe("CustomModesManager", () => {
 				if (path === mockSettingsPath) {
 					settingsContent = yaml.parse(content)
 				}
-				if (path === mockRoomodes) {
-					roomodesContent = yaml.parse(content)
+				if (path === mockZentaramodes) {
+					zentaramodesContent = yaml.parse(content)
 				}
 				return Promise.resolve()
 			})
@@ -488,13 +488,13 @@ describe("CustomModesManager", () => {
 				}),
 			)
 
-			// Should update global state with merged modes where .roomodes takes precedence
+			// Should update global state with merged modes where .zentaramodes takes precedence
 			expect(mockContext.globalState.update).toHaveBeenCalledWith(
 				"customModes",
 				expect.arrayContaining([
 					expect.objectContaining({
 						slug: "mode1",
-						name: "Roomodes Mode 1", // .roomodes version should take precedence
+						name: "Zentaramodes Mode 1", // .zentaramodes version should take precedence
 						source: "project",
 					}),
 				]),
@@ -504,7 +504,7 @@ describe("CustomModesManager", () => {
 			expect(mockOnUpdate).toHaveBeenCalled()
 		})
 
-		it("creates .roomodes file when adding project-specific mode", async () => {
+		it("creates .zentaramodes file when adding project-specific mode", async () => {
 			const projectMode: ModeConfig = {
 				slug: "project-mode",
 				name: "Project Mode",
@@ -513,8 +513,8 @@ describe("CustomModesManager", () => {
 				source: "project",
 			}
 
-			// Mock .roomodes to not exist initially
-			let roomodesContent: any = null
+			// Mock .zentaramodes to not exist initially
+			let zentaramodesContent: any = null
 			;(fileExistsAtPath as Mock).mockImplementation(async (path: string) => {
 				return path === mockSettingsPath
 			})
@@ -522,24 +522,24 @@ describe("CustomModesManager", () => {
 				if (path === mockSettingsPath) {
 					return yaml.stringify({ customModes: [] })
 				}
-				if (path === mockRoomodes) {
-					if (!roomodesContent) {
+				if (path === mockZentaramodes) {
+					if (!zentaramodesContent) {
 						throw new Error("File not found")
 					}
-					return yaml.stringify(roomodesContent)
+					return yaml.stringify(zentaramodesContent)
 				}
 				throw new Error("File not found")
 			})
 			;(fs.writeFile as Mock).mockImplementation(async (path: string, content: string) => {
-				if (path === mockRoomodes) {
-					roomodesContent = yaml.parse(content)
+				if (path === mockZentaramodes) {
+					zentaramodesContent = yaml.parse(content)
 				}
 				return Promise.resolve()
 			})
 
 			await manager.updateCustomMode("project-mode", projectMode)
 
-			// Verify .roomodes was created with the project mode
+			// Verify .zentaramodes was created with the project mode
 			expect(fs.writeFile).toHaveBeenCalledWith(
 				expect.any(String), // Don't check exact path as it may have different separators on different platforms
 				expect.stringContaining("project-mode"),
@@ -548,10 +548,10 @@ describe("CustomModesManager", () => {
 
 			// Verify the path is correct regardless of separators
 			const writeCall = (fs.writeFile as Mock).mock.calls[0]
-			expect(path.normalize(writeCall[0])).toBe(path.normalize(mockRoomodes))
+			expect(path.normalize(writeCall[0])).toBe(path.normalize(mockZentaramodes))
 
-			// Verify the content written to .roomodes
-			expect(roomodesContent).toEqual({
+			// Verify the content written to .zentaramodes
+			expect(zentaramodesContent).toEqual({
 				customModes: [
 					expect.objectContaining({
 						slug: "project-mode",

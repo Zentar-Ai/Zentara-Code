@@ -1,6 +1,6 @@
 {
-	"name": "@roo-code/build",
-	"description": "ESBuild utilities for Roo Code.",
+	"name": "@zentara-code/build",
+	"description": "ESBuild utilities for Zentara Code.",
 	"private": true,
 	"type": "module",
 	"main": "./dist/index.js",
@@ -22,8 +22,8 @@
 		"zod": "^3.25.61"
 	},
 	"devDependencies": {
-		"@roo-code/config-eslint": "workspace:^",
-		"@roo-code/config-typescript": "workspace:^",
+		"@zentara-code/config-eslint": "workspace:^",
+		"@zentara-code/config-typescript": "workspace:^",
 		"@types/node": "20.x",
 		"vitest": "^3.2.3"
 	}

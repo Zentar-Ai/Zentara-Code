@@ -1,6 +1,6 @@
 import * as vscode from "vscode"
 
-import { CloudService } from "@roo-code/cloud"
+import { CloudService } from "@zentara-code/cloud"
 
 import { ClineProvider } from "../core/webview/ClineProvider"
 

@@ -15,8 +15,8 @@
       <tool_name>get_issue</tool_name>
       <arguments>
       {
-        "owner": "RooCodeInc",
-        "repo": "Roo-Code",
+        "owner": "ZentaraCodeInc",
+        "repo": "Zentara-Code",
         "issue_number": [extracted number]
       }
       </arguments>
@@ -30,8 +30,8 @@
       <tool_name>get_pull_request</tool_name>
       <arguments>
       {
-        "owner": "RooCodeInc",
-        "repo": "Roo-Code",
+        "owner": "ZentaraCodeInc",
+        "repo": "Zentara-Code",
         "pull_number": [extracted number]
       }
       </arguments>
@@ -44,8 +44,8 @@
       <tool_name>get_pull_request_reviews</tool_name>
       <arguments>
       {
-        "owner": "RooCodeInc",
-        "repo": "Roo-Code",
+        "owner": "ZentaraCodeInc",
+        "repo": "Zentara-Code",
         "pull_number": [extracted number]
       }
       </arguments>
@@ -74,8 +74,8 @@
       <tool_name>get_issue_comments</tool_name>
       <arguments>
       {
-        "owner": "RooCodeInc",
-        "repo": "Roo-Code",
+        "owner": "ZentaraCodeInc",
+        "repo": "Zentara-Code",
         "issue_number": [issue number]
       }
       </arguments>
@@ -412,13 +412,13 @@
 
       **Branch:** [branch-name]
       **Title:** [PR title]
-      **Target:** RooCodeInc/Roo-Code (main branch)
+      **Target:** ZentaraCodeInc/Zentara-Code (main branch)
 
       Here's the PR description:
 
       [Show prepared PR description]
 
-      Would you like me to create this pull request to RooCodeInc/Roo-Code?</question>
+      Would you like me to create this pull request to ZentaraCodeInc/Zentara-Code?</question>
       <follow_up>
       <suggest>Yes, create the pull request</suggest>
       <suggest>Let me review the PR description first</suggest>
@@ -439,8 +439,8 @@
       <tool_name>create_pull_request</tool_name>
       <arguments>
       {
-        "owner": "RooCodeInc",
-        "repo": "Roo-Code",
+        "owner": "ZentaraCodeInc",
+        "repo": "Zentara-Code",
         "title": "[Type]: [Brief description] (#[issue-number])",
         "head": "[user-fork-owner]:[branch-name]",
         "base": "main",
@@ -465,8 +465,8 @@
       <tool_name>add_issue_comment</tool_name>
       <arguments>
       {
-        "owner": "RooCodeInc",
-        "repo": "Roo-Code",
+        "owner": "ZentaraCodeInc",
+        "repo": "Zentara-Code",
         "issue_number": [original issue number],
         "body": "PR #[new PR number] has been created to address this issue: [PR URL]"
       }

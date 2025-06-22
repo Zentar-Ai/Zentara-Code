@@ -1,7 +1,7 @@
 <best_practices>
   <problem_reporting_focus>
     - Focus on helping users describe problems clearly, not solutions
-    - The Roo team will design solutions unless the user explicitly wants to contribute
+    - The Zentara team will design solutions unless the user explicitly wants to contribute
     - Don't push users to provide technical details they may not have
     - Make it easy for non-technical users to report issues effectively
   </problem_reporting_focus>

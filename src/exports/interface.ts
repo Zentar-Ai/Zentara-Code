@@ -1,33 +1,33 @@
 // import { EventEmitter } from "events"; // Interface now defines event methods directly
 
-import type { ProviderSettings, GlobalSettings, ClineMessage, TokenUsage, RooCodeEvents } from "./types"
-export type { RooCodeSettings, ProviderSettings, GlobalSettings, ClineMessage, TokenUsage, RooCodeEvents }
+import type { ProviderSettings, GlobalSettings, ClineMessage, TokenUsage, ZentaraCodeEvents } from "./types"
+export type { ZentaraCodeSettings, ProviderSettings, GlobalSettings, ClineMessage, TokenUsage, ZentaraCodeEvents }
 
-import { RooCodeEventName } from "../schemas"
-export type { RooCodeEventName }
+import { ZentaraCodeEventName } from "../schemas"
+export type { ZentaraCodeEventName }
 
-type RooCodeSettings = GlobalSettings & ProviderSettings
+type ZentaraCodeSettings = GlobalSettings & ProviderSettings
 
-export interface RooCodeAPI {
-	// Typed Event Emitter methods based on Node.js EventEmitter signature, adapted for RooCodeEvents
-	addListener<K extends keyof RooCodeEvents>(eventName: K, listener: (...args: RooCodeEvents[K]) => void): this
-	on<K extends keyof RooCodeEvents>(eventName: K, listener: (...args: RooCodeEvents[K]) => void): this
-	once<K extends keyof RooCodeEvents>(eventName: K, listener: (...args: RooCodeEvents[K]) => void): this
-	removeListener<K extends keyof RooCodeEvents>(eventName: K, listener: (...args: RooCodeEvents[K]) => void): this
-	off<K extends keyof RooCodeEvents>(eventName: K, listener: (...args: RooCodeEvents[K]) => void): this
-	removeAllListeners(eventName?: keyof RooCodeEvents): this
+export interface ZentaraCodeAPI {
+	// Typed Event Emitter methods based on Node.js EventEmitter signature, adapted for ZentaraCodeEvents
+	addListener<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this
+	on<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this
+	once<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this
+	removeListener<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this
+	off<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this
+	removeAllListeners(eventName?: keyof ZentaraCodeEvents): this
 	setMaxListeners(n: number): this
 	getMaxListeners(): number
-	listeners<K extends keyof RooCodeEvents>(eventName: K): ((...args: RooCodeEvents[K]) => void)[]
-	rawListeners<K extends keyof RooCodeEvents>(eventName: K): ((...args: RooCodeEvents[K]) => void)[]
-	emit<K extends keyof RooCodeEvents>(eventName: K, ...args: RooCodeEvents[K]): boolean
-	listenerCount(eventName: keyof RooCodeEvents, listener?: (...args: any[]) => void): number
-	prependListener<K extends keyof RooCodeEvents>(eventName: K, listener: (...args: RooCodeEvents[K]) => void): this
-	prependOnceListener<K extends keyof RooCodeEvents>(
+	listeners<K extends keyof ZentaraCodeEvents>(eventName: K): ((...args: ZentaraCodeEvents[K]) => void)[]
+	rawListeners<K extends keyof ZentaraCodeEvents>(eventName: K): ((...args: ZentaraCodeEvents[K]) => void)[]
+	emit<K extends keyof ZentaraCodeEvents>(eventName: K, ...args: ZentaraCodeEvents[K]): boolean
+	listenerCount(eventName: keyof ZentaraCodeEvents, listener?: (...args: any[]) => void): number
+	prependListener<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this
+	prependOnceListener<K extends keyof ZentaraCodeEvents>(
 		eventName: K,
-		listener: (...args: RooCodeEvents[K]) => void,
+		listener: (...args: ZentaraCodeEvents[K]) => void,
 	): this
-	eventNames(): (keyof RooCodeEvents)[]
+	eventNames(): (keyof ZentaraCodeEvents)[]
 	/**
 	 * Starts a new task with an optional initial message and images.
 	 * @param task Optional initial task message.
@@ -40,7 +40,7 @@ export interface RooCodeAPI {
 		images,
 		newTab,
 	}: {
-		configuration?: RooCodeSettings
+		configuration?: ZentaraCodeSettings
 		text?: string
 		images?: string[]
 		newTab?: boolean
@@ -97,13 +97,13 @@ export interface RooCodeAPI {
 	 * Returns the current configuration.
 	 * @returns The current configuration.
 	 */
-	getConfiguration(): RooCodeSettings
+	getConfiguration(): ZentaraCodeSettings
 
 	/**
 	 * Sets the configuration for the current task.
 	 * @param values An object containing key-value pairs to set.
 	 */
-	setConfiguration(values: RooCodeSettings): Promise<void>
+	setConfiguration(values: ZentaraCodeSettings): Promise<void>
 
 	/**
 	 * Creates a new API configuration profile

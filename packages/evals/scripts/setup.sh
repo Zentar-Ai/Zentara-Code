@@ -9,9 +9,9 @@ has_asdf_plugin() {
 }
 
 build_extension() {
-  echo "🔨 Building the Roo Code extension..."
-  pnpm -w vsix -- --out ../bin/roo-code-$(git rev-parse --short HEAD).vsix || exit 1
-  code --install-extension ../../bin/roo-code-$(git rev-parse --short HEAD).vsix || exit 1
+  echo "🔨 Building the Zentara Code extension..."
+  pnpm -w vsix -- --out ../bin/zentara-code-$(git rev-parse --short HEAD).vsix || exit 1
+  code --install-extension ../../bin/zentara-code-$(git rev-parse --short HEAD).vsix || exit 1
   cd evals
 }
 
@@ -106,8 +106,8 @@ check_docker_services() {
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
   echo "⚠️ Only macOS is currently supported."
-  echo "The Roo Code evals system can also be run with Docker on any platform."
-  echo "See https://github.com/Zentar-Ai/Roo-Codeblob/main/packages/evals/README.md for instructions."
+  echo "The Zentara Code evals system can also be run with Docker on any platform."
+  echo "See https://github.com/Zentar-Ai/Zentara-Codeblob/main/packages/evals/README.md for instructions."
   exit 1
 fi
 
@@ -328,15 +328,15 @@ code --install-extension redhat.java &>/dev/null || exit 1
 code --install-extension ms-python.python&>/dev/null || exit 1
 code --install-extension rust-lang.rust-analyzer &>/dev/null || exit 1
 
-if ! code --list-extensions 2>/dev/null | grep -q "ZentarAI.roo-code"; then
-  code --install-extension ZentarAI.roo-code &>/dev/null || exit 1
+if ! code --list-extensions 2>/dev/null | grep -q "ZentarAI.zentara-code"; then
+  code --install-extension ZentarAI.zentara-code &>/dev/null || exit 1
 fi
 
 echo "✅ Done"
 
 if [[ ! -d "../../../evals" ]]; then
   echo -n "🔗 Cloning evals repository... "
-  git clone https://github.com/Zentar-Ai/roo-code-Evals.git ../../../evals || exit 1
+  git clone https://github.com/Zentar-Ai/zentara-code-Evals.git ../../../evals || exit 1
   echo "✅ Done"
 else
   echo -n "🔄 Updating evals repository... "
@@ -357,8 +357,8 @@ fi
 # Check and start Docker services before database operations
 check_docker_services
 
-echo -n "🗄️ Syncing Roo Code evals database... "
-pnpm --filter @roo-code/evals db:push --force &>/dev/null || exit 1
+echo -n "🗄️ Syncing Zentara Code evals database... "
+pnpm --filter @zentara-code/evals db:push --force &>/dev/null || exit 1
 echo "✅ Done"
 
 if ! grep -q "OPENROUTER_API_KEY" .env.local; then
@@ -368,8 +368,8 @@ if ! grep -q "OPENROUTER_API_KEY" .env.local; then
   echo "OPENROUTER_API_KEY=$openrouter_api_key" >> .env.local || exit 1
 fi
 
-current_version=$(code --list-extensions --show-versions 2>/dev/null | grep roo)
-read -p "💻 Do you want to build a new version of the Roo Code extension? [currently $current_version] (y/N): " build_extension
+current_version=$(code --list-extensions --show-versions 2>/dev/null | grep zentara)
+read -p "💻 Do you want to build a new version of the Zentara Code extension? [currently $current_version] (y/N): " build_extension
 
 if [[ "$build_extension" =~ ^[Yy]$ ]]; then
   build_extension
@@ -381,9 +381,9 @@ if ! nc -z localhost 3000; then
   read -p "🌐 Would you like to start the evals web app? (Y/n): " start_evals
 
   if [[ "$start_evals" =~ ^[Yy]|^$ ]]; then
-    pnpm --filter @roo-code/web-evals dev
+    pnpm --filter @zentara-code/web-evals dev
   else
-    echo "💡 You can start it anytime with 'pnpm --filter @roo-code/web-evals dev'."
+    echo "💡 You can start it anytime with 'pnpm --filter @zentara-code/web-evals dev'."
   fi
 else
   echo "👟 The evals web app is running at http://localhost:3000 (or http://localhost:3446 if using Docker)"

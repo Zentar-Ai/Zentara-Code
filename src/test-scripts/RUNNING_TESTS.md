@@ -1,12 +1,12 @@
 # Running Test Scripts
 
-This document outlines how to run the various test scripts located in the `src/test-scripts/` directory. These tests are typically used to verify specific functionalities or flows within the roo-code extension.
+This document outlines how to run the various test scripts located in the `src/test-scripts/` directory. These tests are typically used to verify specific functionalities or flows within the zentara-code extension.
 
 ## Manual Compilation (Optional)
 
 While VS Code typically handles compilation automatically when you start debugging (F5), you can also compile the project manually if needed.
 
-1.  **Open a terminal** in the root directory of the roo-code project.
+1.  **Open a terminal** in the root directory of the zentara-code project.
 2.  **Run the compilation command:**
     ```bash
     npm run compile
@@ -17,7 +17,7 @@ While VS Code typically handles compilation automatically when you start debuggi
 
 If you are actively developing the Webview UI (located in the `webview-ui` directory) and want to benefit from Hot Module Replacement (HMR) for faster UI updates without full reloads:
 
-1.  **Open a separate terminal** in the root directory of the roo-code project.
+1.  **Open a separate terminal** in the root directory of the zentara-code project.
 2.  **Run the webview development server:**
     ```bash
     npm run dev
@@ -30,8 +30,8 @@ If you are actively developing the Webview UI (located in the `webview-ui` direc
 
 1.  **Start the Extension in Debug Mode:**
 
-    - Open the roo-code project in VS Code.
-    - Press `F5` or navigate to "Run" > "Start Debugging" from the menu. This will launch a new VS Code window (Extension Development Host) with the roo-code extension activated.
+    - Open the zentara-code project in VS Code.
+    - Press `F5` or navigate to "Run" > "Start Debugging" from the menu. This will launch a new VS Code window (Extension Development Host) with the zentara-code extension activated.
 
 2.  **Open the Command Palette:**
 
@@ -56,21 +56,21 @@ Here are the test scripts available in this folder and their corresponding comma
 
 - **File:** `directDebugToolLaunchTest.ts`
 - **Purpose:** Tests the direct launching capabilities of the debug tool.
-- **Command Name:** `debugging-roo-code.runDirectLaunchTest`
+- **Command Name:** `debugging-zentara-code.runDirectLaunchTest`
 - **Output Channel:** "Direct Debug Tool Launch Test"
 
 ### 2. Tool Flow Debug Launch Test
 
 - **File:** `toolFlowDebugLaunchTest.ts`
 - **Purpose:** Tests the debug launch operation as part of a tool flow.
-- **Command Name:** `debugging-roo-code.runToolFlowLaunchTest`
+- **Command Name:** `debugging-zentara-code.runToolFlowLaunchTest`
 - **Output Channel:** "Tool Flow Debug Launch Test"
 
 ### 3. Tool Flow Debug Sequence Test
 
 - **File:** `toolFlowDebugSequenceTest.ts`
 - **Purpose:** Tests a sequence of debug operations (launch, set breakpoint, step, continue, etc.) as part of a tool flow. This test was recently updated to use the new individual debug operation tools.
-- **Command Name:** `debugging-roo-code.runToolFlowSequenceTest`
+- **Command Name:** `debugging-zentara-code.runToolFlowSequenceTest`
 - **Output Channel:** "Tool Flow Debug Sequence Test"
 
 ---

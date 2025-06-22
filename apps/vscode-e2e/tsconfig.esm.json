@@ -1,5 +1,5 @@
 {
-	"extends": "@roo-code/config-typescript/base.json",
+	"extends": "@zentara-code/config-typescript/base.json",
 	"compilerOptions": {
 		"outDir": "out"
 	},

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 
-import { RouterModels } from "@roo/api"
-import { ExtensionMessage } from "@roo/ExtensionMessage"
+import { RouterModels } from "@zentara/api"
+import { ExtensionMessage } from "@zentara/ExtensionMessage"
 
 import { vscode } from "@src/utils/vscode"
 

@@ -1,8 +1,8 @@
 import i18next from "i18next"
 
-import type { ProviderSettings, OrganizationAllowList } from "@roo-code/types"
+import type { ProviderSettings, OrganizationAllowList } from "@zentara-code/types"
 
-import { isRouterName, RouterModels } from "@roo/api"
+import { isRouterName, RouterModels } from "@zentara/api"
 
 export function validateApiConfiguration(
 	apiConfiguration: ProviderSettings,

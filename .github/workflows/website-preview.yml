@@ -5,10 +5,10 @@ on:
         branches-ignore:
             - main
         paths:
-            - "apps/web-roo-code/**"
+            - "apps/web-zentara-code/**"
     pull_request:
         paths:
-            - "apps/web-roo-code/**"
+            - "apps/web-zentara-code/**"
     workflow_dispatch:
 
 env:
@@ -58,7 +58,7 @@ jobs:
               with:
                   script: |
                       const deploymentUrl = '${{ steps.deploy.outputs.deployment_url }}';
-                      const commentIdentifier = '<!-- roo-preview-comment -->';
+                      const commentIdentifier = '<!-- zentara-preview-comment -->';
 
                       const { data: comments } = await github.rest.issues.listComments({
                         owner: context.repo.owner,

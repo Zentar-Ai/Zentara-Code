@@ -60,7 +60,7 @@ type ContextManagementSettingsProps = HTMLAttributes<HTMLDivElement> & {
 	listApiConfigMeta: any[]
 	maxOpenTabsContext: number
 	maxWorkspaceFiles: number
-	showRooIgnoredFiles?: boolean
+	showZentaraIgnoredFiles?: boolean
 	maxReadFileLine?: number
 	maxConcurrentFileReads?: number
 	profileThresholds?: Record<string, number>
@@ -71,7 +71,7 @@ type ContextManagementSettingsProps = HTMLAttributes<HTMLDivElement> & {
 		| "customCondensingPrompt"
 		| "maxOpenTabsContext"
 		| "maxWorkspaceFiles"
-		| "showRooIgnoredFiles"
+		| "showZentaraIgnoredFiles"
 		| "maxReadFileLine"
 		| "maxConcurrentFileReads"
 		| "profileThresholds"
@@ -86,7 +86,7 @@ export const ContextManagementSettings = ({
 	listApiConfigMeta,
 	maxOpenTabsContext,
 	maxWorkspaceFiles,
-	showRooIgnoredFiles,
+	showZentaraIgnoredFiles,
 	setCachedStateField,
 	maxReadFileLine,
 	maxConcurrentFileReads,
@@ -195,15 +195,15 @@ export const ContextManagementSettings = ({
 
 				<div>
 					<VSCodeCheckbox
-						checked={showRooIgnoredFiles}
-						onChange={(e: any) => setCachedStateField("showRooIgnoredFiles", e.target.checked)}
-						data-testid="show-rooignored-files-checkbox">
+						checked={showZentaraIgnoredFiles}
+						onChange={(e: any) => setCachedStateField("showZentaraIgnoredFiles", e.target.checked)}
+						data-testid="show-zentaraignored-files-checkbox">
 						<label className="block font-medium mb-1">
-							{t("settings:contextManagement.rooignore.label")}
+							{t("settings:contextManagement.zentaraignore.label")}
 						</label>
 					</VSCodeCheckbox>
 					<div className="text-vscode-descriptionForeground text-sm mt-1 mb-3">
-						{t("settings:contextManagement.rooignore.description")}
+						{t("settings:contextManagement.zentaraignore.description")}
 					</div>
 				</div>
 

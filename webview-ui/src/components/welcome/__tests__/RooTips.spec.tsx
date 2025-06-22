@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 
-import RooTips from "../RooTips"
+import ZentaraTips from "../ZentaraTips"
 
 vi.mock("react-i18next", () => ({
 	useTranslation: () => ({
@@ -13,7 +13,7 @@ vi.mock("@vscode/webview-ui-toolkit/react", () => ({
 	VSCodeLink: ({ href, children }: { href: string; children: React.ReactNode }) => <a href={href}>{children}</a>,
 }))
 
-describe("RooTips Component", () => {
+describe("ZentaraTips Component", () => {
 	beforeEach(() => {
 		vi.useFakeTimers()
 	})
@@ -25,7 +25,7 @@ describe("RooTips Component", () => {
 
 	describe("when cycle is false (default)", () => {
 		beforeEach(() => {
-			render(<RooTips cycle={false} />)
+			render(<ZentaraTips cycle={false} />)
 		})
 
 		test("renders only the top two tips", () => {

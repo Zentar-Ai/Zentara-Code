@@ -1,8 +1,8 @@
-// npx vitest core/ignore/__tests__/RooIgnoreController.security.spec.ts
+// npx vitest core/ignore/__tests__/ZentaraIgnoreController.security.spec.ts
 
 import type { Mock } from "vitest"
 
-import { RooIgnoreController } from "../RooIgnoreController"
+import { ZentaraIgnoreController } from "../ZentaraIgnoreController"
 import * as path from "path"
 import * as fs from "fs/promises"
 import { fileExistsAtPath } from "../../../utils/fs"
@@ -29,9 +29,9 @@ vi.mock("vscode", () => {
 	}
 })
 
-describe("RooIgnoreController Security Tests", () => {
+describe("ZentaraIgnoreController Security Tests", () => {
 	const TEST_CWD = "/test/path"
-	let controller: RooIgnoreController
+	let controller: ZentaraIgnoreController
 	let mockFileExists: Mock<typeof fileExistsAtPath>
 	let mockReadFile: Mock<typeof fs.readFile>
 
@@ -43,12 +43,12 @@ describe("RooIgnoreController Security Tests", () => {
 		mockFileExists = fileExistsAtPath as Mock<typeof fileExistsAtPath>
 		mockReadFile = fs.readFile as Mock<typeof fs.readFile>
 
-		// By default, setup .rooignore to exist with some patterns
+		// By default, setup .zentaraignore to exist with some patterns
 		mockFileExists.mockResolvedValue(true)
 		mockReadFile.mockResolvedValue("node_modules\n.git\nsecrets/**\n*.log\nprivate/")
 
 		// Create and initialize controller
-		controller = new RooIgnoreController(TEST_CWD)
+		controller = new ZentaraIgnoreController(TEST_CWD)
 		await controller.initialize()
 	})
 

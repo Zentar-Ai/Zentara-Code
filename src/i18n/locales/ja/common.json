@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Roo Code",
+		"name": "Zentara Code",
 		"description": "エディター内のAIデベロッパーチーム全体。"
 	},
 	"number_format": {
@@ -94,12 +94,12 @@
 	},
 	"storage": {
 		"prompt_custom_path": "会話履歴のカスタムストレージパスを入力してください。デフォルトの場所を使用する場合は空のままにしてください",
-		"path_placeholder": "D:\\RooCodeStorage",
-		"enter_absolute_path": "絶対パスを入力してください（例：D:\\RooCodeStorage または /home/user/storage）",
+		"path_placeholder": "D:\\ZentaraCodeStorage",
+		"enter_absolute_path": "絶対パスを入力してください（例：D:\\ZentaraCodeStorage または /home/user/storage）",
 		"enter_valid_path": "有効なパスを入力してください"
 	},
 	"input": {
-		"task_prompt": "Rooにどんなことをさせますか？",
+		"task_prompt": "Zentaraにどんなことをさせますか？",
 		"task_placeholder": "タスクをここに入力してください"
 	},
 	"settings": {
@@ -110,8 +110,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "あなたの組織では Roo Code Cloud 認証が必要です。続行するにはサインインしてください。",
-			"organization_mismatch": "組織の Roo Code Cloud アカウントで認証する必要があります。",
+			"cloud_auth_required": "あなたの組織では Zentara Code Cloud 認証が必要です。続行するにはサインインしてください。",
+			"organization_mismatch": "組織の Zentara Code Cloud アカウントで認証する必要があります。",
 			"verification_failed": "組織認証の確認ができませんでした。"
 		}
 	}

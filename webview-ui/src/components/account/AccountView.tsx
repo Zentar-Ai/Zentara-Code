@@ -1,6 +1,6 @@
 import { VSCodeButton } from "@vscode/webview-ui-toolkit/react"
 
-import type { CloudUserInfo } from "@roo-code/types"
+import type { CloudUserInfo } from "@zentara-code/types"
 
 import { useAppTranslation } from "@src/i18n/TranslationContext"
 import { vscode } from "@src/utils/vscode"
@@ -14,7 +14,7 @@ type AccountViewProps = {
 export const AccountView = ({ userInfo, isAuthenticated, onDone }: AccountViewProps) => {
 	const { t } = useAppTranslation()
 
-	const rooLogoUri = (window as any).IMAGES_BASE_URI + "/roo-logo.svg"
+	const zentaraLogoUri = (window as any).IMAGES_BASE_URI + "/zentara-logo.svg"
 
 	return (
 		<div className="flex flex-col h-full p-4 bg-vscode-editor-background">
@@ -64,7 +64,7 @@ export const AccountView = ({ userInfo, isAuthenticated, onDone }: AccountViewPr
 					<div className="flex flex-col gap-2 mt-4">
 						<VSCodeButton
 							appearance="secondary"
-							onClick={() => vscode.postMessage({ type: "rooCloudSignOut" })}
+							onClick={() => vscode.postMessage({ type: "zentaraCloudSignOut" })}
 							className="w-full">
 							{t("account:logOut")}
 						</VSCodeButton>
@@ -77,21 +77,21 @@ export const AccountView = ({ userInfo, isAuthenticated, onDone }: AccountViewPr
 							<div
 								className="w-12 h-12 bg-vscode-foreground"
 								style={{
-									WebkitMaskImage: `url('${rooLogoUri}')`,
+									WebkitMaskImage: `url('${zentaraLogoUri}')`,
 									WebkitMaskRepeat: "no-repeat",
 									WebkitMaskSize: "contain",
-									maskImage: `url('${rooLogoUri}')`,
+									maskImage: `url('${zentaraLogoUri}')`,
 									maskRepeat: "no-repeat",
 									maskSize: "contain",
 								}}>
-								<img src={rooLogoUri} alt="Roo logo" className="w-12 h-12 opacity-0" />
+								<img src={zentaraLogoUri} alt="Zentara logo" className="w-12 h-12 opacity-0" />
 							</div>
 						</div>
 					</div>
 					<div className="flex flex-col gap-4">
 						<VSCodeButton
 							appearance="primary"
-							onClick={() => vscode.postMessage({ type: "rooCloudSignIn" })}
+							onClick={() => vscode.postMessage({ type: "zentaraCloudSignIn" })}
 							className="w-full">
 							{t("account:signIn")}
 						</VSCodeButton>

@@ -4,10 +4,10 @@ import fs from "fs/promises"
 import * as path from "path"
 
 import {
-	RooCodeAPI,
-	RooCodeSettings,
-	RooCodeEvents,
-	RooCodeEventName,
+	ZentaraCodeAPI,
+	ZentaraCodeSettings,
+	ZentaraCodeEvents,
+	ZentaraCodeEventName,
 	ProviderSettings,
 	ProviderSettingsEntry,
 	isSecretStateKey,
@@ -15,15 +15,15 @@ import {
 	IpcMessageType,
 	TaskCommandName,
 	TaskEvent,
-} from "@roo-code/types"
-import { IpcServer } from "@roo-code/ipc"
+} from "@zentara-code/types"
+import { IpcServer } from "@zentara-code/ipc"
 
 import { Package } from "../shared/package"
 import { getWorkspacePath } from "../utils/path"
 import { ClineProvider } from "../core/webview/ClineProvider"
 import { openClineInNewTab } from "../activate/registerCommands"
 
-export class API extends EventEmitter<RooCodeEvents> implements RooCodeAPI {
+export class API extends EventEmitter<ZentaraCodeEvents> implements ZentaraCodeAPI {
 	private readonly outputChannel: vscode.OutputChannel
 	private readonly sidebarProvider: ClineProvider
 	private readonly context: vscode.ExtensionContext
@@ -50,7 +50,7 @@ export class API extends EventEmitter<RooCodeEvents> implements RooCodeAPI {
 				console.log(args)
 			}
 
-			this.logfile = path.join(getWorkspacePath(), "roo-code-messages.log")
+			this.logfile = path.join(getWorkspacePath(), "zentara-code-messages.log")
 		} else {
 			this.log = () => {}
 		}
@@ -83,11 +83,11 @@ export class API extends EventEmitter<RooCodeEvents> implements RooCodeAPI {
 		}
 	}
 
-	public override emit<K extends keyof RooCodeEvents>(
+	public override emit<K extends keyof ZentaraCodeEvents>(
 		eventName: K,
-		...args: K extends keyof RooCodeEvents ? RooCodeEvents[K] : never
+		...args: K extends keyof ZentaraCodeEvents ? ZentaraCodeEvents[K] : never
 	) {
-		const data = { eventName: eventName as RooCodeEventName, payload: args } as TaskEvent
+		const data = { eventName: eventName as ZentaraCodeEventName, payload: args } as TaskEvent
 		this.ipc?.broadcast({ type: IpcMessageType.TaskEvent, origin: IpcOrigin.Server, data })
 		return super.emit(eventName, ...args)
 	}
@@ -98,7 +98,7 @@ export class API extends EventEmitter<RooCodeEvents> implements RooCodeAPI {
 		images,
 		newTab,
 	}: {
-		configuration?: RooCodeSettings // Made configuration optional to match interface
+		configuration?: ZentaraCodeSettings // Made configuration optional to match interface
 		text?: string
 		images?: string[]
 		newTab?: boolean
@@ -199,25 +199,25 @@ export class API extends EventEmitter<RooCodeEvents> implements RooCodeAPI {
 	private registerListeners(provider: ClineProvider) {
 		provider.on("clineCreated", (cline) => {
 			cline.on("taskStarted", async () => {
-				this.emit(RooCodeEventName.TaskStarted, cline.taskId)
+				this.emit(ZentaraCodeEventName.TaskStarted, cline.taskId)
 				this.taskMap.set(cline.taskId, provider)
 				await this.fileLog(`[${new Date().toISOString()}] taskStarted -> ${cline.taskId}\n`)
 			})
 
 			cline.on("message", async (message) => {
-				this.emit(RooCodeEventName.Message, { taskId: cline.taskId, ...message })
+				this.emit(ZentaraCodeEventName.Message, { taskId: cline.taskId, ...message })
 
 				if (message.message.partial !== true) {
 					await this.fileLog(`[${new Date().toISOString()}] ${JSON.stringify(message.message, null, 2)}\n`)
 				}
 			})
 
-			cline.on("taskModeSwitched", (taskId, mode) => this.emit(RooCodeEventName.TaskModeSwitched, taskId, mode))
+			cline.on("taskModeSwitched", (taskId, mode) => this.emit(ZentaraCodeEventName.TaskModeSwitched, taskId, mode))
 
-			cline.on("taskAskResponded", () => this.emit(RooCodeEventName.TaskAskResponded, cline.taskId))
+			cline.on("taskAskResponded", () => this.emit(ZentaraCodeEventName.TaskAskResponded, cline.taskId))
 
 			cline.on("taskAborted", () => {
-				this.emit(RooCodeEventName.TaskAborted, cline.taskId)
+				this.emit(ZentaraCodeEventName.TaskAborted, cline.taskId)
 				this.taskMap.delete(cline.taskId)
 			})
 
@@ -226,7 +226,7 @@ export class API extends EventEmitter<RooCodeEvents> implements RooCodeAPI {
 				if (cline.rootTask != undefined) {
 					isSubtask = true
 				}
-				this.emit(RooCodeEventName.TaskCompleted, cline.taskId, tokenUsage, toolUsage, { isSubtask: isSubtask })
+				this.emit(ZentaraCodeEventName.TaskCompleted, cline.taskId, tokenUsage, toolUsage, { isSubtask: isSubtask })
 				this.taskMap.delete(cline.taskId)
 
 				await this.fileLog(
@@ -234,19 +234,19 @@ export class API extends EventEmitter<RooCodeEvents> implements RooCodeAPI {
 				)
 			})
 
-			cline.on("taskSpawned", (childTaskId) => this.emit(RooCodeEventName.TaskSpawned, cline.taskId, childTaskId))
-			cline.on("taskPaused", () => this.emit(RooCodeEventName.TaskPaused, cline.taskId))
-			cline.on("taskUnpaused", () => this.emit(RooCodeEventName.TaskUnpaused, cline.taskId))
+			cline.on("taskSpawned", (childTaskId) => this.emit(ZentaraCodeEventName.TaskSpawned, cline.taskId, childTaskId))
+			cline.on("taskPaused", () => this.emit(ZentaraCodeEventName.TaskPaused, cline.taskId))
+			cline.on("taskUnpaused", () => this.emit(ZentaraCodeEventName.TaskUnpaused, cline.taskId))
 
 			cline.on("taskTokenUsageUpdated", (_, usage) =>
-				this.emit(RooCodeEventName.TaskTokenUsageUpdated, cline.taskId, usage),
+				this.emit(ZentaraCodeEventName.TaskTokenUsageUpdated, cline.taskId, usage),
 			)
 
 			cline.on("taskToolFailed", (taskId, tool, error) =>
-				this.emit(RooCodeEventName.TaskToolFailed, taskId, tool, error),
+				this.emit(ZentaraCodeEventName.TaskToolFailed, taskId, tool, error),
 			)
 
-			this.emit(RooCodeEventName.TaskCreated, cline.taskId)
+			this.emit(ZentaraCodeEventName.TaskCreated, cline.taskId)
 		})
 	}
 
@@ -297,13 +297,13 @@ export class API extends EventEmitter<RooCodeEvents> implements RooCodeAPI {
 
 	// Global Settings Management
 
-	public getConfiguration(): RooCodeSettings {
+	public getConfiguration(): ZentaraCodeSettings {
 		return Object.fromEntries(
 			Object.entries(this.sidebarProvider.getValues()).filter(([key]) => !isSecretStateKey(key)),
 		)
 	}
 
-	public async setConfiguration(values: RooCodeSettings) {
+	public async setConfiguration(values: ZentaraCodeSettings) {
 		await this.sidebarProvider.contextProxy.setValues(values)
 		await this.sidebarProvider.providerSettingsManager.saveConfig(values.currentApiConfigName || "default", values)
 		await this.sidebarProvider.postStateToWebview()

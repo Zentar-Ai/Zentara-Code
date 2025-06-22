@@ -15,7 +15,7 @@ export default defineConfig({
 		alias: {
 			"@": path.resolve(__dirname, "./src"),
 			"@src": path.resolve(__dirname, "./src"),
-			"@roo": path.resolve(__dirname, "../src/shared"),
+			"@zentara": path.resolve(__dirname, "../src/shared"),
 		},
 	},
 })

@@ -6,7 +6,7 @@
     <fields>
       <field name="version" type="input" required="true">
         <label>App Version</label>
-        <description>What version of Roo Code are you using? (e.g., v3.3.1)</description>
+        <description>What version of Zentara Code are you using? (e.g., v3.3.1)</description>
       </field>
       <field name="provider" type="dropdown" required="true">
         <label>API Provider</label>
@@ -69,7 +69,7 @@
   
   <feature_request_template>
     <name>Detailed Feature Proposal</name>
-    <description>Report a specific problem that needs solving in Roo Code</description>
+    <description>Report a specific problem that needs solving in Zentara Code</description>
     <labels>["proposal", "enhancement"]</labels>
     <required_fields>
       <field name="problem-description" type="textarea" required="true">

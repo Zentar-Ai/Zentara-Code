@@ -225,7 +225,7 @@ type GlobalSettings = {
 	soundVolume?: number | undefined
 	maxOpenTabsContext?: number | undefined
 	maxWorkspaceFiles?: number | undefined
-	showRooIgnoredFiles?: boolean | undefined
+	showZentaraIgnoredFiles?: boolean | undefined
 	maxReadFileLine?: number | undefined
 	terminalOutputLineLimit?: number | undefined
 	terminalShellIntegrationTimeout?: number | undefined
@@ -354,7 +354,7 @@ type ClineMessage = {
 				| "mcp_server_response"
 				| "subtask_result"
 				| "checkpoint_saved"
-				| "rooignore_error"
+				| "zentaraignore_error"
 				| "diff_error"
 		  )
 		| undefined
@@ -389,7 +389,7 @@ type TokenUsage = {
 
 export type { TokenUsage }
 
-type RooCodeEvents = {
+type ZentaraCodeEvents = {
 	message: [
 		{
 			taskId: string
@@ -433,7 +433,7 @@ type RooCodeEvents = {
 							| "mcp_server_response"
 							| "subtask_result"
 							| "checkpoint_saved"
-							| "rooignore_error"
+							| "zentaraignore_error"
 							| "diff_error"
 					  )
 					| undefined
@@ -549,4 +549,4 @@ type RooCodeEvents = {
 	]
 }
 
-export type { RooCodeEvents }
+export type { ZentaraCodeEvents }

@@ -11,9 +11,9 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-	title: "Roo Code – Runtime debugging Code Agent",
+	title: "Zentara Code – Runtime debugging Code Agent",
 	description:
-		"Roo Code, a runtime debugging agent for most languages. It provides real-time insights into your code execution, helping you debug and optimize your applications efficiently.",
+		"Zentara Code, a runtime debugging agent for most languages. It provides real-time insights into your code execution, helping you debug and optimize your applications efficiently.",
 	alternates: {
 		canonical: "https://zentar.ai",
 	},
@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className={inter.className}>
 				<div itemScope itemType="https://schema.org/WebSite">
 					<link itemProp="url" href="https://zentar.ai" />
-					<meta itemProp="name" content="Roo Code" />
+					<meta itemProp="name" content="Zentara Code" />
 				</div>
 				<Providers>
 					<Shell>{children}</Shell>

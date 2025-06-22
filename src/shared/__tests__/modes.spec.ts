@@ -1,6 +1,6 @@
 // npx vitest run shared/__tests__/modes.spec.ts
 
-import type { ModeConfig, PromptComponent } from "@roo-code/types"
+import type { ModeConfig, PromptComponent } from "@zentara-code/types"
 
 // Mock setup must come before imports
 vi.mock("vscode")
@@ -277,7 +277,7 @@ describe("FileRestrictionError", () => {
 				slug: "debug",
 				name: "🪲 Debug",
 				roleDefinition:
-					"You are Roo, an expert software debugger specializing in systematic problem diagnosis and resolution.",
+					"You are Zentara, an expert software debugger specializing in systematic problem diagnosis and resolution.",
 				groups: ["read", "edit", "browser", "command", "mcp"],
 			})
 			expect(debugMode?.customInstructions).toContain(
@@ -298,7 +298,7 @@ describe("FileRestrictionError", () => {
 				slug: "debug",
 				name: "🪲 Debug",
 				roleDefinition:
-					"You are Roo, an expert software debugger specializing in systematic problem diagnosis and resolution.",
+					"You are Zentara, an expert software debugger specializing in systematic problem diagnosis and resolution.",
 			})
 		})
 

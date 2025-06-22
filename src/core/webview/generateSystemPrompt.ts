@@ -41,7 +41,7 @@ export const generateSystemPrompt = async (provider: ClineProvider, message: Web
 	const mode = message.mode ?? defaultModeSlug
 	const customModes = await provider.customModesManager.getCustomModes()
 
-	const rooIgnoreInstructions = provider.getCurrentCline()?.rooIgnoreController?.getInstructions()
+	const zentaraIgnoreInstructions = provider.getCurrentCline()?.zentaraIgnoreController?.getInstructions()
 
 	// Determine if browser tools can be used based on model support, mode, and user settings
 	let modelSupportsComputerUse = false
@@ -78,7 +78,7 @@ export const generateSystemPrompt = async (provider: ClineProvider, message: Web
 		experiments,
 		enableMcpServerCreation,
 		language,
-		rooIgnoreInstructions,
+		zentaraIgnoreInstructions,
 		maxReadFileLine !== -1,
 		{
 			maxConcurrentFileReads,

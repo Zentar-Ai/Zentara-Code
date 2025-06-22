@@ -1,5 +1,5 @@
 import React from "react"
-import type { HistoryItem } from "@roo-code/types"
+import type { HistoryItem } from "@zentara-code/types"
 import { Coins, FileIcon } from "lucide-react"
 import prettyBytes from "pretty-bytes"
 import { formatLargeNumber } from "@/utils/format"

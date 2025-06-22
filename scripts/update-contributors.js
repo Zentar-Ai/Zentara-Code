@@ -16,7 +16,7 @@ const readFileAsync = promisify(fs.readFile)
 const writeFileAsync = promisify(fs.writeFile)
 
 // GitHub API URL for fetching contributors
-const GITHUB_API_URL = "https://api.github.com/repos/Zentar-Ai/Roo-Codecontributors?per_page=100"
+const GITHUB_API_URL = "https://api.github.com/repos/Zentar-Ai/Zentara-Codecontributors?per_page=100"
 const README_PATH = path.join(__dirname, "..", "README.md")
 const LOCALES_DIR = path.join(__dirname, "..", "locales")
 
@@ -27,7 +27,7 @@ const END_MARKER = "<!-- END CONTRIBUTORS SECTION -->"
 // HTTP options for GitHub API request
 const options = {
 	headers: {
-		"User-Agent": "roo-code-Contributors-Script",
+		"User-Agent": "zentara-code-Contributors-Script",
 	},
 }
 
@@ -184,10 +184,10 @@ async function readReadme() {
  * @returns {string} HTML for contributors section
  */
 const EXCLUDED_LOGIN_SUBSTRINGS = ["[bot]", "R00-B0T"]
-const EXCLUDED_LOGIN_EXACTS = ["cursor", "roomote"]
+const EXCLUDED_LOGIN_EXACTS = ["cursor", "zentaramote"]
 
 function formatContributorsSection(contributors) {
-	// Filter out GitHub Actions bot, cursor, and roomote
+	// Filter out GitHub Actions bot, cursor, and zentaramote
 	const filteredContributors = contributors.filter(
 		(c) =>
 			!EXCLUDED_LOGIN_SUBSTRINGS.some((sub) => c.login.includes(sub)) && !EXCLUDED_LOGIN_EXACTS.includes(c.login),

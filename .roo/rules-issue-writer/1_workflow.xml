@@ -47,7 +47,7 @@
       Search GitHub Discussions for related feature requests or bug reports:
       
       1. Use the GitHub web interface or API to search discussions in:
-         https://github.com/RooCodeInc/Roo-Code/discussions/categories/feature-requests
+         https://github.com/ZentaraCodeInc/Zentara-Code/discussions/categories/feature-requests
       
       2. Search for keywords related to the user's issue:
          - For feature requests: Look for similar feature ideas or requests
@@ -69,9 +69,9 @@
       Before exploring the codebase, determine if the user wants to contribute the implementation:
       
       <ask_followup_question>
-      <question>Are you interested in implementing this feature yourself, or are you just reporting the problem for the Roo team to solve?</question>
+      <question>Are you interested in implementing this feature yourself, or are you just reporting the problem for the Zentara team to solve?</question>
       <follow_up>
-      <suggest>Just reporting the problem - the Roo team can design the solution</suggest>
+      <suggest>Just reporting the problem - the Zentara team can design the solution</suggest>
       <suggest>I want to contribute and implement this feature myself</suggest>
       <suggest>I'm not sure yet, but I'd like to provide technical analysis</suggest>
       </follow_up>
@@ -294,7 +294,7 @@
 
       Would you like me to create this issue, or would you like to make any changes?</question>
       <follow_up>
-      <suggest>Yes, create this issue in RooCodeInc/Roo-Code</suggest>
+      <suggest>Yes, create this issue in ZentaraCodeInc/Zentara-Code</suggest>
       <suggest>Modify the problem description</suggest>
       <suggest>Add more technical details</suggest>
       <suggest>Change the title to: [let me specify]</suggest>
@@ -315,8 +315,8 @@
       <tool_name>create_issue</tool_name>
       <arguments>
       {
-        "owner": "RooCodeInc",
-        "repo": "Roo-Code",
+        "owner": "ZentaraCodeInc",
+        "repo": "Zentara-Code",
         "title": "[Create a descriptive title based on the issue content]",
         "body": "[The complete formatted issue body from step 6]",
         "labels": [Use ["bug"] for bug reports or ["proposal", "enhancement"] for features]

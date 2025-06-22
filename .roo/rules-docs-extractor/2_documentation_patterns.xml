@@ -105,12 +105,12 @@ If you run into issues:
   <user_friendly_patterns>
     <before_after_examples>
       <template><![CDATA[
-**Previously**: When Roo needed to understand your project, you'd see multiple requests like:
+**Previously**: When Zentara needed to understand your project, you'd see multiple requests like:
 - "Can I read `src/app.js`?" → You approve
 - "Now can I read `src/utils.js`?" → You approve
 - "And can I read `src/config.json`?" → You approve
 
-**Now**: Roo asks once to read all related files together, getting the full picture immediately.
+**Now**: Zentara asks once to read all related files together, getting the full picture immediately.
       ]]></template>
     </before_after_examples>
 
@@ -130,8 +130,8 @@ If you run into issues:
 - You're working with very large files that might exceed memory limits
 
 **"What happens if some files are blocked?"**
-- Roo will read the files you approve and work with those
-- Files blocked by `.rooignore` will be automatically excluded
+- Zentara will read the files you approve and work with those
+- Files blocked by `.zentaraignore` will be automatically excluded
 - You can still approve/deny individual files in the batch
       ]]></template>
     </conversational_questions>
@@ -147,8 +147,8 @@ If you run into issues:
 ## Benefits
 
 - **Faster Results**: Get answers in one step instead of multiple back-and-forth approvals
-- **Better Context**: Roo understands relationships between files immediately
-- **Less Interruption**: Approve once and let Roo work uninterrupted
+- **Better Context**: Zentara understands relationships between files immediately
+- **Less Interruption**: Approve once and let Zentara work uninterrupted
       ]]></template>
     </benefit_focused_lists>
 
@@ -156,7 +156,7 @@ If you run into issues:
       <template><![CDATA[
 ## Troubleshooting
 
-**"Roo is asking for too many files at once"**
+**"Zentara is asking for too many files at once"**
 - Lower the concurrent file limit in settings
 - You can still approve or deny individual files in the batch dialog
 
@@ -173,7 +173,7 @@ If you run into issues:
 
 If you run into issues:
 1. Check the [FAQ section](/faq) for common solutions
-2. Report problems on [GitHub Issues](https://github.com/RooCodeInc/Roo-Code/issues)
+2. Report problems on [GitHub Issues](https://github.com/ZentaraCodeInc/Zentara-Code/issues)
 3. Include what you were trying to do and any error messages
       ]]></template>
     </help_section>

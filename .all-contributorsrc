@@ -1,5 +1,5 @@
 {
-	"projectName": "Roo-Code",
+	"projectName": "Zentara-Code",
 	"projectOwner": "Zentar.AI",
 	"repoType": "github",
 	"repoHost": "https://github.com",
@@ -10,7 +10,7 @@
 	"contributors": [
 		{
 			"login": "Zentar-Ai",
-			"name": "bn_from_roo",
+			"name": "bn_from_zentara",
 			"avatar_url": "https://avatars.githubusercontent.com/u/214788364?v=4",
 			"profile": "https://github.com/Zentar-Ai",
 			"contributions": ["code", "doc"]
@@ -65,10 +65,10 @@
 			"contributions": ["code"]
 		},
 		{
-			"login": "ColemanRoo",
-			"name": "ColemanRoo",
+			"login": "ColemanZentara",
+			"name": "ColemanZentara",
 			"avatar_url": "https://avatars.githubusercontent.com/u/117104599?v=4",
-			"profile": "https://github.com/ColemanRoo",
+			"profile": "https://github.com/ColemanZentara",
 			"contributions": ["code"]
 		},
 		{

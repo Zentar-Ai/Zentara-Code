@@ -85,8 +85,8 @@ describe("AuthService", () => {
 			extension: {
 				packageJSON: {
 					version: "1.0.0",
-					publisher: "RooVeterinaryInc",
-					name: "roo-cline",
+					publisher: "ZentaraVeterinaryInc",
+					name: "zentara-cline",
 				},
 			},
 		}
@@ -100,11 +100,11 @@ describe("AuthService", () => {
 		vi.mocked(RefreshTimer).mockImplementation(() => mockTimer as unknown as RefreshTimer)
 
 		// Setup config mocks - use production URL by default to maintain existing test behavior
-		vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://clerk.roocode.com")
-		vi.mocked(Config.getRooCodeApiUrl).mockReturnValue("https://api.test.com")
+		vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://clerk.zentaracode.com")
+		vi.mocked(Config.getZentaraCodeApiUrl).mockReturnValue("https://api.test.com")
 
 		// Setup utils mock
-		vi.mocked(utils.getUserAgent).mockReturnValue("Roo-Code 1.0.0")
+		vi.mocked(utils.getUserAgent).mockReturnValue("Zentara-Code 1.0.0")
 
 		// Setup crypto mock
 		vi.mocked(crypto.randomBytes).mockReturnValue(Buffer.from("test-random-bytes") as never)
@@ -255,7 +255,7 @@ describe("AuthService", () => {
 			await authService.login()
 
 			const expectedUrl =
-				"https://api.test.com/extension/sign-in?state=746573742d72616e646f6d2d6279746573&auth_redirect=vscode%3A%2F%2FRooVeterinaryInc.roo-cline"
+				"https://api.test.com/extension/sign-in?state=746573742d72616e646f6d2d6279746573&auth_redirect=vscode%3A%2F%2FZentaraVeterinaryInc.zentara-cline"
 			expect(mockOpenExternal).toHaveBeenCalledWith(
 				expect.objectContaining({
 					toString: expect.any(Function),
@@ -272,8 +272,8 @@ describe("AuthService", () => {
 				throw new Error("Crypto error")
 			})
 
-			await expect(authService.login()).rejects.toThrow("Failed to initiate Roo Code Cloud authentication")
-			expect(mockLog).toHaveBeenCalledWith("[auth] Error initiating Roo Code Cloud auth: Error: Crypto error")
+			await expect(authService.login()).rejects.toThrow("Failed to initiate Zentara Code Cloud authentication")
+			expect(mockLog).toHaveBeenCalledWith("[auth] Error initiating Zentara Code Cloud auth: Error: Crypto error")
 		})
 	})
 
@@ -288,17 +288,17 @@ describe("AuthService", () => {
 			vi.mocked(vscode.window.showInformationMessage).mockImplementation(mockShowInfo)
 
 			await authService.handleCallback(null, "state")
-			expect(mockShowInfo).toHaveBeenCalledWith("Invalid Roo Code Cloud sign in url")
+			expect(mockShowInfo).toHaveBeenCalledWith("Invalid Zentara Code Cloud sign in url")
 
 			await authService.handleCallback("code", null)
-			expect(mockShowInfo).toHaveBeenCalledWith("Invalid Roo Code Cloud sign in url")
+			expect(mockShowInfo).toHaveBeenCalledWith("Invalid Zentara Code Cloud sign in url")
 		})
 
 		it("should validate state parameter", async () => {
 			mockContext.globalState.get.mockReturnValue("stored-state")
 
 			await expect(authService.handleCallback("code", "different-state")).rejects.toThrow(
-				"Failed to handle Roo Code Cloud callback",
+				"Failed to handle Zentara Code Cloud callback",
 			)
 			expect(mockLog).toHaveBeenCalledWith("[auth] State mismatch in callback")
 		})
@@ -330,7 +330,7 @@ describe("AuthService", () => {
 				"clerk-auth-credentials",
 				JSON.stringify({ clientToken: "Bearer token-123", sessionId: "session-123" }),
 			)
-			expect(mockShowInfo).toHaveBeenCalledWith("Successfully authenticated with Roo Code Cloud")
+			expect(mockShowInfo).toHaveBeenCalledWith("Successfully authenticated with Zentara Code Cloud")
 		})
 
 		it("should handle Clerk API errors", async () => {
@@ -347,7 +347,7 @@ describe("AuthService", () => {
 			authService.on("logged-out", loggedOutSpy)
 
 			await expect(authService.handleCallback("auth-code", storedState)).rejects.toThrow(
-				"Failed to handle Roo Code Cloud callback",
+				"Failed to handle Zentara Code Cloud callback",
 			)
 			expect(loggedOutSpy).toHaveBeenCalled()
 		})
@@ -377,7 +377,7 @@ describe("AuthService", () => {
 			expect(mockContext.secrets.delete).toHaveBeenCalledWith("clerk-auth-credentials")
 			expect(mockContext.globalState.update).toHaveBeenCalledWith("clerk-auth-state", undefined)
 			expect(mockFetch).toHaveBeenCalledWith(
-				"https://clerk.roocode.com/v1/client/sessions/test-session/remove",
+				"https://clerk.zentaracode.com/v1/client/sessions/test-session/remove",
 				expect.objectContaining({
 					method: "POST",
 					headers: expect.objectContaining({
@@ -385,7 +385,7 @@ describe("AuthService", () => {
 					}),
 				}),
 			)
-			expect(mockShowInfo).toHaveBeenCalledWith("Logged out from Roo Code Cloud")
+			expect(mockShowInfo).toHaveBeenCalledWith("Logged out from Zentara Code Cloud")
 		})
 
 		it("should handle logout without credentials", async () => {
@@ -397,7 +397,7 @@ describe("AuthService", () => {
 
 			expect(mockContext.secrets.delete).toHaveBeenCalled()
 			expect(mockFetch).not.toHaveBeenCalled()
-			expect(mockShowInfo).toHaveBeenCalledWith("Logged out from Roo Code Cloud")
+			expect(mockShowInfo).toHaveBeenCalledWith("Logged out from Zentara Code Cloud")
 		})
 
 		it("should handle Clerk logout errors gracefully", async () => {
@@ -417,7 +417,7 @@ describe("AuthService", () => {
 			await authService.logout()
 
 			expect(mockLog).toHaveBeenCalledWith("[auth] Error calling clerkLogout:", expect.any(Error))
-			expect(mockShowInfo).toHaveBeenCalledWith("Logged out from Roo Code Cloud")
+			expect(mockShowInfo).toHaveBeenCalledWith("Logged out from Zentara Code Cloud")
 		})
 	})
 
@@ -887,7 +887,7 @@ describe("AuthService", () => {
 			})
 
 			await expect(authService.handleCallback("auth-code", storedState)).rejects.toThrow(
-				"Failed to handle Roo Code Cloud callback",
+				"Failed to handle Zentara Code Cloud callback",
 			)
 		})
 	})
@@ -912,7 +912,7 @@ describe("AuthService", () => {
 	describe("auth credentials key scoping", () => {
 		it("should use default key when getClerkBaseUrl returns production URL", async () => {
 			// Mock getClerkBaseUrl to return production URL
-			vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://clerk.roocode.com")
+			vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://clerk.zentaracode.com")
 
 			const service = new AuthService(mockContext as unknown as vscode.ExtensionContext, mockLog)
 			const credentials = { clientToken: "test-token", sessionId: "test-session" }

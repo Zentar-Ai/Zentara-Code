@@ -1,14 +1,14 @@
 import type { EventEmitter } from "events"
 import type { Socket } from "net"
 
-import type { RooCodeSettings } from "./global-settings.js"
+import type { ZentaraCodeSettings } from "./global-settings.js"
 import type { ProviderSettingsEntry, ProviderSettings } from "./provider-settings.js"
 import type { ClineMessage, TokenUsage } from "./message.js"
 import type { ToolUsage, ToolName } from "./tool.js"
 import type { IpcMessage, IpcServerEvents, IsSubtask } from "./ipc.js"
 
-// TODO: Make sure this matches `RooCodeEvents` from `@roo-code/types`.
-export interface RooCodeAPIEvents {
+// TODO: Make sure this matches `ZentaraCodeEvents` from `@zentara-code/types`.
+export interface ZentaraCodeAPIEvents {
 	message: [data: { taskId: string; action: "created" | "updated"; message: ClineMessage }]
 	taskCreated: [taskId: string]
 	taskStarted: [taskId: string]
@@ -23,7 +23,7 @@ export interface RooCodeAPIEvents {
 	taskToolFailed: [taskId: string, toolName: ToolName, error: string]
 }
 
-export interface RooCodeAPI extends EventEmitter<RooCodeAPIEvents> {
+export interface ZentaraCodeAPI extends EventEmitter<ZentaraCodeAPIEvents> {
 	/**
 	 * Starts a new task with an optional initial message and images.
 	 * @param task Optional initial task message.
@@ -36,7 +36,7 @@ export interface RooCodeAPI extends EventEmitter<RooCodeAPIEvents> {
 		images,
 		newTab,
 	}: {
-		configuration?: RooCodeSettings
+		configuration?: ZentaraCodeSettings
 		text?: string
 		images?: string[]
 		newTab?: boolean
@@ -88,12 +88,12 @@ export interface RooCodeAPI extends EventEmitter<RooCodeAPIEvents> {
 	 * Returns the current configuration.
 	 * @returns The current configuration.
 	 */
-	getConfiguration(): RooCodeSettings
+	getConfiguration(): ZentaraCodeSettings
 	/**
 	 * Sets the configuration for the current task.
 	 * @param values An object containing key-value pairs to set.
 	 */
-	setConfiguration(values: RooCodeSettings): Promise<void>
+	setConfiguration(values: ZentaraCodeSettings): Promise<void>
 	/**
 	 * Returns a list of all configured profile names
 	 * @returns Array of profile names
@@ -150,7 +150,7 @@ export interface RooCodeAPI extends EventEmitter<RooCodeAPIEvents> {
 	setActiveProfile(name: string): Promise<string | undefined>
 }
 
-export interface RooCodeIpcServer extends EventEmitter<IpcServerEvents> {
+export interface ZentaraCodeIpcServer extends EventEmitter<IpcServerEvents> {
 	listen(): void
 	broadcast(message: IpcMessage): void
 	send(client: string | Socket, message: IpcMessage): void

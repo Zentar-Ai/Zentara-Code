@@ -3,12 +3,12 @@ import Mocha from "mocha"
 import { glob } from "glob"
 import * as vscode from "vscode"
 
-import type { RooCodeAPI } from "@roo-code/types"
+import type { ZentaraCodeAPI } from "@zentara-code/types"
 
 import { waitFor } from "./utils"
 
 export async function run() {
-	const extension = vscode.extensions.getExtension<RooCodeAPI>("ZentarAI.roo-code")
+	const extension = vscode.extensions.getExtension<ZentaraCodeAPI>("ZentarAI.zentara-code")
 
 	if (!extension) {
 		throw new Error("Extension not found")
@@ -22,7 +22,7 @@ export async function run() {
 		openRouterModelId: "openai/gpt-4.1",
 	})
 
-	await vscode.commands.executeCommand("roo-code.SidebarProvider.focus")
+	await vscode.commands.executeCommand("zentara-code.SidebarProvider.focus")
 	await waitFor(() => api.isReady())
 
 	globalThis.api = api

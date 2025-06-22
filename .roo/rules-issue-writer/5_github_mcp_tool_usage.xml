@@ -20,7 +20,7 @@
         <tool_name>search_issues</tool_name>
         <arguments>
         {
-          "q": "repo:RooCodeInc/Roo-Code dark theme button visibility",
+          "q": "repo:ZentaraCodeInc/Zentara-Code dark theme button visibility",
           "sort": "updated",
           "order": "desc"
         }
@@ -40,8 +40,8 @@
         <tool_name>list_issues</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "state": "all",
           "labels": ["bug"],
           "sort": "created",
@@ -64,8 +64,8 @@
         <tool_name>get_issue</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "issue_number": 123
         }
         </arguments>
@@ -84,8 +84,8 @@
         <tool_name>get_issue_comments</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "issue_number": 123
         }
         </arguments>
@@ -111,8 +111,8 @@
         <tool_name>list_commits</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "perPage": 20
         }
         </arguments>
@@ -131,8 +131,8 @@
         <tool_name>get_commit</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "sha": "abc123def456"
         }
         </arguments>
@@ -151,7 +151,7 @@
         <tool_name>search_code</tool_name>
         <arguments>
         {
-          "q": "repo:RooCodeInc/Roo-Code language:typescript dark theme button"
+          "q": "repo:ZentaraCodeInc/Zentara-Code language:typescript dark theme button"
         }
         </arguments>
         </use_mcp_tool>
@@ -169,8 +169,8 @@
         <tool_name>list_pull_requests</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "state": "all",
           "sort": "updated",
           "direction": "desc",
@@ -197,8 +197,8 @@
         <tool_name>create_issue</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "title": "[Descriptive title of the bug]",
           "body": "[Format according to bug report template]",
           "labels": ["bug"]
@@ -212,8 +212,8 @@
         <tool_name>create_issue</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "title": "[Problem-focused title]",
           "body": "[Problem description only - no technical details]",
           "labels": ["proposal", "enhancement"]
@@ -227,8 +227,8 @@
         <tool_name>create_issue</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "title": "[Problem-focused title with implementation intent]",
           "body": "[Full template including technical analysis sections]",
           "labels": ["proposal", "enhancement"]
@@ -250,8 +250,8 @@
         <tool_name>add_issue_comment</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "issue_number": 456,
           "body": "Additional context or comments."
         }
@@ -271,8 +271,8 @@
         <tool_name>update_issue</tool_name>
         <arguments>
         {
-          "owner": "RooCodeInc",
-          "repo": "Roo-Code",
+          "owner": "ZentaraCodeInc",
+          "repo": "Zentara-Code",
           "issue_number": 456,
           "title": "[Updated title if needed]",
           "body": "[Updated body if needed]"
@@ -295,7 +295,7 @@
       When searching GitHub Discussions:
       1. Note that GitHub MCP tools don't currently support discussions API
       2. Instruct user to manually search discussions at:
-         https://github.com/RooCodeInc/Roo-Code/discussions/categories/feature-requests
+         https://github.com/ZentaraCodeInc/Zentara-Code/discussions/categories/feature-requests
       3. Ask user to provide any related discussion numbers they find
       4. Include these in the "Related Discussions" section of the issue
     </step_3_integration>

@@ -1,6 +1,6 @@
 <mode_creation_workflow>
   <overview>
-    This workflow guides you through creating a new custom mode to be used in the Roo Code Software,
+    This workflow guides you through creating a new custom mode to be used in the Zentara Code Software,
     from initial requirements gathering to final implementation.
   </overview>
 
@@ -46,7 +46,7 @@
         <field name="roleDefinition">
           <description>Detailed description of the mode's role and expertise</description>
           <best_practice>
-            Start with "You are Roo Code, a [specialist type]..."
+            Start with "You are Zentara Code, a [specialist type]..."
             List specific areas of expertise
             Mention key technologies or methodologies
           </best_practice>
@@ -69,9 +69,9 @@
         </field>
       </recommended_fields>
       <important_note>
-        Do not include customInstructions in the .roomodes configuration.
+        Do not include customInstructions in the .zentaramodes configuration.
         All detailed instructions should be placed in XML files within
-        the .roo/rules-[mode-slug]/ directory instead.
+        the .zentara/rules-[mode-slug]/ directory instead.
       </important_note>
     </step>
 
@@ -101,7 +101,7 @@ groups:
     <step number="4">
       <title>Create XML Instruction Files</title>
       <description>
-        Design structured instruction files in .roo/rules-[mode-slug]/
+        Design structured instruction files in .zentara/rules-[mode-slug]/
       </description>
       <file_structure>
         <file name="1_workflow.xml">Main workflow and step-by-step processes</file>
@@ -134,9 +134,9 @@ groups:
   </detailed_steps>
 
   <quick_reference>
-    <command>Create mode in .roomodes for project-specific modes</command>
+    <command>Create mode in .zentaramodes for project-specific modes</command>
     <command>Create mode in global custom_modes.yaml for system-wide modes</command>
-    <command>Use list_files to verify .roo folder structure</command>
+    <command>Use list_files to verify .zentara folder structure</command>
     <command>Test file regex patterns with search_files</command>
   </quick_reference>
 </mode_creation_workflow>

@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Roo Code",
+		"name": "Zentara Code",
 		"description": "您編輯器中的完整 AI 開發團隊。"
 	},
 	"number_format": {
@@ -94,12 +94,12 @@
 	},
 	"storage": {
 		"prompt_custom_path": "輸入自訂會話歷史儲存路徑，留空以使用預設位置",
-		"path_placeholder": "D:\\RooCodeStorage",
-		"enter_absolute_path": "請輸入絕對路徑（例如 D:\\RooCodeStorage 或 /home/user/storage）",
+		"path_placeholder": "D:\\ZentaraCodeStorage",
+		"enter_absolute_path": "請輸入絕對路徑（例如 D:\\ZentaraCodeStorage 或 /home/user/storage）",
 		"enter_valid_path": "請輸入有效的路徑"
 	},
 	"input": {
-		"task_prompt": "讓 Roo 做什麼？",
+		"task_prompt": "讓 Zentara 做什麼？",
 		"task_placeholder": "在這裡輸入工作"
 	},
 	"settings": {
@@ -110,8 +110,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "您的組織需要 Roo Code Cloud 身份驗證。請登入以繼續。",
-			"organization_mismatch": "您必須使用組織的 Roo Code Cloud 帳戶進行身份驗證。",
+			"cloud_auth_required": "您的組織需要 Zentara Code Cloud 身份驗證。請登入以繼續。",
+			"organization_mismatch": "您必須使用組織的 Zentara Code Cloud 帳戶進行身份驗證。",
 			"verification_failed": "無法驗證組織身份驗證。"
 		}
 	}

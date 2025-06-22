@@ -1,10 +1,10 @@
 {
-	"extension.displayName": "Roo Code (旧 Roo Code)",
+	"extension.displayName": "Zentara Code (旧 Zentara Code)",
 	"extension.description": "エディタ内のAIエージェントによる開発チーム。",
-	"views.contextMenu.label": "Roo Code",
-	"views.terminalMenu.label": "Roo Code",
-	"views.activitybar.title": "Roo Code",
-	"views.sidebar.name": "Roo Code",
+	"views.contextMenu.label": "Zentara Code",
+	"views.terminalMenu.label": "Zentara Code",
+	"views.activitybar.title": "Zentara Code",
+	"views.sidebar.name": "Zentara Code",
 	"command.newTask.title": "新しいタスク",
 	"command.mcpServers.title": "MCPサーバー",
 	"command.prompts.title": "モード",
@@ -24,11 +24,11 @@
 	"command.terminal.fixCommand.title": "このコマンドを修正",
 	"command.terminal.explainCommand.title": "このコマンドを説明",
 	"command.acceptInput.title": "入力/提案を承認",
-	"configuration.title": "Roo Code",
+	"configuration.title": "Zentara Code",
 	"commands.allowedCommands.description": "'常に実行操作を承認する'が有効な場合に自動実行できるコマンド",
 	"settings.vsCodeLmModelSelector.description": "VSCode 言語モデル API の設定",
 	"settings.vsCodeLmModelSelector.vendor.description": "言語モデルのベンダー（例：copilot）",
 	"settings.vsCodeLmModelSelector.family.description": "言語モデルのファミリー（例：gpt-4）",
-	"settings.customStoragePath.description": "カスタムストレージパス。デフォルトの場所を使用する場合は空のままにします。絶対パスをサポートします（例：'D:\\RooCodeStorage'）",
-	"settings.rooCodeCloudEnabled.description": "Roo Code Cloud を有効にする。"
+	"settings.customStoragePath.description": "カスタムストレージパス。デフォルトの場所を使用する場合は空のままにします。絶対パスをサポートします（例：'D:\\ZentaraCodeStorage'）",
+	"settings.zentaraCodeCloudEnabled.description": "Zentara Code Cloud を有効にする。"
 }

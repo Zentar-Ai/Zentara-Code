@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Roo Code",
+		"name": "Zentara Code",
 		"description": "Düzenleyicinizde tam bir AI geliştirici ekibi."
 	},
 	"number_format": {
@@ -94,12 +94,12 @@
 	},
 	"storage": {
 		"prompt_custom_path": "Konuşma geçmişi için özel depolama yolunu girin, varsayılan konumu kullanmak için boş bırakın",
-		"path_placeholder": "D:\\RooCodeStorage",
-		"enter_absolute_path": "Lütfen mutlak bir yol girin (örn. D:\\RooCodeStorage veya /home/user/storage)",
+		"path_placeholder": "D:\\ZentaraCodeStorage",
+		"enter_absolute_path": "Lütfen mutlak bir yol girin (örn. D:\\ZentaraCodeStorage veya /home/user/storage)",
 		"enter_valid_path": "Lütfen geçerli bir yol girin"
 	},
 	"input": {
-		"task_prompt": "Roo ne yapsın?",
+		"task_prompt": "Zentara ne yapsın?",
 		"task_placeholder": "Görevini buraya yaz"
 	},
 	"settings": {
@@ -110,8 +110,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Kuruluşunuz Roo Code Cloud kimlik doğrulaması gerektiriyor. Devam etmek için giriş yapın.",
-			"organization_mismatch": "Kuruluşunuzun Roo Code Cloud hesabıyla kimlik doğrulaması yapmalısınız.",
+			"cloud_auth_required": "Kuruluşunuz Zentara Code Cloud kimlik doğrulaması gerektiriyor. Devam etmek için giriş yapın.",
+			"organization_mismatch": "Kuruluşunuzun Zentara Code Cloud hesabıyla kimlik doğrulaması yapmalısınız.",
 			"verification_failed": "Kuruluş kimlik doğrulaması doğrulanamıyor."
 		}
 	}

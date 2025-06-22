@@ -63,7 +63,7 @@ jest.mock("vscode", () => {
 import { Task } from "../../task/Task"
 import { debugTool } from "../../tools/debugTool"
 import type { ToolUse, DebugToolUse, ToolResponse } from "../../../shared/tools"
-import type { ClineAsk, ToolProgressStatus } from "@roo-code/types"
+import type { ClineAsk, ToolProgressStatus } from "@zentara-code/types"
 
 // Mock dependencies
 jest.mock("../../tools/debugTool")

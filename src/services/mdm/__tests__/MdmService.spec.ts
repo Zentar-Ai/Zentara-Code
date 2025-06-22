@@ -11,7 +11,7 @@ vi.mock("os", () => ({
 	platform: vi.fn(),
 }))
 
-vi.mock("@roo-code/cloud", () => ({
+vi.mock("@zentara-code/cloud", () => ({
 	CloudService: {
 		hasInstance: vi.fn(),
 		instance: {
@@ -21,7 +21,7 @@ vi.mock("@roo-code/cloud", () => ({
 		},
 	},
 	getClerkBaseUrl: vi.fn(),
-	PRODUCTION_CLERK_BASE_URL: "https://clerk.roocode.com",
+	PRODUCTION_CLERK_BASE_URL: "https://clerk.zentaracode.com",
 }))
 
 vi.mock("vscode", () => ({
@@ -35,10 +35,10 @@ vi.mock("vscode", () => ({
 
 vi.mock("../../../shared/package", () => ({
 	Package: {
-		publisher: "roo-code",
-		name: "roo-cline",
+		publisher: "zentara-code",
+		name: "zentara-cline",
 		version: "1.0.0",
-		outputChannel: "Roo-Code",
+		outputChannel: "Zentara-Code",
 		sha: undefined,
 	},
 }))
@@ -47,7 +47,7 @@ import * as fs from "fs"
 import * as os from "os"
 import * as vscode from "vscode"
 import { MdmService } from "../MdmService"
-import { CloudService, getClerkBaseUrl, PRODUCTION_CLERK_BASE_URL } from "@roo-code/cloud"
+import { CloudService, getClerkBaseUrl, PRODUCTION_CLERK_BASE_URL } from "@zentara-code/cloud"
 
 const mockFs = fs as any
 const mockOs = os as any
@@ -69,7 +69,7 @@ describe("MdmService", () => {
 		mockOs.platform.mockReturnValue("darwin")
 
 		// Setup default mock for getClerkBaseUrl to return development URL
-		mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.roocode.com")
+		mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.zentaracode.com")
 
 		// Setup VSCode mocks
 		const mockConfig = {
@@ -81,7 +81,7 @@ describe("MdmService", () => {
 		// Reset mocks
 		vi.clearAllMocks()
 		// Re-setup the default after clearing
-		mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.roocode.com")
+		mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.zentaracode.com")
 	})
 
 	afterEach(() => {
@@ -157,19 +157,19 @@ describe("MdmService", () => {
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith(path.join("C:\\ProgramData", "RooCode", "mdm.json"))
+			expect(mockFs.existsSync).toHaveBeenCalledWith(path.join("C:\\ProgramData", "ZentaraCode", "mdm.json"))
 		})
 
 		it("should use correct path for Windows in development", async () => {
 			mockOs.platform.mockReturnValue("win32")
 			process.env.PROGRAMDATA = "C:\\ProgramData"
-			mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.roocode.com")
+			mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.zentaracode.com")
 
 			mockFs.existsSync.mockReturnValue(false)
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith(path.join("C:\\ProgramData", "RooCode", "mdm.dev.json"))
+			expect(mockFs.existsSync).toHaveBeenCalledWith(path.join("C:\\ProgramData", "ZentaraCode", "mdm.dev.json"))
 		})
 
 		it("should use correct path for macOS in production", async () => {
@@ -180,18 +180,18 @@ describe("MdmService", () => {
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/RooCode/mdm.json")
+			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/ZentaraCode/mdm.json")
 		})
 
 		it("should use correct path for macOS in development", async () => {
 			mockOs.platform.mockReturnValue("darwin")
-			mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.roocode.com")
+			mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.zentaracode.com")
 
 			mockFs.existsSync.mockReturnValue(false)
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/RooCode/mdm.dev.json")
+			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/ZentaraCode/mdm.dev.json")
 		})
 
 		it("should use correct path for Linux in production", async () => {
@@ -202,29 +202,29 @@ describe("MdmService", () => {
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith("/etc/roo-code/mdm.json")
+			expect(mockFs.existsSync).toHaveBeenCalledWith("/etc/zentara-code/mdm.json")
 		})
 
 		it("should use correct path for Linux in development", async () => {
 			mockOs.platform.mockReturnValue("linux")
-			mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.roocode.com")
+			mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.zentaracode.com")
 
 			mockFs.existsSync.mockReturnValue(false)
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith("/etc/roo-code/mdm.dev.json")
+			expect(mockFs.existsSync).toHaveBeenCalledWith("/etc/zentara-code/mdm.dev.json")
 		})
 
 		it("should default to dev config when NODE_ENV is not set", async () => {
 			mockOs.platform.mockReturnValue("darwin")
-			mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.roocode.com")
+			mockGetClerkBaseUrl.mockReturnValue("https://dev.clerk.zentaracode.com")
 
 			mockFs.existsSync.mockReturnValue(false)
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/RooCode/mdm.dev.json")
+			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/ZentaraCode/mdm.dev.json")
 		})
 	})
 
@@ -265,7 +265,7 @@ describe("MdmService", () => {
 
 			expect(compliance.compliant).toBe(false)
 			if (!compliance.compliant) {
-				expect(compliance.reason).toContain("requires Roo Code Cloud authentication")
+				expect(compliance.reason).toContain("requires Zentara Code Cloud authentication")
 			}
 		})
 
@@ -287,7 +287,7 @@ describe("MdmService", () => {
 
 			expect(compliance.compliant).toBe(false)
 			if (!compliance.compliant) {
-				expect(compliance.reason).toContain("organization's Roo Code Cloud account")
+				expect(compliance.reason).toContain("organization's Zentara Code Cloud account")
 			}
 		})
 
@@ -326,7 +326,7 @@ describe("MdmService", () => {
 	})
 
 	describe("cloud enablement", () => {
-		it("should enable Roo Code Cloud when MDM config is present and setting is disabled", async () => {
+		it("should enable Zentara Code Cloud when MDM config is present and setting is disabled", async () => {
 			const mockConfig = {
 				requireCloudAuth: true,
 				organizationId: "test-org-123",
@@ -336,19 +336,19 @@ describe("MdmService", () => {
 			mockFs.readFileSync.mockReturnValue(JSON.stringify(mockConfig))
 
 			const mockVsCodeConfig = {
-				get: vi.fn().mockReturnValue(false), // rooCodeCloudEnabled is false
+				get: vi.fn().mockReturnValue(false), // zentaraCodeCloudEnabled is false
 				update: vi.fn().mockResolvedValue(undefined),
 			}
 			mockVscode.workspace.getConfiguration.mockReturnValue(mockVsCodeConfig)
 
 			await MdmService.createInstance()
 
-			expect(mockVscode.workspace.getConfiguration).toHaveBeenCalledWith("roo-cline")
-			expect(mockVsCodeConfig.get).toHaveBeenCalledWith("rooCodeCloudEnabled", false)
-			expect(mockVsCodeConfig.update).toHaveBeenCalledWith("rooCodeCloudEnabled", true, 1) // ConfigurationTarget.Global
+			expect(mockVscode.workspace.getConfiguration).toHaveBeenCalledWith("zentara-cline")
+			expect(mockVsCodeConfig.get).toHaveBeenCalledWith("zentaraCodeCloudEnabled", false)
+			expect(mockVsCodeConfig.update).toHaveBeenCalledWith("zentaraCodeCloudEnabled", true, 1) // ConfigurationTarget.Global
 		})
 
-		it("should not update setting when Roo Code Cloud is already enabled", async () => {
+		it("should not update setting when Zentara Code Cloud is already enabled", async () => {
 			const mockConfig = {
 				requireCloudAuth: true,
 				organizationId: "test-org-123",
@@ -358,14 +358,14 @@ describe("MdmService", () => {
 			mockFs.readFileSync.mockReturnValue(JSON.stringify(mockConfig))
 
 			const mockVsCodeConfig = {
-				get: vi.fn().mockReturnValue(true), // rooCodeCloudEnabled is already true
+				get: vi.fn().mockReturnValue(true), // zentaraCodeCloudEnabled is already true
 				update: vi.fn().mockResolvedValue(undefined),
 			}
 			mockVscode.workspace.getConfiguration.mockReturnValue(mockVsCodeConfig)
 
 			await MdmService.createInstance()
 
-			expect(mockVsCodeConfig.get).toHaveBeenCalledWith("rooCodeCloudEnabled", false)
+			expect(mockVsCodeConfig.get).toHaveBeenCalledWith("zentaraCodeCloudEnabled", false)
 			expect(mockVsCodeConfig.update).not.toHaveBeenCalled()
 		})
 
@@ -385,7 +385,7 @@ describe("MdmService", () => {
 
 			await MdmService.createInstance()
 
-			expect(mockVsCodeConfig.update).toHaveBeenCalledWith("rooCodeCloudEnabled", true, 1)
+			expect(mockVsCodeConfig.update).toHaveBeenCalledWith("zentaraCodeCloudEnabled", true, 1)
 		})
 
 		it("should not enable cloud when no MDM config exists", async () => {

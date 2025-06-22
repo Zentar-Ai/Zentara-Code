@@ -10,18 +10,18 @@ import {
 	type GlobalSettings,
 	type SecretState,
 	type GlobalState,
-	type RooCodeSettings,
+	type ZentaraCodeSettings,
 	providerSettingsSchema,
 	globalSettingsSchema,
 	isSecretStateKey,
-} from "@roo-code/types"
-import { TelemetryService } from "@roo-code/telemetry"
+} from "@zentara-code/types"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { logger } from "../../utils/logging"
 
 type GlobalStateKey = keyof GlobalState
 type SecretStateKey = keyof SecretState
-type RooCodeSettingsKey = keyof RooCodeSettings
+type ZentaraCodeSettingsKey = keyof ZentaraCodeSettings
 
 const PASS_THROUGH_STATE_KEYS = ["taskHistory"]
 
@@ -212,25 +212,25 @@ export class ContextProxy {
 	}
 
 	/**
-	 * RooCodeSettings
+	 * ZentaraCodeSettings
 	 */
 
-	public setValue<K extends RooCodeSettingsKey>(key: K, value: RooCodeSettings[K]) {
+	public setValue<K extends ZentaraCodeSettingsKey>(key: K, value: ZentaraCodeSettings[K]) {
 		return isSecretStateKey(key) ? this.storeSecret(key, value as string) : this.updateGlobalState(key, value)
 	}
 
-	public getValue<K extends RooCodeSettingsKey>(key: K): RooCodeSettings[K] {
+	public getValue<K extends ZentaraCodeSettingsKey>(key: K): ZentaraCodeSettings[K] {
 		return isSecretStateKey(key)
-			? (this.getSecret(key) as RooCodeSettings[K])
-			: (this.getGlobalState(key) as RooCodeSettings[K])
+			? (this.getSecret(key) as ZentaraCodeSettings[K])
+			: (this.getGlobalState(key) as ZentaraCodeSettings[K])
 	}
 
-	public getValues(): RooCodeSettings {
+	public getValues(): ZentaraCodeSettings {
 		return { ...this.getAllGlobalState(), ...this.getAllSecretState() }
 	}
 
-	public async setValues(values: RooCodeSettings) {
-		const entries = Object.entries(values) as [RooCodeSettingsKey, unknown][]
+	public async setValues(values: ZentaraCodeSettings) {
+		const entries = Object.entries(values) as [ZentaraCodeSettingsKey, unknown][]
 		await Promise.all(entries.map(([key, value]) => this.setValue(key, value)))
 	}
 
@@ -242,7 +242,7 @@ export class ContextProxy {
 		try {
 			const globalSettings = globalSettingsExportSchema.parse(this.getValues())
 
-			// Exports should only contain global settings, so this skips project custom modes (those exist in the .roomode folder)
+			// Exports should only contain global settings, so this skips project custom modes (those exist in the .zentaramode folder)
 			globalSettings.customModes = globalSettings.customModes?.filter((mode) => mode.source === "global")
 
 			return Object.fromEntries(Object.entries(globalSettings).filter(([_, value]) => value !== undefined))

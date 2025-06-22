@@ -331,7 +331,7 @@ export class McpHub {
 		}
 
 		const workspaceFolder = vscode.workspace.workspaceFolders[0]
-		const projectMcpPattern = new vscode.RelativePattern(workspaceFolder, ".roo/mcp.json")
+		const projectMcpPattern = new vscode.RelativePattern(workspaceFolder, ".zentara/mcp.json")
 
 		// Create a file system watcher for the project MCP file pattern
 		this.projectMcpWatcher = vscode.workspace.createFileSystemWatcher(projectMcpPattern)
@@ -536,7 +536,7 @@ export class McpHub {
 		}
 
 		const workspaceFolder = vscode.workspace.workspaceFolders[0]
-		const projectMcpDir = path.join(workspaceFolder.uri.fsPath, ".roo")
+		const projectMcpDir = path.join(workspaceFolder.uri.fsPath, ".zentara")
 		const projectMcpPath = path.join(projectMcpDir, "mcp.json")
 
 		try {
@@ -563,7 +563,7 @@ export class McpHub {
 		try {
 			const client = new Client(
 				{
-					name: "Roo Code",
+					name: "Zentara Code",
 					version: this.providerRef.deref()?.context.extension?.packageJSON?.version ?? "1.0.0",
 				},
 				{

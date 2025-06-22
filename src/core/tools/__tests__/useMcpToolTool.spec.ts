@@ -16,7 +16,7 @@ vi.mock("../../prompts/responses", () => ({
 vi.mock("../../../i18n", () => ({
 	t: vi.fn((key: string, params?: any) => {
 		if (key === "mcp:errors.invalidJsonArgument" && params?.toolName) {
-			return `Roo tried to use ${params.toolName} with an invalid JSON argument. Retrying...`
+			return `Zentara tried to use ${params.toolName} with an invalid JSON argument. Retrying...`
 		}
 		return key
 	}),

@@ -3,7 +3,7 @@ import * as vscode from "vscode"
 
 import { setDefaultSuiteTimeout } from "./test-utils"
 
-suite("Roo Code Extension", function () {
+suite("Zentara Code Extension", function () {
 	setDefaultSuiteTimeout(this)
 
 	test("Commands should be registered", async () => {
@@ -38,10 +38,10 @@ suite("Roo Code Extension", function () {
 			"terminalExplainCommand",
 		]
 
-		const commands = new Set((await vscode.commands.getCommands(true)).filter((cmd) => cmd.startsWith("roo-code")))
+		const commands = new Set((await vscode.commands.getCommands(true)).filter((cmd) => cmd.startsWith("zentara-code")))
 
 		for (const command of expectedCommands) {
-			assert.ok(commands.has(`roo-code.${command}`), `Command ${command} should be registered`)
+			assert.ok(commands.has(`zentara-code.${command}`), `Command ${command} should be registered`)
 		}
 	})
 })

@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Roo Code",
+		"name": "Zentara Code",
 		"description": "A whole dev team of AI agents in your editor."
 	},
 	"number_format": {
@@ -94,18 +94,18 @@
 	},
 	"storage": {
 		"prompt_custom_path": "Enter custom conversation history storage path, leave empty to use default location",
-		"path_placeholder": "D:\\RooCodeStorage",
-		"enter_absolute_path": "Please enter an absolute path (e.g. D:\\RooCodeStorage or /home/user/storage)",
+		"path_placeholder": "D:\\ZentaraCodeStorage",
+		"enter_absolute_path": "Please enter an absolute path (e.g. D:\\ZentaraCodeStorage or /home/user/storage)",
 		"enter_valid_path": "Please enter a valid path"
 	},
 	"input": {
-		"task_prompt": "What should Roo do?",
+		"task_prompt": "What should Zentara do?",
 		"task_placeholder": "Type your task here"
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Your organization requires Roo Code Cloud authentication. Please sign in to continue.",
-			"organization_mismatch": "You must be authenticated with your organization's Roo Code Cloud account.",
+			"cloud_auth_required": "Your organization requires Zentara Code Cloud authentication. Please sign in to continue.",
+			"organization_mismatch": "You must be authenticated with your organization's Zentara Code Cloud account.",
 			"verification_failed": "Unable to verify organization authentication."
 		}
 	}

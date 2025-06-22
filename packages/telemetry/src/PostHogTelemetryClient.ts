@@ -1,12 +1,12 @@
 import { PostHog } from "posthog-node"
 import * as vscode from "vscode"
 
-import { TelemetryEventName, type TelemetryEvent } from "@roo-code/types"
+import { TelemetryEventName, type TelemetryEvent } from "@zentara-code/types"
 
 import { BaseTelemetryClient } from "./BaseTelemetryClient"
 
 /**
- * PostHogTelemetryClient handles telemetry event tracking for the Roo Code extension.
+ * PostHogTelemetryClient handles telemetry event tracking for the Zentara Code extension.
  * Uses PostHog analytics to track user interactions and system events.
  * Respects user privacy settings and VSCode's global telemetry configuration.
  */

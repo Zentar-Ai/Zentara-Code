@@ -54,7 +54,7 @@ Thumbs.db
 
 # Build artifacts that are not part of the final package structure
 bin/ # Contains the .vsix
-roo-code-*.vsix # The VSIX itself
+zentara-code-*.vsix # The VSIX itself
 
 # Dotenv files (sensitive, ensure they are ignored)
 .env

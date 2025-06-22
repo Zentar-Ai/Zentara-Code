@@ -1,5 +1,5 @@
 {
-	"greeting": "Bienvenido a Roo Code",
+	"greeting": "Bienvenido a Zentara Code",
 	"task": {
 		"title": "Tarea",
 		"seeMore": "Ver más",
@@ -76,8 +76,8 @@
 	},
 	"scrollToBottom": "Desplazarse al final del chat",
 	"about": "Genera, refactoriza y depura código con asistencia de IA. Consulta nuestra <DocsLink>documentación</DocsLink> para obtener más información.",
-	"onboarding": "<strong>Tu lista de tareas en este espacio de trabajo está vacía.</strong> Comienza escribiendo una tarea abajo. ¿No estás seguro cómo empezar? Lee más sobre lo que Roo puede hacer por ti en <DocsLink>la documentación</DocsLink>.",
-	"rooTips": {
+	"onboarding": "<strong>Tu lista de tareas en este espacio de trabajo está vacía.</strong> Comienza escribiendo una tarea abajo. ¿No estás seguro cómo empezar? Lee más sobre lo que Zentara puede hacer por ti en <DocsLink>la documentación</DocsLink>.",
+	"zentaraTips": {
 		"boomerangTasks": {
 			"title": "Orquestación de Tareas",
 			"description": "Divide las tareas en partes más pequeñas y manejables."
@@ -115,7 +115,7 @@
 	"diffError": {
 		"title": "Edición fallida"
 	},
-	"troubleMessage": "Roo está teniendo problemas...",
+	"troubleMessage": "Zentara está teniendo problemas...",
 	"apiRequest": {
 		"title": "Solicitud API",
 		"failed": "Solicitud API falló",
@@ -141,59 +141,59 @@
 		"current": "Actual"
 	},
 	"instructions": {
-		"wantsToFetch": "Roo quiere obtener instrucciones detalladas para ayudar con la tarea actual"
+		"wantsToFetch": "Zentara quiere obtener instrucciones detalladas para ayudar con la tarea actual"
 	},
 	"fileOperations": {
-		"wantsToRead": "Roo quiere leer este archivo:",
-		"wantsToReadOutsideWorkspace": "Roo quiere leer este archivo fuera del espacio de trabajo:",
-		"didRead": "Roo leyó este archivo:",
-		"wantsToEdit": "Roo quiere editar este archivo:",
-		"wantsToEditOutsideWorkspace": "Roo quiere editar este archivo fuera del espacio de trabajo:",
-		"wantsToEditProtected": "Roo quiere editar un archivo de configuración protegido:",
-		"wantsToCreate": "Roo quiere crear un nuevo archivo:",
-		"wantsToSearchReplace": "Roo quiere realizar búsqueda y reemplazo en este archivo:",
-		"didSearchReplace": "Roo realizó búsqueda y reemplazo en este archivo:",
-		"wantsToInsert": "Roo quiere insertar contenido en este archivo:",
-		"wantsToInsertWithLineNumber": "Roo quiere insertar contenido en este archivo en la línea {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Roo quiere añadir contenido al final de este archivo:",
-		"wantsToReadAndXMore": "Roo quiere leer este archivo y {{count}} más:",
-		"wantsToReadMultiple": "Roo quiere leer varios archivos:",
-		"wantsToApplyBatchChanges": "Roo quiere aplicar cambios a múltiples archivos:"
+		"wantsToRead": "Zentara quiere leer este archivo:",
+		"wantsToReadOutsideWorkspace": "Zentara quiere leer este archivo fuera del espacio de trabajo:",
+		"didRead": "Zentara leyó este archivo:",
+		"wantsToEdit": "Zentara quiere editar este archivo:",
+		"wantsToEditOutsideWorkspace": "Zentara quiere editar este archivo fuera del espacio de trabajo:",
+		"wantsToEditProtected": "Zentara quiere editar un archivo de configuración protegido:",
+		"wantsToCreate": "Zentara quiere crear un nuevo archivo:",
+		"wantsToSearchReplace": "Zentara quiere realizar búsqueda y reemplazo en este archivo:",
+		"didSearchReplace": "Zentara realizó búsqueda y reemplazo en este archivo:",
+		"wantsToInsert": "Zentara quiere insertar contenido en este archivo:",
+		"wantsToInsertWithLineNumber": "Zentara quiere insertar contenido en este archivo en la línea {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Zentara quiere añadir contenido al final de este archivo:",
+		"wantsToReadAndXMore": "Zentara quiere leer este archivo y {{count}} más:",
+		"wantsToReadMultiple": "Zentara quiere leer varios archivos:",
+		"wantsToApplyBatchChanges": "Zentara quiere aplicar cambios a múltiples archivos:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Roo quiere ver los archivos de nivel superior en este directorio:",
-		"didViewTopLevel": "Roo vio los archivos de nivel superior en este directorio:",
-		"wantsToViewRecursive": "Roo quiere ver recursivamente todos los archivos en este directorio:",
-		"didViewRecursive": "Roo vio recursivamente todos los archivos en este directorio:",
-		"wantsToViewDefinitions": "Roo quiere ver nombres de definiciones de código fuente utilizados en este directorio:",
-		"didViewDefinitions": "Roo vio nombres de definiciones de código fuente utilizados en este directorio:",
-		"wantsToSearch": "Roo quiere buscar en este directorio <code>{{regex}}</code>:",
-		"didSearch": "Roo buscó en este directorio <code>{{regex}}</code>:",
-		"wantsToSearchOutsideWorkspace": "Roo quiere buscar en este directorio (fuera del espacio de trabajo) <code>{{regex}}</code>:",
-		"didSearchOutsideWorkspace": "Roo buscó en este directorio (fuera del espacio de trabajo) <code>{{regex}}</code>:",
-		"wantsToViewTopLevelOutsideWorkspace": "Roo quiere ver los archivos de nivel superior en este directorio (fuera del espacio de trabajo):",
-		"didViewTopLevelOutsideWorkspace": "Roo vio los archivos de nivel superior en este directorio (fuera del espacio de trabajo):",
-		"wantsToViewRecursiveOutsideWorkspace": "Roo quiere ver recursivamente todos los archivos en este directorio (fuera del espacio de trabajo):",
-		"didViewRecursiveOutsideWorkspace": "Roo vio recursivamente todos los archivos en este directorio (fuera del espacio de trabajo):",
-		"wantsToViewDefinitionsOutsideWorkspace": "Roo quiere ver nombres de definiciones de código fuente utilizados en este directorio (fuera del espacio de trabajo):",
-		"didViewDefinitionsOutsideWorkspace": "Roo vio nombres de definiciones de código fuente utilizados en este directorio (fuera del espacio de trabajo):"
+		"wantsToViewTopLevel": "Zentara quiere ver los archivos de nivel superior en este directorio:",
+		"didViewTopLevel": "Zentara vio los archivos de nivel superior en este directorio:",
+		"wantsToViewRecursive": "Zentara quiere ver recursivamente todos los archivos en este directorio:",
+		"didViewRecursive": "Zentara vio recursivamente todos los archivos en este directorio:",
+		"wantsToViewDefinitions": "Zentara quiere ver nombres de definiciones de código fuente utilizados en este directorio:",
+		"didViewDefinitions": "Zentara vio nombres de definiciones de código fuente utilizados en este directorio:",
+		"wantsToSearch": "Zentara quiere buscar en este directorio <code>{{regex}}</code>:",
+		"didSearch": "Zentara buscó en este directorio <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Zentara quiere buscar en este directorio (fuera del espacio de trabajo) <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Zentara buscó en este directorio (fuera del espacio de trabajo) <code>{{regex}}</code>:",
+		"wantsToViewTopLevelOutsideWorkspace": "Zentara quiere ver los archivos de nivel superior en este directorio (fuera del espacio de trabajo):",
+		"didViewTopLevelOutsideWorkspace": "Zentara vio los archivos de nivel superior en este directorio (fuera del espacio de trabajo):",
+		"wantsToViewRecursiveOutsideWorkspace": "Zentara quiere ver recursivamente todos los archivos en este directorio (fuera del espacio de trabajo):",
+		"didViewRecursiveOutsideWorkspace": "Zentara vio recursivamente todos los archivos en este directorio (fuera del espacio de trabajo):",
+		"wantsToViewDefinitionsOutsideWorkspace": "Zentara quiere ver nombres de definiciones de código fuente utilizados en este directorio (fuera del espacio de trabajo):",
+		"didViewDefinitionsOutsideWorkspace": "Zentara vio nombres de definiciones de código fuente utilizados en este directorio (fuera del espacio de trabajo):"
 	},
 	"commandOutput": "Salida del comando",
 	"response": "Respuesta",
 	"arguments": "Argumentos",
 	"mcp": {
-		"wantsToUseTool": "Roo quiere usar una herramienta en el servidor MCP {{serverName}}:",
-		"wantsToAccessResource": "Roo quiere acceder a un recurso en el servidor MCP {{serverName}}:"
+		"wantsToUseTool": "Zentara quiere usar una herramienta en el servidor MCP {{serverName}}:",
+		"wantsToAccessResource": "Zentara quiere acceder a un recurso en el servidor MCP {{serverName}}:"
 	},
 	"modes": {
-		"wantsToSwitch": "Roo quiere cambiar a modo <code>{{mode}}</code>",
-		"wantsToSwitchWithReason": "Roo quiere cambiar a modo <code>{{mode}}</code> porque: {{reason}}",
-		"didSwitch": "Roo cambió a modo <code>{{mode}}</code>",
-		"didSwitchWithReason": "Roo cambió a modo <code>{{mode}}</code> porque: {{reason}}"
+		"wantsToSwitch": "Zentara quiere cambiar a modo <code>{{mode}}</code>",
+		"wantsToSwitchWithReason": "Zentara quiere cambiar a modo <code>{{mode}}</code> porque: {{reason}}",
+		"didSwitch": "Zentara cambió a modo <code>{{mode}}</code>",
+		"didSwitchWithReason": "Zentara cambió a modo <code>{{mode}}</code> porque: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Roo quiere crear una nueva subtarea en modo <code>{{mode}}</code>:",
-		"wantsToFinish": "Roo quiere finalizar esta subtarea",
+		"wantsToCreate": "Zentara quiere crear una nueva subtarea en modo <code>{{mode}}</code>:",
+		"wantsToFinish": "Zentara quiere finalizar esta subtarea",
 		"newTaskContent": "Instrucciones de la subtarea",
 		"completionContent": "Subtarea completada",
 		"resultContent": "Resultados de la subtarea",
@@ -201,7 +201,7 @@
 		"completionInstructions": "¡Subtarea completada! Puedes revisar los resultados y sugerir correcciones o próximos pasos. Si todo se ve bien, confirma para devolver el resultado a la tarea principal."
 	},
 	"questions": {
-		"hasQuestion": "Roo tiene una pregunta:"
+		"hasQuestion": "Zentara tiene una pregunta:"
 	},
 	"taskCompleted": "Tarea completada",
 	"powershell": {
@@ -210,7 +210,7 @@
 	"autoApprove": {
 		"title": "Auto-aprobar:",
 		"none": "Ninguno",
-		"description": "Auto-aprobar permite a Roo Code realizar acciones sin pedir permiso. Habilita solo para acciones en las que confíes plenamente. Configuración más detallada disponible en <settingsLink>Configuración</settingsLink>."
+		"description": "Auto-aprobar permite a Zentara Code realizar acciones sin pedir permiso. Habilita solo para acciones en las que confíes plenamente. Configuración más detallada disponible en <settingsLink>Configuración</settingsLink>."
 	},
 	"reasoning": {
 		"thinking": "Pensando",
@@ -226,17 +226,17 @@
 		"copyToInput": "Copiar a la entrada (o Shift + clic)"
 	},
 	"announcement": {
-		"title": "🎉 Roo Code {{version}} publicado",
-		"description": "Roo Code {{version}} trae importantes nuevas funcionalidades y mejoras basadas en tus comentarios.",
+		"title": "🎉 Zentara Code {{version}} publicado",
+		"description": "Zentara Code {{version}} trae importantes nuevas funcionalidades y mejoras basadas en tus comentarios.",
 		"whatsNew": "Novedades",
-		"feature1": "<bold>Lanzamiento del Marketplace de Roo</bold>: ¡El marketplace ya está disponible! Descubre e instala modos y MCPs más fácil que nunca.",
+		"feature1": "<bold>Lanzamiento del Marketplace de Zentara</bold>: ¡El marketplace ya está disponible! Descubre e instala modos y MCPs más fácil que nunca.",
 		"feature2": "<bold>Modelos Gemini 2.5</bold>: Se agregó soporte para los nuevos modelos Gemini 2.5 Pro, Flash y Flash Lite.",
 		"feature3": "<bold>Soporte de archivos Excel y más</bold>: ¡Se agregó soporte para archivos Excel (.xlsx) y numerosas correcciones de errores y mejoras!",
 		"hideButton": "Ocultar anuncio",
 		"detailsDiscussLinks": "Obtén más detalles y participa en <discordLink>Discord</discordLink> y <redditLink>Reddit</redditLink> 🚀"
 	},
 	"browser": {
-		"rooWantsToUse": "Roo quiere usar el navegador:",
+		"zentaraWantsToUse": "Zentara quiere usar el navegador:",
 		"consoleLogs": "Registros de la consola",
 		"noNewLogs": "(No hay nuevos registros)",
 		"screenshot": "Captura de pantalla del navegador",
@@ -270,19 +270,19 @@
 	"profileViolationWarning": "El perfil actual infringe la configuración de tu organización",
 	"shellIntegration": {
 		"title": "Advertencia de ejecución de comandos",
-		"description": "Tu comando se está ejecutando sin la integración de shell de terminal de VSCode. Para suprimir esta advertencia, puedes desactivar la integración de shell en la sección <strong>Terminal</strong> de la <settingsLink>configuración de Roo Code</settingsLink> o solucionar problemas de integración de terminal de VSCode usando el enlace de abajo.",
+		"description": "Tu comando se está ejecutando sin la integración de shell de terminal de VSCode. Para suprimir esta advertencia, puedes desactivar la integración de shell en la sección <strong>Terminal</strong> de la <settingsLink>configuración de Zentara Code</settingsLink> o solucionar problemas de integración de terminal de VSCode usando el enlace de abajo.",
 		"troubleshooting": "Haz clic aquí para ver la documentación de integración de shell."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Límite de Solicitudes Auto-aprobadas Alcanzado",
-			"description": "Roo ha alcanzado el límite auto-aprobado de {{count}} solicitud(es) API. ¿Deseas reiniciar el contador y continuar con la tarea?",
+			"description": "Zentara ha alcanzado el límite auto-aprobado de {{count}} solicitud(es) API. ¿Deseas reiniciar el contador y continuar con la tarea?",
 			"button": "Reiniciar y Continuar"
 		}
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Roo quiere buscar en la base de código <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Roo quiere buscar en la base de código <code>{{query}}</code> en <code>{{path}}</code>:",
+		"wantsToSearch": "Zentara quiere buscar en la base de código <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Zentara quiere buscar en la base de código <code>{{query}}</code> en <code>{{path}}</code>:",
 		"didSearch": "Se encontraron {{count}} resultado(s) para <code>{{query}}</code>:"
 	},
 	"read-batch": {

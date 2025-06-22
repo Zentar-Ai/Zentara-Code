@@ -3,9 +3,9 @@ import fs from "fs/promises"
 import pWaitFor from "p-wait-for"
 import * as vscode from "vscode"
 
-import { type Language, type ProviderSettings, type GlobalState, TelemetryEventName } from "@roo-code/types"
-import { CloudService } from "@roo-code/cloud"
-import { TelemetryService } from "@roo-code/telemetry"
+import { type Language, type ProviderSettings, type GlobalState, TelemetryEventName } from "@zentara-code/types"
+import { CloudService } from "@zentara-code/cloud"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { ClineProvider } from "./ClineProvider"
 import { changeLanguage, t } from "../../i18n"
@@ -590,11 +590,11 @@ export const webviewMessageHandler = async (
 			}
 
 			const workspaceFolder = vscode.workspace.workspaceFolders[0]
-			const rooDir = path.join(workspaceFolder.uri.fsPath, ".roo")
-			const mcpPath = path.join(rooDir, "mcp.json")
+			const zentaraDir = path.join(workspaceFolder.uri.fsPath, ".zentara")
+			const mcpPath = path.join(zentaraDir, "mcp.json")
 
 			try {
-				await fs.mkdir(rooDir, { recursive: true })
+				await fs.mkdir(zentaraDir, { recursive: true })
 				const exists = await fileExistsAtPath(mcpPath)
 
 				if (!exists) {
@@ -1079,8 +1079,8 @@ export const webviewMessageHandler = async (
 			await updateGlobalState("language", message.text as Language)
 			await provider.postStateToWebview()
 			break
-		case "showRooIgnoredFiles":
-			await updateGlobalState("showRooIgnoredFiles", message.bool ?? true)
+		case "showZentaraIgnoredFiles":
+			await updateGlobalState("showZentaraIgnoredFiles", message.bool ?? true)
 			await provider.postStateToWebview()
 			break
 		case "maxReadFileLine":
@@ -1470,7 +1470,7 @@ export const webviewMessageHandler = async (
 			provider.postMessageToWebview({ type: "action", action: "accountButtonClicked" })
 			break
 		}
-		case "rooCloudSignIn": {
+		case "zentaraCloudSignIn": {
 			try {
 				TelemetryService.instance.captureEvent(TelemetryEventName.AUTHENTICATION_INITIATED)
 				await CloudService.instance.login()
@@ -1481,7 +1481,7 @@ export const webviewMessageHandler = async (
 
 			break
 		}
-		case "rooCloudSignOut": {
+		case "zentaraCloudSignOut": {
 			try {
 				await CloudService.instance.logout()
 				await provider.postStateToWebview()

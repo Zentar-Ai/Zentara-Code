@@ -1,16 +1,16 @@
 import * as vscode from "vscode"
 
-import { CodeActionName, CodeActionId } from "@roo-code/types"
+import { CodeActionName, CodeActionId } from "@zentara-code/types"
 
 import { getCodeActionCommand } from "../utils/commands"
 import { EditorUtils } from "../integrations/editor/EditorUtils"
 
 export const TITLES: Record<CodeActionName, string> = {
-	EXPLAIN: "Explain with Roo Code",
-	FIX: "Fix with Roo Code",
-	IMPROVE: "Improve with Roo Code",
-	ADD_TO_CONTEXT: "Add to Roo Code",
-	NEW_TASK: "New Roo Code Task",
+	EXPLAIN: "Explain with Zentara Code",
+	FIX: "Fix with Zentara Code",
+	IMPROVE: "Improve with Zentara Code",
+	ADD_TO_CONTEXT: "Add to Zentara Code",
+	NEW_TASK: "New Zentara Code Task",
 } as const
 
 export class CodeActionProvider implements vscode.CodeActionProvider {

@@ -6,7 +6,7 @@ import { FileWatcher } from "../file-watcher"
 
 // Mock dependencies
 vi.mock("../../cache-manager")
-vi.mock("../../../core/ignore/RooIgnoreController")
+vi.mock("../../../core/ignore/ZentaraIgnoreController")
 vi.mock("ignore")
 
 // Mock vscode module

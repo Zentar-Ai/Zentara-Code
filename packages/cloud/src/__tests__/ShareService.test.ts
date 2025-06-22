@@ -37,12 +37,12 @@ vi.mock("vscode", () => ({
 
 // Mock config
 vi.mock("../Config", () => ({
-	getRooCodeApiUrl: () => "https://app.roocode.com",
+	getZentaraCodeApiUrl: () => "https://app.zentaracode.com",
 }))
 
 // Mock utils
 vi.mock("../utils", () => ({
-	getUserAgent: () => "Roo-Code 1.0.0",
+	getUserAgent: () => "Zentara-Code 1.0.0",
 }))
 
 describe("ShareService", () => {
@@ -73,7 +73,7 @@ describe("ShareService", () => {
 			const mockResponse = {
 				data: {
 					success: true,
-					shareUrl: "https://app.roocode.com/share/abc123",
+					shareUrl: "https://app.zentaracode.com/share/abc123",
 				},
 			}
 
@@ -83,26 +83,26 @@ describe("ShareService", () => {
 			const result = await shareService.shareTask("task-123", "organization")
 
 			expect(result.success).toBe(true)
-			expect(result.shareUrl).toBe("https://app.roocode.com/share/abc123")
+			expect(result.shareUrl).toBe("https://app.zentaracode.com/share/abc123")
 			expect(mockedAxios.post).toHaveBeenCalledWith(
-				"https://app.roocode.com/api/extension/share",
+				"https://app.zentaracode.com/api/extension/share",
 				{ taskId: "task-123", visibility: "organization" },
 				{
 					headers: {
 						"Content-Type": "application/json",
 						Authorization: "Bearer session-token",
-						"User-Agent": "Roo-Code 1.0.0",
+						"User-Agent": "Zentara-Code 1.0.0",
 					},
 				},
 			)
-			expect(vscode.env.clipboard.writeText).toHaveBeenCalledWith("https://app.roocode.com/share/abc123")
+			expect(vscode.env.clipboard.writeText).toHaveBeenCalledWith("https://app.zentaracode.com/share/abc123")
 		})
 
 		it("should share task with public visibility", async () => {
 			const mockResponse = {
 				data: {
 					success: true,
-					shareUrl: "https://app.roocode.com/share/abc123",
+					shareUrl: "https://app.zentaracode.com/share/abc123",
 				},
 			}
 
@@ -113,7 +113,7 @@ describe("ShareService", () => {
 
 			expect(result.success).toBe(true)
 			expect(mockedAxios.post).toHaveBeenCalledWith(
-				"https://app.roocode.com/api/extension/share",
+				"https://app.zentaracode.com/api/extension/share",
 				{ taskId: "task-123", visibility: "public" },
 				expect.any(Object),
 			)
@@ -123,7 +123,7 @@ describe("ShareService", () => {
 			const mockResponse = {
 				data: {
 					success: true,
-					shareUrl: "https://app.roocode.com/share/abc123",
+					shareUrl: "https://app.zentaracode.com/share/abc123",
 				},
 			}
 
@@ -134,7 +134,7 @@ describe("ShareService", () => {
 
 			expect(result.success).toBe(true)
 			expect(mockedAxios.post).toHaveBeenCalledWith(
-				"https://app.roocode.com/api/extension/share",
+				"https://app.zentaracode.com/api/extension/share",
 				{ taskId: "task-123", visibility: "organization" },
 				expect.any(Object),
 			)

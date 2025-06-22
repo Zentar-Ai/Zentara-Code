@@ -15,7 +15,7 @@ import { arePathsEqual } from "../../../utils/path"
 import { FileContextTracker } from "../../context-tracking/FileContextTracker"
 import { ApiHandler } from "../../../api/index"
 import { ClineProvider } from "../../webview/ClineProvider"
-import { RooIgnoreController } from "../../ignore/RooIgnoreController"
+import { ZentaraIgnoreController } from "../../ignore/ZentaraIgnoreController"
 import { formatResponse } from "../../prompts/responses"
 import { Task } from "../../task/Task"
 
@@ -78,7 +78,7 @@ describe("getEnvironmentDetails", () => {
 			experiments: {},
 			customInstructions: "test instructions",
 			language: "en",
-			showRooIgnoredFiles: true,
+			showZentaraIgnoredFiles: true,
 		}
 
 		mockProvider = {
@@ -92,19 +92,19 @@ describe("getEnvironmentDetails", () => {
 			fileContextTracker: {
 				getAndClearRecentlyModifiedFiles: vi.fn().mockReturnValue([]),
 			} as unknown as FileContextTracker,
-			rooIgnoreController: {
+			zentaraIgnoreController: {
 				filterPaths: vi.fn((paths: string[]) => paths.join("\n")),
 				cwd: mockCwd,
 				ignoreInstance: {},
 				disposables: [],
-				rooIgnoreContent: "",
+				zentaraIgnoreContent: "",
 				isPathIgnored: vi.fn(),
 				getIgnoreContent: vi.fn(),
 				updateIgnoreContent: vi.fn(),
 				addToIgnore: vi.fn(),
 				removeFromIgnore: vi.fn(),
 				dispose: vi.fn(),
-			} as unknown as RooIgnoreController,
+			} as unknown as ZentaraIgnoreController,
 			clineMessages: [],
 			api: {
 				getModel: vi.fn().mockReturnValue({ id: "test-model", info: { contextWindow: 100000 } }),
@@ -173,7 +173,7 @@ describe("getEnvironmentDetails", () => {
 			mockCwd,
 			["file1.ts", "file2.ts"],
 			false,
-			mockCline.rooIgnoreController,
+			mockCline.zentaraIgnoreController,
 			true,
 		)
 	})

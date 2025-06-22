@@ -3,7 +3,7 @@
 import { useMemo } from "react"
 import { ScatterChart, Scatter, XAxis, YAxis, Label, Customized, Cross } from "recharts"
 
-import type { TaskMetrics, Run } from "@roo-code/evals"
+import type { TaskMetrics, Run } from "@zentara-code/evals"
 
 import { formatTokens, formatCurrency, formatDuration, formatScore } from "@/lib"
 import { useOpenRouterModels } from "@/lib/hooks"

@@ -51,4 +51,4 @@ src/**/*.js
 src/**/*.js.map
 scripts/*.mjs
 scripts/*.mjs.map
-.roo/mcp.json
+.zentara/mcp.json

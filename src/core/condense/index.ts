@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk"
 
-import { TelemetryService } from "@roo-code/telemetry"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { t } from "../../i18n"
 import { ApiHandler } from "../../api"
@@ -218,7 +218,7 @@ export function getMessagesSinceLastSummary(messages: ApiMessage[]): ApiMessage[
 	const messagesSinceSummary = messages.slice(lastSummaryIndex)
 
 	// Bedrock requires the first message to be a user message.
-	// See https://github.com/Zentar-Ai/Roo-Codeissues/4147
+	// See https://github.com/Zentar-Ai/Zentara-Codeissues/4147
 	const userMessage: ApiMessage = {
 		role: "user",
 		content: "Please continue from the following summary:",

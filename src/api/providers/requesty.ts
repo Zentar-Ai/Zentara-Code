@@ -1,7 +1,7 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
 
-import { type ModelInfo, requestyDefaultModelId, requestyDefaultModelInfo } from "@roo-code/types"
+import { type ModelInfo, requestyDefaultModelId, requestyDefaultModelInfo } from "@zentara-code/types"
 
 import type { ApiHandlerOptions, ModelRecord } from "../../shared/api"
 import { calculateApiCostOpenAI } from "../../shared/cost"

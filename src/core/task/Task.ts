@@ -21,9 +21,9 @@ import {
 	type ToolProgressStatus,
 	type HistoryItem,
 	TelemetryEventName,
-} from "@roo-code/types"
-import { TelemetryService } from "@roo-code/telemetry"
-import { CloudService } from "@roo-code/cloud"
+} from "@zentara-code/types"
+import { TelemetryService } from "@zentara-code/telemetry"
+import { CloudService } from "@zentara-code/cloud"
 
 // api
 import { ApiHandler, ApiHandlerCreateMessageMetadata, buildApiHandler } from "../../api"
@@ -51,7 +51,7 @@ import { RepoPerTaskCheckpointService } from "../../services/checkpoints"
 // integrations
 import { DiffViewProvider } from "../../integrations/editor/DiffViewProvider"
 import { findToolName, formatContentBlockToMarkdown } from "../../integrations/misc/export-markdown"
-import { RooTerminalProcess } from "../../integrations/terminal/types"
+import { ZentaraTerminalProcess } from "../../integrations/terminal/types"
 import { TerminalRegistry } from "../../integrations/terminal/TerminalRegistry"
 
 // utils
@@ -65,8 +65,8 @@ import { SYSTEM_PROMPT } from "../prompts/system"
 // core modules
 import { ToolRepetitionDetector } from "../tools/ToolRepetitionDetector"
 import { FileContextTracker } from "../context-tracking/FileContextTracker"
-import { RooIgnoreController } from "../ignore/RooIgnoreController"
-import { RooProtectedController } from "../protect/RooProtectedController"
+import { ZentaraIgnoreController } from "../ignore/ZentaraIgnoreController"
+import { ZentaraProtectedController } from "../protect/ZentaraProtectedController"
 import { type AssistantMessageContent, parseAssistantMessage, presentAssistantMessage } from "../assistant-message"
 import { truncateConversationIfNeeded } from "../sliding-window"
 import { ClineProvider } from "../webview/ClineProvider"
@@ -153,11 +153,11 @@ export class Task extends EventEmitter<ClineEvents> {
 	}
 
 	toolRepetitionDetector: ToolRepetitionDetector
-	rooIgnoreController?: RooIgnoreController
-	rooProtectedController?: RooProtectedController
+	zentaraIgnoreController?: ZentaraIgnoreController
+	zentaraProtectedController?: ZentaraProtectedController
 	fileContextTracker: FileContextTracker
 	urlContentFetcher: UrlContentFetcher
-	terminalProcess?: RooTerminalProcess
+	terminalProcess?: ZentaraTerminalProcess
 
 	// Computer User
 	browserSession: BrowserSession
@@ -233,12 +233,12 @@ export class Task extends EventEmitter<ClineEvents> {
 		this.instanceId = crypto.randomUUID().slice(0, 8)
 		this.taskNumber = -1
 
-		this.rooIgnoreController = new RooIgnoreController(this.cwd)
-		this.rooProtectedController = new RooProtectedController(this.cwd)
+		this.zentaraIgnoreController = new ZentaraIgnoreController(this.cwd)
+		this.zentaraProtectedController = new ZentaraProtectedController(this.cwd)
 		this.fileContextTracker = new FileContextTracker(provider, this.taskId)
 
-		this.rooIgnoreController.initialize().catch((error) => {
-			console.error("Failed to initialize RooIgnoreController:", error)
+		this.zentaraIgnoreController.initialize().catch((error) => {
+			console.error("Failed to initialize ZentaraIgnoreController:", error)
 		})
 
 		this.apiConfiguration = apiConfiguration
@@ -406,7 +406,7 @@ export class Task extends EventEmitter<ClineEvents> {
 
 			await this.providerRef.deref()?.updateTaskHistory(historyItem)
 		} catch (error) {
-			console.error("Failed to save Roo messages:", error)
+			console.error("Failed to save Zentara messages:", error)
 		}
 	}
 
@@ -433,7 +433,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		// simply removes the reference to this instance, but the instance is
 		// still alive until this promise resolves or rejects.)
 		if (this.abort) {
-			throw new Error(`[RooCode#ask] task ${this.taskId}.${this.instanceId} aborted`)
+			throw new Error(`[ZentaraCode#ask] task ${this.taskId}.${this.instanceId} aborted`)
 		}
 
 		let askTs: number
@@ -632,7 +632,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		contextCondense?: ContextCondense,
 	): Promise<undefined> {
 		if (this.abort) {
-			throw new Error(`[RooCode#say] task ${this.taskId}.${this.instanceId} aborted`)
+			throw new Error(`[ZentaraCode#say] task ${this.taskId}.${this.instanceId} aborted`)
 		}
 
 		if (partial !== undefined) {
@@ -728,7 +728,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		)
 		await this.say(
 			"error",
-			`Roo tried to use ${toolName}${
+			`Zentara tried to use ${toolName}${
 				relPath ? ` for '${relPath.toPosix()}'` : ""
 			} without value for required parameter '${paramName}'. Retrying...`,
 		)
@@ -1053,12 +1053,12 @@ export class Task extends EventEmitter<ClineEvents> {
 		}
 
 		try {
-			if (this.rooIgnoreController) {
-				this.rooIgnoreController.dispose()
-				this.rooIgnoreController = undefined
+			if (this.zentaraIgnoreController) {
+				this.zentaraIgnoreController.dispose()
+				this.zentaraIgnoreController = undefined
 			}
 		} catch (error) {
-			console.error("Error disposing RooIgnoreController:", error)
+			console.error("Error disposing ZentaraIgnoreController:", error)
 			// This is the critical one for the leak fix
 		}
 
@@ -1162,7 +1162,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		includeFileDetails: boolean = false,
 	): Promise<boolean> {
 		if (this.abort) {
-			throw new Error(`[RooCode#recursivelyMakeRooRequests] task ${this.taskId}.${this.instanceId} aborted`)
+			throw new Error(`[ZentaraCode#recursivelyMakeZentaraRequests] task ${this.taskId}.${this.instanceId} aborted`)
 		}
 
 		if (this.consecutiveMistakeCount >= this.consecutiveMistakeLimit) {
@@ -1223,15 +1223,15 @@ export class Task extends EventEmitter<ClineEvents> {
 			}),
 		)
 
-		const { showRooIgnoredFiles = true } = (await this.providerRef.deref()?.getState()) ?? {}
+		const { showZentaraIgnoredFiles = true } = (await this.providerRef.deref()?.getState()) ?? {}
 
 		const parsedUserContent = await processUserContentMentions({
 			userContent,
 			cwd: this.cwd,
 			urlContentFetcher: this.urlContentFetcher,
 			fileContextTracker: this.fileContextTracker,
-			rooIgnoreController: this.rooIgnoreController,
-			showRooIgnoredFiles,
+			zentaraIgnoreController: this.zentaraIgnoreController,
+			showZentaraIgnoredFiles,
 		})
 
 		const environmentDetails = await getEnvironmentDetails(this, includeFileDetails)
@@ -1475,7 +1475,7 @@ export class Task extends EventEmitter<ClineEvents> {
 
 			// Need to call here in case the stream was aborted.
 			if (this.abort || this.abandoned) {
-				throw new Error(`[RooCode#recursivelyMakeRooRequests] task ${this.taskId}.${this.instanceId} aborted`)
+				throw new Error(`[ZentaraCode#recursivelyMakeZentaraRequests] task ${this.taskId}.${this.instanceId} aborted`)
 			}
 
 			this.didCompleteReadingStream = true
@@ -1599,7 +1599,7 @@ export class Task extends EventEmitter<ClineEvents> {
 			})
 		}
 
-		const rooIgnoreInstructions = this.rooIgnoreController?.getInstructions()
+		const zentaraIgnoreInstructions = this.zentaraIgnoreController?.getInstructions()
 
 		const state = await this.providerRef.deref()?.getState()
 
@@ -1639,7 +1639,7 @@ export class Task extends EventEmitter<ClineEvents> {
 				experiments,
 				enableMcpServerCreation,
 				language,
-				rooIgnoreInstructions,
+				zentaraIgnoreInstructions,
 				maxReadFileLine !== -1,
 				{
 					maxConcurrentFileReads,

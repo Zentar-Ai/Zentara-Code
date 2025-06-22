@@ -2,7 +2,7 @@
 
 // npx vitest run src/__tests__/TelemetryClient.test.ts
 
-import { type TelemetryPropertiesProvider, TelemetryEventName } from "@roo-code/types"
+import { type TelemetryPropertiesProvider, TelemetryEventName } from "@zentara-code/types"
 
 import { TelemetryClient } from "../TelemetryClient"
 
@@ -312,7 +312,7 @@ describe("TelemetryClient", () => {
 			const client = new TelemetryClient(mockAuthService, mockSettingsService)
 
 			const providerProperties = {
-				appName: "roo-code",
+				appName: "zentara-code",
 				appVersion: "1.0.0",
 				vscodeVersion: "1.60.0",
 				platform: "darwin",
@@ -361,7 +361,7 @@ describe("TelemetryClient", () => {
 			})
 
 			const eventProperties = {
-				appName: "roo-code",
+				appName: "zentara-code",
 				appVersion: "1.0.0",
 				vscodeVersion: "1.60.0",
 				platform: "darwin",

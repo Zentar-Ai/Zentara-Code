@@ -4,7 +4,7 @@ import * as fs from "fs/promises"
 
 import * as yaml from "yaml"
 
-import { type ModeConfig, customModesSettingsSchema } from "@roo-code/types"
+import { type ModeConfig, customModesSettingsSchema } from "@zentara-code/types"
 
 import { fileExistsAtPath } from "../../utils/fs"
 import { getWorkspacePath } from "../../utils/path"
@@ -12,7 +12,7 @@ import { logger } from "../../utils/logging"
 import { GlobalFileNames } from "../../shared/globalFileNames"
 import { ensureSettingsDirectoryExists } from "../../utils/globalContext"
 
-const ROOMODES_FILENAME = ".roomodes"
+const ROOMODES_FILENAME = ".zentaramodes"
 
 export class CustomModesManager {
 	private static readonly cacheTTL = 10_000
@@ -60,7 +60,7 @@ export class CustomModesManager {
 		}
 	}
 
-	private async getWorkspaceRoomodes(): Promise<string | undefined> {
+	private async getWorkspaceZentaramodes(): Promise<string | undefined> {
 		const workspaceFolders = vscode.workspace.workspaceFolders
 
 		if (!workspaceFolders || workspaceFolders.length === 0) {
@@ -68,9 +68,9 @@ export class CustomModesManager {
 		}
 
 		const workspaceRoot = getWorkspacePath()
-		const roomodesPath = path.join(workspaceRoot, ROOMODES_FILENAME)
-		const exists = await fileExistsAtPath(roomodesPath)
-		return exists ? roomodesPath : undefined
+		const zentaramodesPath = path.join(workspaceRoot, ROOMODES_FILENAME)
+		const exists = await fileExistsAtPath(zentaramodesPath)
+		return exists ? zentaramodesPath : undefined
 	}
 
 	private async loadModesFromFile(filePath: string): Promise<ModeConfig[]> {
@@ -83,8 +83,8 @@ export class CustomModesManager {
 			}
 
 			// Determine source based on file path
-			const isRoomodes = filePath.endsWith(ROOMODES_FILENAME)
-			const source = isRoomodes ? ("project" as const) : ("global" as const)
+			const isZentaramodes = filePath.endsWith(ROOMODES_FILENAME)
+			const source = isZentaramodes ? ("project" as const) : ("global" as const)
 
 			// Add source to each mode
 			return result.data.customModes.map((mode) => ({ ...mode, source }))
@@ -167,12 +167,12 @@ export class CustomModesManager {
 					return
 				}
 
-				// Get modes from .roomodes if it exists (takes precedence)
-				const roomodesPath = await this.getWorkspaceRoomodes()
-				const roomodesModes = roomodesPath ? await this.loadModesFromFile(roomodesPath) : []
+				// Get modes from .zentaramodes if it exists (takes precedence)
+				const zentaramodesPath = await this.getWorkspaceZentaramodes()
+				const zentaramodesModes = zentaramodesPath ? await this.loadModesFromFile(zentaramodesPath) : []
 
-				// Merge modes from both sources (.roomodes takes precedence)
-				const mergedModes = await this.mergeCustomModes(roomodesModes, result.data.customModes)
+				// Merge modes from both sources (.zentaramodes takes precedence)
+				const mergedModes = await this.mergeCustomModes(zentaramodesModes, result.data.customModes)
 				await this.context.globalState.update("customModes", mergedModes)
 				this.clearCache()
 				await this.onUpdate()
@@ -186,43 +186,43 @@ export class CustomModesManager {
 		this.disposables.push(settingsWatcher.onDidDelete(handleSettingsChange))
 		this.disposables.push(settingsWatcher)
 
-		// Watch .roomodes file - watch the path even if it doesn't exist yet
+		// Watch .zentaramodes file - watch the path even if it doesn't exist yet
 		const workspaceFolders = vscode.workspace.workspaceFolders
 		if (workspaceFolders && workspaceFolders.length > 0) {
 			const workspaceRoot = getWorkspacePath()
-			const roomodesPath = path.join(workspaceRoot, ROOMODES_FILENAME)
-			const roomodesWatcher = vscode.workspace.createFileSystemWatcher(roomodesPath)
+			const zentaramodesPath = path.join(workspaceRoot, ROOMODES_FILENAME)
+			const zentaramodesWatcher = vscode.workspace.createFileSystemWatcher(zentaramodesPath)
 
-			const handleRoomodesChange = async () => {
+			const handleZentaramodesChange = async () => {
 				try {
 					const settingsModes = await this.loadModesFromFile(settingsPath)
-					const roomodesModes = await this.loadModesFromFile(roomodesPath)
-					// .roomodes takes precedence
-					const mergedModes = await this.mergeCustomModes(roomodesModes, settingsModes)
+					const zentaramodesModes = await this.loadModesFromFile(zentaramodesPath)
+					// .zentaramodes takes precedence
+					const mergedModes = await this.mergeCustomModes(zentaramodesModes, settingsModes)
 					await this.context.globalState.update("customModes", mergedModes)
 					this.clearCache()
 					await this.onUpdate()
 				} catch (error) {
-					console.error(`[CustomModesManager] Error handling .roomodes file change:`, error)
+					console.error(`[CustomModesManager] Error handling .zentaramodes file change:`, error)
 				}
 			}
 
-			this.disposables.push(roomodesWatcher.onDidChange(handleRoomodesChange))
-			this.disposables.push(roomodesWatcher.onDidCreate(handleRoomodesChange))
+			this.disposables.push(zentaramodesWatcher.onDidChange(handleZentaramodesChange))
+			this.disposables.push(zentaramodesWatcher.onDidCreate(handleZentaramodesChange))
 			this.disposables.push(
-				roomodesWatcher.onDidDelete(async () => {
-					// When .roomodes is deleted, refresh with only settings modes
+				zentaramodesWatcher.onDidDelete(async () => {
+					// When .zentaramodes is deleted, refresh with only settings modes
 					try {
 						const settingsModes = await this.loadModesFromFile(settingsPath)
 						await this.context.globalState.update("customModes", settingsModes)
 						this.clearCache()
 						await this.onUpdate()
 					} catch (error) {
-						console.error(`[CustomModesManager] Error handling .roomodes file deletion:`, error)
+						console.error(`[CustomModesManager] Error handling .zentaramodes file deletion:`, error)
 					}
 				}),
 			)
-			this.disposables.push(roomodesWatcher)
+			this.disposables.push(zentaramodesWatcher)
 		}
 	}
 
@@ -238,16 +238,16 @@ export class CustomModesManager {
 		const settingsPath = await this.getCustomModesFilePath()
 		const settingsModes = await this.loadModesFromFile(settingsPath)
 
-		// Get modes from .roomodes if it exists.
-		const roomodesPath = await this.getWorkspaceRoomodes()
-		const roomodesModes = roomodesPath ? await this.loadModesFromFile(roomodesPath) : []
+		// Get modes from .zentaramodes if it exists.
+		const zentaramodesPath = await this.getWorkspaceZentaramodes()
+		const zentaramodesModes = zentaramodesPath ? await this.loadModesFromFile(zentaramodesPath) : []
 
 		// Create maps to store modes by source.
 		const projectModes = new Map<string, ModeConfig>()
 		const globalModes = new Map<string, ModeConfig>()
 
 		// Add project modes (they take precedence).
-		for (const mode of roomodesModes) {
+		for (const mode of zentaramodesModes) {
 			projectModes.set(mode.slug, { ...mode, source: "project" as const })
 		}
 
@@ -260,7 +260,7 @@ export class CustomModesManager {
 
 		// Combine modes in the correct order: project modes first, then global modes.
 		const mergedModes = [
-			...roomodesModes.map((mode) => ({ ...mode, source: "project" as const })),
+			...zentaramodesModes.map((mode) => ({ ...mode, source: "project" as const })),
 			...settingsModes
 				.filter((mode) => !projectModes.has(mode.slug))
 				.map((mode) => ({ ...mode, source: "global" as const })),
@@ -347,11 +347,11 @@ export class CustomModesManager {
 
 	private async refreshMergedState(): Promise<void> {
 		const settingsPath = await this.getCustomModesFilePath()
-		const roomodesPath = await this.getWorkspaceRoomodes()
+		const zentaramodesPath = await this.getWorkspaceZentaramodes()
 
 		const settingsModes = await this.loadModesFromFile(settingsPath)
-		const roomodesModes = roomodesPath ? await this.loadModesFromFile(roomodesPath) : []
-		const mergedModes = await this.mergeCustomModes(roomodesModes, settingsModes)
+		const zentaramodesModes = zentaramodesPath ? await this.loadModesFromFile(zentaramodesPath) : []
+		const mergedModes = await this.mergeCustomModes(zentaramodesModes, settingsModes)
 
 		await this.context.globalState.update("customModes", mergedModes)
 
@@ -363,13 +363,13 @@ export class CustomModesManager {
 	public async deleteCustomMode(slug: string): Promise<void> {
 		try {
 			const settingsPath = await this.getCustomModesFilePath()
-			const roomodesPath = await this.getWorkspaceRoomodes()
+			const zentaramodesPath = await this.getWorkspaceZentaramodes()
 
 			const settingsModes = await this.loadModesFromFile(settingsPath)
-			const roomodesModes = roomodesPath ? await this.loadModesFromFile(roomodesPath) : []
+			const zentaramodesModes = zentaramodesPath ? await this.loadModesFromFile(zentaramodesPath) : []
 
 			// Find the mode in either file
-			const projectMode = roomodesModes.find((m) => m.slug === slug)
+			const projectMode = zentaramodesModes.find((m) => m.slug === slug)
 			const globalMode = settingsModes.find((m) => m.slug === slug)
 
 			if (!projectMode && !globalMode) {
@@ -378,8 +378,8 @@ export class CustomModesManager {
 
 			await this.queueWrite(async () => {
 				// Delete from project first if it exists there
-				if (projectMode && roomodesPath) {
-					await this.updateModesInFile(roomodesPath, (modes) => modes.filter((m) => m.slug !== slug))
+				if (projectMode && zentaramodesPath) {
+					await this.updateModesInFile(zentaramodesPath, (modes) => modes.filter((m) => m.slug !== slug))
 				}
 
 				// Delete from global settings if it exists there

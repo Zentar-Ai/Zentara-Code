@@ -1,4 +1,4 @@
-import { ModelInfo, lMStudioDefaultModelInfo } from "@roo-code/types"
+import { ModelInfo, lMStudioDefaultModelInfo } from "@zentara-code/types"
 import { LLM, LLMInfo, LLMInstanceInfo, LMStudioClient } from "@lmstudio/sdk"
 import axios from "axios"
 

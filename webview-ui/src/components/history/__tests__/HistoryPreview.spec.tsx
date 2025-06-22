@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 
-import type { HistoryItem } from "@roo-code/types"
+import type { HistoryItem } from "@zentara-code/types"
 
 import HistoryPreview from "../HistoryPreview"
 

@@ -1,5 +1,5 @@
 {
-	"greeting": "Welkom bij Roo Code",
+	"greeting": "Welkom bij Zentara Code",
 	"task": {
 		"title": "Taak",
 		"seeMore": "Meer weergeven",
@@ -77,7 +77,7 @@
 	"scrollToBottom": "Scroll naar onderaan de chat",
 	"about": "Genereer, refactor en debug code met AI-assistentie. Bekijk onze <DocsLink>documentatie</DocsLink> voor meer informatie.",
 	"onboarding": "Je takenlijst in deze werkruimte is leeg.",
-	"rooTips": {
+	"zentaraTips": {
 		"boomerangTasks": {
 			"title": "Taak Orchestratie",
 			"description": "Splits taken op in kleinere, beheersbare delen"
@@ -136,59 +136,59 @@
 		"current": "Huidig"
 	},
 	"instructions": {
-		"wantsToFetch": "Roo wil gedetailleerde instructies ophalen om te helpen met de huidige taak"
+		"wantsToFetch": "Zentara wil gedetailleerde instructies ophalen om te helpen met de huidige taak"
 	},
 	"fileOperations": {
-		"wantsToRead": "Roo wil dit bestand lezen:",
-		"wantsToReadOutsideWorkspace": "Roo wil dit bestand buiten de werkruimte lezen:",
-		"didRead": "Roo heeft dit bestand gelezen:",
-		"wantsToEdit": "Roo wil dit bestand bewerken:",
-		"wantsToEditOutsideWorkspace": "Roo wil dit bestand buiten de werkruimte bewerken:",
-		"wantsToEditProtected": "Roo wil een beveiligd configuratiebestand bewerken:",
-		"wantsToCreate": "Roo wil een nieuw bestand aanmaken:",
-		"wantsToSearchReplace": "Roo wil zoeken en vervangen in dit bestand:",
-		"didSearchReplace": "Roo heeft zoeken en vervangen uitgevoerd op dit bestand:",
-		"wantsToInsert": "Roo wil inhoud invoegen in dit bestand:",
-		"wantsToInsertWithLineNumber": "Roo wil inhoud invoegen in dit bestand op regel {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Roo wil inhoud toevoegen aan het einde van dit bestand:",
-		"wantsToReadAndXMore": "Roo wil dit bestand en nog {{count}} andere lezen:",
-		"wantsToReadMultiple": "Roo wil meerdere bestanden lezen:",
-		"wantsToApplyBatchChanges": "Roo wil wijzigingen toepassen op meerdere bestanden:"
+		"wantsToRead": "Zentara wil dit bestand lezen:",
+		"wantsToReadOutsideWorkspace": "Zentara wil dit bestand buiten de werkruimte lezen:",
+		"didRead": "Zentara heeft dit bestand gelezen:",
+		"wantsToEdit": "Zentara wil dit bestand bewerken:",
+		"wantsToEditOutsideWorkspace": "Zentara wil dit bestand buiten de werkruimte bewerken:",
+		"wantsToEditProtected": "Zentara wil een beveiligd configuratiebestand bewerken:",
+		"wantsToCreate": "Zentara wil een nieuw bestand aanmaken:",
+		"wantsToSearchReplace": "Zentara wil zoeken en vervangen in dit bestand:",
+		"didSearchReplace": "Zentara heeft zoeken en vervangen uitgevoerd op dit bestand:",
+		"wantsToInsert": "Zentara wil inhoud invoegen in dit bestand:",
+		"wantsToInsertWithLineNumber": "Zentara wil inhoud invoegen in dit bestand op regel {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Zentara wil inhoud toevoegen aan het einde van dit bestand:",
+		"wantsToReadAndXMore": "Zentara wil dit bestand en nog {{count}} andere lezen:",
+		"wantsToReadMultiple": "Zentara wil meerdere bestanden lezen:",
+		"wantsToApplyBatchChanges": "Zentara wil wijzigingen toepassen op meerdere bestanden:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Roo wil de bovenliggende bestanden in deze map bekijken:",
-		"didViewTopLevel": "Roo heeft de bovenliggende bestanden in deze map bekeken:",
-		"wantsToViewRecursive": "Roo wil alle bestanden in deze map recursief bekijken:",
-		"didViewRecursive": "Roo heeft alle bestanden in deze map recursief bekeken:",
-		"wantsToViewDefinitions": "Roo wil broncode-definitienamen bekijken die in deze map worden gebruikt:",
-		"didViewDefinitions": "Roo heeft broncode-definitienamen bekeken die in deze map worden gebruikt:",
-		"wantsToSearch": "Roo wil deze map doorzoeken op <code>{{regex}}</code>:",
-		"didSearch": "Roo heeft deze map doorzocht op <code>{{regex}}</code>:",
-		"wantsToSearchOutsideWorkspace": "Roo wil deze map (buiten werkruimte) doorzoeken op <code>{{regex}}</code>:",
-		"didSearchOutsideWorkspace": "Roo heeft deze map (buiten werkruimte) doorzocht op <code>{{regex}}</code>:",
-		"wantsToViewTopLevelOutsideWorkspace": "Roo wil de bovenliggende bestanden in deze map (buiten werkruimte) bekijken:",
-		"didViewTopLevelOutsideWorkspace": "Roo heeft de bovenliggende bestanden in deze map (buiten werkruimte) bekeken:",
-		"wantsToViewRecursiveOutsideWorkspace": "Roo wil alle bestanden in deze map (buiten werkruimte) recursief bekijken:",
-		"didViewRecursiveOutsideWorkspace": "Roo heeft alle bestanden in deze map (buiten werkruimte) recursief bekeken:",
-		"wantsToViewDefinitionsOutsideWorkspace": "Roo wil broncode-definitienamen bekijken die in deze map (buiten werkruimte) worden gebruikt:",
-		"didViewDefinitionsOutsideWorkspace": "Roo heeft broncode-definitienamen bekeken die in deze map (buiten werkruimte) worden gebruikt:"
+		"wantsToViewTopLevel": "Zentara wil de bovenliggende bestanden in deze map bekijken:",
+		"didViewTopLevel": "Zentara heeft de bovenliggende bestanden in deze map bekeken:",
+		"wantsToViewRecursive": "Zentara wil alle bestanden in deze map recursief bekijken:",
+		"didViewRecursive": "Zentara heeft alle bestanden in deze map recursief bekeken:",
+		"wantsToViewDefinitions": "Zentara wil broncode-definitienamen bekijken die in deze map worden gebruikt:",
+		"didViewDefinitions": "Zentara heeft broncode-definitienamen bekeken die in deze map worden gebruikt:",
+		"wantsToSearch": "Zentara wil deze map doorzoeken op <code>{{regex}}</code>:",
+		"didSearch": "Zentara heeft deze map doorzocht op <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Zentara wil deze map (buiten werkruimte) doorzoeken op <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Zentara heeft deze map (buiten werkruimte) doorzocht op <code>{{regex}}</code>:",
+		"wantsToViewTopLevelOutsideWorkspace": "Zentara wil de bovenliggende bestanden in deze map (buiten werkruimte) bekijken:",
+		"didViewTopLevelOutsideWorkspace": "Zentara heeft de bovenliggende bestanden in deze map (buiten werkruimte) bekeken:",
+		"wantsToViewRecursiveOutsideWorkspace": "Zentara wil alle bestanden in deze map (buiten werkruimte) recursief bekijken:",
+		"didViewRecursiveOutsideWorkspace": "Zentara heeft alle bestanden in deze map (buiten werkruimte) recursief bekeken:",
+		"wantsToViewDefinitionsOutsideWorkspace": "Zentara wil broncode-definitienamen bekijken die in deze map (buiten werkruimte) worden gebruikt:",
+		"didViewDefinitionsOutsideWorkspace": "Zentara heeft broncode-definitienamen bekeken die in deze map (buiten werkruimte) worden gebruikt:"
 	},
 	"commandOutput": "Commando-uitvoer",
 	"response": "Antwoord",
 	"arguments": "Argumenten",
 	"mcp": {
-		"wantsToUseTool": "Roo wil een tool gebruiken op de {{serverName}} MCP-server:",
-		"wantsToAccessResource": "Roo wil een bron benaderen op de {{serverName}} MCP-server:"
+		"wantsToUseTool": "Zentara wil een tool gebruiken op de {{serverName}} MCP-server:",
+		"wantsToAccessResource": "Zentara wil een bron benaderen op de {{serverName}} MCP-server:"
 	},
 	"modes": {
-		"wantsToSwitch": "Roo wil overschakelen naar {{mode}} modus",
-		"wantsToSwitchWithReason": "Roo wil overschakelen naar {{mode}} modus omdat: {{reason}}",
-		"didSwitch": "Roo is overgeschakeld naar {{mode}} modus",
-		"didSwitchWithReason": "Roo is overgeschakeld naar {{mode}} modus omdat: {{reason}}"
+		"wantsToSwitch": "Zentara wil overschakelen naar {{mode}} modus",
+		"wantsToSwitchWithReason": "Zentara wil overschakelen naar {{mode}} modus omdat: {{reason}}",
+		"didSwitch": "Zentara is overgeschakeld naar {{mode}} modus",
+		"didSwitchWithReason": "Zentara is overgeschakeld naar {{mode}} modus omdat: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Roo wil een nieuwe subtaak aanmaken in {{mode}} modus:",
-		"wantsToFinish": "Roo wil deze subtaak voltooien",
+		"wantsToCreate": "Zentara wil een nieuwe subtaak aanmaken in {{mode}} modus:",
+		"wantsToFinish": "Zentara wil deze subtaak voltooien",
 		"newTaskContent": "Subtaak-instructies",
 		"completionContent": "Subtaak voltooid",
 		"resultContent": "Subtaakresultaten",
@@ -196,27 +196,27 @@
 		"completionInstructions": "Subtaak voltooid! Je kunt de resultaten bekijken en eventuele correcties of volgende stappen voorstellen. Als alles goed is, bevestig dan om het resultaat terug te sturen naar de hoofdtaak."
 	},
 	"questions": {
-		"hasQuestion": "Roo heeft een vraag:"
+		"hasQuestion": "Zentara heeft een vraag:"
 	},
 	"taskCompleted": "Taak voltooid",
 	"error": "Fout",
 	"diffError": {
 		"title": "Bewerking mislukt"
 	},
-	"troubleMessage": "Roo ondervindt problemen...",
+	"troubleMessage": "Zentara ondervindt problemen...",
 	"powershell": {
 		"issues": "Het lijkt erop dat je problemen hebt met Windows PowerShell, zie deze"
 	},
 	"autoApprove": {
 		"title": "Automatisch goedkeuren:",
 		"none": "Geen",
-		"description": "Met automatisch goedkeuren kan Roo Code acties uitvoeren zonder om toestemming te vragen. Schakel dit alleen in voor acties die je volledig vertrouwt. Meer gedetailleerde configuratie beschikbaar in de <settingsLink>Instellingen</settingsLink>."
+		"description": "Met automatisch goedkeuren kan Zentara Code acties uitvoeren zonder om toestemming te vragen. Schakel dit alleen in voor acties die je volledig vertrouwt. Meer gedetailleerde configuratie beschikbaar in de <settingsLink>Instellingen</settingsLink>."
 	},
 	"announcement": {
-		"title": "🎉 Roo Code {{version}} uitgebracht",
-		"description": "Roo Code {{version}} brengt krachtige nieuwe functies en verbeteringen op basis van jouw feedback.",
+		"title": "🎉 Zentara Code {{version}} uitgebracht",
+		"description": "Zentara Code {{version}} brengt krachtige nieuwe functies en verbeteringen op basis van jouw feedback.",
 		"whatsNew": "Wat is er nieuw",
-		"feature1": "<bold>Roo Marketplace Launch</bold> - De marketplace is nu live! Ontdek en installeer modi en MCP's makkelijker dan ooit tevoren.",
+		"feature1": "<bold>Zentara Marketplace Launch</bold> - De marketplace is nu live! Ontdek en installeer modi en MCP's makkelijker dan ooit tevoren.",
 		"feature2": "<bold>Gemini 2.5 Modellen</bold> - Ondersteuning toegevoegd voor nieuwe Gemini 2.5 Pro, Flash en Flash Lite modellen.",
 		"feature3": "<bold>Excel Bestandsondersteuning & Meer</bold> - Excel (.xlsx) bestandsondersteuning toegevoegd en talloze bugfixes en verbeteringen!",
 		"hideButton": "Aankondiging verbergen",
@@ -236,7 +236,7 @@
 		"copyToInput": "Kopiëren naar invoer (zelfde als shift + klik)"
 	},
 	"browser": {
-		"rooWantsToUse": "Roo wil de browser gebruiken:",
+		"zentaraWantsToUse": "Zentara wil de browser gebruiken:",
 		"consoleLogs": "Console-logboeken",
 		"noNewLogs": "(Geen nieuwe logboeken)",
 		"screenshot": "Browserschermopname",
@@ -266,23 +266,23 @@
 			"copy_code": "Code kopiëren"
 		}
 	},
-	"systemPromptWarning": "WAARSCHUWING: Aangepaste systeemprompt actief. Dit kan de functionaliteit ernstig verstoren en onvoorspelbaar gedrag veroorzaken.",
+	"systemPromptWarning": "WAARSCHUWING: Aangepaste systeemprompt actief. Dit kan de functionaliteit ernstig verstoren en onvoorspelbaar gedrag vezentararzaken.",
 	"profileViolationWarning": "Het huidige profiel schendt de instellingen van uw organisatie",
 	"shellIntegration": {
 		"title": "Waarschuwing commando-uitvoering",
-		"description": "Je commando wordt uitgevoerd zonder VSCode-terminal shell-integratie. Om deze waarschuwing te onderdrukken kun je shell-integratie uitschakelen in het gedeelte <strong>Terminal</strong> van de <settingsLink>Roo Code-instellingen</settingsLink> of de VSCode-terminalintegratie oplossen via de onderstaande link.",
+		"description": "Je commando wordt uitgevoerd zonder VSCode-terminal shell-integratie. Om deze waarschuwing te onderdrukken kun je shell-integratie uitschakelen in het gedeelte <strong>Terminal</strong> van de <settingsLink>Zentara Code-instellingen</settingsLink> of de VSCode-terminalintegratie oplossen via de onderstaande link.",
 		"troubleshooting": "Klik hier voor shell-integratie documentatie."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Limiet voor automatisch goedgekeurde verzoeken bereikt",
-			"description": "Roo heeft de automatisch goedgekeurde limiet van {{count}} API-verzoek(en) bereikt. Wil je de teller resetten en doorgaan met de taak?",
+			"description": "Zentara heeft de automatisch goedgekeurde limiet van {{count}} API-verzoek(en) bereikt. Wil je de teller resetten en doorgaan met de taak?",
 			"button": "Resetten en doorgaan"
 		}
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Roo wil de codebase doorzoeken op <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Roo wil de codebase doorzoeken op <code>{{query}}</code> in <code>{{path}}</code>:",
+		"wantsToSearch": "Zentara wil de codebase doorzoeken op <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Zentara wil de codebase doorzoeken op <code>{{query}}</code> in <code>{{path}}</code>:",
 		"didSearch": "{{count}} resultaat/resultaten gevonden voor <code>{{query}}</code>:"
 	},
 	"read-batch": {

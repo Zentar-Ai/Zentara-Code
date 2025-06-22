@@ -1,5 +1,5 @@
 # src/debug_helper/pytest_raise_plugin.py
-# This file acts as a pytest plugin, loaded dynamically by the Roo extension
+# This file acts as a pytest plugin, loaded dynamically by the Zentara extension
 # when launching pytest in debug mode.
 
 import os
@@ -7,7 +7,7 @@ import sys
 import pytest
 
 print("_PYTEST_RAISE plugin: File execution started.", file=sys.stderr)
-# Check if the environment variable set by the Roo debugger is active
+# Check if the environment variable set by the Zentara debugger is active
 print(f"_PYTEST_RAISE plugin: Checking _PYTEST_RAISE. Value: {os.getenv('_PYTEST_RAISE', '0')}", file=sys.stderr)
 if os.getenv('_PYTEST_RAISE', "0") != "0":
     print("_PYTEST_RAISE plugin: Hooks activated (_PYTEST_RAISE is set).", file=sys.stderr)

@@ -7,7 +7,7 @@ import {
 } from "@google/genai"
 import type { JWTInput } from "google-auth-library"
 
-import { type ModelInfo, type GeminiModelId, geminiDefaultModelId, geminiModels } from "@roo-code/types"
+import { type ModelInfo, type GeminiModelId, geminiDefaultModelId, geminiModels } from "@zentara-code/types"
 
 import type { ApiHandlerOptions } from "../../shared/api"
 import { safeJsonParse } from "../../shared/safeJsonParse"

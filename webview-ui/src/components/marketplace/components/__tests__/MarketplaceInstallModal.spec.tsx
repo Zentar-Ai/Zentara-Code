@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 
-import { MarketplaceItem } from "@roo-code/types"
+import { MarketplaceItem } from "@zentara-code/types"
 
 import { MarketplaceInstallModal } from "../MarketplaceInstallModal"
 

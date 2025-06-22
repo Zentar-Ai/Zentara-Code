@@ -4,8 +4,8 @@ import Anthropic from "@anthropic-ai/sdk"
 import * as vscode from "vscode"
 import axios from "axios"
 
-import { type ProviderSettingsEntry, type ClineMessage, ORGANIZATION_ALLOW_ALL } from "@roo-code/types"
-import { TelemetryService } from "@roo-code/telemetry"
+import { type ProviderSettingsEntry, type ClineMessage, ORGANIZATION_ALLOW_ALL } from "@zentara-code/types"
+import { TelemetryService } from "@zentara-code/telemetry"
 
 import { ExtensionMessage, ExtensionState } from "../../../shared/ExtensionMessage"
 import { defaultModeSlug } from "../../../shared/modes"
@@ -513,7 +513,7 @@ describe("ClineProvider", () => {
 			maxWorkspaceFiles: 200,
 			browserToolEnabled: true,
 			telemetrySetting: "unset",
-			showRooIgnoredFiles: true,
+			showZentaraIgnoredFiles: true,
 			renderContext: "sidebar",
 			maxReadFileLine: 500,
 			cloudUserInfo: null,
@@ -955,24 +955,24 @@ describe("ClineProvider", () => {
 		expect(state.browserToolEnabled).toBe(true) // Default value should be true
 	})
 
-	test("handles showRooIgnoredFiles setting", async () => {
+	test("handles showZentaraIgnoredFiles setting", async () => {
 		await provider.resolveWebviewView(mockWebviewView)
 		const messageHandler = (mockWebviewView.webview.onDidReceiveMessage as any).mock.calls[0][0]
 
 		// Default value should be true
-		expect((await provider.getState()).showRooIgnoredFiles).toBe(true)
+		expect((await provider.getState()).showZentaraIgnoredFiles).toBe(true)
 
-		// Test showRooIgnoredFiles with true
-		await messageHandler({ type: "showRooIgnoredFiles", bool: true })
-		expect(mockContext.globalState.update).toHaveBeenCalledWith("showRooIgnoredFiles", true)
+		// Test showZentaraIgnoredFiles with true
+		await messageHandler({ type: "showZentaraIgnoredFiles", bool: true })
+		expect(mockContext.globalState.update).toHaveBeenCalledWith("showZentaraIgnoredFiles", true)
 		expect(mockPostMessage).toHaveBeenCalled()
-		expect((await provider.getState()).showRooIgnoredFiles).toBe(true)
+		expect((await provider.getState()).showZentaraIgnoredFiles).toBe(true)
 
-		// Test showRooIgnoredFiles with false
-		await messageHandler({ type: "showRooIgnoredFiles", bool: false })
-		expect(mockContext.globalState.update).toHaveBeenCalledWith("showRooIgnoredFiles", false)
+		// Test showZentaraIgnoredFiles with false
+		await messageHandler({ type: "showZentaraIgnoredFiles", bool: false })
+		expect(mockContext.globalState.update).toHaveBeenCalledWith("showZentaraIgnoredFiles", false)
 		expect(mockPostMessage).toHaveBeenCalled()
-		expect((await provider.getState()).showRooIgnoredFiles).toBe(false)
+		expect((await provider.getState()).showZentaraIgnoredFiles).toBe(false)
 	})
 
 	test("handles request delay settings messages", async () => {
@@ -1974,16 +1974,16 @@ describe("Project MCP Settings", () => {
 		})
 
 		// Check that fs.mkdir was called with the correct path
-		expect(mockedFs.mkdir).toHaveBeenCalledWith("/test/workspace/.roo", { recursive: true })
+		expect(mockedFs.mkdir).toHaveBeenCalledWith("/test/workspace/.zentara", { recursive: true })
 
 		// Check that fs.writeFile was called with default content
 		expect(mockedFs.writeFile).toHaveBeenCalledWith(
-			"/test/workspace/.roo/mcp.json",
+			"/test/workspace/.zentara/mcp.json",
 			JSON.stringify({ mcpServers: {} }, null, 2),
 		)
 
 		// Check that openFile was called
-		expect(openFileSpy).toHaveBeenCalledWith("/test/workspace/.roo/mcp.json")
+		expect(openFileSpy).toHaveBeenCalledWith("/test/workspace/.zentara/mcp.json")
 	})
 
 	test("handles openProjectMcpSettings when workspace is not open", async () => {
@@ -2018,7 +2018,7 @@ describe("Project MCP Settings", () => {
 
 		// Verify error message was shown
 		expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(
-			expect.stringContaining("Failed to create or open .roo/mcp.json"),
+			expect.stringContaining("Failed to create or open .zentara/mcp.json"),
 		)
 	})
 })

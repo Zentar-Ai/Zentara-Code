@@ -2,9 +2,9 @@ import axios from "axios"
 import { z } from "zod"
 import { useQuery, UseQueryOptions } from "@tanstack/react-query"
 
-import type { ModelInfo } from "@roo-code/types"
+import type { ModelInfo } from "@zentara-code/types"
 
-import { parseApiPrice } from "@roo/cost"
+import { parseApiPrice } from "@zentara/cost"
 
 export const OPENROUTER_DEFAULT_PROVIDER_NAME = "[default]"
 

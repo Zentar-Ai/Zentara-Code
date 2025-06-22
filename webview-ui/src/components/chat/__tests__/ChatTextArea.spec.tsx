@@ -1,6 +1,6 @@
 import { render, fireEvent, screen } from "@testing-library/react"
 
-import { defaultModeSlug } from "@roo/modes"
+import { defaultModeSlug } from "@zentara/modes"
 
 import { useExtensionState } from "@src/context/ExtensionStateContext"
 import { vscode } from "@src/utils/vscode"
