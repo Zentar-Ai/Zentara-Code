@@ -1,6 +1,5 @@
-import { describe, it, expect } from "vitest"
+import type { McpInstallationMethod } from "@zentara-code/types"
 import { mcpInstallationMethodSchema, mcpMarketplaceItemSchema } from "@zentara-code/types"
-import type { McpInstallationMethod, McpMarketplaceItem } from "@zentara-code/types"
 
 describe("Nested Parameters", () => {
 	describe("McpInstallationMethod Schema", () => {

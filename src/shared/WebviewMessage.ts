@@ -92,6 +92,7 @@ export interface WebviewMessage {
 		| "restartMcpServer"
 		| "refreshAllMcpServers"
 		| "toggleToolAlwaysAllow"
+		| "toggleToolEnabledForPrompt"
 		| "toggleMcpServer"
 		| "updateMcpTimeout"
 		| "fuzzyMatchThreshold"
@@ -157,7 +158,9 @@ export interface WebviewMessage {
 		| "clearIndexData"
 		| "indexingStatusUpdate"
 		| "indexCleared"
+		| "focusPanelRequest"
 		| "codebaseIndexConfig"
+		| "profileThresholds"
 		| "setHistoryPreviewCollapsed"
 		| "openExternal"
 		| "filterMarketplaceItems"
@@ -167,8 +170,10 @@ export interface WebviewMessage {
 		| "cancelMarketplaceInstall"
 		| "removeInstalledMarketplaceItem"
 		| "marketplaceInstallResult"
+		| "fetchMarketplaceData"
 		| "switchTab"
 		| "logToDebugConsole" // Added for logging from webview to extension host debug console
+		| "profileThresholds"
 	text?: string
 	tab?: "settings" | "history" | "mcp" | "modes" | "chat" | "marketplace" | "account"
 	disabled?: boolean
@@ -183,6 +188,7 @@ export interface WebviewMessage {
 	serverName?: string
 	toolName?: string
 	alwaysAllow?: boolean
+	isEnabled?: boolean
 	mode?: Mode
 	promptMode?: PromptMode
 	customPrompt?: PromptComponent
@@ -209,6 +215,7 @@ export interface WebviewMessage {
 	logLevel?: "info" | "warn" | "error" | "debug"
 	logMessage?: string
 	logData?: string // JSON stringified data
+	visibility?: "organization" | "public" // For share visibility
 }
 
 export const checkoutDiffPayloadSchema = z.object({

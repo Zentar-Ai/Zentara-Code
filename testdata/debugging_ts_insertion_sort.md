@@ -52,7 +52,7 @@ _Action:_ Continue program execution and report the results.
 
 **General Instructions for LLM for this phase:**
 
-Based on the assertion failures from the initial run, you will now use your debugging capabilities to pinpoint the cause of a specific failure. Focus on runtime analysis using the debugger to understand *why* it's failing.
+Based on the assertion failures from the initial run, you will now use your debugging capabilities to pinpoint the cause of a specific failure. Focus on runtime analysis using the debugger to understand _why_ it's failing.
 
 **Example Scenario (to be adapted based on actual first error):**
 

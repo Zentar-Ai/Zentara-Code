@@ -5,6 +5,14 @@ import { toolNamesSchema, toolUsageSchema } from "./tool.js"
 import { zentaraCodeSettingsSchema } from "./global-settings.js"
 
 /**
+ * isSubtaskSchema
+ */
+export const isSubtaskSchema = z.object({
+	isSubtask: z.boolean(),
+})
+export type IsSubtask = z.infer<typeof isSubtaskSchema>
+
+/**
  * ZentaraCodeEvent
  */
 
@@ -41,7 +49,7 @@ export const zentaraCodeEventsSchema = z.object({
 	[ZentaraCodeEventName.TaskAskResponded]: z.tuple([z.string()]),
 	[ZentaraCodeEventName.TaskAborted]: z.tuple([z.string()]),
 	[ZentaraCodeEventName.TaskSpawned]: z.tuple([z.string(), z.string()]),
-	[ZentaraCodeEventName.TaskCompleted]: z.tuple([z.string(), tokenUsageSchema, toolUsageSchema]),
+	[ZentaraCodeEventName.TaskCompleted]: z.tuple([z.string(), tokenUsageSchema, toolUsageSchema, isSubtaskSchema]),
 	[ZentaraCodeEventName.TaskTokenUsageUpdated]: z.tuple([z.string(), tokenUsageSchema]),
 	[ZentaraCodeEventName.TaskToolFailed]: z.tuple([z.string(), toolNamesSchema, z.string()]),
 })

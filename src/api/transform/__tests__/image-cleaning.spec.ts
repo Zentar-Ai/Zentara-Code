@@ -1,6 +1,5 @@
 // npx vitest run api/transform/__tests__/image-cleaning.spec.ts
 
-import { describe, it, expect, vitest } from "vitest"
 import type { ModelInfo } from "@zentara-code/types"
 
 import { ApiHandler } from "../../index"

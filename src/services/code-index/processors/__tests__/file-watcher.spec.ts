@@ -1,12 +1,12 @@
 // npx vitest services/code-index/processors/__tests__/file-watcher.spec.ts
 
-import { vi, describe, it, expect, beforeEach } from "vitest"
-import { FileWatcher } from "../file-watcher"
 import * as vscode from "vscode"
+
+import { FileWatcher } from "../file-watcher"
 
 // Mock dependencies
 vi.mock("../../cache-manager")
-vi.mock("../../../core/ignore/RooIgnoreController")
+vi.mock("../../../core/ignore/ZentaraIgnoreController")
 vi.mock("ignore")
 
 // Mock vscode module

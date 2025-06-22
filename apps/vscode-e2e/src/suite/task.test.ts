@@ -3,8 +3,11 @@ import * as assert from "assert"
 import type { ClineMessage } from "@zentara-code/types"
 
 import { waitUntilCompleted } from "./utils"
+import { setDefaultSuiteTimeout } from "./test-utils"
 
-suite("Zentara Code Task", () => {
+suite("Zentara Code Task", function () {
+	setDefaultSuiteTimeout(this)
+
 	test("Should handle prompt and response correctly", async () => {
 		const api = globalThis.api
 
@@ -25,7 +28,8 @@ suite("Zentara Code Task", () => {
 
 		assert.ok(
 			!!messages.find(
-				({ say, text }) => (say === "completion_result" || say === "text") && text?.includes("My name is Zentara"),
+				({ say, text }) =>
+					(say === "completion_result" || say === "text") && text?.includes("My name is Zentara"),
 			),
 			`Completion should include "My name is Zentara"`,
 		)

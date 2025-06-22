@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"types": ["vitest/globals"],
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
@@ -22,11 +23,6 @@
 		"useUnknownInCatchVariables": false,
 		"types": ["jest"]
 	},
-	"include": [".",
-		"src/**/*",
-		"scripts/**/*",
-		".changeset/**/*",
-		"src/zentara_debug/**/*"
-	],
+	"include": [".", "src/**/*", "scripts/**/*", ".changeset/**/*", "src/zentara_debug/**/*"],
 	"exclude": ["node_modules", ".vscode-test", "webview-ui", "node_modules/@types/mocha"]
 }

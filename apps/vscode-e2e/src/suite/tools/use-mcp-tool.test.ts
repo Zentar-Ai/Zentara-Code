@@ -7,8 +7,11 @@ import * as vscode from "vscode"
 import type { ClineMessage } from "@zentara-code/types"
 
 import { waitFor, sleep } from "../utils"
+import { setDefaultSuiteTimeout } from "../test-utils"
 
-suite("Zentara Code use_mcp_tool Tool", () => {
+suite("Zentara Code use_mcp_tool Tool", function () {
+	setDefaultSuiteTimeout(this)
+
 	let tempDir: string
 	let testFiles: {
 		simple: string

@@ -10,21 +10,33 @@ type ZentaraCodeSettings = GlobalSettings & ProviderSettings
 
 export interface ZentaraCodeAPI {
 	// Typed Event Emitter methods based on Node.js EventEmitter signature, adapted for ZentaraCodeEvents
-	addListener<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this;
-	on<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this;
-	once<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this;
-	removeListener<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this;
-	off<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this;
-	removeAllListeners(eventName?: keyof ZentaraCodeEvents): this;
-	setMaxListeners(n: number): this;
-	getMaxListeners(): number;
-	listeners<K extends keyof ZentaraCodeEvents>(eventName: K): ((...args: ZentaraCodeEvents[K]) => void)[];
-	rawListeners<K extends keyof ZentaraCodeEvents>(eventName: K): ((...args: ZentaraCodeEvents[K]) => void)[];
-	emit<K extends keyof ZentaraCodeEvents>(eventName: K, ...args: ZentaraCodeEvents[K]): boolean;
-	listenerCount(eventName: keyof ZentaraCodeEvents, listener?: (...args: any[]) => void): number;
-	prependListener<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this;
-	prependOnceListener<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this;
-	eventNames(): (keyof ZentaraCodeEvents)[];
+	addListener<K extends keyof ZentaraCodeEvents>(
+		eventName: K,
+		listener: (...args: ZentaraCodeEvents[K]) => void,
+	): this
+	on<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this
+	once<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this
+	removeListener<K extends keyof ZentaraCodeEvents>(
+		eventName: K,
+		listener: (...args: ZentaraCodeEvents[K]) => void,
+	): this
+	off<K extends keyof ZentaraCodeEvents>(eventName: K, listener: (...args: ZentaraCodeEvents[K]) => void): this
+	removeAllListeners(eventName?: keyof ZentaraCodeEvents): this
+	setMaxListeners(n: number): this
+	getMaxListeners(): number
+	listeners<K extends keyof ZentaraCodeEvents>(eventName: K): ((...args: ZentaraCodeEvents[K]) => void)[]
+	rawListeners<K extends keyof ZentaraCodeEvents>(eventName: K): ((...args: ZentaraCodeEvents[K]) => void)[]
+	emit<K extends keyof ZentaraCodeEvents>(eventName: K, ...args: ZentaraCodeEvents[K]): boolean
+	listenerCount(eventName: keyof ZentaraCodeEvents, listener?: (...args: any[]) => void): number
+	prependListener<K extends keyof ZentaraCodeEvents>(
+		eventName: K,
+		listener: (...args: ZentaraCodeEvents[K]) => void,
+	): this
+	prependOnceListener<K extends keyof ZentaraCodeEvents>(
+		eventName: K,
+		listener: (...args: ZentaraCodeEvents[K]) => void,
+	): this
+	eventNames(): (keyof ZentaraCodeEvents)[]
 	/**
 	 * Starts a new task with an optional initial message and images.
 	 * @param task Optional initial task message.

@@ -402,7 +402,7 @@ export class CancellationTokenSource {
 	}
 	cancel() {
 		if (!this._token) {
-			// this.token // ensure token is created -- Removed as it's redundant and causes lint error
+			this.token // ensure token is created
 		}
 		if (!this._token.isCancellationRequested) {
 			this._token.isCancellationRequested = true

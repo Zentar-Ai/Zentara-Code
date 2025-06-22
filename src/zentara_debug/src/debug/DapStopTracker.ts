@@ -1,17 +1,16 @@
 import * as vscode from "vscode"
 import {
-    debugEvents,
-    DAP_STOPPED_EVENT,
-    updateLastKnownStopEvent,
-    appendActiveSessionDapOutput,
-    getActiveSessionDapOutput,      // Added for IV.A.1
-    clearActiveSessionDapOutputBuffer // Added for IV.A.1
+	debugEvents,
+	DAP_STOPPED_EVENT,
+	updateLastKnownStopEvent,
+	appendActiveSessionDapOutput,
+	getActiveSessionDapOutput, // Added for IV.A.1
+	clearActiveSessionDapOutputBuffer, // Added for IV.A.1
 } from "./events"
 import { outputChannel } from "../vscodeUtils" // Use local outputChannel
 // TODO: Refactor to avoid direct import if possible, or pass instance through factory/constructor
 import { rawTerminalOutputManager } from "../controller/session" // Added for IV.A.1
 import { json } from "stream/consumers"
-
 
 /**
  * Tracks DAP messages for a specific debug session and emits an internal
@@ -33,17 +32,19 @@ export class DapStopTracker implements vscode.DebugAdapterTracker {
 	async onDidSendMessage(message: any): Promise<void> {
 		// Make async
 		// Log all DAP messages from debug adapter to VS Code
-		outputChannel.appendLine(`[DapStopTracker ${new Date().toISOString()}] [RECEIVED from DA] Session ${this.sessionId}:`);
-		outputChannel.appendLine(JSON.stringify(message, null, 2));
-		outputChannel.appendLine('-------------------');
+		outputChannel.appendLine(
+			`[DapStopTracker ${new Date().toISOString()}] [RECEIVED from DA] Session ${this.sessionId}:`,
+		)
+		outputChannel.appendLine(JSON.stringify(message, null, 2))
+		outputChannel.appendLine("-------------------")
 
 		// Handle 'output' events for DAP console capture
 		if (message.type === "event" && message.event === "output") {
-			if (message.body && typeof message.body.output === 'string') {
+			if (message.body && typeof message.body.output === "string") {
 				// The actual output string. It might include a newline.
-				const outputLine = message.body.output;
+				const outputLine = message.body.output
 				// const category = message.body.category || 'unknown'; // e.g., 'stdout', 'stderr', 'console'
-				appendActiveSessionDapOutput(this.sessionId, outputLine);
+				appendActiveSessionDapOutput(this.sessionId, outputLine)
 				// Verbose logging, can be commented out
 				// outputChannel.appendLine(`[DapStopTracker] Captured DAP output for session ${this.sessionId}, category ${category}: "${outputLine.trim()}"`);
 			}
@@ -77,45 +78,60 @@ export class DapStopTracker implements vscode.DebugAdapterTracker {
 			}
 
 			// --- Augment eventBody with captured output ---
-			const dapOutputChunk = getActiveSessionDapOutput(this.sessionId);
-			let rawTerminalOutputChunk = rawTerminalOutputManager.getActiveSessionRawTerminalOutput(this.sessionId);
+			const dapOutputChunk = getActiveSessionDapOutput(this.sessionId)
+			let rawTerminalOutputChunk = rawTerminalOutputManager.getActiveSessionRawTerminalOutput(this.sessionId)
 
 			// If raw terminal output is initially empty, poll briefly
 			if (!rawTerminalOutputChunk) {
-			    outputChannel.appendLine(`[DapStopTracker] Initial raw terminal output empty for session ${this.sessionId}. Starting poll...`);
-			    for (let i = 0; i < 5; i++) { // Poll up to 5 times
-			        await new Promise(resolve => setTimeout(resolve, 30)); // 30ms interval
-			        rawTerminalOutputChunk = rawTerminalOutputManager.getActiveSessionRawTerminalOutput(this.sessionId);
-			        if (rawTerminalOutputChunk) {
-			            outputChannel.appendLine(`[DapStopTracker] Raw terminal output captured after poll attempt ${i + 1}.`);
-			            break;
-			        }
-			    }
-			    if (!rawTerminalOutputChunk) {
-			        outputChannel.appendLine(`[DapStopTracker] Raw terminal output still empty after polling for session ${this.sessionId}.`);
-			    }
+				outputChannel.appendLine(
+					`[DapStopTracker] Initial raw terminal output empty for session ${this.sessionId}. Starting poll...`,
+				)
+				for (let i = 0; i < 5; i++) {
+					// Poll up to 5 times
+					await new Promise((resolve) => setTimeout(resolve, 30)) // 30ms interval
+					rawTerminalOutputChunk = rawTerminalOutputManager.getActiveSessionRawTerminalOutput(this.sessionId)
+					if (rawTerminalOutputChunk) {
+						outputChannel.appendLine(
+							`[DapStopTracker] Raw terminal output captured after poll attempt ${i + 1}.`,
+						)
+						break
+					}
+				}
+				if (!rawTerminalOutputChunk) {
+					outputChannel.appendLine(
+						`[DapStopTracker] Raw terminal output still empty after polling for session ${this.sessionId}.`,
+					)
+				}
 			}
 
 			if (dapOutputChunk) {
-				eventBody.capturedDapOutput = dapOutputChunk;
-				outputChannel.appendLine(`[DapStopTracker] Added capturedDapOutput to eventBody for session ${this.sessionId}.`);
+				eventBody.capturedDapOutput = dapOutputChunk
+				outputChannel.appendLine(
+					`[DapStopTracker] Added capturedDapOutput to eventBody for session ${this.sessionId}.`,
+				)
 			}
 			if (rawTerminalOutputChunk) {
-				eventBody.capturedRawTerminalOutput = rawTerminalOutputChunk;
-				outputChannel.appendLine(`[DapStopTracker] Added capturedRawTerminalOutput to eventBody for session ${this.sessionId}.`);
+				eventBody.capturedRawTerminalOutput = rawTerminalOutputChunk
+				outputChannel.appendLine(
+					`[DapStopTracker] Added capturedRawTerminalOutput to eventBody for session ${this.sessionId}.`,
+				)
 			}
 
 			// Clear active buffers after their content has been added to eventBody
 			if (dapOutputChunk || rawTerminalOutputChunk) {
-				clearActiveSessionDapOutputBuffer(this.sessionId);
-				rawTerminalOutputManager.clearActiveSessionRawTerminalOutput(this.sessionId);
-				outputChannel.appendLine(`[DapStopTracker] Cleared active DAP and Raw Terminal output buffers for session ${this.sessionId} after adding to eventBody.`);
+				clearActiveSessionDapOutputBuffer(this.sessionId)
+				rawTerminalOutputManager.clearActiveSessionRawTerminalOutput(this.sessionId)
+				outputChannel.appendLine(
+					`[DapStopTracker] Cleared active DAP and Raw Terminal output buffers for session ${this.sessionId} after adding to eventBody.`,
+				)
 			}
 			// --- End output augmentation ---
 
 			// Update the globally tracked last stop event with the fully augmented body
 			updateLastKnownStopEvent(this.sessionId, eventBody)
-			outputChannel.appendLine(`[DapStopTracker] Updated lastKnownStopEventBody (with captured output) for session ${this.sessionId}.`)
+			outputChannel.appendLine(
+				`[DapStopTracker] Updated lastKnownStopEventBody (with captured output) for session ${this.sessionId}.`,
+			)
 
 			// Emit the internal event with session ID and the (now fully augmented) event body
 			outputChannel.appendLine(`[DapStopTracker] Emitting internal DAP_STOPPED_EVENT.`)
@@ -137,8 +153,8 @@ export class DapStopTracker implements vscode.DebugAdapterTracker {
 			`[DapStopTracker ${new Date().toISOString()}] [SENDING to DA] Session ${this.sessionId}:`,
 		)
 		if (message && message.command) {
-			outputChannel.appendLine(message.command);
-			outputChannel.appendLine(JSON.stringify(message, null, 2));
+			outputChannel.appendLine(message.command)
+			outputChannel.appendLine(JSON.stringify(message, null, 2))
 		}
 		outputChannel.appendLine("-------------------")
 	}

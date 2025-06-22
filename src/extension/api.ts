@@ -132,11 +132,15 @@ export class API extends EventEmitter<ZentaraCodeEvents> implements ZentaraCodeA
 		await provider.postMessageToWebview({ type: "action", action: "chatButtonClicked" })
 		await provider.postMessageToWebview({ type: "invoke", invoke: "newChat", text, images })
 
-		const { taskId } = await provider.initClineWithTask(text, images, undefined, {
+		const cline = await provider.initClineWithTask(text, images, undefined, {
 			consecutiveMistakeLimit: Number.MAX_SAFE_INTEGER,
 		})
 
-		return taskId
+		if (!cline) {
+			throw new Error("Failed to create task due to policy restrictions")
+		}
+
+		return cline.taskId
 	}
 
 	public async resumeTask(taskId: string): Promise<void> {
@@ -208,7 +212,9 @@ export class API extends EventEmitter<ZentaraCodeEvents> implements ZentaraCodeA
 				}
 			})
 
-			cline.on("taskModeSwitched", (taskId, mode) => this.emit(ZentaraCodeEventName.TaskModeSwitched, taskId, mode))
+			cline.on("taskModeSwitched", (taskId, mode) =>
+				this.emit(ZentaraCodeEventName.TaskModeSwitched, taskId, mode),
+			)
 
 			cline.on("taskAskResponded", () => this.emit(ZentaraCodeEventName.TaskAskResponded, cline.taskId))
 
@@ -218,7 +224,13 @@ export class API extends EventEmitter<ZentaraCodeEvents> implements ZentaraCodeA
 			})
 
 			cline.on("taskCompleted", async (_, tokenUsage, toolUsage) => {
-				this.emit(ZentaraCodeEventName.TaskCompleted, cline.taskId, tokenUsage, toolUsage)
+				let isSubtask = false
+				if (cline.rootTask != undefined) {
+					isSubtask = true
+				}
+				this.emit(ZentaraCodeEventName.TaskCompleted, cline.taskId, tokenUsage, toolUsage, {
+					isSubtask: isSubtask,
+				})
 				this.taskMap.delete(cline.taskId)
 
 				await this.fileLog(
@@ -226,7 +238,9 @@ export class API extends EventEmitter<ZentaraCodeEvents> implements ZentaraCodeA
 				)
 			})
 
-			cline.on("taskSpawned", (childTaskId) => this.emit(ZentaraCodeEventName.TaskSpawned, cline.taskId, childTaskId))
+			cline.on("taskSpawned", (childTaskId) =>
+				this.emit(ZentaraCodeEventName.TaskSpawned, cline.taskId, childTaskId),
+			)
 			cline.on("taskPaused", () => this.emit(ZentaraCodeEventName.TaskPaused, cline.taskId))
 			cline.on("taskUnpaused", () => this.emit(ZentaraCodeEventName.TaskUnpaused, cline.taskId))
 

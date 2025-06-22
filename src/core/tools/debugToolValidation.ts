@@ -97,7 +97,7 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 					return {
 						isValid: false,
 						message:
-							"Invalid 'args' (array of non-empty strings, optional) for launch operation. Expected JSON format: \"args\": [\"arg1\", \"arg2\"]",
+							'Invalid \'args\' (array of non-empty strings, optional) for launch operation. Expected JSON format: "args": ["arg1", "arg2"]',
 					}
 				}
 			}

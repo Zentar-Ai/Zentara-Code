@@ -5,7 +5,7 @@ import type { ZentaraCodeSettings } from "./global-settings.js"
 import type { ProviderSettingsEntry, ProviderSettings } from "./provider-settings.js"
 import type { ClineMessage, TokenUsage } from "./message.js"
 import type { ToolUsage, ToolName } from "./tool.js"
-import type { IpcMessage, IpcServerEvents } from "./ipc.js"
+import type { IpcMessage, IpcServerEvents, IsSubtask } from "./ipc.js"
 
 // TODO: Make sure this matches `ZentaraCodeEvents` from `@zentara-code/types`.
 export interface ZentaraCodeAPIEvents {
@@ -18,7 +18,7 @@ export interface ZentaraCodeAPIEvents {
 	taskAskResponded: [taskId: string]
 	taskAborted: [taskId: string]
 	taskSpawned: [parentTaskId: string, childTaskId: string]
-	taskCompleted: [taskId: string, tokenUsage: TokenUsage, toolUsage: ToolUsage]
+	taskCompleted: [taskId: string, tokenUsage: TokenUsage, toolUsage: ToolUsage, isSubtask: IsSubtask]
 	taskTokenUsageUpdated: [taskId: string, tokenUsage: TokenUsage]
 	taskToolFailed: [taskId: string, toolName: ToolName, error: string]
 }

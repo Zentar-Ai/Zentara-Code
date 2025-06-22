@@ -28,9 +28,10 @@ Ensure you can get the test suite running. We value well-tested code!
 At this point, you're ready to make your changes! Feel free to ask for help; everyone is a beginner at first :smile_cat:
 
 Make sure to:
-*   Follow the coding style of the project.
-*   Run linters and formatters (e.g., Prettier, ESLint). (Add specific commands if available)
-*   Add tests for your changes.
+
+- Follow the coding style of the project.
+- Run linters and formatters (e.g., Prettier, ESLint). (Add specific commands if available)
+- Add tests for your changes.
 
 ## Make a Pull Request
 
@@ -59,7 +60,7 @@ When you open a Pull Request, please use the following template:
 ```markdown
 ### Linked Issue(s)
 
-* Closes # (issue number)
+- Closes # (issue number)
 
 ### Description
 

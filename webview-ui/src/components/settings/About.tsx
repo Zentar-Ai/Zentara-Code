@@ -57,7 +57,6 @@ export const About = ({ telemetrySetting, setTelemetrySetting, className, ...pro
 						i18nKey="settings:footer.feedback"
 						components={{
 							githubLink: <VSCodeLink href="https://github.com/Zentqar-Ai/Zentara-Code" />,
-
 						}}
 					/>
 				</div>

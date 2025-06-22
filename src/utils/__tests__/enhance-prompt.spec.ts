@@ -1,6 +1,5 @@
 // npx vitest run src/utils/__tests__/enhance-prompt.spec.ts
 
-import { describe, it, expect, beforeEach, vi } from "vitest"
 import type { ProviderSettings } from "@zentara-code/types"
 
 import { singleCompletionHandler } from "../single-completion-handler"

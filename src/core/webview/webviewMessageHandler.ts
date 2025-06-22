@@ -29,9 +29,7 @@ import { singleCompletionHandler } from "../../utils/single-completion-handler"
 import { searchCommits } from "../../utils/git"
 import { exportSettings, importSettings } from "../config/importExport"
 import { getOpenAiModels } from "../../api/providers/openai"
-import { getOllamaModels } from "../../api/providers/ollama"
 import { getVsCodeLmModels } from "../../api/providers/vscode-lm"
-import { getLmStudioModels } from "../../api/providers/lm-studio"
 import { openMention } from "../mentions"
 import { TelemetrySetting } from "../../shared/TelemetrySetting"
 import { getWorkspacePath } from "../../utils/path"
@@ -205,7 +203,14 @@ export const webviewMessageHandler = async (
 			break
 		case "clearTask":
 			// clear task resets the current session and allows for a new task to be started, if this session is a subtask - it allows the parent task to be resumed
-			await provider.finishSubTask(t("common:tasks.canceled"))
+			// Check if the current task actually has a parent task
+			const currentTask = provider.getCurrentCline()
+			if (currentTask && currentTask.parentTask) {
+				await provider.finishSubTask(t("common:tasks.canceled"))
+			} else {
+				// Regular task - just clear it
+				await provider.clearTask()
+			}
 			await provider.postStateToWebview()
 			break
 		case "didShowAnnouncement":
@@ -230,16 +235,31 @@ export const webviewMessageHandler = async (
 			}
 
 			try {
-				const success = await CloudService.instance.shareTask(shareTaskId)
-				if (success) {
-					// Show success message
-					vscode.window.showInformationMessage(t("common:info.share_link_copied"))
+				const visibility = message.visibility || "organization"
+				const result = await CloudService.instance.shareTask(shareTaskId, visibility)
+
+				if (result.success && result.shareUrl) {
+					// Show success notification
+					const messageKey =
+						visibility === "public"
+							? "common:info.public_share_link_copied"
+							: "common:info.organization_share_link_copied"
+					vscode.window.showInformationMessage(t(messageKey))
 				} else {
-					// Show generic failure message
-					vscode.window.showErrorMessage(t("common:errors.share_task_failed"))
+					// Handle error
+					const errorMessage = result.error || "Failed to create share link"
+					if (errorMessage.includes("Authentication")) {
+						vscode.window.showErrorMessage(t("common:errors.share_auth_required"))
+					} else if (errorMessage.includes("sharing is not enabled")) {
+						vscode.window.showErrorMessage(t("common:errors.share_not_enabled"))
+					} else if (errorMessage.includes("not found")) {
+						vscode.window.showErrorMessage(t("common:errors.share_task_not_found"))
+					} else {
+						vscode.window.showErrorMessage(errorMessage)
+					}
 				}
 			} catch (error) {
-				// Show generic failure message
+				provider.log(`[shareCurrentTask] Unexpected error: ${error}`)
 				vscode.window.showErrorMessage(t("common:errors.share_task_failed"))
 			}
 			break
@@ -339,6 +359,8 @@ export const webviewMessageHandler = async (
 				glama: {},
 				unbound: {},
 				litellm: {},
+				ollama: {},
+				lmstudio: {},
 			}
 
 			const safeGetModels = async (options: GetModelsOptions): Promise<ModelRecord> => {
@@ -360,6 +382,9 @@ export const webviewMessageHandler = async (
 				{ key: "unbound", options: { provider: "unbound", apiKey: apiConfiguration.unboundApiKey } },
 			]
 
+			// Don't fetch Ollama and LM Studio models by default anymore
+			// They have their own specific handlers: requestOllamaModels and requestLmStudioModels
+
 			const litellmApiKey = apiConfiguration.litellmApiKey || message?.values?.litellmApiKey
 			const litellmBaseUrl = apiConfiguration.litellmBaseUrl || message?.values?.litellmBaseUrl
 			if (litellmApiKey && litellmBaseUrl) {
@@ -376,13 +401,31 @@ export const webviewMessageHandler = async (
 				}),
 			)
 
-			const fetchedRouterModels: Partial<Record<RouterName, ModelRecord>> = { ...routerModels }
+			const fetchedRouterModels: Partial<Record<RouterName, ModelRecord>> = {
+				...routerModels,
+				// Initialize ollama and lmstudio with empty objects since they use separate handlers
+				ollama: {},
+				lmstudio: {},
+			}
 
 			results.forEach((result, index) => {
 				const routerName = modelFetchPromises[index].key // Get RouterName using index
 
 				if (result.status === "fulfilled") {
 					fetchedRouterModels[routerName] = result.value.models
+
+					// Ollama and LM Studio settings pages still need these events
+					if (routerName === "ollama" && Object.keys(result.value.models).length > 0) {
+						provider.postMessageToWebview({
+							type: "ollamaModels",
+							ollamaModels: Object.keys(result.value.models),
+						})
+					} else if (routerName === "lmstudio" && Object.keys(result.value.models).length > 0) {
+						provider.postMessageToWebview({
+							type: "lmStudioModels",
+							lmStudioModels: Object.keys(result.value.models),
+						})
+					}
 				} else {
 					// Handle rejection: Post a specific error message for this provider
 					const errorMessage = result.reason instanceof Error ? result.reason.message : String(result.reason)
@@ -403,7 +446,50 @@ export const webviewMessageHandler = async (
 				type: "routerModels",
 				routerModels: fetchedRouterModels as Record<RouterName, ModelRecord>,
 			})
+
 			break
+		case "requestOllamaModels": {
+			// Specific handler for Ollama models only
+			const { apiConfiguration: ollamaApiConfig } = await provider.getState()
+			try {
+				const ollamaModels = await getModels({
+					provider: "ollama",
+					baseUrl: ollamaApiConfig.ollamaBaseUrl,
+				})
+
+				if (Object.keys(ollamaModels).length > 0) {
+					provider.postMessageToWebview({
+						type: "ollamaModels",
+						ollamaModels: Object.keys(ollamaModels),
+					})
+				}
+			} catch (error) {
+				// Silently fail - user hasn't configured Ollama yet
+				console.debug("Ollama models fetch failed:", error)
+			}
+			break
+		}
+		case "requestLmStudioModels": {
+			// Specific handler for LM Studio models only
+			const { apiConfiguration: lmStudioApiConfig } = await provider.getState()
+			try {
+				const lmStudioModels = await getModels({
+					provider: "lmstudio",
+					baseUrl: lmStudioApiConfig.lmStudioBaseUrl,
+				})
+
+				if (Object.keys(lmStudioModels).length > 0) {
+					provider.postMessageToWebview({
+						type: "lmStudioModels",
+						lmStudioModels: Object.keys(lmStudioModels),
+					})
+				}
+			} catch (error) {
+				// Silently fail - user hasn't configured LM Studio yet
+				console.debug("LM Studio models fetch failed:", error)
+			}
+			break
+		}
 		case "requestOpenAiModels":
 			if (message?.values?.baseUrl && message?.values?.apiKey) {
 				const openAiModels = await getOpenAiModels(
@@ -415,16 +501,6 @@ export const webviewMessageHandler = async (
 				provider.postMessageToWebview({ type: "openAiModels", openAiModels })
 			}
 
-			break
-		case "requestOllamaModels":
-			const ollamaModels = await getOllamaModels(message.text)
-			// TODO: Cache like we do for OpenRouter, etc?
-			provider.postMessageToWebview({ type: "ollamaModels", ollamaModels })
-			break
-		case "requestLmStudioModels":
-			const lmStudioModels = await getLmStudioModels(message.text)
-			// TODO: Cache like we do for OpenRouter, etc?
-			provider.postMessageToWebview({ type: "lmStudioModels", lmStudioModels })
 			break
 		case "requestVsCodeLmModels":
 			const vsCodeLmModels = await getVsCodeLmModels()
@@ -574,6 +650,23 @@ export const webviewMessageHandler = async (
 			} catch (error) {
 				provider.log(
 					`Failed to toggle auto-approve for tool ${message.toolName}: ${JSON.stringify(error, Object.getOwnPropertyNames(error), 2)}`,
+				)
+			}
+			break
+		}
+		case "toggleToolEnabledForPrompt": {
+			try {
+				await provider
+					.getMcpHub()
+					?.toggleToolEnabledForPrompt(
+						message.serverName!,
+						message.source as "global" | "project",
+						message.toolName!,
+						Boolean(message.isEnabled),
+					)
+			} catch (error) {
+				provider.log(
+					`Failed to toggle enabled for prompt for tool ${message.toolName}: ${JSON.stringify(error, Object.getOwnPropertyNames(error), 2)}`,
 				)
 			}
 			break
@@ -1030,6 +1123,10 @@ export const webviewMessageHandler = async (
 			await updateGlobalState("customCondensingPrompt", message.text)
 			await provider.postStateToWebview()
 			break
+		case "profileThresholds":
+			await updateGlobalState("profileThresholds", message.values)
+			await provider.postStateToWebview()
+			break
 		case "autoApprovalEnabled":
 			await updateGlobalState("autoApprovalEnabled", message.bool ?? false)
 			await provider.postStateToWebview()
@@ -1468,14 +1565,12 @@ export const webviewMessageHandler = async (
 			}
 			break
 		}
+		case "focusPanelRequest": {
+			// Execute the focusPanel command to focus the WebView
+			await vscode.commands.executeCommand(getCommand("focusPanel"))
+			break
+		}
 		case "filterMarketplaceItems": {
-			// Check if marketplace is enabled before making API calls
-			const { experiments } = await provider.getState()
-			if (!experiments.marketplace) {
-				console.log("Marketplace: Feature disabled, skipping API call")
-				break
-			}
-
 			if (marketplaceManager && message.filters) {
 				try {
 					await marketplaceManager.updateWithFilteredItems({
@@ -1492,14 +1587,13 @@ export const webviewMessageHandler = async (
 			break
 		}
 
-		case "installMarketplaceItem": {
-			// Check if marketplace is enabled before installing
-			const { experiments } = await provider.getState()
-			if (!experiments.marketplace) {
-				console.log("Marketplace: Feature disabled, skipping installation")
-				break
-			}
+		case "fetchMarketplaceData": {
+			// Fetch marketplace data on demand
+			await provider.fetchMarketplaceData()
+			break
+		}
 
+		case "installMarketplaceItem": {
 			if (marketplaceManager && message.mpItem && message.mpInstallOptions) {
 				try {
 					const configFilePath = await marketplaceManager.installMarketplaceItem(
@@ -1529,13 +1623,6 @@ export const webviewMessageHandler = async (
 		}
 
 		case "removeInstalledMarketplaceItem": {
-			// Check if marketplace is enabled before removing
-			const { experiments } = await provider.getState()
-			if (!experiments.marketplace) {
-				console.log("Marketplace: Feature disabled, skipping removal")
-				break
-			}
-
 			if (marketplaceManager && message.mpItem && message.mpInstallOptions) {
 				try {
 					await marketplaceManager.removeInstalledMarketplaceItem(message.mpItem, message.mpInstallOptions)
@@ -1548,13 +1635,6 @@ export const webviewMessageHandler = async (
 		}
 
 		case "installMarketplaceItemWithParameters": {
-			// Check if marketplace is enabled before installing with parameters
-			const { experiments } = await provider.getState()
-			if (!experiments.marketplace) {
-				console.log("Marketplace: Feature disabled, skipping installation with parameters")
-				break
-			}
-
 			if (marketplaceManager && message.payload && "item" in message.payload && "parameters" in message.payload) {
 				try {
 					const configFilePath = await marketplaceManager.installMarketplaceItem(message.payload.item, {
@@ -1581,14 +1661,14 @@ export const webviewMessageHandler = async (
 		}
 		case "logToDebugConsole":
 			if (vscode.debug.activeDebugConsole) {
-				const { logLevel, logMessage, logData } = message;
-				const prefix = `[WEBVIEW ${logLevel?.toUpperCase() || 'LOG'}]`;
-				let fullMessage = `${prefix} ${logMessage}`;
+				const { logLevel, logMessage, logData } = message
+				const prefix = `[WEBVIEW ${logLevel?.toUpperCase() || "LOG"}]`
+				let fullMessage = `${prefix} ${logMessage}`
 				if (logData) {
 					// logData is already a JSON string
-					fullMessage += `\nData: ${logData}`;
+					fullMessage += `\nData: ${logData}`
 				}
-				vscode.debug.activeDebugConsole.appendLine(fullMessage);
+				vscode.debug.activeDebugConsole.appendLine(fullMessage)
 			}
 			break
 	}

@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"types": ["vitest/globals"],
 		"target": "es5",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
@@ -26,5 +27,5 @@
 			"@zentara-code/*": ["../packages/*/src"]
 		}
 	},
-	"include": ["src", "../src/shared"]
+	"include": ["src", "../src/shared", "vitest.setup.ts"]
 }

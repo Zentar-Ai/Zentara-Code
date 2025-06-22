@@ -26,11 +26,11 @@ import { DIFF_VIEW_URI_SCHEME } from "./integrations/editor/DiffViewProvider"
 import { TerminalRegistry } from "./integrations/terminal/TerminalRegistry"
 import { McpServerManager } from "./services/mcp/McpServerManager"
 import { CodeIndexManager } from "./services/code-index/manager"
+import { MdmService } from "./services/mdm/MdmService"
 import { migrateSettings } from "./utils/migrateSettings"
 import { API } from "./extension/api"
 
 import { DapStopTrackerFactory } from "./zentara_debug/src/debug/DapStopTracker"
-
 
 import {
 	handleUri,
@@ -84,6 +84,9 @@ export async function activate(context: vscode.ExtensionContext) {
 		log: cloudLogger,
 	})
 
+	// Initialize MDM service
+	const mdmService = await MdmService.createInstance(cloudLogger)
+
 	// Initialize i18n for internationalization support
 	initializeI18n(context.globalState.get("language") ?? formatLanguage(vscode.env.language))
 
@@ -109,7 +112,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		)
 	}
 
-	const provider = new ClineProvider(context, outputChannel, "sidebar", contextProxy, codeIndexManager)
+	const provider = new ClineProvider(context, outputChannel, "sidebar", contextProxy, codeIndexManager, mdmService)
 	TelemetryService.instance.setProvider(provider)
 
 	if (codeIndexManager) {
@@ -167,9 +170,12 @@ export async function activate(context: vscode.ExtensionContext) {
 	outputChannel.appendLine("Registered DAP message tracker")
 
 	// Register commands for debug tool launch tests
-	let disposableDirectTestRunner = vscode.commands.registerCommand("debugging-zentara-code.runDirectLaunchTest", () => {
-		runDirectDebugToolLaunchTest()
-	})
+	let disposableDirectTestRunner = vscode.commands.registerCommand(
+		"debugging-zentara-code.runDirectLaunchTest",
+		() => {
+			runDirectDebugToolLaunchTest()
+		},
+	)
 	context.subscriptions.push(disposableDirectTestRunner)
 
 	let disposableToolFlowTestRunner = vscode.commands.registerCommand(

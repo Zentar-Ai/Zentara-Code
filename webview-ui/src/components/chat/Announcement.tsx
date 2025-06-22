@@ -142,7 +142,4 @@ const RedditLink = () => (
 	</VSCodeLink>
 )
 
-
-
-
 export default memo(Announcement)

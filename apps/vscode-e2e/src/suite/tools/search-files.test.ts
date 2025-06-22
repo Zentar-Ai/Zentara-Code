@@ -6,8 +6,11 @@ import * as vscode from "vscode"
 import type { ClineMessage } from "@zentara-code/types"
 
 import { waitFor, sleep } from "../utils"
+import { setDefaultSuiteTimeout } from "../test-utils"
 
-suite("Zentara Code search_files Tool", () => {
+suite("Zentara Code search_files Tool", function () {
+	setDefaultSuiteTimeout(this)
+
 	let workspaceDir: string
 	let testFiles: {
 		jsFile: string

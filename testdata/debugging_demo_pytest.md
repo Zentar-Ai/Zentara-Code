@@ -104,7 +104,7 @@ _Action:_ Provide a diagnosis of a bug in `quicksort_buggy_debug.py` based on de
 
 **Instruction for LLM:**
 
-Based on your runtime diagnosis, propose a minimal code change to fix the identified bug in [`testdata/quicksort_buggy_debug.py`](testdata/quicksort_buggy_debug.py:0). If instructed,  then apply the fix to [`testdata/quicksort_buggy_debug.py`](testdata/quicksort_buggy_debug.py:0), then restart the pytest debugging session (or re-run the specific failing test if possible via the debugger) and verify if the specific test case now passes.
+Based on your runtime diagnosis, propose a minimal code change to fix the identified bug in [`testdata/quicksort_buggy_debug.py`](testdata/quicksort_buggy_debug.py:0). If instructed, then apply the fix to [`testdata/quicksort_buggy_debug.py`](testdata/quicksort_buggy_debug.py:0), then restart the pytest debugging session (or re-run the specific failing test if possible via the debugger) and verify if the specific test case now passes.
 
 **Note:** The primary goal of this demonstration is diagnosis using debug tools with pytest, not necessarily fixing all bugs in one go.
 

@@ -11,7 +11,6 @@ To use this API in your extension:
 import { ZentaraCodeAPI } from "@zentara-code/types"
 const extension = vscode.extensions.getExtension<ZentaraCodeAPI>("ZentarAI.zentara-code")
 
-
 if (!extension?.isActive) {
 	throw new Error("Extension is not activated")
 }

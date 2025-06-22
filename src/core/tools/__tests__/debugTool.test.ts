@@ -1,4 +1,4 @@
-jest.mock("vscode");
+jest.mock("vscode")
 import { debugTool } from "../debugTool"
 // We are NOT mocking '../../../zentara_debug' to attempt to use the real controller
 import type { LaunchParams } from "../../../zentara_debug" // Assuming LaunchParams is exported from zentara_debug/index.ts

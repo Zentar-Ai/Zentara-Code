@@ -3,7 +3,7 @@ import * as vscode from "vscode"
 import * as path from "path" // Import path module for file path operations
 import { LaunchParams, LaunchResult, DebuggerResponse /*, StackFrameInfo*/ } from "../IDebugController" // Adjust path as needed, commented out StackFrameInfo
 import { outputChannel, stringifySafe } from "../vscodeUtils" // Use local outputChannel and stringifySafe
-import { RawTerminalOutputManager } from '../terminal/outputCapture'; // Added for Raw Terminal Output Capture
+import { RawTerminalOutputManager } from "../terminal/outputCapture" // Added for Raw Terminal Output Capture
 import {
 	debugEvents,
 	DAP_STOPPED_EVENT,
@@ -14,11 +14,11 @@ import {
 	clearActiveSessionDapOutputBuffer, // Added for DAP output capture
 	finalizeActiveSessionDapOutput, // Added for DAP output capture
 	getFinalizedSessionDapOutput, // Added for DAP output capture
-	getActiveSessionDapOutput // Added for launchSession refactor
+	getActiveSessionDapOutput, // Added for launchSession refactor
 } from "../debug/events" // Import shared emitter, event name, and last stop info
-import { vsCodeDebugController } from "../VsCodeDebugController"; // Added for IV.B
-import { _executeDapRequestAndProcessOutcome, LaunchOperationInfo, continueExecution } from './execution'; // Added for launchSession refactor & continue
-import { setBreakpoint, removeBreakpointByLocation } from "./breakpoints"; // Added removeBreakpoint
+import { vsCodeDebugController } from "../VsCodeDebugController" // Added for IV.B
+import { _executeDapRequestAndProcessOutcome, LaunchOperationInfo, continueExecution } from "./execution" // Added for launchSession refactor & continue
+import { setBreakpoint, removeBreakpointByLocation } from "./breakpoints" // Added removeBreakpoint
 
 // --- Session Helper Functions ---
 
@@ -28,15 +28,15 @@ let lastUsedLaunchParams: LaunchParams | undefined = undefined // Added to store
 
 // Instantiate RawTerminalOutputManager at the module level
 // Its lifecycle (dispose) should be managed by the extension's context subscriptions, likely in extension.ts
-export const rawTerminalOutputManager = new RawTerminalOutputManager();
+export const rawTerminalOutputManager = new RawTerminalOutputManager()
 
 // Add listeners for session start and termination
 // IMPORTANT: These disposables should be managed by the extension's context subscriptions
 /*const sessionStartListener = */ vscode.debug.onDidStartDebugSession((session) => {
 	// Commented out unused variable
 	//outputChannel.appendLine(
-//		`[Session Listener] onDidStartDebugSession fired for session ${session.id}. Name: "${session.name}", Type: "${session.type}"}`,
-//	)
+	//		`[Session Listener] onDidStartDebugSession fired for session ${session.id}. Name: "${session.name}", Type: "${session.type}"}`,
+	//	)
 	// Update the tracked active session when a new one starts
 	// This ensures 'activeDebugSession' reflects the most recently started session.
 	activeDebugSession = session
@@ -52,21 +52,22 @@ export const rawTerminalOutputManager = new RawTerminalOutputManager();
 	// --- End DAP Output Capture ---
 
 	// --- Raw Terminal Output Capture: Clear previous and start new ---
-	rawTerminalOutputManager.clearFinalizedSessionRawTerminalOutput(session.id);
+	rawTerminalOutputManager.clearFinalizedSessionRawTerminalOutput(session.id)
 	if (vscode.window.activeTerminal) {
-		rawTerminalOutputManager.startCaptureForSession(session.id, vscode.window.activeTerminal);
+		rawTerminalOutputManager.startCaptureForSession(session.id, vscode.window.activeTerminal)
 		outputChannel.appendLine(
 			`[Session Listener] Attempted to start raw terminal capture for session ${session.id} on active terminal "${vscode.window.activeTerminal.name}".`,
-		);
+		)
 	} else {
 		outputChannel.appendLine(
 			`[Session Listener] No active terminal found at session start for ${session.id}. Cannot start raw terminal capture.`,
-		);
+		)
 	}
 	// --- End Raw Terminal Output Capture ---
 })
 
-/*const sessionTerminationListener = */ vscode.debug.onDidTerminateDebugSession(async (session) => { // Made async
+/*const sessionTerminationListener = */ vscode.debug.onDidTerminateDebugSession(async (session) => {
+	// Made async
 	// Commented out unused variable
 	//outputChannel.appendLine(
 	//	`[Session Listener] onDidTerminateDebugSession fired for session ${session.id}. Current tracked: ${activeDebugSession?.id}, Last stop session: ${lastKnownStopEventSessionId}`,
@@ -74,9 +75,9 @@ export const rawTerminalOutputManager = new RawTerminalOutputManager();
 
 	// --- Raw Terminal Output Capture: Stop and finalize (awaiting the internal delay) ---
 	// This needs to happen BEFORE we try to get the finalRawTerminalOutput for the payload.
-	await rawTerminalOutputManager.stopCaptureForSession(session.id);
+	await rawTerminalOutputManager.stopCaptureForSession(session.id)
 	//outputChannel.appendLine(
-//		`[Session Listener] Stopped and finalized raw terminal output capture for terminated session ${session.id}.`,
+	//		`[Session Listener] Stopped and finalized raw terminal output capture for terminated session ${session.id}.`,
 	//);
 	// --- End Raw Terminal Output Capture ---
 
@@ -90,32 +91,29 @@ export const rawTerminalOutputManager = new RawTerminalOutputManager();
 	// --- IV.A.2: Automatic Output Provisioning on Session Termination ---
 	// Now that raw terminal output is finalized, retrieve it.
 	//const finalDapOutput = getActiveSessionDapOutput(session.id);
-	const finalDapOutput = getLastSessionDapOutput(session.id);
+	const finalDapOutput = getLastSessionDapOutput(session.id)
 	// Get the *finalized* raw terminal output after stopCaptureForSession has completed.
 	//outputChannel.appendLine(
 	//	`[Session Listener] Captured finalDapOutput for session ${session.id}:\n${finalDapOutput}`,
 	//)
-	const finalRawTerminalOutput = rawTerminalOutputManager.getFinalizedSessionRawTerminalOutput(session.id);
-
+	const finalRawTerminalOutput = rawTerminalOutputManager.getFinalizedSessionRawTerminalOutput(session.id)
 
 	if (finalDapOutput || finalRawTerminalOutput) {
 		const outputPayload = {
 			sessionId: session.id,
-			trigger: 'sessionEnd' as const, // Type assertion for discriminated union
+			trigger: "sessionEnd" as const, // Type assertion for discriminated union
 			dapOutput: finalDapOutput || undefined,
 			rawTerminalOutput: finalRawTerminalOutput || undefined,
-		};
+		}
 		//outputChannel.appendLine(`[Session Listener] Preparing to send debug output for session ${session.id} on termination: ${stringifySafe(outputPayload)}`);
-		vsCodeDebugController.notifyDebugOutputCaptured(outputPayload);
+		vsCodeDebugController.notifyDebugOutputCaptured(outputPayload)
 		//outputChannel.appendLine(`[Session Listener] Notified controller of captured debug output for session termination.`);
-	}
-	else {
+	} else {
 		outputChannel.appendLine(
 			`[Session Listener] No DAP or Raw Terminal output captured for session ${session.id} on termination.`,
 		)
 	}
 	// --- End IV.A.2 ---
-
 
 	// --- End DAP Output Capture ---
 
@@ -128,21 +126,17 @@ export const rawTerminalOutputManager = new RawTerminalOutputManager();
 		//	`[Session Listener] Captured DAP Output for session ${session.id}:\n${dapOutput}`,
 		//)
 	} else {
-		outputChannel.appendLine(
-			`[Session Listener] No DAP Output captured for session ${session.id}.`,
-		)
+		outputChannel.appendLine(`[Session Listener] No DAP Output captured for session ${session.id}.`)
 	}
 
 	// Retrieve and log Raw Terminal output for testing purposes
-	const rawOutput = rawTerminalOutputManager.getFinalizedSessionRawTerminalOutput(session.id);
+	const rawOutput = rawTerminalOutputManager.getFinalizedSessionRawTerminalOutput(session.id)
 	if (rawOutput) {
 		outputChannel.appendLine(
 			`[Session Listener] Captured Raw Terminal Output for session ${session.id}:\n${rawOutput}`,
-		);
+		)
 	} else {
-		outputChannel.appendLine(
-			`[Session Listener] No Raw Terminal Output captured for session ${session.id}.`,
-		);
+		outputChannel.appendLine(`[Session Listener] No Raw Terminal Output captured for session ${session.id}.`)
 	}
 
 	if (activeDebugSession && session.id === activeDebugSession.id) {
@@ -164,10 +158,10 @@ export const rawTerminalOutputManager = new RawTerminalOutputManager();
 // --- DAP Output Retrieval ---
 
 /**
-	* Retrieves the finalized DAP output for a given session ID.
-	* @param sessionId The ID of the debug session.
-	* @returns The captured DAP output as a single string, or undefined if not found.
-	*/
+ * Retrieves the finalized DAP output for a given session ID.
+ * @param sessionId The ID of the debug session.
+ * @returns The captured DAP output as a single string, or undefined if not found.
+ */
 export function getLastSessionDapOutput(sessionId: string): string | undefined {
 	const output = getFinalizedSessionDapOutput(sessionId)
 	// if (output) {
@@ -183,18 +177,18 @@ export function getLastSessionDapOutput(sessionId: string): string | undefined {
 // --- Raw Terminal Output Retrieval ---
 
 /**
-	* Retrieves the finalized Raw Terminal output for a given session ID.
-	* @param sessionId The ID of the debug session.
-	* @returns The captured Raw Terminal output as a single string, or undefined if not found.
-	*/
+ * Retrieves the finalized Raw Terminal output for a given session ID.
+ * @param sessionId The ID of the debug session.
+ * @returns The captured Raw Terminal output as a single string, or undefined if not found.
+ */
 export function getLastSessionRawTerminalOutput(sessionId: string): string | undefined {
-	   const output = rawTerminalOutputManager.getFinalizedSessionRawTerminalOutput(sessionId);
-/* 	   if (output) {
+	const output = rawTerminalOutputManager.getFinalizedSessionRawTerminalOutput(sessionId)
+	/* 	   if (output) {
 	       outputChannel.appendLine(`[Session] Retrieved finalized Raw Terminal output for session ${sessionId}. Length: ${output.length}`);
 	   } else {
 	       outputChannel.appendLine(`[Session] No finalized Raw Terminal output found for session ${sessionId}.`);
 	   } */
-	   return output;
+	return output
 }
 
 // --- End Raw Terminal Output Retrieval ---
@@ -203,7 +197,7 @@ export function getLastSessionRawTerminalOutput(sessionId: string): string | und
 // Timeout values for different operations
 const STOP_EVENT_TIMEOUT_MS = 86400000 // 24 hours - essentially "forever" for debugging purposes
 const WAIT_FOR_ACTIVE_SESSION_TIMEOUT_MS = 30000 // 30 seconds (increased from 10s)
-const LAUNCH_SESSION_POLL_TIMEOUT_MS = 30000; // Timeout for polling after a stop during launch
+const LAUNCH_SESSION_POLL_TIMEOUT_MS = 30000 // Timeout for polling after a stop during launch
 
 /**
  * Waits for the debugger to signal a stop event (breakpoint, step completion, pause)
@@ -239,7 +233,7 @@ export async function waitForDapStop(
 		// )
 		const body = lastKnownStopEventBody
 		// IMPORTANT FIX: Clear the event once it's been consumed here to prevent staleness
-		clearLastKnownStopEvent();
+		clearLastKnownStopEvent()
 		// outputChannel.appendLine(
 		// 	`[waitForDapStop] Cleared pre-existing stop event for session ${sessionId} after consumption.`,
 		// )
@@ -423,8 +417,10 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 	// Create a deep copy of the original incoming params to store if launch is successful.
 	// This ensures that any modifications to 'params' within this function (e.g., params.stopOnEntry)
 	// do not affect the parameters stored for a potential restart.
-	const originalParamsSnapshot: LaunchParams = JSON.parse(JSON.stringify(params)) as LaunchParams;
-	outputChannel.appendLine(`[Session] launchSession called with params: ${stringifySafe(params)} (snapshot for restart: ${stringifySafe(originalParamsSnapshot)})`);
+	const originalParamsSnapshot: LaunchParams = JSON.parse(JSON.stringify(params)) as LaunchParams
+	outputChannel.appendLine(
+		`[Session] launchSession called with params: ${stringifySafe(params)} (snapshot for restart: ${stringifySafe(originalParamsSnapshot)})`,
+	)
 
 	// Check and quit any existing debug session first
 	const currentSession = getActiveSession()
@@ -486,9 +482,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 					location: { path: params.program, line: 1 },
 				})
 				if (setBpResult.success) {
-					outputChannel.appendLine(
-						`[Session] Successfully set entry breakpoint for ${params.program}:1.`,
-					)
+					outputChannel.appendLine(`[Session] Successfully set entry breakpoint for ${params.program}:1.`)
 					params.stopOnEntry = false // Modify the incoming params , we always set stopOnEntry to false after setting the breakpoint
 					outputChannel.appendLine(`[Session] params.stopOnEntry is now false.`)
 				} else {
@@ -504,20 +498,23 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 		}
 		// End Zentara-Debugger custom logic
 
-
 		if (params.mode === "pytest") {
 			const extensionId = "ZentarAI.zentara-code"
 			const extension = vscode.extensions.getExtension(extensionId)
 			if (!extension) {
 				outputChannel.appendLine(`[ERROR] [Session] Could not find extension with ID: ${extensionId}`)
-				return { success: false, errorMessage: `Could not find extension ${extensionId}.`, stopReason: 'error' }
+				return { success: false, errorMessage: `Could not find extension ${extensionId}.`, stopReason: "error" }
 			}
 			const extensionPath = extension.extensionPath
 			if (!extensionPath) {
 				outputChannel.appendLine(
 					`[ERROR] [Session] Could not determine extension path for ${extensionId} to load pytest plugin.`,
 				)
-				return { success: false, errorMessage: `Could not determine extension path for ${extensionId}.`, stopReason: 'error' }
+				return {
+					success: false,
+					errorMessage: `Could not determine extension path for ${extensionId}.`,
+					stopReason: "error",
+				}
 			}
 			const pluginPath = vscode.Uri.file(extensionPath).with({
 				path: vscode.Uri.joinPath(
@@ -528,7 +525,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				).path,
 			}).fsPath
 			const relativePluginPath = path.relative(extensionPath, pluginPath)
-			const pluginModule = relativePluginPath.replace(/\\/g, '.').replace(/\//g, '.').replace(/\.py$/, '')
+			const pluginModule = relativePluginPath.replace(/\\/g, ".").replace(/\//g, ".").replace(/\.py$/, "")
 			outputChannel.appendLine(`[Session] Attempting to load pytest plugin from path: ${pluginPath}`)
 			outputChannel.appendLine(`[Session] Converted to module format: ${pluginModule}`)
 			const basePytestArgs = ["-x", "--full-trace", "-p", `no:faulthandler`, "-p", pluginModule]
@@ -547,15 +544,17 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath,
 				env: {
 					...params.env,
-					PYTHONPATH: params.env?.PYTHONPATH ? `${extensionPath}${path.delimiter}${params.env.PYTHONPATH}` : extensionPath,
+					PYTHONPATH: params.env?.PYTHONPATH
+						? `${extensionPath}${path.delimiter}${params.env.PYTHONPATH}`
+						: extensionPath,
 					PYDEVD_USE_FRAME_EVAL: "NO",
 					_PYTEST_RAISE: "1",
 					PYTHONNOUSERSITE: "1",
 				},
-				stopOnEntry:false,
+				stopOnEntry: false,
 				uncaughtExceptions: true,
 			} as vscode.DebugConfiguration
-			configName = configToUse.name; // Update configName for logging
+			configName = configToUse.name // Update configName for logging
 		} else if (program?.endsWith(".py")) {
 			configToUse = {
 				name: `Python: ${pfile}`,
@@ -567,9 +566,9 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath ?? (program ? path.dirname(program) : undefined),
 				env: params.env ?? undefined,
 				stopOnEntry: false,
-				args: params.args
+				args: params.args,
 			} as vscode.DebugConfiguration
-			configName = configToUse.name;
+			configName = configToUse.name
 		} else if (program?.endsWith(".ts")) {
 			configToUse = {
 				name: `TS‑Node: ${pfile}`,
@@ -581,9 +580,9 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				console: "internalConsole",
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath ?? (program ? path.dirname(program) : undefined),
 				stopOnEntry: false, // Defaulting to true as per original
-				env: params.env
+				env: params.env,
 			} as vscode.DebugConfiguration
-			configName = configToUse.name;
+			configName = configToUse.name
 		} else if (program?.endsWith(".js") || program?.endsWith(".mjs")) {
 			configToUse = {
 				name: `Node: ${pfile}`,
@@ -594,42 +593,49 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				console: "internalConsole",
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath ?? (program ? path.dirname(program) : undefined),
 				stopOnEntry: false, // Defaulting to true as per original
-				env: params.env
+				env: params.env,
 			} as vscode.DebugConfiguration
-			configName = configToUse.name;
+			configName = configToUse.name
 		} else {
-			outputChannel.appendLine(`[ERROR] [Session] Unsupported program type: ${program}. Cannot generate dynamic config.`);
-			return { success: false, errorMessage: `Unsupported program type: ${program}`, stopReason: 'error' }
+			outputChannel.appendLine(
+				`[ERROR] [Session] Unsupported program type: ${program}. Cannot generate dynamic config.`,
+			)
+			return { success: false, errorMessage: `Unsupported program type: ${program}`, stopReason: "error" }
 		}
-		outputChannel.appendLine(`[Session] Dynamically generated configuration: ${stringifySafe(configToUse)}`);
+		outputChannel.appendLine(`[Session] Dynamically generated configuration: ${stringifySafe(configToUse)}`)
 	}
 	// --- End Dynamic Config Generation ---
 
 	if (!configToUse) {
-		outputChannel.appendLine(`[ERROR] [Session] No debug configuration resolved. Cannot start session.`);
-		return { success: false, errorMessage: "Could not find or generate a suitable debug configuration.", stopReason: 'error' }
+		outputChannel.appendLine(`[ERROR] [Session] No debug configuration resolved. Cannot start session.`)
+		return {
+			success: false,
+			errorMessage: "Could not find or generate a suitable debug configuration.",
+			stopReason: "error",
+		}
 	}
 
 	// Apply overrides from params if they exist, otherwise use configToUse's values or defaults
-	configToUse.cwd = params.cwd ?? configToUse.cwd ?? workspaceFolder?.uri.fsPath;
-	configToUse.args = params.args ?? configToUse.args ?? [];
-	configToUse.env = { ...(configToUse.env || {}), ...(params.env || {}) };
+	configToUse.cwd = params.cwd ?? configToUse.cwd ?? workspaceFolder?.uri.fsPath
+	configToUse.args = params.args ?? configToUse.args ?? []
+	configToUse.env = { ...(configToUse.env || {}), ...(params.env || {}) }
 	// stopOnEntry: if params.stopOnEntry is defined, use it. Otherwise, use configToUse.stopOnEntry. If that's also undefined, default to true.
 	//configToUse.stopOnEntry = params.stopOnEntry !== undefined ? params.stopOnEntry : (configToUse.stopOnEntry !== undefined ? configToUse.stopOnEntry : true);
-	configToUse.stopOnEntry = false; // Force stopOnEntry to false for all sessions as per original logic. Instead use setBreakpoint for entry-like stops, so that it stops at our program, not in the plugin internals.
+	configToUse.stopOnEntry = false // Force stopOnEntry to false for all sessions as per original logic. Instead use setBreakpoint for entry-like stops, so that it stops at our program, not in the plugin internals.
 
 	outputChannel.appendLine(`[Session] Launching with effective args: ${stringifySafe(configToUse.args)}`)
 	outputChannel.appendLine(`[Session] Launching with effective env: ${stringifySafe(configToUse.env)}`)
 	outputChannel.appendLine(`[Session] Starting debug session with config: ${stringifySafe(configToUse)}`)
 
 	// --- Prepare for Launch Operation ---
-	let launchActionSuccess = false;
-	let launchActionErrorMessage: string | undefined;
-	let activeSessionAfterLaunch: vscode.DebugSession | undefined;
+	let launchActionSuccess = false
+	let launchActionErrorMessage: string | undefined
+	let activeSessionAfterLaunch: vscode.DebugSession | undefined
 
 	try {
 		// Activate relevant extension if needed (Python example)
-		if (configToUse.type === "python" || configToUse.type === "debugpy") { // Added debugpy
+		if (configToUse.type === "python" || configToUse.type === "debugpy") {
+			// Added debugpy
 			const pythonExtension = vscode.extensions.getExtension("ms-python.python")
 			if (pythonExtension) {
 				try {
@@ -651,35 +657,39 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 			`[Session] vscode.debug.startDebugging for '${configName}' returned: ${vsCodeStartSuccess}`,
 		)
 		if (!vsCodeStartSuccess) {
-			launchActionErrorMessage = `vscode.debug.startDebugging returned false for '${configName}'. Check debug console.`;
-			outputChannel.appendLine(`[WARN] [Session] ${launchActionErrorMessage}`);
+			launchActionErrorMessage = `vscode.debug.startDebugging returned false for '${configName}'. Check debug console.`
+			outputChannel.appendLine(`[WARN] [Session] ${launchActionErrorMessage}`)
 		} else {
 			outputChannel.appendLine(`[Session] Waiting for active session to be established for '${configName}'...`)
 			// Brief delay before polling, allows onDidStartDebugSession to fire for quick starting sessions
-			await new Promise(resolve => setTimeout(resolve, 2000));
+			await new Promise((resolve) => setTimeout(resolve, 2000))
 			activeSessionAfterLaunch = await waitForActiveSession(WAIT_FOR_ACTIVE_SESSION_TIMEOUT_MS)
 			outputChannel.appendLine(
 				`[Session] Active session ${activeSessionAfterLaunch.id} (${activeSessionAfterLaunch.name}) established for '${configName}'.`,
 			)
-			launchActionSuccess = true;
+			launchActionSuccess = true
 		}
 	} catch (error: any) {
-		launchActionErrorMessage = error.message || "Unknown error during debug session startup.";
-		outputChannel.appendLine(`[ERROR] [Session] Error during debug session startup: ${launchActionErrorMessage} ${stringifySafe(error)}`)
+		launchActionErrorMessage = error.message || "Unknown error during debug session startup."
+		outputChannel.appendLine(
+			`[ERROR] [Session] Error during debug session startup: ${launchActionErrorMessage} ${stringifySafe(error)}`,
+		)
 	}
 
 	if (!launchActionSuccess || !activeSessionAfterLaunch) {
-		const sessionIdForOutput = activeSessionAfterLaunch?.id || configToUse?.name || "unknown_session_launch_fail";
+		const sessionIdForOutput = activeSessionAfterLaunch?.id || configToUse?.name || "unknown_session_launch_fail"
 		// Ensure outputs are captured even on failure
-		const dapOutput = getActiveSessionDapOutput(sessionIdForOutput) || getLastSessionDapOutput(sessionIdForOutput);
-		const rawOutput = rawTerminalOutputManager.getActiveSessionRawTerminalOutput(sessionIdForOutput) || getLastSessionRawTerminalOutput(sessionIdForOutput);
+		const dapOutput = getActiveSessionDapOutput(sessionIdForOutput) || getLastSessionDapOutput(sessionIdForOutput)
+		const rawOutput =
+			rawTerminalOutputManager.getActiveSessionRawTerminalOutput(sessionIdForOutput) ||
+			getLastSessionRawTerminalOutput(sessionIdForOutput)
 		return {
 			success: false,
 			errorMessage: launchActionErrorMessage || "Failed to start or activate debug session.",
 			capturedDapOutput: dapOutput,
 			capturedRawTerminalOutput: rawOutput,
-			stopReason: activeSessionAfterLaunch ? 'error' : 'terminated'
-		};
+			stopReason: activeSessionAfterLaunch ? "error" : "terminated",
+		}
 	}
 
 	// --- Use _executeDapRequestAndProcessOutcome to handle stop event or running state ---
@@ -687,11 +697,11 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 		stopOnEntryConfig: configToUse.stopOnEntry!, // configToUse.stopOnEntry is guaranteed to be boolean here
 		initialActionSuccess: launchActionSuccess,
 		initialActionErrorMessage: launchActionErrorMessage, // Will be undefined if launchActionSuccess is true
-	};
+	}
 
 	outputChannel.appendLine(
 		`[Session] Calling _executeDapRequestAndProcessOutcome for launch. Session: ${activeSessionAfterLaunch.id}, StopOnEntryConfig: ${launchOpInfo.stopOnEntryConfig}`,
-	);
+	)
 
 	const navigationResult = await _executeDapRequestAndProcessOutcome(
 		activeSessionAfterLaunch,
@@ -700,50 +710,55 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 		LAUNCH_SESSION_POLL_TIMEOUT_MS,
 		undefined, // initialTopFrameForPolling (not applicable for launch)
 		undefined, // actionFn (launchInfo is provided)
-		launchOpInfo
-	);
+		launchOpInfo,
+	)
 
 	outputChannel.appendLine(
 		`[Session] Result from _executeDapRequestAndProcessOutcome: ${stringifySafe(navigationResult)}`,
-	);
+	)
 
 	if (navigationResult.success) {
-		lastUsedLaunchParams = originalParamsSnapshot;
-		outputChannel.appendLine(`[Session] Initial launch/stop successful. Stored lastUsedLaunchParams for restart: ${stringifySafe(lastUsedLaunchParams)}`);
+		lastUsedLaunchParams = originalParamsSnapshot
+		outputChannel.appendLine(
+			`[Session] Initial launch/stop successful. Stored lastUsedLaunchParams for restart: ${stringifySafe(lastUsedLaunchParams)}`,
+		)
 
 		// Check if this stop is an entry-like stop where we should remove the breakpoint and continue
 		if (
 			navigationResult.frame &&
 			navigationResult.frame.sourcePath && // Changed from navigationResult.frame.source.path
-			(navigationResult.stopReason === "breakpoint" || navigationResult.stopReason === "entry" || navigationResult.stopReason === "step")
+			(navigationResult.stopReason === "breakpoint" ||
+				navigationResult.stopReason === "entry" ||
+				navigationResult.stopReason === "step")
 		) {
-			const pathToRemoveBp = navigationResult.frame.sourcePath; // Changed from navigationResult.frame.source.path
-			const lineToRemoveBp = navigationResult.frame.line;
-			const weSetThisExplicitly = params.program && params.program === pathToRemoveBp && lineToRemoveBp === 1;
+			const pathToRemoveBp = navigationResult.frame.sourcePath // Changed from navigationResult.frame.source.path
+			const lineToRemoveBp = navigationResult.frame.line
+			const weSetThisExplicitly = params.program && params.program === pathToRemoveBp && lineToRemoveBp === 1
 
 			outputChannel.appendLine(
 				`[Session] Stopped at entry-like point (${pathToRemoveBp}:${lineToRemoveBp}, reason: ${navigationResult.stopReason}). Explicitly set by us: ${weSetThisExplicitly}. Attempting to remove breakpoint and continue.`,
-			);
+			)
 
 			try {
-				const removeBpResult = await removeBreakpointByLocation({ // Changed from removeBreakpoint
+				const removeBpResult = await removeBreakpointByLocation({
+					// Changed from removeBreakpoint
 					location: { path: pathToRemoveBp, line: lineToRemoveBp },
-				});
+				})
 				if (removeBpResult.success) {
 					outputChannel.appendLine(
 						`[Session] Successfully removed breakpoint at ${pathToRemoveBp}:${lineToRemoveBp}. Session remains paused.`,
-					);
+					)
 				} else {
 					outputChannel.appendLine(
 						`[WARN] [Session] Failed to remove breakpoint at ${pathToRemoveBp}:${lineToRemoveBp}: ${removeBpResult.errorMessage}. Session remains paused.`,
-					);
+					)
 				}
 				// Do not continue. Return the original navigation result, as the session is still paused at this point.
 				// The side effect of removing the breakpoint has occurred.
 			} catch (error: any) {
 				outputChannel.appendLine(
 					`[ERROR] [Session] Error during post-entry-breakpoint processing (remove): ${error.message}`,
-				);
+				)
 				// Fall through to return the original navigationResult if post-processing fails
 			}
 		}
@@ -759,22 +774,26 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 		exceptionMessage: navigationResult.exceptionMessage,
 		capturedDapOutput: navigationResult.capturedDapOutput,
 		capturedRawTerminalOutput: navigationResult.capturedRawTerminalOutput,
-	};
+	}
 }
 
-export async function restartSession(): Promise<DebuggerResponse> { // Removed activeSession parameter
+export async function restartSession(): Promise<DebuggerResponse> {
+	// Removed activeSession parameter
 	outputChannel.appendLine(`[Session] restartSession called.`)
 
 	if (!lastUsedLaunchParams) {
 		outputChannel.appendLine(`[Session] Cannot restart: previous launch parameters are unknown.`)
-		return { success: false, errorMessage: "Cannot restart session: previous launch parameters are unknown. Launch a session first." }
+		return {
+			success: false,
+			errorMessage: "Cannot restart session: previous launch parameters are unknown. Launch a session first.",
+		}
 	}
 
 	outputChannel.appendLine(`[Session] Restarting with last used LaunchParams: ${stringifySafe(lastUsedLaunchParams)}`)
 
 	// Call launchSession with the stored parameters
 	// Create a new copy to avoid launchSession modifying the stored params (e.g. stopOnEntry logic)
-	const paramsForRestart = { ...lastUsedLaunchParams };
+	const paramsForRestart = { ...lastUsedLaunchParams }
 	return launchSession(paramsForRestart)
 }
 
@@ -894,7 +913,7 @@ export async function quitSession(sessionToQuit: vscode.DebugSession | undefined
  * This should be called by the extension's deactivate function.
  */
 export function disposeSessionOutputManagerResources(): void {
-    outputChannel.appendLine("[Session] Disposing RawTerminalOutputManager resources...");
-    rawTerminalOutputManager.dispose();
-    outputChannel.appendLine("[Session] RawTerminalOutputManager resources disposed.");
+	outputChannel.appendLine("[Session] Disposing RawTerminalOutputManager resources...")
+	rawTerminalOutputManager.dispose()
+	outputChannel.appendLine("[Session] RawTerminalOutputManager resources disposed.")
 }

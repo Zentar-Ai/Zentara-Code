@@ -1,7 +1,7 @@
 import { type ToolName, toolNames } from "@zentara-code/types"
 
 import { TextContent, ToolUse, ToolParamName, toolParamNames } from "../../shared/tools"
-import { outputChannel } from "../../zentara_debug/src/vscodeUtils";
+import { outputChannel } from "../../zentara_debug/src/vscodeUtils"
 
 export type AssistantMessageContent = TextContent | ToolUse
 
@@ -14,7 +14,7 @@ export function parseAssistantMessage(assistantMessage: string): AssistantMessag
 	let currentParamName: ToolParamName | undefined = undefined
 	let currentParamValueStartIndex = 0
 	let accumulator = ""
-	outputChannel.appendLine(`[parseAssistantMessage]: ${assistantMessage}`);
+	outputChannel.appendLine(`[parseAssistantMessage]: ${assistantMessage}`)
 
 	for (let i = 0; i < assistantMessage.length; i++) {
 		const char = assistantMessage[i]
@@ -152,7 +152,7 @@ export function parseAssistantMessage(assistantMessage: string): AssistantMessag
 			// Tool call has a parameter that was not completed.
 			currentToolUse.params[currentParamName] = accumulator.slice(currentParamValueStartIndex).trim()
 		}
-		
+
 		contentBlocks.push(currentToolUse)
 	}
 
@@ -163,6 +163,6 @@ export function parseAssistantMessage(assistantMessage: string): AssistantMessag
 		// Stream did not complete text content, add it as partial.
 		contentBlocks.push(currentTextContent)
 	}
-	
+
 	return contentBlocks
 }

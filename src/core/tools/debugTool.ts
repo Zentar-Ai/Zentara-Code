@@ -17,10 +17,7 @@ import {
 	ToggleBreakpointParams, // Used in createOperationMap
 	// Types are now primarily used in debugToolValidation.ts
 } from "../../zentara_debug" // Import from the new index file
-import {
-    getLastSessionDapOutput,
-    getLastSessionRawTerminalOutput
-} from "../../zentara_debug/src/controller/session"; // Added for IV.C
+import { getLastSessionDapOutput, getLastSessionRawTerminalOutput } from "../../zentara_debug/src/controller/session" // Added for IV.C
 import { XMLParser } from "fast-xml-parser" // Added for XML parsing
 import { validateOperationArgs } from "./debugToolValidation"
 
@@ -77,15 +74,15 @@ function createOperationMap(controller: IDebugController): Record<string, DebugO
 		execute_statement: controller.executeStatement.bind(controller),
 		get_last_stop_info: controller.getLastStopInfo.bind(controller),
 		// IV.C: Add tools for DAP and Raw Terminal output
-		      debug_get_session_dap_output: async (args: { sessionId: string }) => {
-		          // These functions are not on IDebugController, but directly exported from session.ts
-		          const output = getLastSessionDapOutput(args.sessionId);
-		          return { success: true, output: output ?? null }; // Ensure null if undefined
-		      },
-		      debug_get_session_raw_terminal_output: async (args: { sessionId: string }) => {
-		          const output = getLastSessionRawTerminalOutput(args.sessionId);
-		          return { success: true, output: output ?? null }; // Ensure null if undefined
-		      },
+		debug_get_session_dap_output: async (args: { sessionId: string }) => {
+			// These functions are not on IDebugController, but directly exported from session.ts
+			const output = getLastSessionDapOutput(args.sessionId)
+			return { success: true, output: output ?? null } // Ensure null if undefined
+		},
+		debug_get_session_raw_terminal_output: async (args: { sessionId: string }) => {
+			const output = getLastSessionRawTerminalOutput(args.sessionId)
+			return { success: true, output: output ?? null } // Ensure null if undefined
+		},
 	}
 }
 
@@ -104,34 +101,41 @@ export async function debugTool(
 		outputChannel.appendLine(
 			`[Debug Tool] Processing operation '${debug_operation}'. Raw params: ${JSON.stringify(block.params)}`,
 		)
-	
+
 		if (!debug_operation) {
 			cline.consecutiveMistakeCount++
 			cline.recordToolError("debug")
 			pushToolResult(await cline.sayAndCreateMissingParamError("debug", "debug_operation"))
 			return
 		}
-	
+
 		// Determine content for approval prompt
 		let approvalDisplayContent: string
-		if (typeof _text === "string" && _text.trim().length > 0) { // Check if _text is a non-empty string
+		if (typeof _text === "string" && _text.trim().length > 0) {
+			// Check if _text is a non-empty string
 			try {
 				// Try to parse and pretty-print JSON for approval
 				const parsedJsonPayload = JSON.parse(_text)
 				approvalDisplayContent = JSON.stringify(parsedJsonPayload, null, 2)
-				outputChannel.appendLine(`[Debug Tool] Using _text (JSON) for approval prompt: ${approvalDisplayContent}`)
+				outputChannel.appendLine(
+					`[Debug Tool] Using _text (JSON) for approval prompt: ${approvalDisplayContent}`,
+				)
 			} catch (e) {
 				// If _text is present but fails to parse as JSON, show raw _text for approval,
 				// but actual parsing later will fail if it's not valid JSON.
 				approvalDisplayContent = _text
-				outputChannel.appendLine(`[Debug Tool] _text failed JSON.parse for approval, showing raw: ${approvalDisplayContent}. Error will be caught during actual parsing if invalid.`)
+				outputChannel.appendLine(
+					`[Debug Tool] _text failed JSON.parse for approval, showing raw: ${approvalDisplayContent}. Error will be caught during actual parsing if invalid.`,
+				)
 			}
 		} else {
 			// If _text is not a string, or is an empty string, then no arguments are provided.
 			approvalDisplayContent = "(No arguments)"
-			outputChannel.appendLine(`[Debug Tool] No _text content for arguments. Approval prompt shows: ${approvalDisplayContent}`)
+			outputChannel.appendLine(
+				`[Debug Tool] No _text content for arguments. Approval prompt shows: ${approvalDisplayContent}`,
+			)
 		}
-	
+
 		const sharedMessageProps = {
 			tool: "debug" as const,
 		}
@@ -140,7 +144,7 @@ export async function debugTool(
 			operation: debug_operation,
 			content: approvalDisplayContent,
 		} satisfies ClineSayTool)
-	
+
 		outputChannel.appendLine(`[Debug Tool] Approval prompt prepared: ${completeMessage}`)
 		outputChannel.appendLine(`[Debug Tool] About to call askApproval.`)
 
@@ -186,16 +190,18 @@ export async function debugTool(
 					operationArgs = {} // Treat JSON "null" as empty args object for consistency
 					outputChannel.appendLine(`[Debug Tool] _text parsed to null, defaulting operationArgs to {}.`)
 				} else if (typeof operationArgs !== "object" && !Array.isArray(operationArgs)) {
-		                  // If JSON parsed to a primitive (string, number, boolean)
-		                  // This is generally unexpected for debug operations that take multiple params.
-		                  // The validation step should catch if this type is inappropriate for the specific operation.
-		                  // If an operation legitimately takes a single primitive, validation should allow it.
-		                  // Otherwise, validation should fail.
+					// If JSON parsed to a primitive (string, number, boolean)
+					// This is generally unexpected for debug operations that take multiple params.
+					// The validation step should catch if this type is inappropriate for the specific operation.
+					// If an operation legitimately takes a single primitive, validation should allow it.
+					// Otherwise, validation should fail.
 					outputChannel.appendLine(
-						`[Debug Tool] _text parsed to a non-object/non-array primitive: ${typeof operationArgs}. Validation will determine if this is acceptable for '${debug_operation}'.`
-					);
-		              }
-				outputChannel.appendLine(`[Debug Tool] Successfully parsed _text as JSON. operationArgs: ${JSON.stringify(operationArgs)}`)
+						`[Debug Tool] _text parsed to a non-object/non-array primitive: ${typeof operationArgs}. Validation will determine if this is acceptable for '${debug_operation}'.`,
+					)
+				}
+				outputChannel.appendLine(
+					`[Debug Tool] Successfully parsed _text as JSON. operationArgs: ${JSON.stringify(operationArgs)}`,
+				)
 			} catch (e) {
 				await handleError(`parsing JSON content for debug operation ${debug_operation}`, e as Error)
 				pushToolResult(

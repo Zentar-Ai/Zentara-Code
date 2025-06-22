@@ -6,8 +6,11 @@ import * as os from "os"
 import type { ClineMessage } from "@zentara-code/types"
 
 import { waitFor, sleep } from "../utils"
+import { setDefaultSuiteTimeout } from "../test-utils"
 
-suite("Zentara Code write_to_file Tool", () => {
+suite("Zentara Code write_to_file Tool", function () {
+	setDefaultSuiteTimeout(this)
+
 	let tempDir: string
 	let testFilePath: string
 

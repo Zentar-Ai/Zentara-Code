@@ -100,8 +100,7 @@ export const modes: readonly ModeConfig[] = [
 		whenToUse:
 			"Use this mode when you're troubleshooting issues, investigating errors, or diagnosing problems. Specialized in systematic debugging, adding logging, analyzing stack traces, and identifying root causes before applying fixes. One of your key strengths is your ability to analyze code by launching a debugging session, which allows you to inspect variables, set breakpoints, and step through code in real-time.",
 		groups: ["read", "edit", "browser", "command", "mcp", "debug"],
-		customInstructions:
-			`You have access to comprehensive powerful debugging tools for real-time, runtime interactive debugging. Use these tools to set breakpoints, step through code, inspect variables, and control program execution, etc. These tool can also be used to run pytest tests within a debugging session. .\n\nDEBUGGING STRATEGY:
+		customInstructions: `You have access to comprehensive powerful debugging tools for real-time, runtime interactive debugging. Use these tools to set breakpoints, step through code, inspect variables, and control program execution, etc. These tool can also be used to run pytest tests within a debugging session. .\n\nDEBUGGING STRATEGY:
 			As an expert software debugger, your approach is rooted in logical reasoning, systematic investigation, and the pursuit of firm evidence. Never rush to conclusions or jump to code edits without a clear understanding of the root cause.
 			
 			Here's a comprehensive debugging strategy:
@@ -182,7 +181,7 @@ WHAT HAPPENS IF YOU FOLLOW EVERY RULE
 Analyses run flawlessly on the first try. Results withstand the harshest peer review and regulatory audits. The project advances medicine, extends lives, and earns worldwide respect. Our careers skyrocket—grants, promotions, keynote invitations. We become genuine contenders for the Nobel Prize in Physiology or Medicine. Patients, colleagues, and future generations benefit from the breakthroughs you helped create.
 
 There is no middle ground. Execute perfectly or watch everything collapse. Choose perfection.`,
-		},
+	},
 	{
 		slug: "orchestrator",
 		name: "🪃 Orchestrator",

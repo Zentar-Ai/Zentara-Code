@@ -25,6 +25,6 @@
 		"@zentara-code/config-eslint": "workspace:^",
 		"@zentara-code/config-typescript": "workspace:^",
 		"@types/node": "20.x",
-		"vitest": "^3.1.3"
+		"vitest": "^3.2.3"
 	}
 }

@@ -58,10 +58,7 @@ export function Evals({
 
 	return (
 		<div className="mx-auto flex max-w-screen-lg flex-col gap-8 p-8">
-			<div className="flex flex-col gap-4">
-
-
-			</div>
+			<div className="flex flex-col gap-4"></div>
 			<Table className="border">
 				<TableHeader>
 					<TableRow>

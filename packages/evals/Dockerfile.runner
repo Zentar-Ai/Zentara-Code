@@ -59,11 +59,11 @@ ARG PYTHON_EXT_VERSION=2025.6.1
 ARG RUST_EXT_VERSION=0.3.2482
 
 RUN mkdir -p /zentara/.vscode-template \
-  && code --no-sandbox --user-data-dir /zentara/.vscode-template --install-extension golang.go@${GOLANG_EXT_VERSION} \
-  && code --no-sandbox --user-data-dir /zentara/.vscode-template --install-extension dbaeumer.vscode-eslint@${ESLINT_EXT_VERSION} \
-  && code --no-sandbox --user-data-dir /zentara/.vscode-template --install-extension redhat.java@${JAVA_EXT_VERSION} \
-  && code --no-sandbox --user-data-dir /zentara/.vscode-template --install-extension ms-python.python@${PYTHON_EXT_VERSION} \
-  && code --no-sandbox --user-data-dir /zentara/.vscode-template --install-extension rust-lang.rust-analyzer@${RUST_EXT_VERSION}
+  && yes | code --no-sandbox --user-data-dir /zentara/.vscode-template --install-extension golang.go@${GOLANG_EXT_VERSION} \
+  && yes | code --no-sandbox --user-data-dir /zentara/.vscode-template --install-extension dbaeumer.vscode-eslint@${ESLINT_EXT_VERSION} \
+  && yes | code --no-sandbox --user-data-dir /zentara/.vscode-template --install-extension redhat.java@${JAVA_EXT_VERSION} \
+  && yes | code --no-sandbox --user-data-dir /zentara/.vscode-template --install-extension ms-python.python@${PYTHON_EXT_VERSION} \
+  && yes | code --no-sandbox --user-data-dir /zentara/.vscode-template --install-extension rust-lang.rust-analyzer@${RUST_EXT_VERSION}
 
 # Copy evals
 ARG EVALS_COMMIT=main
@@ -128,7 +128,7 @@ RUN cp -r /zentara/.vscode-template /zentara/.vscode
 
 # Build the Zentara Code extension
 RUN pnpm vsix -- --out ../bin/zentara-code.vsix \
-    && code --no-sandbox --user-data-dir /zentara/.vscode --install-extension bin/zentara-code.vsix
+    && yes | code --no-sandbox --user-data-dir /zentara/.vscode --install-extension bin/zentara-code.vsix
 
 # Copy entrypoint script
 COPY packages/evals/.docker/entrypoints/runner.sh /usr/local/bin/entrypoint.sh
