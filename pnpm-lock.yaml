@@ -77,15 +77,6 @@ importers:
 
   apps/vscode-e2e:
     devDependencies:
-      '@zentara-code/config-eslint':
-        specifier: workspace:^
-        version: link:../../packages/config-eslint
-      '@zentara-code/config-typescript':
-        specifier: workspace:^
-        version: link:../../packages/config-typescript
-      '@zentara-code/types':
-        specifier: workspace:^
-        version: link:../../packages/types
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -101,6 +92,15 @@ importers:
       '@vscode/test-electron':
         specifier: ^2.4.0
         version: 2.5.2
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../../packages/config-typescript
+      '@zentara-code/types':
+        specifier: workspace:^
+        version: link:../../packages/types
       glob:
         specifier: ^11.0.1
         version: 11.0.3
@@ -161,15 +161,15 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.1.8
         version: 1.2.7(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tanstack/react-query':
+        specifier: ^5.69.0
+        version: 5.80.7(react@18.3.1)
       '@zentara-code/evals':
         specifier: workspace:^
         version: link:../../packages/evals
       '@zentara-code/types':
         specifier: workspace:^
         version: link:../../packages/types
-      '@tanstack/react-query':
-        specifier: ^5.69.0
-        version: 5.80.7(react@18.3.1)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -225,12 +225,6 @@ importers:
         specifier: ^3.25.61
         version: 3.25.61
     devDependencies:
-      '@zentara-code/config-eslint':
-        specifier: workspace:^
-        version: link:../../packages/config-eslint
-      '@zentara-code/config-typescript':
-        specifier: workspace:^
-        version: link:../../packages/config-typescript
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.1.10
@@ -243,6 +237,12 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.5
         version: 18.3.7(@types/react@18.3.23)
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../../packages/config-typescript
       tailwindcss:
         specifier: ^4
         version: 4.1.10
@@ -250,7 +250,7 @@ importers:
         specifier: ^3.2.3
         version: 3.2.4(@types/debug@4.1.12)(@types/node@22.15.29)(@vitest/ui@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0)
 
-  apps/web-zentara-code:
+  apps/web-roo-code:
     dependencies:
       '@radix-ui/react-dialog':
         specifier: ^1.1.14
@@ -258,12 +258,12 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@18.3.23)(react@18.3.1)
-      '@zentara-code/types':
-        specifier: workspace:^
-        version: link:../../packages/types
       '@tanstack/react-query':
         specifier: ^5.79.0
         version: 5.80.7(react@18.3.1)
+      '@zentara-code/types':
+        specifier: workspace:^
+        version: link:../../packages/types
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -316,12 +316,6 @@ importers:
         specifier: ^3.25.61
         version: 3.25.61
     devDependencies:
-      '@zentara-code/config-eslint':
-        specifier: workspace:^
-        version: link:../../packages/config-eslint
-      '@zentara-code/config-typescript':
-        specifier: workspace:^
-        version: link:../../packages/config-typescript
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@3.4.17)
@@ -334,6 +328,12 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.23)
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../../packages/config-typescript
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.5)
@@ -350,15 +350,15 @@ importers:
         specifier: ^3.25.61
         version: 3.25.61
     devDependencies:
+      '@types/node':
+        specifier: 20.x
+        version: 20.17.57
       '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../config-eslint
       '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../config-typescript
-      '@types/node':
-        specifier: 20.x
-        version: 20.17.57
       vitest:
         specifier: ^3.2.3
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.17.57)(@vitest/ui@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0)
@@ -378,18 +378,18 @@ importers:
         specifier: ^3.25.61
         version: 3.25.61
     devDependencies:
-      '@zentara-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@zentara-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: 20.x
         version: 20.17.57
       '@types/vscode':
         specifier: ^1.84.0
         version: 1.100.0
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       vitest:
         specifier: ^3.2.3
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.17.57)(@vitest/ui@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0)
@@ -474,12 +474,6 @@ importers:
         specifier: ^3.25.61
         version: 3.25.61
     devDependencies:
-      '@zentara-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@zentara-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: ^22.15.20
         version: 22.15.29
@@ -489,6 +483,12 @@ importers:
       '@types/ps-tree':
         specifier: ^1.1.6
         version: 1.1.6
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       drizzle-kit:
         specifier: ^0.31.1
         version: 0.31.1
@@ -508,18 +508,18 @@ importers:
         specifier: ^12.0.0
         version: 12.0.0
     devDependencies:
-      '@zentara-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@zentara-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: 20.x
         version: 20.17.57
       '@types/node-ipc':
         specifier: ^9.2.3
         version: 9.2.3
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       vitest:
         specifier: ^3.2.3
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.17.57)(@vitest/ui@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0)
@@ -536,18 +536,18 @@ importers:
         specifier: ^3.25.61
         version: 3.25.61
     devDependencies:
-      '@zentara-code/config-eslint':
-        specifier: workspace:^
-        version: link:../config-eslint
-      '@zentara-code/config-typescript':
-        specifier: workspace:^
-        version: link:../config-typescript
       '@types/node':
         specifier: 20.x
         version: 20.17.57
       '@types/vscode':
         specifier: ^1.84.0
         version: 1.100.0
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../config-typescript
       vitest:
         specifier: ^3.2.3
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.17.57)(@vitest/ui@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0)
@@ -558,15 +558,15 @@ importers:
         specifier: ^3.25.61
         version: 3.25.61
     devDependencies:
+      '@types/node':
+        specifier: 20.x
+        version: 20.17.57
       '@zentara-code/config-eslint':
         specifier: workspace:^
         version: link:../config-eslint
       '@zentara-code/config-typescript':
         specifier: workspace:^
         version: link:../config-typescript
-      '@types/node':
-        specifier: 20.x
-        version: 20.17.57
       tsup:
         specifier: ^8.3.5
         version: 8.5.0(jiti@2.4.2)(postcss@8.5.5)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.0)
@@ -606,6 +606,12 @@ importers:
       '@qdrant/js-client-rest':
         specifier: ^1.14.0
         version: 1.14.0(typescript@5.8.3)
+      '@types/lodash.debounce':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@vscode/codicons':
+        specifier: ^0.0.36
+        version: 0.0.36
       '@zentara-code/cloud':
         specifier: workspace:^
         version: link:../packages/cloud
@@ -618,12 +624,6 @@ importers:
       '@zentara-code/types':
         specifier: workspace:^
         version: link:../packages/types
-      '@types/lodash.debounce':
-        specifier: ^4.0.9
-        version: 4.0.9
-      '@vscode/codicons':
-        specifier: ^0.0.36
-        version: 0.0.36
       async-mutex:
         specifier: ^0.5.0
         version: 0.5.0
@@ -784,15 +784,6 @@ importers:
         specifier: ^3.25.61
         version: 3.25.61
     devDependencies:
-      '@zentara-code/build':
-        specifier: workspace:^
-        version: link:../packages/build
-      '@zentara-code/config-eslint':
-        specifier: workspace:^
-        version: link:../packages/config-eslint
-      '@zentara-code/config-typescript':
-        specifier: workspace:^
-        version: link:../packages/config-typescript
       '@types/clone-deep':
         specifier: ^4.0.4
         version: 4.0.4
@@ -841,6 +832,15 @@ importers:
       '@vscode/vsce':
         specifier: 3.3.2
         version: 3.3.2
+      '@zentara-code/build':
+        specifier: workspace:^
+        version: link:../packages/build
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../packages/config-typescript
       esbuild:
         specifier: '>=0.25.0'
         version: 0.25.5
@@ -925,9 +925,6 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.1.8
         version: 1.2.7(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@zentara-code/types':
-        specifier: workspace:^
-        version: link:../packages/types
       '@tailwindcss/vite':
         specifier: ^4.0.0
         version: 4.1.10(vite@6.3.5(@types/node@20.17.57)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4)(yaml@2.8.0))
@@ -940,6 +937,9 @@ importers:
       '@vscode/webview-ui-toolkit':
         specifier: ^1.4.0
         version: 1.4.0(react@18.3.1)
+      '@zentara-code/types':
+        specifier: workspace:^
+        version: link:../packages/types
       axios:
         specifier: ^1.7.4
         version: 1.10.0
@@ -1067,12 +1067,6 @@ importers:
         specifier: ^3.25.61
         version: 3.25.61
     devDependencies:
-      '@zentara-code/config-eslint':
-        specifier: workspace:^
-        version: link:../packages/config-eslint
-      '@zentara-code/config-typescript':
-        specifier: workspace:^
-        version: link:../packages/config-typescript
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
@@ -1109,6 +1103,12 @@ importers:
       '@vitest/ui':
         specifier: ^3.2.3
         version: 3.2.4(vitest@3.2.4)
+      '@zentara-code/config-eslint':
+        specifier: workspace:^
+        version: link:../packages/config-eslint
+      '@zentara-code/config-typescript':
+        specifier: workspace:^
+        version: link:../packages/config-typescript
       identity-obj-proxy:
         specifier: ^3.0.0
         version: 3.0.0
