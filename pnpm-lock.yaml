@@ -261,6 +261,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.79.0
         version: 5.80.7(react@18.3.1)
+      '@zentara-code/evals':
+        specifier: workspace:^
+        version: link:../../packages/evals
       '@zentara-code/types':
         specifier: workspace:^
         version: link:../../packages/types
@@ -280,8 +283,8 @@ importers:
         specifier: ^8.6.0
         version: 8.6.0(react@18.3.1)
       framer-motion:
-        specifier: ^12.15.0
-        version: 12.18.1(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 12.15.0
+        version: 12.15.0(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lucide-react:
         specifier: ^0.518.0
         version: 0.518.0(react@18.3.1)
@@ -5627,8 +5630,8 @@ packages:
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
 
-  framer-motion@12.18.1:
-    resolution: {integrity: sha512-6o4EDuRPLk4LSZ1kRnnEOurbQ86MklVk+Y1rFBUKiF+d2pCdvMjWVu0ZkyMVCTwl5UyTH2n/zJEJx+jvTYuxow==}
+  framer-motion@12.15.0:
+    resolution: {integrity: sha512-XKg/LnKExdLGugZrDILV7jZjI599785lDIJZLxMiiIFidCsy0a4R2ZEf+Izm67zyOuJgQYTHOmodi7igQsw3vg==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -14898,7 +14901,7 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
-  framer-motion@12.18.1(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  framer-motion@12.15.0(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       motion-dom: 12.18.1
       motion-utils: 12.18.1
