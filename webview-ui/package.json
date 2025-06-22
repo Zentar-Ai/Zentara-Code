@@ -85,7 +85,7 @@
 		"@testing-library/user-event": "^14.6.1",
 		"@types/jest": "^29.0.0",
 		"@types/katex": "^0.16.7",
-		"@types/node": "20.x",
+		"@types/node": "24.x",
 		"@types/react": "^18.3.23",
 		"@types/react-dom": "^18.3.5",
 		"@types/shell-quote": "^1.7.5",
