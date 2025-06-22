@@ -1,7 +1,7 @@
 import cloneDeep from "clone-deep"
 import { serializeError } from "serialize-error"
 import { outputChannel } from "../../zentara_debug/src/vscodeUtils"
-import type { ToolName, ClineAsk, ToolProgressStatus } from "@zentara-code/types"
+import type { ToolName, ClineAsk, ToolProgressStatus, ModeConfig } from "@zentara-code/types"
 import { TelemetryService } from "@zentara-code/telemetry"
 
 import { defaultModeSlug, getModeBySlug } from "../../shared/modes"

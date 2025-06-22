@@ -20,9 +20,18 @@
 		"strict": true,
 		"target": "es2022",
 		"useDefineForClassFields": true,
-		"useUnknownInCatchVariables": false,
-		"types": ["jest"]
+		"useUnknownInCatchVariables": false
 	},
 	"include": [".", "src/**/*", "scripts/**/*", ".changeset/**/*", "src/zentara_debug/**/*"],
-	"exclude": ["node_modules", ".vscode-test", "webview-ui", "node_modules/@types/mocha"]
+	"exclude": [
+		"node_modules",
+		".vscode-test",
+		"webview-ui",
+		"node_modules/@types/mocha",
+		"**/*.test.ts",
+		"**/*.test.js",
+		"**/__tests__/**/*",
+		"**/__mocks__/**/*",
+		"**/jest.setup.ts"
+	]
 }
