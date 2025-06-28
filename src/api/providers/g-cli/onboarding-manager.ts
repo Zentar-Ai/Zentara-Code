@@ -1,5 +1,5 @@
 /**
- * Gemini CLI Onboarding Manager
+ * G CLI Onboarding Manager
  * Handles the proper onboarding flow for Google Code Assist API
  */
 
@@ -11,7 +11,7 @@ export interface OnboardingResult {
 
 export class GCliOnboardingManager {
 	/**
-	 * Setup user following Gemini CLI flow and get project ID
+	 * Setup user following G CLI flow and get project ID
 	 */
 	async setupUserAndGetProjectId(token: string): Promise<string | null> {
 		try {

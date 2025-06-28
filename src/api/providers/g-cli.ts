@@ -131,7 +131,7 @@ export class GCliProvider extends BaseProvider implements SingleCompletionHandle
 			const accessToken = await this.oauthManager.getAccessToken()
 			if (!accessToken) {
 				console.error("[GCliProvider] Failed to obtain access token")
-				const errorMessage = "Failed to obtain access token. Please check your Gemini CLI authentication."
+				const errorMessage = "Failed to obtain access token. Please check your G CLI authentication."
 				yield { type: "text", text: `❌ **Error**: ${errorMessage}` }
 				return
 			}
@@ -141,7 +141,7 @@ export class GCliProvider extends BaseProvider implements SingleCompletionHandle
 			const projectId = await this.oauthManager.getProjectId(accessToken)
 			if (!projectId) {
 				console.error("[GCliProvider] Failed to obtain project ID")
-				const errorMessage = "Failed to obtain project ID. Please check your Gemini CLI configuration."
+				const errorMessage = "Failed to obtain project ID. Please check your G CLI configuration."
 				yield { type: "text", text: `❌ **Error**: ${errorMessage}` }
 				return
 			}
@@ -341,7 +341,7 @@ export class GCliProvider extends BaseProvider implements SingleCompletionHandle
 			console.error("[GCliProvider] Error in createMessageStream:", error)
 			
 			if (error instanceof Error) {
-				throw new Error(`Gemini CLI completion error: ${error.message}`)
+				throw new Error(`G CLI completion error: ${error.message}`)
 			}
 			
 			throw error
@@ -404,7 +404,7 @@ export class GCliProvider extends BaseProvider implements SingleCompletionHandle
 			const message = error.message.toLowerCase()
 			
 			if (message.includes("unauthorized") || message.includes("401")) {
-				return "Authentication failed. Please check your Gemini CLI credentials and ensure you're logged in."
+				return "Authentication failed. Please check your G CLI credentials and ensure you're logged in."
 			}
 			
 			if (message.includes("forbidden") || message.includes("403")) {
@@ -517,7 +517,7 @@ export class GCliProvider extends BaseProvider implements SingleCompletionHandle
 			console.error("[GCliProvider] Error in completePrompt:", error)
 			
 			if (error instanceof Error) {
-				throw new Error(`Gemini CLI completion error: ${error.message}`)
+				throw new Error(`G CLI completion error: ${error.message}`)
 			}
 			
 			throw error

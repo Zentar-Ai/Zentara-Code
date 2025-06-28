@@ -86,7 +86,7 @@ export class GCliOAuthManagerV2 {
 	}
 
 	/**
-	 * Get project ID using proper Gemini CLI onboarding flow
+	 * Get project ID using proper G CLI onboarding flow
 	 */
 	async getProjectId(token: string): Promise<string | null> {
 		try {

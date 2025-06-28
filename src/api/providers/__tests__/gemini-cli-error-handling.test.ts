@@ -83,7 +83,7 @@ describe("GCliProvider Error Handling", () => {
 			expect(result.done).toBe(false)
 			expect(result.value).toEqual({
 				type: "text",
-				text: "❌ **Error**: Authentication failed. Please check your Gemini CLI credentials and ensure you're logged in."
+				text: "❌ **Error**: Authentication failed. Please check your G CLI credentials and ensure you're logged in."
 			})
 		})
 	})
@@ -98,7 +98,7 @@ describe("GCliProvider Error Handling", () => {
 				messages: [{ role: "user", content: [{ type: "text", text: "test" }] }],
 			})
 
-			await expect(messageGenerator.next()).rejects.toThrow("Gemini CLI completion error: Network timeout")
+			await expect(messageGenerator.next()).rejects.toThrow("G CLI completion error: Network timeout")
 		})
 
 		it("should preserve non-Error objects", async () => {
@@ -119,14 +119,14 @@ describe("GCliProvider Error Handling", () => {
 			const originalError = new Error("API rate limit exceeded")
 			mockOAuthManager.getAccessToken.mockRejectedValue(originalError)
 
-			await expect(provider.completePrompt("test prompt")).rejects.toThrow("Gemini CLI completion error: API rate limit exceeded")
+			await expect(provider.completePrompt("test prompt")).rejects.toThrow("G CLI completion error: API rate limit exceeded")
 		})
 
 		it("should throw error with descriptive message for numeric errors", async () => {
 			const originalError = 404
 			mockOAuthManager.getAccessToken.mockRejectedValue(originalError)
 
-			await expect(provider.completePrompt("test prompt")).rejects.toThrow("Gemini CLI completion error: 404")
+			await expect(provider.completePrompt("test prompt")).rejects.toThrow("G CLI completion error: 404")
 		})
 
 		it("should handle errors with gemini-2.5-flash model", async () => {
@@ -141,7 +141,7 @@ describe("GCliProvider Error Handling", () => {
 			const originalError = new Error("Model-specific error")
 			mockOAuthManager.getAccessToken.mockRejectedValue(originalError)
 
-			await expect(flashProvider.completePrompt("test prompt")).rejects.toThrow("Gemini CLI completion error: Model-specific error")
+			await expect(flashProvider.completePrompt("test prompt")).rejects.toThrow("G CLI completion error: Model-specific error")
 		})
 	})
 })

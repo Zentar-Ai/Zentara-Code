@@ -102,8 +102,8 @@ export interface ExtensionMessage {
 		| "gCliAuthError"
 	text?: string
 	payload?: any // Add a generic payload for now, can refine later
-	userEmail?: string // For Gemini CLI OAuth status
-	projectId?: string // For Gemini CLI OAuth project ID
+	userEmail?: string // For G CLI OAuth status
+	projectId?: string // For G CLI OAuth project ID
 	action?:
 		| "chatButtonClicked"
 		| "mcpButtonClicked"

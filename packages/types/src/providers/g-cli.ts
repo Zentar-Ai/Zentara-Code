@@ -1,6 +1,6 @@
 import type { ModelInfo } from "../model.js"
 
-// Gemini CLI Provider - OAuth-based access to Google's Code Assist API
+// G CLI Provider - OAuth-based access to Google's Code Assist API
 export type GCliModelId = keyof typeof gCliModels
 
 export const gCliDefaultModelId: GCliModelId = "gemini-2.5-pro"

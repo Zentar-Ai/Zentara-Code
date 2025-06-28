@@ -1673,7 +1673,7 @@ export const webviewMessageHandler = async (
 			break
 		case "gCliCheckAuth": {
 			try {
-				provider.log("Checking Gemini CLI authentication status...")
+				provider.log("Checking G CLI authentication status...")
 				
 				// Import the OAuth manager
 				const { GCliOAuthManager } = await import("../../api/providers/g-cli/oauth-manager")
@@ -1690,7 +1690,7 @@ export const webviewMessageHandler = async (
 						// Get project ID
 						const projectId = await oauthManager.getProjectId(credentials.access_token)
 						
-						provider.log("Gemini CLI authentication check: valid credentials found")
+						provider.log("G CLI authentication check: valid credentials found")
 						await provider.postMessageToWebview({
 							type: "gCliAuthStatus",
 							success: true,
@@ -1698,21 +1698,21 @@ export const webviewMessageHandler = async (
 							projectId: projectId || "auto-detected"
 						})
 					} else {
-						provider.log("Gemini CLI authentication check: credentials expired")
+						provider.log("G CLI authentication check: credentials expired")
 						await provider.postMessageToWebview({
 							type: "gCliAuthStatus",
 							success: false
 						})
 					}
 				} else {
-					provider.log("Gemini CLI authentication check: no credentials found")
+					provider.log("G CLI authentication check: no credentials found")
 					await provider.postMessageToWebview({
 						type: "gCliAuthStatus",
 						success: false
 					})
 				}
 			} catch (error) {
-				provider.log(`Error checking Gemini CLI auth: ${error}`)
+				provider.log(`Error checking G CLI auth: ${error}`)
 				await provider.postMessageToWebview({
 					type: "gCliAuthStatus",
 					success: false
@@ -1722,7 +1722,7 @@ export const webviewMessageHandler = async (
 		}
 		case "gCliAuthenticate": {
 			try {
-				provider.log("Starting Gemini CLI authentication flow...")
+				provider.log("Starting G CLI authentication flow...")
 				
 				// Import the OAuth manager
 				const { GCliOAuthManager } = await import("../../api/providers/g-cli/oauth-manager")
@@ -1735,7 +1735,7 @@ export const webviewMessageHandler = async (
 					// Get project ID
 					const projectId = await oauthManager.getProjectId(accessToken)
 					
-					provider.log("Gemini CLI authentication successful")
+					provider.log("G CLI authentication successful")
 					await provider.postMessageToWebview({
 						type: "gCliAuthResult",
 						success: true,
@@ -1743,7 +1743,7 @@ export const webviewMessageHandler = async (
 						projectId: projectId || "auto-detected"
 					})
 				} else {
-					provider.log("Gemini CLI authentication failed: no access token")
+					provider.log("G CLI authentication failed: no access token")
 					await provider.postMessageToWebview({
 						type: "gCliAuthResult",
 						success: false,
@@ -1751,7 +1751,7 @@ export const webviewMessageHandler = async (
 					})
 				}
 			} catch (error) {
-				provider.log(`Error during Gemini CLI authentication: ${error}`)
+				provider.log(`Error during G CLI authentication: ${error}`)
 				await provider.postMessageToWebview({
 					type: "gCliAuthResult",
 					success: false,
@@ -1762,7 +1762,7 @@ export const webviewMessageHandler = async (
 		}
 		case "gCliReauthenticate": {
 			try {
-				provider.log("Starting Gemini CLI re-authentication flow...")
+				provider.log("Starting G CLI re-authentication flow...")
 				
 				// Import the OAuth manager
 				const { GCliOAuthManager } = await import("../../api/providers/g-cli/oauth-manager")
@@ -1776,7 +1776,7 @@ export const webviewMessageHandler = async (
 				const credentialsPath = path.join(os.homedir(), ".gemini", "oauth_creds.json")
 				try {
 					await fs.promises.unlink(credentialsPath)
-					provider.log("Cleared existing Gemini CLI credentials")
+					provider.log("Cleared existing G CLI credentials")
 				} catch (error) {
 					// File might not exist, which is fine
 					provider.log("No existing credentials to clear")
@@ -1789,7 +1789,7 @@ export const webviewMessageHandler = async (
 					// Get project ID
 					const projectId = await oauthManager.getProjectId(accessToken)
 					
-					provider.log("Gemini CLI re-authentication successful")
+					provider.log("G CLI re-authentication successful")
 					await provider.postMessageToWebview({
 						type: "gCliAuthResult",
 						success: true,
@@ -1797,7 +1797,7 @@ export const webviewMessageHandler = async (
 						projectId: projectId || "auto-detected"
 					})
 				} else {
-					provider.log("Gemini CLI re-authentication failed: no access token")
+					provider.log("G CLI re-authentication failed: no access token")
 					await provider.postMessageToWebview({
 						type: "gCliAuthResult",
 						success: false,
@@ -1805,7 +1805,7 @@ export const webviewMessageHandler = async (
 					})
 				}
 			} catch (error) {
-				provider.log(`Error during Gemini CLI re-authentication: ${error}`)
+				provider.log(`Error during G CLI re-authentication: ${error}`)
 				await provider.postMessageToWebview({
 					type: "gCliAuthResult",
 					success: false,

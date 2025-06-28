@@ -174,8 +174,8 @@ export interface WebviewMessage {
 		| "switchTab"
 		| "logToDebugConsole" // Added for logging from webview to extension host debug console
 		| "profileThresholds"
-		| "gCliCheckAuth" // Check Gemini CLI authentication status
-		| "gCliAuthenticate" // Start Gemini CLI OAuth flow
+		| "gCliCheckAuth" // Check G CLI authentication status
+		| "gCliAuthenticate" // Start G CLI OAuth flow
 		| "gCliReauthenticate" // Clear credentials and start fresh OAuth flow
 		| "gCliAuthStatus" // Response with authentication status
 		| "gCliAuthResult" // Response with authentication result

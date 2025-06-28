@@ -2,7 +2,7 @@
 
 import { describe, it, expect } from "vitest"
 
-describe("Gemini CLI Provider Types", () => {
+describe("G CLI Provider Types", () => {
   describe("Module Import", () => {
     it("should be able to import the g-cli module when implemented", async () => {
       try {
