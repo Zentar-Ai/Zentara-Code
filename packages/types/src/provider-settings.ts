@@ -18,6 +18,7 @@ export const providerNames = [
 	"vscode-lm",
 	"lmstudio",
 	"gemini",
+	"g-cli",
 	"openai-native",
 	"mistral",
 	"deepseek",
@@ -153,6 +154,13 @@ const geminiSchema = apiModelIdProviderModelSchema.extend({
 	googleGeminiBaseUrl: z.string().optional(),
 })
 
+const gCliSchema = apiModelIdProviderModelSchema.extend({
+	gCliClientId: z.string().optional(),
+	gCliClientSecret: z.string().optional(),
+	gCliCredentialsPath: z.string().optional(),
+	gCliProjectId: z.string().optional(),
+})
+
 const openAiNativeSchema = apiModelIdProviderModelSchema.extend({
 	openAiNativeApiKey: z.string().optional(),
 	openAiNativeBaseUrl: z.string().optional(),
@@ -217,6 +225,7 @@ export const providerSettingsSchemaDiscriminated = z.discriminatedUnion("apiProv
 	vsCodeLmSchema.merge(z.object({ apiProvider: z.literal("vscode-lm") })),
 	lmStudioSchema.merge(z.object({ apiProvider: z.literal("lmstudio") })),
 	geminiSchema.merge(z.object({ apiProvider: z.literal("gemini") })),
+	gCliSchema.merge(z.object({ apiProvider: z.literal("g-cli") })),
 	openAiNativeSchema.merge(z.object({ apiProvider: z.literal("openai-native") })),
 	mistralSchema.merge(z.object({ apiProvider: z.literal("mistral") })),
 	deepSeekSchema.merge(z.object({ apiProvider: z.literal("deepseek") })),
@@ -243,6 +252,7 @@ export const providerSettingsSchema = z.object({
 	...vsCodeLmSchema.shape,
 	...lmStudioSchema.shape,
 	...geminiSchema.shape,
+	...gCliSchema.shape,
 	...openAiNativeSchema.shape,
 	...mistralSchema.shape,
 	...deepSeekSchema.shape,

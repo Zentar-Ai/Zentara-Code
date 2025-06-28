@@ -97,8 +97,13 @@ export interface ExtensionMessage {
 		| "codebaseIndexConfig"
 		| "marketplaceInstallResult"
 		| "marketplaceData"
+		| "gCliAuthStatus"
+		| "gCliAuthResult"
+		| "gCliAuthError"
 	text?: string
 	payload?: any // Add a generic payload for now, can refine later
+	userEmail?: string // For Gemini CLI OAuth status
+	projectId?: string // For Gemini CLI OAuth project ID
 	action?:
 		| "chatButtonClicked"
 		| "mcpButtonClicked"

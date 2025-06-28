@@ -14,6 +14,7 @@ import {
 	openAiNativeDefaultModelId,
 	anthropicDefaultModelId,
 	geminiDefaultModelId,
+	gCliDefaultModelId,
 	deepSeekDefaultModelId,
 	mistralDefaultModelId,
 	xaiDefaultModelId,
@@ -38,6 +39,7 @@ import {
 	Chutes,
 	DeepSeek,
 	Gemini,
+	GCli,
 	Glama,
 	Groq,
 	LMStudio,
@@ -256,6 +258,7 @@ const ApiOptions = ({
 				anthropic: { field: "apiModelId", default: anthropicDefaultModelId },
 				"openai-native": { field: "apiModelId", default: openAiNativeDefaultModelId },
 				gemini: { field: "apiModelId", default: geminiDefaultModelId },
+				"g-cli": { field: "apiModelId", default: gCliDefaultModelId },
 				deepseek: { field: "apiModelId", default: deepSeekDefaultModelId },
 				mistral: { field: "apiModelId", default: mistralDefaultModelId },
 				xai: { field: "apiModelId", default: xaiDefaultModelId },
@@ -405,6 +408,10 @@ const ApiOptions = ({
 
 			{selectedProvider === "gemini" && (
 				<Gemini apiConfiguration={apiConfiguration} setApiConfigurationField={setApiConfigurationField} />
+			)}
+
+			{selectedProvider === "g-cli" && (
+				<GCli apiConfiguration={apiConfiguration} setApiConfigurationField={setApiConfigurationField} />
 			)}
 
 			{selectedProvider === "openai" && (

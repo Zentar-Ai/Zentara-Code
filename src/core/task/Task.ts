@@ -1810,6 +1810,15 @@ export class Task extends EventEmitter<ClineEvents> {
 					errorMsg = "Unknown error"
 				}
 
+				// Show the error using the same mechanism as manual retry so it appears in the WebUI
+				// We'll create an api_req_failed message but then automatically proceed with retry
+				await this.addToClineMessages({
+					ts: Date.now(),
+					type: "ask",
+					ask: "api_req_failed",
+					text: errorMsg,
+				})
+
 				const baseDelay = requestDelaySeconds || 5
 				let exponentialDelay = Math.ceil(baseDelay * Math.pow(2, retryAttempt))
 

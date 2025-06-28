@@ -358,6 +358,85 @@ describe("useSelectedModel", () => {
 		})
 	})
 
+	describe("g-cli provider", () => {
+		it("should return g-cli default model when no apiModelId is configured", () => {
+			mockUseRouterModels.mockReturnValue({
+				data: {
+					openrouter: {},
+					requesty: {},
+					glama: {},
+					unbound: {},
+					litellm: {},
+				},
+				isLoading: false,
+				isError: false,
+			} as any)
+
+			mockUseOpenRouterModelProviders.mockReturnValue({
+				data: {},
+				isLoading: false,
+				isError: false,
+			} as any)
+
+			const apiConfiguration: ProviderSettings = {
+				apiProvider: "g-cli",
+			}
+
+			const wrapper = createWrapper()
+			const { result } = renderHook(() => useSelectedModel(apiConfiguration), { wrapper })
+
+			expect(result.current.provider).toBe("g-cli")
+			expect(result.current.id).toBe("gemini-2.5-pro")
+			expect(result.current.info).toEqual({
+				maxTokens: 8192,
+				contextWindow: 1_048_576,
+				supportsImages: true,
+				supportsPromptCache: false,
+				inputPrice: 0,
+				outputPrice: 0,
+			})
+		})
+
+		it("should return configured model when apiModelId is set", () => {
+			mockUseRouterModels.mockReturnValue({
+				data: {
+					openrouter: {},
+					requesty: {},
+					glama: {},
+					unbound: {},
+					litellm: {},
+				},
+				isLoading: false,
+				isError: false,
+			} as any)
+
+			mockUseOpenRouterModelProviders.mockReturnValue({
+				data: {},
+				isLoading: false,
+				isError: false,
+			} as any)
+
+			const apiConfiguration: ProviderSettings = {
+				apiProvider: "g-cli",
+				apiModelId: "gemini-2.5-flash",
+			}
+
+			const wrapper = createWrapper()
+			const { result } = renderHook(() => useSelectedModel(apiConfiguration), { wrapper })
+
+			expect(result.current.provider).toBe("g-cli")
+			expect(result.current.id).toBe("gemini-2.5-flash")
+			expect(result.current.info).toEqual({
+				maxTokens: 8192,
+				contextWindow: 1_048_576,
+				supportsImages: true,
+				supportsPromptCache: false,
+				inputPrice: 0,
+				outputPrice: 0,
+			})
+		})
+	})
+
 	describe("default behavior", () => {
 		it("should return anthropic default when no configuration is provided", () => {
 			mockUseRouterModels.mockReturnValue({

@@ -15,6 +15,7 @@ import {
 	OllamaHandler,
 	LmStudioHandler,
 	GeminiHandler,
+	GCliHandler,
 	OpenAiNativeHandler,
 	DeepSeekHandler,
 	MistralHandler,
@@ -82,6 +83,8 @@ export function buildApiHandler(configuration: ProviderSettings): ApiHandler {
 			return new LmStudioHandler(options)
 		case "gemini":
 			return new GeminiHandler(options)
+		case "g-cli":
+			return new GCliHandler(options)
 		case "openai-native":
 			return new OpenAiNativeHandler(options)
 		case "deepseek":

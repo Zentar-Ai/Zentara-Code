@@ -100,7 +100,7 @@ describe("AuthService", () => {
 		vi.mocked(RefreshTimer).mockImplementation(() => mockTimer as unknown as RefreshTimer)
 
 		// Setup config mocks - use production URL by default to maintain existing test behavior
-		vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://clerk.zentaracode.com")
+		vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://clerk.zentar.ai")
 		vi.mocked(Config.getZentaraCodeApiUrl).mockReturnValue("https://api.test.com")
 
 		// Setup utils mock
@@ -377,7 +377,7 @@ describe("AuthService", () => {
 			expect(mockContext.secrets.delete).toHaveBeenCalledWith("clerk-auth-credentials")
 			expect(mockContext.globalState.update).toHaveBeenCalledWith("clerk-auth-state", undefined)
 			expect(mockFetch).toHaveBeenCalledWith(
-				"https://clerk.zentaracode.com/v1/client/sessions/test-session/remove",
+				"https://clerk.zentar.ai/v1/client/sessions/test-session/remove",
 				expect.objectContaining({
 					method: "POST",
 					headers: expect.objectContaining({
@@ -912,7 +912,7 @@ describe("AuthService", () => {
 	describe("auth credentials key scoping", () => {
 		it("should use default key when getClerkBaseUrl returns production URL", async () => {
 			// Mock getClerkBaseUrl to return production URL
-			vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://clerk.zentaracode.com")
+			vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://clerk.zentar.ai")
 
 			const service = new AuthService(mockContext as unknown as vscode.ExtensionContext, mockLog)
 			const credentials = { clientToken: "test-token", sessionId: "test-session" }
