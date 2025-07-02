@@ -1,4 +1,4 @@
-# AI Coder and AI debugger two-in-one: Zentara Code
+# AI Code and AI debug two-in-one: Zentara Code
 
 **Zentara Code** is your all-in-one AI coding assistant and AI debugger, seamlessly integrated into Visual Studio Code. Whether you're writing new features or fixing bugs, Zentara Code streamlines the process by combining intelligent code generation with powerful runtime AI debugging capabilities.
 
