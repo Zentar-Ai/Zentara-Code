@@ -111,11 +111,24 @@ Zentara Code is a VS Code extension. Here's how you can get started:
 
 **1. Install from VS Code Marketplace (Recommended for Users)**
 
+- Install latest VS Code. The extension is build for VS Code 1.84 and later
 - Open VS Code.
+- Install the neccesary language extension and language debugger extension. For example for Python, just install Microsoft Python extension, it will automatically install debugpy debugger. Check  the debugger manually on any of your script to make sure it work.
+-  For Zentara Code to effectively debug Python projects, especially those using Conda environments or specific `pytest` installations, ensure the correct Python interpreter is configured in your VS Code settings (`.vscode/settings.json`):
+
+```json
+{
+	"python.defaultInterpreterPath": "/path/to/your/conda/env/bin/python"
+}
+```
+
+Replace `/path/to/your/conda/env/bin/python` with the actual path to your Python interpreter.
+- For python pytest tests: install pytest. If you would like to install pytest in a conda enviroment,remember to point the python interperter in settings.json(see the above point) 
 - Go to the Extensions view (Ctrl+Shift+X or Cmd+Shift+X).
 - Search for "Zentara Code".
 - Click "Install".
 - Once installed, Zentara Code will be available to assist you.
+  
 
 For more detailed installation instruction, please visit https://zentar.ai, click on the "Install for free" button.
 
