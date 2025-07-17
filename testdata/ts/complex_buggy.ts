@@ -1,4 +1,5 @@
-/**
+function processUserData(users: any[], minScoreThreshold: number): string {
+	/**
  * Processes an array of user data objects.
  *
  * Input:
@@ -22,7 +23,6 @@
  * 5. Calculate the average score.
  * 6. Format and return the summary string.
  */
-function processUserData(users: any[], minScoreThreshold: number): string {
 	// Error 1: Loose comparison allows null/undefined users array
 	if (users == null || !Array.isArray(users) || users.length == 0) {
 		return "Error: Invalid user data provided."

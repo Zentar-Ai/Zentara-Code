@@ -571,15 +571,16 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 			configName = configToUse.name
 		} else if (program?.endsWith(".ts")) {
 			configToUse = {
-				name: `TS‑Node: ${pfile}`,
-				type: "pwa-node",
+				name: `Debug TypeScript: ${pfile}`,
+				type: "node",
 				request: "launch",
-				runtimeArgs: ["-r", "ts-node/register"],
+				runtimeExecutable: "tsx",
 				program,
+				sourceMaps: true,
 				args: params.args ?? [],
 				console: "internalConsole",
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath ?? (program ? path.dirname(program) : undefined),
-				stopOnEntry: false, // Defaulting to true as per original
+				stopOnEntry: false,
 				env: params.env,
 			} as vscode.DebugConfiguration
 			configName = configToUse.name

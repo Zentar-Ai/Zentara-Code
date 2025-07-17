@@ -24,6 +24,25 @@
 				"group": "tasks",
 				"order": 1
 			}
+		},
+		{
+			"name": "Debug TypeScript: complex_buggy.ts",
+			"type": "node",
+			"request": "launch",
+			"runtimeExecutable": "node",
+			"runtimeArgs": [
+				"--loader=tsx"
+			],
+			"args": [
+				"${workspaceFolder}/testdata/ts/complex_buggy.ts"
+			],
+			"sourceMaps": true,
+			"outFiles": [
+				"${workspaceFolder}/dist/**/*.js"
+			],
+			"env": {
+				"NODE_ENV": "development"
+			}
 		}
 	]
 }

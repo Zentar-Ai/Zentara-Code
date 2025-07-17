@@ -43,6 +43,7 @@
 		"rimraf": "^6.0.1",
 		"tiktoken": "^1.0.21",
 		"tree-sitter-wasms": "^0.1.11",
+		"tsx": "^4.19.3",
 		"turbo": "^2.5.3",
 		"typescript": "^5.4.5",
 		"web-tree-sitter": "^0.22.6"
