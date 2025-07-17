@@ -338,8 +338,8 @@ export async function _executeDapRequestAndProcessOutcome(
 		await pollUntilStateChange(activeSession, initialTopFrameForPolling, operationName, pollTimeoutForStateChange)
 		outputChannel.appendLine(`[${operationName}] Polling check complete.`)
 
-		const currentActiveSessionAfterPoll = getActiveSession()
-		if (!currentActiveSessionAfterPoll || currentActiveSessionAfterPoll.id !== activeSession.id) {
+ 		const currentActiveSessionAfterPoll = getActiveSession()
+/*		if (!currentActiveSessionAfterPoll || currentActiveSessionAfterPoll.id !== activeSession.id) {
 			outputChannel.appendLine(
 				`[${operationName}] Session terminated after polling check. Allowing time for final output capture...`,
 			)
@@ -358,7 +358,7 @@ export async function _executeDapRequestAndProcessOutcome(
 				operationName,
 			)
 		}
-
+ */
 		// outputChannel.appendLine(`[${operationName}] DAP Stop event received (Reason: ${bodyToProcess?.reason}). Checking for more recent exception...`); // Already logged similar
 		outputChannel.appendLine(
 			`[${operationName}] Calling processStopEvent with body (Reason: ${bodyToProcess?.reason})...`,

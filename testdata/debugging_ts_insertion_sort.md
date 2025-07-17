@@ -1,6 +1,6 @@
 # Debugging Tools Demonstration Script (for LLM) - TypeScript Insertion Sort
 
-This document outlines a step-by-step demonstration of runtime debugging capabilities using a TypeScript script implementing the Insertion Sort algorithm. The target audience for this demonstration is an LLM that will be guided through the debugging process.
+This document outlines a step-by-step demonstration of runtime debugging capabilities using a TypeScript script implementing the Insertion Sort algorithm. The target audience for this demonstration is an LLM that will be guided through the debugging process. Zentara will automatically use `tsx` to execute the TypeScript code, so no compilation is needed.
 
 ## Objective
 
@@ -9,34 +9,43 @@ To showcase the use of various debugging concepts such as launching a debug sess
 ## Prerequisites
 
 - The file [`testdata/insertion_sort_buggy.ts`](testdata/insertion_sort_buggy.ts) must exist in the workspace. This file contains an insertion sort algorithm with simple assertion-based tests.
-- A TypeScript compiler (`tsc`) must be available to compile the `.ts` file to `.js`.
-- The LLM must have access to and knowledge of how to use debugging tools for Node.js/TypeScript.
+- `npm` and `tsx` must be installed. To install `tsx`, run the following command:
+  ```bash
+  npm install --save-dev tsx
+  ```
+  You can also install it globally if you prefer:
+  ```bash
+  npm install -g tsx
+  ```
+- The LLM must have access to and knowledge of how to use debugging tools for TypeScript.
 
 ## Demonstration Steps
 
-### 1. Prepare the Debugging Target
+### 1. Manual Debugging Setup
 
-**Instruction for LLM:**
+First, verify that the script can be run manually using `tsx`. The `launch.json` file in your VS Code setup should include a configuration similar to the following:
 
-Your first step is to compile the TypeScript file to JavaScript. Debugging is typically performed on the compiled JavaScript output.
-
-_Action:_ Execute the TypeScript compiler to compile [`testdata/insertion_sort_buggy.ts`](testdata/insertion_sort_buggy.ts).
-
-```bash
-tsc testdata/insertion_sort_buggy.ts
+```json
+ {
+  "type": "node",
+  "request": "launch",
+  "name": "Debug TypeScript",
+  "runtimeExecutable": "tsx",
+  "program": "${workspaceFolder}/testdata/insertion_sort_buggy.debug.ts",
+  "sourceMaps": true
+}
 ```
 
-This will create `testdata/insertion_sort_buggy.js`.
-
-### 2. Launch a Debugging Session
+### 2. Launch a Debugging Session with Zentara
 
 **Instruction for LLM:**
 
-Now, start a debugging session for the compiled JavaScript file: [`testdata/insertion_sort_buggy.js`](testdata/insertion_sort_buggy.js).
+To preserve the original buggy file, first create a copy of [`testdata/insertion_sort_buggy.ts`](testdata/insertion_sort_buggy.ts) by using command line only (do not use write file tool) and name it `testdata/insertion_sort_buggy.debug.ts`. All debugging activities will be performed on this new file.
+
+Now, start a debugging session for the copied file: [`testdata/insertion_sort_buggy.debug.ts`](testdata/insertion_sort_buggy.debug.ts).
 Configure the debugger to stop at the very beginning of the script's execution (stop on entry).
 
-_Action:_ Launch the specified JavaScript file in a debugging session with `stopOnEntry` enabled.
-
+_Action:_ First, copy the file. Then, launch the new TypeScript file in a debugging session
 ### 3. Initial Run and Observing Failures
 
 **Instruction for LLM:**
@@ -52,7 +61,7 @@ _Action:_ Continue program execution and report the results.
 
 **General Instructions for LLM for this phase:**
 
-Based on the assertion failures from the initial run, you will now use your debugging capabilities to pinpoint the cause of a specific failure. Focus on runtime analysis using the debugger to understand _why_ it's failing.
+Based on the assertion failures from the initial run, you will now use your debugging capabilities to pinpoint the cause of a specific failure. Focus on runtime analysis using the debugger to understand *why* it's failing.
 
 **Example Scenario (to be adapted based on actual first error):**
 
@@ -62,7 +71,7 @@ Let's assume a failure occurred related to the first test case (`arr1`).
 
 It appears a failure occurred related to the first test case. Let's investigate this.
 
-1.  Restart the debugging session for [`testdata/insertion_sort_buggy.js`](testdata/insertion_sort_buggy.js), again stopping at the entry point.
+1.  Restart the debugging session for [`testdata/insertion_sort_buggy.debug.ts`](testdata/insertion_sort_buggy.debug.ts), again stopping at the entry point.
 2.  Identify the line number where the `insertionSort` function begins and set a breakpoint there.
 3.  Identify the line number within the `runTests` function where `insertionSort` is called for the first test case (`arr1`) and set a breakpoint there.
 4.  Continue execution until the breakpoint (related to the first test case call) is hit.
@@ -114,4 +123,4 @@ Based on your runtime diagnosis, you might be asked to propose a minimal code ch
 
 ## Conclusion
 
-This demonstration should highlight how an LLM can utilize runtime debugging tools to systematically analyze code execution, inspect state, and pinpoint the root causes of errors in a TypeScript/JavaScript context. This is a critical capability for advanced code understanding and assistance in software development.
+This demonstration should highlight how an LLM can utilize runtime debugging tools to systematically analyze code execution, inspect state, and pinpoint the root causes of errors in a TypeScript context. This is a critical capability for advanced code understanding and assistance in software development.

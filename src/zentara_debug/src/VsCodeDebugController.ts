@@ -438,10 +438,11 @@ export class VsCodeDebugController implements IDebugController {
 
 	private async _handleDapStopEvent(eventData: { sessionId: string; body: any }): Promise<void> {
 		const activeSession = getActiveSession()
-		if (!activeSession || activeSession.id !== eventData.sessionId) {
+
+/* 		if (!activeSession || activeSession.id !== eventData.sessionId) {
 			clearCurrentTopFrameId() // Clear if session is not active or doesn't match
 			return
-		}
+		} */
 
 		//outputChannel.appendLine(
 		//	`VsCodeDebugController: Handling DAP stop event for session ${eventData.sessionId}. Reason: ${eventData.body?.reason}`,

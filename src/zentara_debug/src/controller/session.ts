@@ -216,18 +216,21 @@ export async function waitForDapStop(
 	//outputChannel.appendLine(`[waitForDapStop] Waiting for DAP stop or termination on session ${session.id}...`)
 	const sessionId = session.id // Store ID for comparison
 
+
+	// Stop for any session that has stop events already captured as there are many concurrent sessions and we do not know which one to monitor
 	// Initial check: if the session is already inactive, resolve immediately.
-	const currentTrackedSession = getActiveSession() // Use our tracked session for consistency
+/* 	const currentTrackedSession = getActiveSession() // Use our tracked session for consistency
 	if (!currentTrackedSession || currentTrackedSession.id !== sessionId) {
 		outputChannel.appendLine(
 			`[waitForDapStop] Session ${sessionId} appears terminated or is not the tracked active session (currentTracked: ${currentTrackedSession?.id}). Resolving as not stopped.`,
 		)
 		return Promise.resolve({ stopped: false }) // Indicate termination or mismatch
 	}
-
+ */
 	// Check if the stop event for this session has ALREADY been captured globally
 	// lastKnownStopEventSessionId and lastKnownStopEventBody are imported from '../debug/events'
-	if (lastKnownStopEventSessionId === sessionId && lastKnownStopEventBody) {
+	//if (lastKnownStopEventSessionId === sessionId && lastKnownStopEventBody) {
+	if (lastKnownStopEventBody) {
 		// outputChannel.appendLine(
 		// 	`[waitForDapStop] Found PRE-EXISTING stop event for session ${sessionId}. Reason: ${lastKnownStopEventBody.reason}.`,
 		// )
@@ -273,16 +276,26 @@ export async function waitForDapStop(
 		// Listener for our internal DAP 'stopped' event
 		const dapStoppedListener = (eventData: { sessionId: string; body: any }) => {
 			if (finished) return
-			if (eventData.sessionId === sessionId) {
-				finished = true
-				const elapsed = Date.now() - startTime
-				// Log the received event body with timing info
-				// outputChannel.appendLine(
-				// 	`[waitForDapStop] Received internal DAP_STOPPED_EVENT after ${elapsed}ms for session ${sessionId}. Reason: ${eventData.body?.reason}. Started at ${new Date(startTime).toISOString()}, now ${new Date().toISOString()}. Body: ${stringifySafe(eventData.body)}`,
-				// )
-				disposeListeners()
-				resolve({ stopped: true, eventBody: eventData.body }) // Resolve with true and the event body
-			}
+			// if (eventData.sessionId === sessionId) {
+			// 	finished = true
+			// 	const elapsed = Date.now() - startTime
+			// 	// Log the received event body with timing info
+			// 	// outputChannel.appendLine(
+			// 	// 	`[waitForDapStop] Received internal DAP_STOPPED_EVENT after ${elapsed}ms for session ${sessionId}. Reason: ${eventData.body?.reason}. Started at ${new Date(startTime).toISOString()}, now ${new Date().toISOString()}. Body: ${stringifySafe(eventData.body)}`,
+			// 	// )
+			// 	disposeListeners()
+			// 	resolve({ stopped: true, eventBody: eventData.body }) // Resolve with true and the event body
+			// }
+			// Listen for the internal DAP 'stopped' event regardless of session ID
+			finished = true
+			const elapsed = Date.now() - startTime
+			// Log the received event body with timing info
+			// outputChannel.appendLine(
+			// 	`[waitForDapStop] Received internal DAP_STOPPED_EVENT after ${elapsed}ms for session ${sessionId}. Reason: ${eventData.body?.reason}. Started at ${new Date(startTime).toISOString()}, now ${new Date().toISOString()}. Body: ${stringifySafe(eventData.body)}`,
+			// )
+			disposeListeners()
+			resolve({ stopped: true, eventBody: eventData.body }) // Resolve with true and the event body
+			
 		}
 		debugEvents.on(DAP_STOPPED_EVENT, dapStoppedListener)
 
@@ -357,10 +370,11 @@ export function getActiveSession(): vscode.DebugSession | undefined {
 			)
 		} else {
 			outputChannel.appendLine(
-				`[getActiveSession] Returning tracked session ${activeDebugSession.id} (VS Code active: ${vscodeActive?.id ?? "none"}).`,
+				`[getActiveSession] Old tracked session ${activeDebugSession.id} update to new VS Code active: ${vscodeActive?.id ?? "none"}).`,
 			)
 			// Consider if we should clear activeDebugSession here if VS Code doesn't know about it anymore?
 			// For now, let's trust our explicit tracking via launch/quit/terminate listener.
+			activeDebugSession = vscodeActive // Update to VS Code's active session if it exists
 		}
 	} else {
 		outputChannel.appendLine(`[getActiveSession] No tracked session. Returning undefined.`)
