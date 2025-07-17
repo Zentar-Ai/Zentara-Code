@@ -10,7 +10,15 @@
 			"type": "extensionHost",
 			"request": "launch",
 			"runtimeExecutable": "${execPath}",
-			"args": ["--extensionDevelopmentPath=${workspaceFolder}/src"],
+			// The first argument in the `args` array is the path to the folder or workspace to open.
+			// You can change it to open a different workspace.
+			// I've set it to open your current workspace, but you can change it to any folder path.
+			"args": [
+				// Path to the workspace to open in the extension host
+				"${workspaceFolder}",
+				// Path to the extension to load
+				"--extensionDevelopmentPath=${workspaceFolder}/src"
+			],
 			"sourceMaps": true,
 			"outFiles": ["${workspaceFolder}/src/dist/**/*.js"],
 			"preLaunchTask": "${defaultBuildTask}",
@@ -26,23 +34,13 @@
 			}
 		},
 		{
-			"name": "Debug TypeScript: complex_buggy.ts",
+			"name": "Debug TypeScript",
 			"type": "node",
 			"request": "launch",
-			"runtimeExecutable": "node",
-			"runtimeArgs": [
-				"--loader=tsx"
-			],
-			"args": [
-				"${workspaceFolder}/testdata/ts/complex_buggy.ts"
-			],
+			"runtimeExecutable": "tsx",
 			"sourceMaps": true,
-			"outFiles": [
-				"${workspaceFolder}/dist/**/*.js"
-			],
-			"env": {
-				"NODE_ENV": "development"
-			}
+			"program": "testdata/ts/complex_buggy.ts",
+
 		}
 	]
 }

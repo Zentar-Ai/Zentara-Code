@@ -457,7 +457,12 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 		}
 	} else if (folderToUse) {
 		outputChannel.appendLine(
-			`[Session] No config name provided or no workspace folder. Will attempt dynamic config.`,
+			`[Session] No config name provided . Will attempt dynamic config.`,
+		)
+	} else
+	{
+		outputChannel.appendLine(
+			`[Session]  No workspace folder. Will attempt dynamic config.`,
 		)
 	}
 	// --- End Find Config ---

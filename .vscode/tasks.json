@@ -69,6 +69,19 @@
 				"group": "watch",
 				"reveal": "always"
 			}
+		},
+		{
+			"label": "build-extension",
+			"type": "shell",
+			"command": "cd src && pnpm bundle",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"presentation": {
+				"reveal": "silent"
+			},
+			"problemMatcher": []
 		}
 	]
 }

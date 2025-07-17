@@ -113,7 +113,8 @@ Zentara Code is a VS Code extension. Here's how you can get started:
 
 - Install latest VS Code. The extension is build for VS Code 1.84 and later
 - Open VS Code.
-- Install the neccesary language extension and language debugger extension. For example for Python, just install Microsoft Python extension, it will automatically install debugpy debugger. Check  the debugger manually on any of your script to make sure it work.
+- Install the necessary language extension and language debugger extension. For example for Python, just install Microsoft Python extension, it will automatically install debugpy debugger. Check the debugger manually on any of your script to make sure it works.
+- Check the launch.json so that debugger can launch manually on the file you want to debug without Zentara. You can also ask Zentara to add, edit launch.json to make it works with the script. For TypeScript files, install npm and tsx (by running `npm install -g tsx`).
 -  For Zentara Code to effectively debug Python projects, especially those using Conda environments or specific `pytest` installations, ensure the correct Python interpreter is configured in your VS Code settings (`.vscode/settings.json`):
 
 ```json
@@ -164,7 +165,6 @@ If you want to contribute or run the latest development version:
 
 ## Quick Example
 
-**_Important_**: This extension has been validated with Google Gemini 2.5 Pro (build 0506). Other models are not fully supported because they cannot invoke the function tool reliably.
 
 Here are a few examples of how you can use Zentara Code to debug different types of projects.
 The example scripts (`quicksort_buggy.py`, `test_quicksort_pytest.py`, `merge_sort_buggy.js`, `insertion_sort_buggy.ts`, etc.) mentioned in these tutorials can be found in the `testdata/` directory of this repository.
