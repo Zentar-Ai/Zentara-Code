@@ -582,7 +582,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				name: `Python: ${pfile}`,
 				type: "python",
 				request: "launch",
-				program,
+				program: program,
 				console: "internalConsole",
 				justMyCode: true,
 				cwd: params.cwd ?? workspaceFolder?.uri.fsPath ?? (program ? path.dirname(program) : undefined),
@@ -597,7 +597,7 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 				type: "node",
 				request: "launch",
 				runtimeExecutable: "tsx",
-				program,
+				program: program, // Use tsx to run TypeScript files directly
 				sourceMaps: true,
 				args: params.args ?? [],
 				console: "internalConsole",
@@ -642,6 +642,20 @@ export async function launchSession(params: LaunchParams): Promise<LaunchResult>
 	configToUse.cwd = params.cwd ?? configToUse.cwd ?? workspaceFolder?.uri.fsPath
 	configToUse.args = params.args ?? configToUse.args ?? []
 	configToUse.env = { ...(configToUse.env || {}), ...(params.env || {}) }
+
+	// Apply any other overrides from params
+	for (const key in params) {
+		if (Object.prototype.hasOwnProperty.call(params, key)) {
+			// These are already handled above with specific logic
+			if (key === "cwd" || key === "args" || key === "env") {
+				continue
+			}
+			const value = params[key as keyof typeof params]
+			if (value !== undefined) {
+				(configToUse as any)[key] = value
+			}
+		}
+	}
 	// stopOnEntry: if params.stopOnEntry is defined, use it. Otherwise, use configToUse.stopOnEntry. If that's also undefined, default to true.
 	//configToUse.stopOnEntry = params.stopOnEntry !== undefined ? params.stopOnEntry : (configToUse.stopOnEntry !== undefined ? configToUse.stopOnEntry : true);
 	configToUse.stopOnEntry = false // Force stopOnEntry to false for all sessions as per original logic. Instead use setBreakpoint for entry-like stops, so that it stops at our program, not in the plugin internals.

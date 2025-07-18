@@ -4,9 +4,15 @@ export function getDebugLaunchToolDescription(args: ToolArgs): string {
 	return `## debug_launch – Start a New Debugging Session
 
 Description:
-The "debug_launch" tool starts a new debugging session for a specified program or test. You can either:
-1. Specify a "program" path to create a dynamic debug configuration, OR
-2. Reference a "configName" from the workspace's launch.json file to use a pre-configured debug setup
+The "debug_launch" tool starts a new debugging session for a specified program or test.
+
+If user provide a "program" without a "configName", you will first attempt to find the most appropriate configuration in user \`launch.json\` based on the file type and content. If a suitable configuration is found, you will use it, overriding its program path with the one user provided.
+
+If no suitable configuration is found in \`launch.json\`:
+- For Python, TypeScript, and JavaScript files, Zentara software will generate a dynamic configuration automatically, so just provide the "program" path.
+- For other file types, you will create a new configuration in \`launch.json\` to enable debugging for that file type.
+
+User can also explicitly specify a "configName" to use a pre-configured setup from user \`launch.json\`.
 
 It allows you to control the initial state of the debugger, passing specific arguments.
 When using a program path, the debugger will always stop at the first line of the program, so you can set breakpoints and inspect variables from the very beginning.
@@ -19,7 +25,7 @@ Always use debug_restart tool when you want to launch the session for the same f
 3️⃣ The JSON object MUST contain either:
    - A "program" key with the path to the executable or test file/directory, OR
    - A "configName" key referencing a configuration in launch.json
-4️⃣ Optionally, include other supported keys like "mode", "args", "cwd", or "env" in the JSON object to customize the launch.
+4️⃣ Optionally, include any other keys from a VS Code launch configuration (e.g., "request", "runtimeExecutable", "sourceMaps", "preLaunchTask") to customize the launch.
 5️⃣ Ensure the <debug_launch> tag is correctly closed.
 
 ⚠️ **Common Breakers**
@@ -54,6 +60,10 @@ NEVER MISS the "program" key in the JSON when not using configName. NEVER TRUNCA
     -   Example: \`"cwd": "src/app"\`
 -   "env" (object, optional): Environment variables to set for the debugged process. Each key-value pair should be part of this JSON object.
     -   Example: \`"env": {"PYTHONPATH": "/custom/lib", "DEBUG_MODE": "1"}\`
+
+
+-   **Other Parameters**: In addition to the parameters above, you can optionally include any other property from a standard VS Code launch configuration to customize the debug session.
+    -   Examples: \`"request": "attach"\`, \`"runtimeExecutable": "tsx"\`, \`"sourceMaps": true\`, \`"preLaunchTask": "npm: build"\`, \`"resolveSourceMapLocations": ["**", "!**/node_modules/**"]\`
 
 
 ### Examples:

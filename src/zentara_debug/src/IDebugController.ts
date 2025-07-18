@@ -41,13 +41,16 @@ export interface VariableInfo {
 // --- Input Parameter Types ---
 
 export interface LaunchParams {
-	program: string // Path to the program to launch
+	[key: string]: any // Allow any other debug configuration properties
+	program?: string // Path to the program to launch. Can be optional if using configName or for attach requests.
 	args?: string[]
 	cwd?: string
 	env?: { [key: string]: string | null }
 	configName?: string // Optional name of a launch configuration in launch.json
 	stopOnEntry?: boolean // Whether to stop at the entry point of the program
 	mode?: string // Optional mode (e.g., 'pytest')
+	type?: string // e.g., 'python', 'node'
+	request?: "launch" | "attach"
 }
 
 export interface SetBreakpointParams {
