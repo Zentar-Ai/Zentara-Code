@@ -292,18 +292,19 @@ This detailed inspection, especially of the `merge` function's logic, will help 
 
 ### 4. AI Debugging a TypeScript Script
 
-This tutorial shows debugging a TypeScript script, which involves a compilation step.
+This tutorial shows how to debug a TypeScript script directly using `tsx`, which executes TypeScript code without a separate compilation step.
 
 **Scenario:** You have `insertion_sort_buggy.ts` with a faulty sorting algorithm.
 
-**a. Compile TypeScript to JavaScript:**
-"Zentara, compile `testdata/insertion_sort_buggy.ts` using `tsc`."
-_(Zentara Code would use `execute_command` with `command: "tsc testdata/insertion_sort_buggy.ts"`)_
-This creates `testdata/insertion_sort_buggy.js`.
+**a. Prepare Your Workspace:**
 
-**b. Initiate Debugging on Compiled JS:**
-"Zentara, debug the compiled `testdata/insertion_sort_buggy.js`"
-_(Zentara Code uses `debug_launch` with `program: "testdata/insertion_sort_buggy.js"`)_
+- Ensure `testdata/insertion_sort_buggy.ts` is in your workspace.
+- Make sure `tsx` is installed (`npm install -g tsx`).
+- (Optional) Create a copy to debug, e.g., `testdata/insertion_sort_buggy.debug.ts`.
+
+**b. Initiate TypeScript Debugging:**
+"Zentara, start debugging `testdata/insertion_sort_buggy.debug.ts`"
+_(Zentara Code will use `debug_launch` with `program: "testdata/insertion_sort_buggy.debug.ts"` and automatically use `tsx` as the runtime for `.ts` files)_
 
 **c. Observe Initial Assertion Failures:**
 "Zentara, continue execution and report any assertion failures."
@@ -311,8 +312,8 @@ _(Zentara Code uses `debug_continue`)_
 
 **d. Set Breakpoints & Investigate:**
 If an assertion for a test array fails:
-"Zentara, restart debugging for `testdata/insertion_sort_buggy.js`.
-Set a breakpoint at the start of the `insertionSort` function (in `testdata/insertion_sort_buggy.js`).
+"Zentara, restart debugging for `testdata/insertion_sort_buggy.debug.ts`.
+Set a breakpoint at the start of the `insertionSort` function in `testdata/insertion_sort_buggy.debug.ts`.
 Set another where `insertionSort` is called for the failing test case (within the script's test calls).
 Continue."
 _(Zentara Code uses `debug_restart`, `debug_set_breakpoint`, `debug_continue`)_
@@ -320,10 +321,10 @@ _(Zentara Code uses `debug_restart`, `debug_set_breakpoint`, `debug_continue`)_
 **e. Step Through and Inspect:**
 When paused:
 "Zentara, step into `insertionSort`. Step line by line, showing `i`, `j`, `current`, and `arr`."
-_(Zentara Code uses `debug_step_in`, `debug_next`, and variable inspection tools on the JavaScript code)_
+_(Zentara Code uses `debug_step_in`, `debug_next`, and variable inspection tools on the TypeScript code)_
 
 **f. Diagnose the Bug:**
-By stepping through the compiled JavaScript and observing its runtime behavior, you can diagnose the issue in the original TypeScript logic.
+By stepping through the TypeScript code and observing its runtime behavior, you can diagnose the issue.
 
 ## Example Autonomous Debugging Prompts for Zentara Code
 
@@ -344,7 +345,7 @@ _(Remember to have Zentara Code create a copy like `quicksort_buggy.debug.py` to
 
 **4. For TypeScript Script (`testdata/insertion_sort_buggy.ts`):**
 
-"Zentara, the TypeScript script `testdata/insertion_sort_buggy.ts` needs debugging. First, compile it to JavaScript. Then, debug the compiled JavaScript output to find any bugs in the insertion sort logic. Explain the problems you discover, suggest fixes for the original `.ts` file, and if possible, apply and test them."
+"Zentara, the TypeScript script `testdata/insertion_sort_buggy.ts` needs debugging. Please debug it directly using your runtime analysis tools for TypeScript. Identify any bugs in the insertion sort logic, explain them, and then try to fix the script. After applying fixes, verify if the corrected script passes its internal assertions."
 
 These prompts give Zentara Code more leeway to decide on the specific debugging steps (breakpoints, stepping, inspection) needed to solve the problem.
 
