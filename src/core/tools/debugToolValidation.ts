@@ -75,12 +75,14 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 			// <cwd>/path/to/cwd</cwd> (optional)
 			// <env><KEY1>VAL1</KEY1><KEY2>VAL2</KEY2></env> (optional)
 			// <stopOnEntry /> or <stopOnEntry>true</stopOnEntry> (optional)
+			// <configName>Config Name</configName> (optional)
 			const params: LaunchParams = args // For type checking properties that align with LaunchParams
 
-			if (!isNonEmptyString(params.program)) {
+			// Either program or configName must be provided, but not necessarily both
+			if (!isNonEmptyString(params.program) && !isNonEmptyString(params.configName)) {
 				return {
 					isValid: false,
-					message: "Missing or invalid 'program' (string) for launch operation. Expected <program> tag.",
+					message: "Missing both 'program' and 'configName'. At least one must be provided for launch operation.",
 				}
 			}
 			if (params.mode !== undefined && !isNonEmptyString(params.mode)) {
@@ -125,6 +127,12 @@ export function validateOperationArgs(operation: string, args: any): ValidationR
 					isValid: false,
 					message:
 						"Invalid 'stopOnEntry' (boolean, optional) for launch operation. Expected <stopOnEntry/> or <stopOnEntry>true/false</stopOnEntry>.",
+				}
+			}
+			if (params.configName !== undefined && !isNonEmptyString(params.configName)) {
+				return {
+					isValid: false,
+					message: "Invalid 'configName' (string, optional) for launch operation. Expected a non-empty string.",
 				}
 			}
 			return { isValid: true, transformedArgs: params }

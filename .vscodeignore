@@ -6,7 +6,7 @@ coverage/
 logs/
 
 # Source code (compiled to dist/ and webview-ui/build/)
-src/
+#src/
 webview-ui/src/
 webview-ui/node_modules/
 webview-ui/public/

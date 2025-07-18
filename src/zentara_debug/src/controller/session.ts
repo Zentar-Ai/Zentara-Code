@@ -360,8 +360,9 @@ export async function waitForStopEvent(session: vscode.DebugSession, timeoutMs: 
  * @returns The active vscode.DebugSession or undefined.
  */
 export function getActiveSession(): vscode.DebugSession | undefined {
+	activeDebugSession = vscode.debug.activeDebugSession 
 	// Log the current state before returning
-	if (activeDebugSession) {
+/* 	if (activeDebugSession) {
 		// Check if VS Code still considers it active (optional sanity check)
 		const vscodeActive = vscode.debug.activeDebugSession
 		if (vscodeActive && vscodeActive.id === activeDebugSession.id) {
@@ -377,9 +378,11 @@ export function getActiveSession(): vscode.DebugSession | undefined {
 			activeDebugSession = vscodeActive // Update to VS Code's active session if it exists
 		}
 	} else {
+		activeDebugSession = vscode.debug.activeDebugSession // Update to VS Code's active session if it exists
 		outputChannel.appendLine(`[getActiveSession] No tracked session. Returning undefined.`)
 	}
-	return activeDebugSession
+		*/
+	return activeDebugSession 
 }
 
 /**

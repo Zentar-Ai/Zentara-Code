@@ -111,7 +111,7 @@ Zentara Code is a VS Code extension. Here's how you can get started:
 
 **1. Install from VS Code Marketplace (Recommended for Users)**
 
-- Install latest VS Code. The extension is build for VS Code 1.84 and later
+- Install latest VS Code. The extension is build for VS Code 1.102 and later
 - Open VS Code.
 - Install the necessary language extension and language debugger extension. For example for Python, just install Microsoft Python extension, it will automatically install debugpy debugger. Check the debugger manually on any of your script to make sure it works.
 - Check the launch.json so that debugger can launch manually on the file you want to debug without Zentara. You can also ask Zentara to add, edit launch.json to make it works with the script. For TypeScript files, install npm and tsx (by running `npm install -g tsx`).
