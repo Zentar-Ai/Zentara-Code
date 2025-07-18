@@ -6,16 +6,18 @@ export function getDebugLaunchToolDescription(args: ToolArgs): string {
 Description:
 The "debug_launch" tool starts a new debugging session for a specified program or test.
 
-If user provide a "program" without a "configName", you will first attempt to find the most appropriate configuration in user \`launch.json\` based on the file type and content. If a suitable configuration is found, you will use it, overriding its program path with the one user provided.
-
+If user provide a "program" without a "configName", you MUST first attempt to find the most appropriate configuration in user \`launch.json\` based on the file type and content.
+If a suitable configuration is found, you will use it, overriding its program path with the one user provided.
 If no suitable configuration is found in \`launch.json\`:
 - For Python, TypeScript, and JavaScript files, Zentara software will generate a dynamic configuration automatically, so just provide the "program" path.
-- For other file types, you will create a new configuration in \`launch.json\` to enable debugging for that file type.
-
+- For other file types, you MUST create a new configuration in \`launch.json\`, and   you MUST check and INSTALL  any  missing necessary debugging dependencies before launching debugging session. Dependencies checking and  instalattion is a critical step, otherwise the debugging session will fail and you will be FIRED.
+NEVER launch a debugging session for a program without a configuration, unless you are sure that the program is a Python, TypeScript, or JavaScript file and you can generate a dynamic configuration automatically.
+NEVER launch a debugging session for a program  without all dependencies (debugger, languages specific packages, etc.) installed for the program to be debugged for this file type first time.
+You will be FIRED if you lauch debugging session without all dependencies installed for the program to be debugged for this file type first time.
 User can also explicitly specify a "configName" to use a pre-configured setup from user \`launch.json\`.
 
 It allows you to control the initial state of the debugger, passing specific arguments.
-When using a program path, the debugger will always stop at the first line of the program, so you can set breakpoints and inspect variables from the very beginning.
+When using a "program" path, it's crucial to ensure the debugger pauses at the correct starting point. Before launching, you MUST read the first 10 lines of the target file to identify the first stoppable line of code. Some lines, like comments, import statements, or package declarations, may not be valid locations for a breakpoint. You must find the first line with an actual executable statement and set a breakpoint there. If the first stoppable line is not clear from the initial 10 lines, you should read a larger portion of the file to find it.
 NEVER use this one if you want to restart the debugging session, use \`debug_restart\` instead. This operation is used to start a new debugging session, not to restart an existing one.
 Always use debug_restart tool when you want to launch the session for the same file as previous successful launch. This way you substantially increase the success of launch.
 ────────────────────────  QUICK-START  ────────────────────────
@@ -93,7 +95,17 @@ NEVER MISS the "program" key in the JSON when not using configName. NEVER TRUNCA
     <debug_launch>{"program": "dist/my_app", "cwd": "/opt/my_app_data", "env": {"API_KEY": "your_secret_key", "NODE_ENV": "development"}}</debug_launch>
     \`\`\`
 
+6.  **Launch a Java program with a specific main class:**
+    \`\`\`xml
+    <debug_launch>{"configName": "Launch Java App", "mainClass": "com.example.Main"}</debug_launch>
+    \`\`\`
+
 ### Bad Examples:
+7.  **Launch a Java program without a config name:**
+    \`\`\`xml
+    <debug_launch>{"program": "src/main/java/com/example/Main.java"}</debug_launch>
+    \`\`\`
+    *Correction: Zentara cannot dynamically generate launch configurations for Java. You must specify a \`configName\` that points to a valid Java launch configuration in your \`launch.json\`.*
 
 These examples illustrate common mistakes when specifying parameters that will lead the operation to **FAIL**. You MUST avoid these mistakes at all costs. You and I will be FIRED and become homeless if you make mistakes like that. Assuming the correct program path is \`src/app/main.py\`:
 
