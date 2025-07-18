@@ -352,6 +352,8 @@ _(Zentara Code uses `debug_step_in`, `debug_next`, and variable inspection tools
 **f. Diagnose the Bug:**
 By stepping through the TypeScript code and observing its runtime behavior, you can diagnose the issue.
 
+
+
 ## Example Autonomous Debugging Prompts for Zentara Code
 
 The Quick Tutorials above show a step-by-step, interactive debugging process. However, you can also instruct Zentara Code to debug more autonomously. Here are some example high-level prompts based on the scenarios in the `testdata/` directory:
@@ -374,6 +376,12 @@ _(Remember to have Zentara Code create a copy like `quicksort_buggy.debug.py` to
 "Zentara, the TypeScript script `testdata/insertion_sort_buggy.ts` needs debugging. Please debug it directly using your runtime analysis tools for TypeScript. Identify any bugs in the insertion sort logic, explain them, and then try to fix the script. After applying fixes, verify if the corrected script passes its internal assertions."
 
 These prompts give Zentara Code more leeway to decide on the specific debugging steps (breakpoints, stepping, inspection) needed to solve the problem.
+
+**5. For Java program (`testdata/SimpleJava.java`):**
+
+"Zentara, set breakpoints in `testdata/SimpleJava.java` and launch debugging session for it, go through each line step by step and check if everything is OK"
+
+Zentara will check in launch.json if there is a launch config for java, if not, it will modify launch.json and then launch debugging session.
 
 ### 5. AI Debugging Using a `launch.json` Configuration
 
