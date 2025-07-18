@@ -43,6 +43,13 @@
 		"program": "${file}",
 		"sourceMaps": true,
 		"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "java",
+			"name": "Debug (Launch) - SimpleJava",
+			"request": "launch",
+			"mainClass": "SimpleJava",
+			"sourcePaths": ["${workspaceFolder}/testdata"]
 		}
 	]
 }

@@ -163,6 +163,32 @@ If you want to contribute or run the latest development version:
     3.  Select "Install from VSIX..."
     4.  Navigate to and select the generated `.vsix` file.
 
+## How to Launch a Debugging Session
+
+There are three primary ways to launch a debugging session with Zentara Code:
+
+**a) Automatic Configuration (Python, TypeScript, JavaScript):**
+
+Simply provide Zentara with the program path and any necessary arguments.
+- If the file is a Python, TypeScript, or JavaScript file, Zentara will automatically create a dynamic debugging configuration and launch the session.
+- For other file types, Zentara will inspect your `launch.json` file to find an appropriate existing configuration. If none is found, it will create a new launch configuration in `launch.json`. You may need to adjust this configuration and install any necessary debugging dependencies for your environment.
+
+**b) Using a `launch.json` Configuration:**
+
+For more control and for complex projects, you can use a `launch.json` file. This is the standard way to configure debugging in VS Code.
+
+*   **What is `launch.json`?** It's a configuration file where you define your debugging setups. You can specify the program to run, arguments, environment variables, and other important settings.
+*   **Where is it?** This file is located in a `.vscode` folder at the root of your project (`.vscode/launch.json`).
+*   **What if it doesn't exist?** If you don't have one, you can ask Zentara to create it for you! For example: "Zentara, create a launch configuration for my current file."
+
+Once you have a `launch.json` file with a named configuration (e.g., "Run Extension"), you can instruct Zentara to use it:
+- Provide the name of the configuration to Zentara (e.g., "Zentara, launch the debugger with the 'Run Extension' config").
+- You can also optionally provide a program name if it's not already specified in the `launch.json` configuration.
+
+**c) Manual Launch:**
+
+For complex scenarios or when you're already in a manual debugging session, you can launch the debugger yourself using VS Code's standard tools.
+- Once the session is active, you can then leverage Zentara for the rest of the debugging process, such as automatically setting breakpoints, evaluating the call stack, and inspecting variables.
 ## Quick Example
 
 
