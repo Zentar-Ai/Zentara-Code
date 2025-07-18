@@ -15,7 +15,7 @@
 			// I've set it to open your current workspace, but you can change it to any folder path.
 			"args": [
 				// Path to the workspace to open in the extension host
-				"${workspaceFolder}",
+				"${workspaceFolder}/testdata",
 				// Path to the extension to load
 				"--extensionDevelopmentPath=${workspaceFolder}/src"
 			],

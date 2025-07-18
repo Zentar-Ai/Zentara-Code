@@ -59,7 +59,7 @@ Zentara Code provides a rich set of granular AI debugging operations, allowing f
 
 ### Session Management
 
-- `debug_launch`: Starts a new AI debugging session for a specified program or test.
+- `debug_launch`: Starts a new AI debugging session. You can either provide a direct path to a program/test for a dynamic configuration, or reference a pre-existing configuration by name from your `launch.json` file (e.g., "Run Extension"), offering more flexibility.
 - `debug_quit`: Terminates the currently running program and exits the debugger.
 
 ### Execution Control
@@ -114,7 +114,7 @@ Zentara Code is a VS Code extension. Here's how you can get started:
 - Install latest VS Code. The extension is build for VS Code 1.102 and later
 - Open VS Code.
 - Install the necessary language extension and language debugger extension. For example for Python, just install Microsoft Python extension, it will automatically install debugpy debugger. Check the debugger manually on any of your script to make sure it works.
-- Check the launch.json so that debugger can launch manually on the file you want to debug without Zentara. You can also ask Zentara to add, edit launch.json to make it works with the script. For TypeScript files, install npm and tsx (by running `npm install -g tsx`).
+- **Configure `launch.json` (Optional but Recommended):** For a more streamlined experience, you can define debug configurations in your `.vscode/launch.json` file. This allows you to launch complex debugging scenarios with a simple name (e.g., "Run Extension", "Debug Current Test File"). You can then instruct Zentara to use these configurations directly, e.g., "Zentara, launch the debugger with the 'Run Extension' config". For TypeScript files, install npm and tsx (by running `npm install -g tsx`).
 -  For Zentara Code to effectively debug Python projects, especially those using Conda environments or specific `pytest` installations, ensure the correct Python interpreter is configured in your VS Code settings (`.vscode/settings.json`):
 
 ```json
@@ -348,6 +348,38 @@ _(Remember to have Zentara Code create a copy like `quicksort_buggy.debug.py` to
 "Zentara, the TypeScript script `testdata/insertion_sort_buggy.ts` needs debugging. Please debug it directly using your runtime analysis tools for TypeScript. Identify any bugs in the insertion sort logic, explain them, and then try to fix the script. After applying fixes, verify if the corrected script passes its internal assertions."
 
 These prompts give Zentara Code more leeway to decide on the specific debugging steps (breakpoints, stepping, inspection) needed to solve the problem.
+
+### 5. AI Debugging Using a `launch.json` Configuration
+
+This tutorial shows how to use a pre-defined configuration from your `.vscode/launch.json` file.
+
+**Scenario:** You have a `launch.json` file with a configuration named "Run Extension".
+
+**a. Prepare Your Workspace:**
+
+- Ensure you have a `.vscode/launch.json` file with a configuration like this (an example is available in the `.vscode` folder of the GitHub repository):
+  ```json
+  {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Run Extension",
+        "type": "extensionHost",
+        "request": "launch",
+        "args": [
+          "--extensionDevelopmentPath=${workspaceFolder}"
+        ]
+      }
+    ]
+  }
+  ```
+
+**b. Initiate Debugging with a Configuration Name:**
+Instruct Zentara Code:
+"Zentara, launch the debugger using the 'Run Extension' configuration."
+_(Zentara Code would use `debug_launch` with `configName: "Run Extension"`)_
+
+This approach is powerful for complex setups, as all the configuration details (program, args, environment variables) are managed in `launch.json`, and you only need to refer to them by name. This is particularly useful for debugging VSCode extensions, as you can programmatically launch the Extension Host window and have the AI interact with and debug the extension in a live environment.
 
 ### Python Debugging Setup (Important)
 
