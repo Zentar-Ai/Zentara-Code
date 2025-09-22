@@ -44,7 +44,7 @@
 	"devDependencies": {
 		"@zentara-code/config-eslint": "workspace:^",
 		"@zentara-code/config-typescript": "workspace:^",
-		"@types/node": "^22.15.20",
+		"@types/node": "^24.5.2",
 		"@types/node-ipc": "^9.2.3",
 		"@types/ps-tree": "^1.1.6",
 		"drizzle-kit": "^0.31.1",
