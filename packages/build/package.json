@@ -24,7 +24,7 @@
 	"devDependencies": {
 		"@zentara-code/config-eslint": "workspace:^",
 		"@zentara-code/config-typescript": "workspace:^",
-		"@types/node": "20.x",
+		"@types/node": "24.x",
 		"vitest": "^3.2.3"
 	}
 }
