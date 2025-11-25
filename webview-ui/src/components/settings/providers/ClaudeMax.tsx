@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { VSCodeButton, VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
+import { Checkbox } from "vscrui"
 import { type ProviderSettings } from "@zentara-code/types"
 import { useAppTranslation } from "@src/i18n/TranslationContext"
 import { vscode } from "@src/utils/vscode"
 import { Slider } from "@src/components/ui"
+import { useSelectedModel } from "@src/components/ui/hooks/useSelectedModel"
 
 interface ClaudeMaxProps {
 	apiConfiguration: ProviderSettings
@@ -19,6 +21,13 @@ export const ClaudeMax: React.FC<ClaudeMaxProps> = ({ apiConfiguration, setApiCo
 	const [waitingForCode, setWaitingForCode] = useState(false)
 
 	const maxOutputTokens = apiConfiguration?.claudeCodeMaxOutputTokens || 8000
+	const selectedModel = useSelectedModel(apiConfiguration)
+
+	// Check if the current model supports 1M context beta
+	const supports1MContextBeta = (
+		selectedModel?.id === "claude-sonnet-4-20250514" ||
+		selectedModel?.id === "claude-sonnet-4-5"
+	)
 
 	// Check authentication status on mount
 	useEffect(() => {
@@ -182,6 +191,21 @@ export const ClaudeMax: React.FC<ClaudeMaxProps> = ({ apiConfiguration, setApiCo
 					<p className="text-sm text-vscode-descriptionForeground mt-1">
 						{t("settings:providers.claudeMax.maxTokensDescription")}
 					</p>
+				</div>
+			)}
+
+			{isAuthenticated && supports1MContextBeta && (
+				<div>
+					<Checkbox
+						checked={apiConfiguration?.claudeMaxBeta1MContext ?? false}
+						onChange={(checked: boolean) => {
+							setApiConfigurationField("claudeMaxBeta1MContext", checked)
+						}}>
+						{t("settings:providers.claudeMax1MContextBetaLabel")}
+					</Checkbox>
+					<div className="text-sm text-vscode-descriptionForeground mt-1 ml-6">
+						{t("settings:providers.claudeMax1MContextBetaDescription")}
+					</div>
 				</div>
 			)}
 		</div>

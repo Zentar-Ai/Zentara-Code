@@ -276,6 +276,8 @@
 		"anthropic1MContextBetaDescription": "Extends context window to 1 million tokens for Claude Sonnet 4",
 		"awsBedrock1MContextBetaLabel": "Enable 1M context window (Beta)",
 		"awsBedrock1MContextBetaDescription": "Extends context window to 1 million tokens for Claude Sonnet 4",
+		"claudeMax1MContextBetaLabel": "Enable 1M context window (Beta)",
+		"claudeMax1MContextBetaDescription": "Extends context window to 1 million tokens for Claude Sonnet 4",
 		"cerebrasApiKey": "Cerebras API Key",
 		"getCerebrasApiKey": "Get Cerebras API Key",
 		"chutesApiKey": "Chutes API Key",

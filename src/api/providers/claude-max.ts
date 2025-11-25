@@ -286,11 +286,20 @@ export class ClaudeMaxHandler extends BaseProvider implements SingleCompletionHa
 			stream: true,
 		}
 
+		// Build beta headers dynamically
+		const betas = [CLAUDE_MAX_BETA_HEADERS]
+
+		// Add 1M context beta if enabled for Claude Sonnet 4/4.5
+		if ((modelId === "claude-sonnet-4-20250514" || modelId === "claude-sonnet-4-5") &&
+			this.options.claudeMaxBeta1MContext) {
+			betas.push("context-1m-2025-08-07")
+		}
+
 		// Build headers exactly like opencode does
 		const headers: any = {
 			"Content-Type": "application/json",
 			authorization: `Bearer ${this.authTokens.accessToken}`,
-			"anthropic-beta": CLAUDE_MAX_BETA_HEADERS,
+			"anthropic-beta": betas.join(","),
 			"anthropic-version": "2023-06-01",
 			"User-Agent": `opencode-tui/0.5.18 (${process.platform}; ${process.arch})`,
 		}
@@ -321,16 +330,46 @@ export class ClaudeMaxHandler extends BaseProvider implements SingleCompletionHa
 	}
 
 	getModel(): { id: string; info: ModelInfo } {
-		const modelId = this.options.claudeCodeModelId || claudeCodeDefaultModelId
-		const modelInfo = claudeCodeModels[modelId as ClaudeCodeModelId]
+		const modelId = this.options.apiModelId
+		if (modelId && modelId in claudeCodeModels) {
+			let id = modelId as ClaudeCodeModelId
+			let modelInfo: ModelInfo = { ...claudeCodeModels[id] }
+			if (id.endsWith("[1m]")) {
+				id = "claude-sonnet-4-5" as ClaudeCodeModelId
+			}
 
-		if (!modelInfo) {
-			throw new Error(`Invalid model ID: ${modelId}`)
+			// Override maxTokens with the configured value if provided
+			if (this.options.claudeCodeMaxOutputTokens !== undefined) {
+				modelInfo.maxTokens = this.options.claudeCodeMaxOutputTokens
+			}
+			// If 1M context beta is enabled for Claude Sonnet 4 or 4.5, update the model info
+			if ((id === "claude-sonnet-4-20250514" || id === "claude-sonnet-4-5" ) && this.options.claudeMaxBeta1MContext) {
+				// Use the tier pricing for 1M context
+				const tier = modelInfo.tiers?.[0]
+				if (tier) {
+					modelInfo = {
+						...modelInfo,
+						contextWindow: tier.contextWindow,
+						inputPrice: tier.inputPrice,
+						outputPrice: tier.outputPrice,
+						cacheWritesPrice: tier.cacheWritesPrice,
+						cacheReadsPrice: tier.cacheReadsPrice,
+					}
+				}
+			}
+			return { id, info: modelInfo }
+		}
+
+		const defaultModelInfo: ModelInfo = { ...claudeCodeModels[claudeCodeDefaultModelId] }
+
+		// Override maxTokens with the configured value if provided
+		if (this.options.claudeCodeMaxOutputTokens !== undefined) {
+			defaultModelInfo.maxTokens = this.options.claudeCodeMaxOutputTokens
 		}
 
 		return {
-			id: modelId,
-			info: modelInfo,
+			id: claudeCodeDefaultModelId,
+			info: defaultModelInfo,
 		}
 	}
 

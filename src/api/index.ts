@@ -97,7 +97,10 @@ export function buildApiHandler(configuration: ProviderSettings): ApiHandler {
 		case "claude-code":
 			return new ClaudeCodeHandler(options)
 		case "claude-max":
-			return new ClaudeMaxHandler(options)
+			return new ClaudeMaxHandler({
+				...options,
+				claudeCodeModelId: options.apiModelId || options.claudeCodeModelId,
+			})
 		case "glama":
 			return new GlamaHandler(options)
 		case "openrouter":

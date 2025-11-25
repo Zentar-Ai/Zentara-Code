@@ -137,6 +137,7 @@ const claudeMaxSchema = apiModelIdProviderModelSchema.extend({
 	claudeCodeModelId: z.string().optional(),
 	claudeCodeMaxOutputTokens: z.number().int().min(1).max(200000).optional(),
 	userDataDir: z.string().optional(),
+	claudeMaxBeta1MContext: z.boolean().optional().describe("Enable 1M context window beta for Claude Sonnet 4/4.5"),
 })
 
 const glamaSchema = baseProviderSettingsSchema.extend({
