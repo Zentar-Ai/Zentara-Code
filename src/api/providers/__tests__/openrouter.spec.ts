@@ -209,6 +209,39 @@ describe("OpenRouterHandler", () => {
 			expect(mockCreate).toHaveBeenCalledWith(expect.objectContaining({ transforms: ["middle-out"] }))
 		})
 
+		it("handles usage-only stream chunks without delta", async () => {
+			const handler = new OpenRouterHandler(mockOptions)
+
+			const mockStream = {
+				async *[Symbol.asyncIterator]() {
+					yield {
+						id: "test-id",
+						choices: [{ delta: { content: "hello" } }],
+					}
+					yield {
+						id: "test-id",
+						choices: [],
+						usage: { prompt_tokens: 12, completion_tokens: 34, cost: 0.005 },
+					}
+				},
+			}
+
+			const mockCreate = vitest.fn().mockResolvedValue(mockStream)
+			;(OpenAI as any).prototype.chat = {
+				completions: { create: mockCreate },
+			} as any
+
+			const chunks = []
+			for await (const chunk of handler.createMessage("test system prompt", [])) {
+				chunks.push(chunk)
+			}
+
+			expect(chunks).toEqual([
+				{ type: "text", text: "hello" },
+				{ type: "usage", inputTokens: 12, outputTokens: 34, totalCost: 0.005 },
+			])
+		})
+
 		it("adds cache control for supported models", async () => {
 			const handler = new OpenRouterHandler({
 				...mockOptions,

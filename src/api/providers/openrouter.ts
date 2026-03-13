@@ -175,7 +175,7 @@ export class OpenRouterHandler extends BaseProvider implements SingleCompletionH
 
 			const delta = chunk.choices[0]?.delta
 
-			if ("reasoning" in delta && delta.reasoning && typeof delta.reasoning === "string") {
+			if (typeof delta?.reasoning === "string" && delta.reasoning.length > 0) {
 				yield { type: "reasoning", text: delta.reasoning }
 			}
 
