@@ -69,6 +69,7 @@ export const providerNames = [
 	"io-intelligence",
 	"zentara",
 	"vercel-ai-gateway",
+	"novita",
 ] as const
 
 export const providerNamesSchema = z.enum(providerNames)
@@ -289,6 +290,11 @@ const groqSchema = apiModelIdProviderModelSchema.extend({
 	groqApiKey: z.string().optional(),
 })
 
+const novitaSchema = apiModelIdProviderModelSchema.extend({
+	novitaApiKey: z.string().optional(),
+	novitaBaseUrl: z.string().optional(),
+})
+
 const huggingFaceSchema = baseProviderSettingsSchema.extend({
 	huggingFaceApiKey: z.string().optional(),
 	huggingFaceModelId: z.string().optional(),
@@ -375,6 +381,7 @@ export const providerSettingsSchemaDiscriminated = z.discriminatedUnion("apiProv
 	fakeAiSchema.merge(z.object({ apiProvider: z.literal("fake-ai") })),
 	xaiSchema.merge(z.object({ apiProvider: z.literal("xai") })),
 	groqSchema.merge(z.object({ apiProvider: z.literal("groq") })),
+	novitaSchema.merge(z.object({ apiProvider: z.literal("novita") })),
 	huggingFaceSchema.merge(z.object({ apiProvider: z.literal("huggingface") })),
 	chutesSchema.merge(z.object({ apiProvider: z.literal("chutes") })),
 	litellmSchema.merge(z.object({ apiProvider: z.literal("litellm") })),
@@ -417,6 +424,7 @@ export const providerSettingsSchema = z.object({
 	...fakeAiSchema.shape,
 	...xaiSchema.shape,
 	...groqSchema.shape,
+	...novitaSchema.shape,
 	...huggingFaceSchema.shape,
 	...chutesSchema.shape,
 	...litellmSchema.shape,
@@ -549,6 +557,11 @@ export const MODELS_BY_PROVIDER: Record<
 		id: "moonshot",
 		label: "Moonshot",
 		models: Object.keys(moonshotModels),
+	},
+	novita: {
+		id: "novita",
+		label: "Novita",
+		models: Object.keys(novitaModels),
 	},
 	"openai-native": {
 		id: "openai-native",
